@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div>
+    <div class="navigationbar">
       <navbar></navbar>
     </div>
-    
+    <div class="obsah"><router-view/></div>
     <div>
       <AppFooter></AppFooter>
     </div>
@@ -13,7 +13,6 @@
 
 <script>
 import navbar from './components/navbar'
-import cover_photo from './components/cover_photo'
 import AppFooter from './components/AppFooter'
 
 export default {
@@ -21,39 +20,10 @@ export default {
   components: {
     navbar,AppFooter
   },
-  data() {
-    return {
-      form: {
-        email: '',
-        name: '',
-        food: null,
-        checked: []
-      },
-      okres: [{ text: 'Vyber jeden', value: null}, 'Stara Lubovna', 'Presov', 'Kosice'],
-      foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
-      show: true
-    }
-  },
-  methods: {
-    onSubmit(evt) {
-        evt.preventDefault()
-        alert(JSON.stringify(this.form))
-      },
-      onReset(evt) {
-        evt.preventDefault()
-        // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.food = null
-        this.form.checked = []
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
-    } 
-  }
+  
+  
 }
+
 </script>
 
 <style>
@@ -65,12 +35,12 @@ export default {
 }
 
 @font-face {
-  font-family: 'montserrat';
+  font-family: 'montserrat-light';
   src: url('./assets/fonts/Montserrat/Montserrat-Light.ttf');
 }
  
  @font-face {
-  font-family: 'montserrat';
+  font-family: 'montserrat-bold';
   src: url('./assets/fonts/Montserrat/Montserrat-Bold.ttf');
 }
  
@@ -79,6 +49,27 @@ export default {
   src: url('./assets/fonts/Roboto/Roboto-Regular.ttf');
 }
  
- 
+#app {
+  font-family: 'montserrat';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  font-size: 16px;
+  color: rgba(71, 71, 71, 1);
+  position: relative;
+}
+
+.navigationbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.obsah {
+  width: 100%;
+}
+
+
+
 
 </style>

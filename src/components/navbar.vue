@@ -2,38 +2,71 @@
 <template>
   <div id="app">   
     
-    <div class="nav-wrapper">
-            
-        <div class="left-side">
-          <b-img src="../assets/iep_logo_var2.png"></b-img>
-        </div>
-               
-           
-        <div class="right-side">
+
+    <b-navbar
+      toggleable="lg"
+      :sticky="true"
+      class="nav-bar"
+    >
+      <b-navbar-brand>
+        <router-link to='/'>
+          <img
+              class="nav-bar__logo"
+              :src='require(`@/assets/iep-logo_var2.png`)'
+          />
+        </router-link>
+      </b-navbar-brand>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      
+      
+      <b-collapse id="nav-collapse" is-nav>
+        
+        
+        <b-navbar-nav id="nav-collapse" class="ml-auto">
           <div class="nav-link-wrapper">
-            <a href="index.html">Domov</a>
+            <router-link to="/">
+                domov
+            </router-link>
+          </div>
+          <div class="nav-link-wrapper">
+            <router-link to="/Kalkulacka">
+                kalkulačka
+            </router-link>
+          </div>
+          <div class="nav-link-wrapper">
+           <router-link to="/Metodologia">
+                dokumenty
+            </router-link>
+          </div>
+          <div class="nav-link-wrapper">
+            <router-link to="/Kontakt">
+                kontakt
+            </router-link>
           </div>
           
-          <div class="nav-link-wrapper">
-            <a href="index.html">Kalkulačka</a>
-          </div>
+          
+        
+        </b-navbar-nav>
+      
+      </b-collapse>
+      
+    </b-navbar>
 
-          <div class="nav-link-wrapper">
-           <a href="metodologia.html">Metodológia</a>
-          </div>
 
-          <div class="nav-link-wrapper">
-            <a href="kontakt.html">Kontakt</a>
-          </div>
-        </div>
-      </div>
+        
+
+   
   </div>
 </template>
 
 
 <script>
+import { BNavbar } from 'bootstrap-vue';
+
 
 export default {
+
+
  
 }
 
@@ -41,47 +74,67 @@ export default {
 
 <style scoped>
 
-.nav-wrapper {
-    display: flex;
-    justify-content: space-between;
+
+
+  .nav-bar {
+    
     background-color: white;
-    padding: 38px
+    padding: 1.5%;
+    position: sticky;
+    top: 0;
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    box-sizing: border-box;
+    box-shadow: 0px 30px 30px rgba(0, 0, 0, 0.25);
+    z-index: 100;
   }
 
 
- .left-side {
-
-    width: 10%;
-    height: auto;
-
-  }
- .right-side {
-     display: flex;
-    }
  
- .nav-wrapper> .right-side > div {
-    margin-left: 40px;
-    font-size: 0.9em;
-  
+.nav-bar__item {
+  color: #8a8a8a;
+}
+
+
+.nav-bar__button-left {
+  margin-left: auto;
+  margin-right: 0.5rem;
+  display: none;
+}
+.nav-bar__button-right {
+  margin-left: 0.5rem;
+}
+.nav-bar__logo {
+  height: 1rem;
+}
+/* TODO: size? */
+@media (max-width: 996px) {
+  .nav-bar__right-content {
+    flex-direction: row-reverse;
+    flex-grow: unset;
   }
+  .nav-bar__button-left {
+    display: unset;
+  }
+  .nav-bar__button-right {
+    display: none;
+  }
+}
 
 .nav-link-wrapper {
-    height: 22px;
+    height: 1.5rem;
     border-bottom: 1px solid transparent;
     transition: border-bottom 0.5s;
+    margin-right: 2vh;
   }
-
 .nav-link-wrapper a {
     color: #8a8a8a;
     text-decoration: none;
     transition: color 0.5s;
-
   }
-
 .nav-link-wrapper:hover {
     border-bottom: 1px solid black;
+    color: black;
   }
-
 
 
 

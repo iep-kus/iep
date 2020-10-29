@@ -1,0 +1,16 @@
+.content--main {
+    background: whitesmoke;
+  
+    min-height: 100vh;
+    display: flex;
+  }
+  
+  .clickable-text {
+    color: #8a8a8a;
+  }
+  
+  .clickable-text:hover {
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+  }
