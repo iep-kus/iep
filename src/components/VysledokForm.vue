@@ -6,9 +6,28 @@
         <div class="celkovo">
             <div class="obsah">  
                 <b-row>
-                    <h2>Nápady a myšlienky prosím posielajte na môj FB</h2>
+                    <h2>Tvoja uhlíková stopa</h2>
                 </b-row>
                 
+                <b-row>
+                    <b-col> 
+                        <div class="celkovy graf">
+                             <DoughnutExample
+                                    ref="celkovo_chart"
+                                    :chart-data="chartData"
+                                    :options="options"
+                                    
+                                > 
+                            </DoughnutExample>
+                            <div class="celkova_hodnota"><h2>{{uhlikova_stopa_celkovo}} kg CO2e</h2></div>
+                        </div>
+                    </b-col> 
+                    <b-col> 
+                        <div class="vysledok">
+                             
+                        </div>
+                    </b-col> 
+                </b-row>
                 
                 <b-row align-v="center">    
                     <b-col> 
@@ -99,11 +118,98 @@
 
 
 <script>
+import DoughnutExample from "./DoughnutExample.vue";
 
 export default {
-    name: 'VysledokForm'
-    
+    name: 'VysledokForm',
+    components: {DoughnutExample},
+    data() {
+      return { 
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+            animateRotate: true,
+            },
+        },
 
+        chartData :{
+        
+            labels: ["Bývanie","Doprava","Jedlo","Spotreba","Životný štýl"],
+            datasets: [
+            {
+                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
+                data: [673,2651,1657,804,515],
+            }
+            ],
+        },
+      }
+    },
+    computed: {
+        uhlikova_stopa_byvanie: {
+            get() {
+                return this.$store.state.uhlikova_stopa_byvanie
+            },
+        },
+        uhlikova_stopa_doprava: {
+            get() {
+                return this.$store.state.uhlikova_stopa_doprava
+            },
+        },
+        uhlikova_stopa_jedlo: {
+            get() {
+                return this.$store.state.uhlikova_stopa_jedlo
+            },
+        },
+        uhlikova_stopa_spotreba: {
+            get() {
+                return this.$store.state.uhlikova_stopa_spotreba
+            },
+        },
+        uhlikova_stopa_ziv_styl: {
+            get() {
+                return this.$store.state.uhlikova_stopa_ziv_styl
+            },
+        },
+        uhlikova_stopa_celkovo: {
+            get() {
+                return this.$store.state.uhlikova_stopa_celkovo
+            },
+        },
+    },
+    watch: {
+        uhlikova_stopa_byvanie() {
+            this.fillChart()
+            
+        },
+        uhlikova_stopa_doprava() {
+            this.fillChart()
+            
+        },
+        uhlikova_stopa_jedlo() {
+            this.fillChart()
+            
+        },
+        uhlikova_stopa_spotreba() {
+            this.fillChart()
+            
+        },
+        uhlikova_stopa_ziv_styl() {
+            this.fillChart()
+            
+        },
+    },
+
+    methods: {
+        fillChart() {
+            this.chartData.datasets[0].data = [this.uhlikova_stopa_byvanie,this.uhlikova_stopa_doprava, this.uhlikova_stopa_jedlo,
+             this.uhlikova_stopa_spotreba, this.uhlikova_stopa_ziv_styl];
+            this.updateChart()
+        },
+        updateChart() {
+         this.$refs.celkovo_chart.update();
+        },
+    }
 }
 
 </script>

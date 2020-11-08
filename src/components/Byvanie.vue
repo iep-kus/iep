@@ -29,6 +29,7 @@
                                             v-model="vykurovanievybrate"
                                             :options="vykurovanie"
                                             name="vykurovanie"
+                                            v-on:change="fillData()"
                                             
                                     ></b-form-checkbox-group>
                                     </b-col>
@@ -44,13 +45,13 @@
                             </b-row>    
                                 
                             <div>
-                                <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate==1">    
+                                <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate.includes(1)" >    
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">Centrálne vykurovanie:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                        <b-form-input v-model="centralne" placeholder="Vložte spotrebu"></b-form-input>
+                                        <b-form-input v-on:change="fillData()" v-model="centralne" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
-                                    <b-col md="2" cols="5" class="text-left"><b-form-select v-model="selected1" :options="['kWh', '€']"></b-form-select></b-col>
+                                    <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected1" :options="['kWh', '€']"></b-form-select></b-col>
                             
                                 </b-row>
                             </div>
@@ -60,9 +61,9 @@
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">Elektrika:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                        <b-form-input v-model="elektrika" placeholder="Vložte spotrebu"></b-form-input>
+                                        <b-form-input v-model="elektrika" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
-                                    <b-col md="2" cols="5" class="text-left"><b-form-select v-model="selected2" :options="['kWh', '€']"></b-form-select></b-col>
+                                    <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected2" :options="['kWh', '€']"></b-form-select></b-col>
                         
                                 </b-row>
                             </div>
@@ -72,33 +73,33 @@
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">Zemný plyn:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" >
-                                        <b-form-input v-model="plyn" placeholder="Vložte spotrebu"></b-form-input>
+                                        <b-form-input v-model="plyn" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
-                                    <b-col  md="2" cols="5" class="text-left"><b-form-select v-model="selected3" :options="['kWh', '€']"></b-form-select></b-col>
+                                    <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected3" :options="['kWh', '€']"></b-form-select></b-col>
                         
                                 </b-row>
                             </div>
 
                             <div>
-                                <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate==4">    
+                                <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate.includes(4)">    
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">LPG:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                        <b-form-input v-model="lpg" placeholder="Vložte spotrebu"></b-form-input>
+                                        <b-form-input v-model="lpg" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
-                                    <b-col  md="2" cols="5" class="text-left"><b-form-select v-model="selected4" :options="['kWh', '€']"></b-form-select></b-col>
+                                    <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected4" :options="['litrov', '€']"></b-form-select></b-col>
                         
                                 </b-row>
                             </div>
 
                             <div>
-                                <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate==5">    
+                                <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate.includes(5)">    
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">Tuhé palivo:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                        <b-form-input v-model="tuhe" placeholder="Vložte spotrebu"></b-form-input>
+                                        <b-form-input v-model="tuhe" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
-                                    <b-col md="2" cols="5" class="text-left"><b-form-select v-model="selected5" :options="['prm', 'm3' , 't']"></b-form-select></b-col>
+                                    <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected5" :options="['prm', 'm3' , 't']"></b-form-select></b-col>
                         
                                 </b-row>
                             </div>
@@ -127,7 +128,7 @@
                                 <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
                                     <b-form-input v-model="vlastna" placeholder="Vložte spotrebu"></b-form-input>
                                 </b-col>
-                                <b-col  md="2" cols="5" class="text-left"><b-form-select v-model="vlastnakwhe" :options="['kWh', '€']"></b-form-select></b-col>
+                                <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="vlastnakwhe" :options="['kWh', '€']"></b-form-select></b-col>
                                 
                                 
                             </b-row>   
@@ -135,9 +136,9 @@
                                 <b-col md="2" cols="1" class="text-right"></b-col>
                                 <b-col md="4" cols="11" class="text-left">Dodávam do siete:</b-col>
                                 <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                    <b-form-input v-model="dodavam" placeholder="Vložte spotrebu"></b-form-input>
+                                    <b-form-input v-model="dodavam"  placeholder="Vložte spotrebu"></b-form-input>
                                 </b-col>
-                                <b-col  md="2" cols="5" class="text-left"><b-form-select v-model="dodavamkwhe" :options="['kWh', '€']"></b-form-select></b-col>
+                                <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="dodavamkwhe" :options="['kWh', '€']"></b-form-select></b-col>
                             </b-row>
            
                         </div>
@@ -152,6 +153,16 @@
                         </b-col>
                     </b-row>
 
+                    <div class="graf">
+                    <DoughnutExample
+                            ref="byvanie_chart"
+                            :chart-data="chartData"
+                            :options="options"
+                            
+                        > 
+                    </DoughnutExample>
+                    <div class="celkova_hodnota"><h2>{{uhlikova_stopa_byvanie}} kg CO2e</h2></div>
+                </div>
                 </div>  
             </div>
         </div>
@@ -160,39 +171,61 @@
 </template>
 
 <script>
-
+import DoughnutExample from "./DoughnutExample.vue";
+ 
 
 export default {
     name: 'Byvanie',
-    components: {},
+    components: {DoughnutExample},
+    props: {
+    },
+
+    
+
+    
     data() {
       return {
+                                                                                                                                                                                                                                                                                
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+            animateRotate: true,
+            },
+        },
+
+        chartData :{
         
+            labels: ["Centrálne vykurovanie","Elektrika","Zemný plyn","LPG","Tuhé palivo"],
+            datasets: [
+            {
+                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
+                data: [413,260,0,0,0],
+            }
+            ],
+        },
+ 
+        
+        
+       
         details: false,
         
-        vykurovanievybrate:[1],
+       
         
         vykurovanie: [
          
           { value: 1, text: 'Centrálne vykurovanie' },
-          { value: 2, text: 'Zemný plyn' },
-          { value: 3, text: 'Elektrika' },
+          { value: 2, text: 'Elektrika' },          
+          { value: 3, text: 'Zemný plyn' },
           { value: 4, text: 'LPG' },
           { value: 5, text: 'Tuhé palivo' }
-         ],
+        ],
 
-        centralne: '',
-        elektrika: '',
-        plyn: '',
-        lpg: '',
-        tuhe: '',
         
+        EF_centralne: [0.254524819,0.253483,0.434007,0.519568,0.050929,	0.004886,0.464345,0.095771,	0.096154,0.067771,0.558332,0.434007 ],
+    
 
-        selected1: 'kWh',
-        selected2: 'kWh',
-        selected3: 'kWh',
-        selected4: 'kWh',
-        selected5: 'kWh',
+        
 
             
         obnovitelnezdroje: 'Nie',
@@ -200,12 +233,269 @@ export default {
         dodavam: '',
         vlastnakwhe: 'kWh',
         dodavamkwhe: 'kWh',
+
+    
       }
     },
-    
+
     methods: {
+        updateChart() {
+         this.$refs.byvanie_chart.update();
+        },
+        fillData() {
+            
+            this.chartData.datasets[0].data = [this.emisie_centralne()*this.centralne/this.clenovia,this.emisie_elektrika()*this.elektrika/this.clenovia,
+                this.emisie_plyn()*this.plyn/this.clenovia,this.emisie_lpg()*this.lpg/this.clenovia,this.emisie_tuhe()*this.tuhe/this.clenovia];
+            this.emisie_jedlo = this.chartData.datasets[0].data;
+            this.uhlikova_stopa_byvanie = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]);
+            this.updateChart();
+            console.log(this.uhlikova_stopa_byvanie)
+            
+            
+        },
+        
+        emisie_centralne() {
+            let ef = this.EF_centralne[0];
+            if (this.okres==5){ef = this.EF_centralne[1]}
+            if (this.okres==18 || this.okres==19 ){ef = this.EF_centralne[2]}
+            if (this.okres==71){ef = this.EF_centralne[3]}
+            
+            if (this.okres==62){ef = this.EF_centralne[5]}
+            if (this.okres==27){ef = this.EF_centralne[6]}
+            if (this.okres==41){ef = this.EF_centralne[7]}
+            if (this.okres==2){ef = this.EF_centralne[8]}
+            if (this.okres==32){ef = this.EF_centralne[9]}
+            if (this.okres==68){ef = this.EF_centralne[9]}
+            if (this.selected1=='kWh') {
+                return ef;
+            }
+            else {
+                return ef/0.092307;
+            }
+        },
+            
+        emisie_elektrika() {
+            
+            if (this.selected2=='kWh') {
+                return 0.169;
+            }
+            else {
+                return 0.169/0.1577;
+            }
+        },
+            
+        emisie_plyn() {
+            
+            if (this.selected3=='kWh') {
+                return 0.2003;
+            }
+            else {
+                return 0.2003/0.0533;
+            }
+        },
+            
+        emisie_lpg() {
+            
+            if (this.selected4=='litrov') {
+                return 1.655;
+            }
+            else {
+                return 1.655/0.59;
+            }
+        },
+            
+         emisie_tuhe() {      
+            if (this.selected5=='prm') {
+                return 1212.96;
+            }
+            if (this.selected5=='m3') {
+                return 910;
+            }
+            if (this.selected5=='t') {
+                return 910/0.865;
+            }
+          
+             
+        },
+
         
 
+   
+    },
+
+    watch: {
+        okres() {
+            this.fillData();
+        },
+        clenovia() {
+            this.fillData();
+        },
+        centralne() {
+            this.fillData();
+        },
+        elektrika() {
+            this.fillData();
+        },
+        plyn() {
+            this.fillData();
+        },
+        lpg() {
+            this.fillData();
+        },
+        tuhe() {
+            this.fillData();
+        },
+    },
+    
+    
+    computed: {
+        
+        emisie_byvanie: {
+            get() {
+                return this.$store.state.emisie_byvanie
+            },
+            set(value) {
+                this.$store.commit('setemisie_byvanie',value)
+                
+            }
+        },
+        uhlikova_stopa_byvanie: {
+            get() {
+                return this.$store.state.uhlikova_stopa_byvanie
+            },
+            set(value) {
+                this.$store.commit('setuhlikova_stopa_byvanie',value)
+                
+            }
+        },
+
+        okres: {
+            get() {
+                return this.$store.state.okres
+            },
+            change_okres() {
+                return this.$store.state.okres
+            }
+        },
+
+        clenovia: {
+            get() {
+                return this.$store.state.clenovia
+            },
+        },
+       
+        
+        vykurovanievybrate: {
+            get() {
+                return this.$store.state.vykurovanievybrate
+            },
+            set(value) {
+                this.$store.commit('setvykurovanievybrate',value)
+                this.$store.commit('prepocetzateplenie');
+                this.$store.commit('prepocetenergie');
+                
+            }
+        },
+        
+        centralne: {
+            get() {
+                return this.$store.state.centralne 
+            },
+            set(value) {
+                this.$store.commit('setcentralne',value)
+            }
+        },
+
+        elektrika: {
+            get() {
+                return this.$store.state.elektrika
+            },
+            set(value) {
+                this.$store.commit('setelektrika',value)
+            }
+        },
+
+        plyn: {
+            get() {
+                return this.$store.state.plyn
+            },
+            set(value) {
+                this.$store.commit('setplyn',value)
+            }
+        },
+
+        lpg: {
+            get() {
+                return this.$store.state.lpg
+            },
+            set(value) {
+                this.$store.commit('setlpg',value)
+            }
+        },
+
+        tuhe: {
+            get() {
+                return this.$store.state.tuhe
+            },
+            set(value) {
+                this.$store.commit('settuhe',value)
+            }
+        },
+
+        selected1: {
+            get() {
+                return this.$store.state.selected1
+            },
+            set(value) {
+                this.$store.commit('setselected1',value)
+                this.$store.commit('conversion',0)
+                
+            }
+        },
+        selected2: {
+            get() {
+                return this.$store.state.selected2
+            },
+            set(value) {
+                this.$store.commit('setselected2',value)
+                this.$store.commit('conversion',1)
+            }
+        },
+        selected3: {
+            get() {
+                return this.$store.state.selected3
+            },
+            set(value) {
+                this.$store.commit('setselected3',value)
+                this.$store.commit('conversion',2)
+            }
+        },
+        selected4: {
+            get() {
+                return this.$store.state.selected4
+            },
+            set(value) {
+                this.$store.commit('setselected4',value)
+                this.$store.commit('conversion',3)
+            }
+        },
+        selected5: {
+            get() {
+                return this.$store.state.selected5
+            },
+            set(value) {
+                this.$store.commit('setselected5',value)
+                this.$store.commit('conversion',4)
+            }
+        },
+
+        centralne_jednotky: {
+            get() {
+                return this.$store.state.centralne_jednotky
+            },
+        },
+
+    
     }
 
 }
@@ -215,11 +505,23 @@ export default {
 
 <style scoped>
 
+
+
 .container-fluid { 
     width: 100%; padding-right: 0; padding-left: 0; margin-right: auto; margin-left: auto; 
 }
 
+.graf {
+    width: 30%;
+    height: auto;
+    position: relative;
+    left:35%;
+}
 
+.celkova_hodnota {
+    z-index: 1;
+    text-align: center;
+}
 
 .item{
     
@@ -228,7 +530,12 @@ export default {
     width: 100%;
 }
 
-
+.graf {
+    width: 30%;
+    height: auto;
+    position: relative;
+    left:35%;
+}
 
 
 .category {

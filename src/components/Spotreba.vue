@@ -18,14 +18,16 @@
                         <b-row v-if="details_spotreba==true" style="margin-bottom:2.5vh" align-v="start">      
                             <b-col cols="1" class="text-right">16.</b-col>
                             <b-col cols="10" lg="5" class="text-left" align-h="start">Koľko áut vlastní Vaša domácnosť?</b-col>
-                            <b-col cols="11" lg="5" offset="1" offset-lg="0" class="text-left" align-h="start"><b-form-spinbutton id="vlastnenieaut" v-model="vlastnenieaut" min="0" max="20"></b-form-spinbutton></b-col>
+                            <b-col cols="11" lg="5" offset="1" offset-lg="0" class="text-left" align-h="start">
+                                <b-form-spinbutton v-on:change="countEmissions()" id="vlastnenieaut" v-model="vlastnenieaut" min="0" max="20"></b-form-spinbutton>
+                            </b-col>
                         </b-row>
                         <div v-if="details_spotreba==true">
                             <b-row  style="margin-bottom:2vh" align-v="start">    
                                 <b-col cols="1" lg="2" class="text-right"></b-col>
                                 <b-col cols="10" lg="4" class="text-left">Priemerne po koľkých rokoch vymeníte auto za nové?</b-col>
                                 <b-col cols="10" lg="5" offset="1" offset-lg="0" class="text-right" > 
-                                    <b-form-spinbutton id="vekaut" v-model="vekaut" min="1" max="40"></b-form-spinbutton>
+                                    <b-form-spinbutton v-on:change="countEmissions()" id="vekaut" v-model="vekaut" min="1" max="40"></b-form-spinbutton>
                                 </b-col>
                     
                             </b-row>
@@ -34,7 +36,7 @@
                                 <b-col cols="1" lg="2" class="text-right"></b-col>
                                 <b-col cols="10" lg="4" class="text-left">Prevažne kupujete autá:</b-col>
                                 <b-col cols="10" lg="5" offset="1" offset-lg="0" class="text-right" > 
-                                    <b-form-select v-model="nakupauta" :options="nakupaut"></b-form-select>
+                                    <b-form-select v-on:change="countEmissions()" v-model="nakupauta" :options="nakupaut"></b-form-select>
                                 </b-col>
                     
                             </b-row>
@@ -52,7 +54,9 @@
                         <b-row  style="margin-bottom:2.5vh" align-v="start">      
                             <b-col cols="1" class="text-right">17.</b-col>
                             <b-col cols="10" lg="5" class="text-left" align-h="start">Koľko z týchto elektrospotrebičov vlastníte? (chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia)</b-col>
-                            <b-col cols="10" lg="5" offset="1" offset-lg="0" class="text-left" align-h="start"><b-form-spinbutton id="vlastneniebielatechnika" v-model="vlastneniebielatechnika" min="0" max="6"></b-form-spinbutton></b-col>
+                            <b-col cols="10" lg="5" offset="1" offset-lg="0" class="text-left" align-h="start">
+                                <b-form-spinbutton id="vlastneniebielatechnika" v-model="vlastneniebielatechnika" min="0" max="6" v-on:change="countEmissions()"></b-form-spinbutton>
+                            </b-col>
                         </b-row>
                         <div v-if="details_spotreba==true">
                             <b-row  style="margin-bottom:2vh" align-v="start">    
@@ -60,8 +64,7 @@
                                 <b-col cols="10" lg="4"  class="text-left">Priemerne ako často ich meníte?</b-col>
                                 <b-col lg="2" cols="3" offset="1" offset-lg="0" class="text-right">Raz za</b-col>
                                 <b-col lg="2" cols="5" class="text-right" >
-                                    
-                                    <b-form-spinbutton id="vekbielatechnika" v-model="vekbielatechnika" min="1" max="40"></b-form-spinbutton>
+                                    <b-form-spinbutton id="vekbielatechnika" v-model="vekbielatechnika" min="1" max="40" v-on:change="countEmissions()"></b-form-spinbutton>
                                 </b-col> 
                                 
                                 <b-col lg="1" cols="2" class="text-left" v-if="vekbielatechnika>4">rokov</b-col>
@@ -69,16 +72,7 @@
                             
                             </b-row>
 
-                            <b-row  style="margin-bottom:2vh" align-v="start">    
-                                <b-col lg="2" cols="1" class="text-right"></b-col>
-                                <b-col lg="4" cols="10" class="text-left">z toho z druhej ruky:</b-col>
-                                <b-col lg="4" cols="8" offset="1" offset-lg="0" class="text-right" >
-                                    
-                                    <b-form-spinbutton id="druharukabielatechnika" v-model="druharukabielatechnika" min="0" max="100" step="5"></b-form-spinbutton>
-                                </b-col> 
-                                <b-col lg="1" cols="2" class="text-right">percent</b-col>
-                    
-                            </b-row>
+                            
                         </div>
                     </div>
 
@@ -90,8 +84,10 @@
                     <div class="otazka" v-if="details_spotreba==true">
                         <b-row  style="margin-bottom:2.5vh" align-v="start">      
                             <b-col lg="1" cols="1" class="text-right">18.</b-col>
-                            <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko ďalších elektronických zariadení, ktoré používa viacero členov domácností, máte? (televízor, repráky, herná konzola, vysávač, kuchynské roboty, kávovar, rýchlovarná kanvica, odšťavovač, žehlička, ohrievač... )</b-col>
-                            <b-col lg="5" cols="10" offset-lg="0" offset="1" class="text-left" align-h="start"><b-form-spinbutton id="vlastnenieciernatechnika" v-model="vlastnenieciernatechnika" min="0" max="20"></b-form-spinbutton></b-col>
+                            <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko ďalších elektronických zariadení, ktoré používa viacero členov domácností, máte? (televízor, repráky, herná konzola, vysávač, kuchynské roboty, kávovar, rýchlovarná kanvica, mikrovlnka, odšťavovač, žehlička, ohrievač... )</b-col>
+                            <b-col lg="5" cols="10" offset-lg="0" offset="1" class="text-left" align-h="start">
+                                <b-form-spinbutton id="vlastnenieciernatechnika" v-model="vlastnenieciernatechnika" min="0" max="20" v-on:change="countEmissions()"></b-form-spinbutton>
+                            </b-col>
                         </b-row>
 
                         <div v-if="details_spotreba==true">
@@ -101,23 +97,14 @@
                                 <b-col lg="2" cols="3" offset="1" offset-lg="0" class="text-right">Raz za</b-col>
                                 <b-col lg="2" cols="5" class="text-right" >
                                     
-                                    <b-form-spinbutton id="vekciernatechnika" v-model="vekciernatechnika" min="1" max="40"></b-form-spinbutton>
+                                    <b-form-spinbutton id="vekciernatechnika" v-model="vekciernatechnika" min="1" max="40" v-on:change="countEmissions()"></b-form-spinbutton>
                                 </b-col> 
                                 <b-col lg="1" cols="2" class="text-right" v-if="vekciernatechnika>4">rokov</b-col>
                                 <b-col lg="1" cols="2" class="text-right" v-if="vekciernatechnika<5">roky</b-col>
                     
                             </b-row>
 
-                            <b-row  style="margin-bottom:2vh" align-v="start">    
-                                <b-col lg="2" cols="1" class="text-right"></b-col>
-                                <b-col lg="4" cols="10" class="text-left">z toho z druhej ruky:</b-col>
-                                <b-col lg="5" cols="10" offset-lg="0" offset="1" class="text-right" >
-                                    
-                                    <b-form-spinbutton id="druharukaciernatechnika" v-model="druharukaciernatechnika" min="0" max="100" step="5"></b-form-spinbutton>
-                                </b-col> 
-                                
-                    
-                            </b-row>
+                            
                         </div>
                     </div>
 
@@ -133,7 +120,9 @@
                             <b-col lg="1" cols="1" class="text-right" v-if="details_spotreba==true">19.</b-col>
                             <b-col lg="1" cols="1" class="text-right" v-if="details_spotreba==false">18.</b-col>
                             <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko zariadení z osobnej elektroniky vlastníš? (mobil, notebook, tablet, smart hodinky, power banka, čítačka kníh ...)</b-col>
-                            <b-col lg="5" cols="10" offset="1" offset-lg="0" class="text-left" align-h="start"><b-form-spinbutton id="vlastnenietechnika" v-model="vlastnenietechnika" min="0" max="20"></b-form-spinbutton></b-col>
+                            <b-col lg="5" cols="10" offset="1" offset-lg="0" class="text-left" align-h="start">
+                                <b-form-spinbutton id="vlastnenietechnika" v-model="vlastnenietechnika" min="0" max="20" v-on:change="countEmissions()">
+                            </b-form-spinbutton></b-col>
                         </b-row>
                         <div v-if="details_spotreba==true">
                             <b-row  style="margin-bottom:2vh" align-v="start">    
@@ -142,65 +131,35 @@
                                 <b-col lg="2" cols="3" offset-lg="0" offset="1" class="text-right">Raz za</b-col>
                                 <b-col lg="2" cols="5" class="text-right" >
                                     
-                                    <b-form-spinbutton id="vektechnika" v-model="vektechnika" min="1" max="40"></b-form-spinbutton>
+                                    <b-form-spinbutton id="vektechnika" v-model="vektechnika" min="1" max="40" v-on:change="countEmissions()"></b-form-spinbutton>
                                 </b-col> 
                                 <b-col lg="1" cols="2" class="text-right" v-if="vektechnika>4">rokov</b-col>
                                 <b-col lg="1" cols="2" class="text-right" v-if="vektechnika<5">roky</b-col>
                     
                             </b-row>
 
-                            <b-row  style="margin-bottom:2vh" align-v="start">    
-                                <b-col lg="2" cols="1" class="text-right"></b-col>
-                                <b-col lg="4" cols="10" class="text-left">z toho z druhej ruky kupuješ:</b-col>
-                                <b-col lg="5" cols="10" offset-lg="0" offset="1" class="text-right" >
-                                    
-                                    <b-form-spinbutton id="druharukatechnika" v-model="druharukatechnika" min="0" max="100" step="5"></b-form-spinbutton>
-                                </b-col> 
-                                
-                    
-                            </b-row>
+                            
                         </div>
                     </div>
 
 
 
+
+
+                    
 
 
                     <div class="otazka">
-                        <b-row v-if="details_spotreba==true"  style="margin-bottom:2.5vh" align-v="start">      
-                            <b-col lg="1" cols="1" class="text-right">20.</b-col>
-                            <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko z týchto kusov veľkého nábytku vlastníš? (gauč, posteľ, skriňa, kuchynká linka...)</b-col>
-                            <b-col lg="5" cols="10" offset-lg="0" offset="1" class="text-left" align-h="start"><b-form-spinbutton id="vlastnenienabytok" v-model="vlastnenienabytok" min="0" max="20"></b-form-spinbutton></b-col>
+                        <b-row  style="margin-bottom:2.5vh" align-v="start">      
+                            <b-col lg="1" cols="1" class="text-right" v-if="details_spotreba==true">20.</b-col>
+                            <b-col lg="1" cols="1" class="text-right" v-if="details_spotreba==false">19.</b-col>
+                            <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko percent tvojich všetkých nákupov (biela technika a iné elektrospotrebiče, osobná elektronika alebo nábytok) tvoria nákupy z druhej ruky?</b-col>
+                            <b-col lg="5" cols="10" offset="1" offset-lg="0" class="text-left" align-h="start" >
+                                <b-form-input type="range" id="druharuka" v-model="druharuka" min="0" max="100" v-on:change="countEmissions()"></b-form-input>
+                            </b-col>
                         </b-row>
-                        <div v-if="details_spotreba==true">
-                            <b-row  style="margin-bottom:2vh" align-v="start">    
-                                <b-col lg="2" cols="1" class="text-right"></b-col>
-                                <b-col lg="4" cols="10" class="text-left">Priemerne ako často ich meníš?</b-col>
-                                <b-col lg="2" cols="3" offset-lg="0" offset="1" class="text-right">Raz za</b-col>
-                                <b-col lg="2" cols="5" class="text-right" >
-                                    
-                                    <b-form-spinbutton id="veknabytok" v-model="veknabytok" min="1" max="40"></b-form-spinbutton>
-                                </b-col> 
-                                <b-col lg="1" cols="2" class="text-left" v-if="veknabytok>4">rokov</b-col>
-                                <b-col lg="1" cols="2" class="text-left" v-if="veknabytok<5">roky</b-col>
-                    
-                            </b-row>
-
-                            <b-row  style="margin-bottom:2vh" align-v="start">    
-                                <b-col lg="2" cols="1" class="text-right"></b-col>
-                                <b-col lg="4" cols="10" class="text-left">z toho z druhej ruky kupuješ:</b-col>
-                                <b-col lg="5" cols="10" offset-lg="0" offset="1" class="text-right" >
-                                    
-                                    <b-form-spinbutton id="druharukanabytok" v-model="druharukanabytok" min="0" max="100" step="5"></b-form-spinbutton>
-                                </b-col> 
-                                
-                    
-                            </b-row>
-                        </div>
+                        
                     </div>
-
-
-
 
 
 
@@ -219,7 +178,16 @@
 
 
 
-
+                    <div class="graf">
+                        <DoughnutExample
+                                ref="spotreba_chart"
+                                :chart-data="chartData"
+                                :options="options"
+                                
+                            > 
+                        </DoughnutExample>
+                        <div class="celkova_hodnota"><h2>{{uhlikova_stopa_spotreba}} kg CO2e</h2></div>
+                    </div>
 
 
 
@@ -240,14 +208,34 @@
 
 
 <script>
-
+import DoughnutExample from "./DoughnutExample.vue";
 
 export default {
     name: 'Spotreba',
-    components: {},
+    components: {DoughnutExample},
     data() {
       return {
         
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                animateRotate: true,
+            },
+        },
+
+        chartData :{
+        
+            labels: ["Automobil","Biela technika","Ostatné elektrospotrebiče","Osobná elektronika" ,"Nábytok"],
+            datasets: [
+            {
+                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94' ,'#BEBEBE'],
+                data: [388.20,45.15,98.21,206.23,66],
+            }
+            ],
+        },
+
+
         details_spotreba:false,
 
         vlastnenieaut: 1,
@@ -255,22 +243,21 @@ export default {
         
         vlastneniebielatechnika:5,
         vekbielatechnika:15,
-        druharukabielatechnika:20,
-
-        vlastnenieciernatechnika:4,
-        vekciernatechnika:5,
-        druharukaciernatechnika:20,
-
-        vlastnenietechnika:5,
-        vektechnika:10,
-        druharukatechnika:20,
         
-        vlastnenienabytok:5,
-        veknabytok:10,
-        druharukanabytok:20,
+
+        vlastnenieciernatechnika:10,
+        vekciernatechnika:10,
+        
+
+        vlastnenietechnika:4,
+        vektechnika:5,
+        
+        
+
+        
 
 
-       
+       druharuka:0,
 
 
 
@@ -287,8 +274,83 @@ export default {
         
       }
     },
-    
 
+    methods: {
+        countEmissions() {
+            if(this.details_spotreba==false) {
+                this.emisie_spotreba[0] = 7764*this.vlastnenieaut*1/(10*this.clenovia);
+                this.emisie_spotreba[1] = 270.925*(1-this.druharuka/100)*this.vlastneniebielatechnika/(15*this.clenovia);
+                this.emisie_spotreba[2] = 196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(10*this.clenovia);
+                this.emisie_spotreba[3] = 257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(5);
+                this.emisie_spotreba[4] = this.nabytok(); 
+                this.chartData.datasets[0].data = this.emisie_spotreba;
+                this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3] + +this.emisie_spotreba[4]);
+                this.updateChart();
+            }
+            if(this.details_spotreba==true) {
+                this.emisie_spotreba[0] = 7764*this.vlastnenieaut*this.carage()/(this.vekaut*this.clenovia);
+                this.emisie_spotreba[1] = 270.925*(1-this.druharuka/100)*this.vlastneniebielatechnika/(this.vekbielatechnika*this.clenovia);
+                this.emisie_spotreba[2] = 196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(this.vekciernatechnika*this.clenovia);
+                this.emisie_spotreba[3] = 257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(this.vektechnika);
+                this.emisie_spotreba[4] = this.nabytok(); 
+                this.chartData.datasets[0].data = this.emisie_spotreba;
+                this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3]+ +this.emisie_spotreba[4]);
+                this.updateChart();
+            }
+            console.log(this.emisie_spotreba[0])
+        },
+        carage() {
+            if(this.nakupauta==1){return 1}
+            if(this.nakupauta==2){return 0.68}
+            if(this.nakupauta==3){return 0.38}
+            if(this.nakupauta==4){return 0.16}
+        },
+        updateChart() {
+         this.$refs.spotreba_chart.update();
+        },
+        nabytok() {
+            return Math.round(((39.5 + 31 + 27)*this.clenovia + 84 + (this.rozloha/50)*(42 + 26) + 90 + 25)/15*this.clenovia)
+        }
+        
+    },
+    
+    computed: {
+        emisie_spotreba: {
+            get() {
+                return this.$store.state.emisie_spotreba
+            },
+            set(value) {
+                this.$store.commit('setemisie_spotreba',value)
+            }
+        },
+        clenovia: {
+            get() {
+                return this.$store.state.clenovia
+            },
+        },
+        uhlikova_stopa_spotreba: {
+            get() {
+                return this.$store.state.uhlikova_stopa_spotreba
+            },
+            set(value) {
+                this.$store.commit('setuhlikova_stopa_spotreba',value)
+            }
+        },
+        rozloha: {
+            get() {
+                return this.$store.state.rozloha
+            },
+        },
+
+    },
+    watch: {
+        clenovia() {
+            this.fillChart()
+        },
+        rozloha() {
+            this.fillChart()
+        },
+    }
 
 }
 
@@ -297,7 +359,18 @@ export default {
 
 <style scoped>
 
+.graf {
+    width: 30%;
+    height: auto;
+    position: relative;
+    left:35%;
+    margin-top: 10%;
+}
 
+.celkova_hodnota {
+    z-index: 1;
+    text-align: center;
+}
 
 
 .item{

@@ -26,8 +26,8 @@ export default {
 
 </script>
 
-<style>
-  
+<style lang="scss">
+@import "./styles/custom.scss";
   
 @font-face {
   font-family: 'montserrat';

@@ -15,7 +15,7 @@
                     <b-row  style="margin-bottom:2vh" align-v="center" cols-md="12" cols-sm="12" >      
                         <b-col md="1" cols="1" class="text-right" align-h="start">1.</b-col>
                         <b-col md="5" cols="10" class="text-left" align-h="start">Aký je okres Vášho bydliska?</b-col>
-                        <b-col md="5" cols="10" class="text-left" offset-md="0" offset="1" > <b-form-select v-model="selected" :options="okres" label-field="Aký je okres Vášho bydliska?"></b-form-select></b-col>
+                        <b-col md="5" cols="10" class="text-left" offset-md="0" offset="1" > <b-form-select v-model="okres" :options="okresval" label-field="Aký je okres Vášho bydliska?"></b-form-select></b-col>
         
                     </b-row>
                 </div>
@@ -25,7 +25,7 @@
                         <b-col md="1" cols="1" class="text-right">2.</b-col>
                         <b-col md="5" cols="10" class="text-left" align-h="start">Počet členov vo Vašej domácností:</b-col>
                         <b-col md="5" cols="10" class="text-left" offset-md="0" offset="1" >                         
-                            <b-form-spinbutton class="checkchoice" id="demo-sb" v-model="clenovdomacnosti" min="1" max="20"></b-form-spinbutton>
+                            <b-form-spinbutton id="clenovia" v-model="clenovia" min="1" max="20"></b-form-spinbutton>
                         </b-col>
                         
                     </b-row>
@@ -38,9 +38,8 @@
                         <b-col md="5" cols="10" offset-md="0" offset="1" class="text-left" >                         
                             <b-form-radio-group
                             class="pt-2"
-                            v-model="typdomu"
+                            v-model="typ"
                             :options="['rodinnom dome', 'bytovom dome']"
-                            @change="rozlohaFunc()"
                             ></b-form-radio-group>
                         </b-col>
                         
@@ -50,8 +49,8 @@
                 <div class="otazka">
                     <b-row  style="margin-bottom:2vh" align-v="center">      
                         <b-col md="1" cols="1" class="text-right">4.</b-col>
-                        <b-col v-if="typdomu=='bytovom dome'" md="5" cols="10" class="text-left" align-h="start">Rozloha môjho bytu:</b-col>
-                        <b-col v-if="typdomu=='rodinnom dome'" md="5" cols="10" class="text-left" align-h="start">Rozloha môjho domu:</b-col>
+                        <b-col v-if="typ=='bytovom dome'" md="5" cols="10" class="text-left" align-h="start">Rozloha môjho bytu:</b-col>
+                        <b-col v-if="typ=='rodinnom dome'" md="5" cols="10" class="text-left" align-h="start">Rozloha môjho domu:</b-col>
                         <b-col md="5" cols="10" offset-md="0" offset="1" class="text-left" > 
                             <b-form-group>
                                 <b-form-input id="rozloha" v-model="rozloha"></b-form-input>
@@ -84,12 +83,13 @@
 
 <script>
 
+
+
 export default {
     name: 'ZacinameForm',
     data() {
       return {
-        selected: null,
-        okres: [
+        okresval: [
           { value: null, text: 'Prosím vyberte jednu z možností' },
           { value: 1, text: 'Bánovce nad Bebravou' },
           { value: 2, text: 'Banská Bystrica' },
@@ -166,24 +166,67 @@ export default {
         
         
         ],
-        clenovdomacnosti:2,
-        typdomu:'bytovom dome',
-        rozloha: 72,
-            
         
-        zateplenie: 'čiastočné'
+        typdomu:'bytovom dome',
+
       }
     },
-    methods: {
-        rozlohaFunc:function() {
-            if (this.typdomu=='bytovom dome') {
-                this.rozloha=150
-            }
-            else {
-                this.rozloha=72
+    
+    computed: {
+        okres: {
+            get() {
+                return this.$store.state.okres
+            },
+            set(value) {
+                this.$store.commit('setokres',value)
             }
         },
 
+        clenovia: {
+            get() {
+                return this.$store.state.clenovia
+            },
+            set(value) {
+                this.$store.commit('setclenovia',value);
+                this.$store.commit('prepocetenergie');
+                this.$store.commit('prepocetzateplenie');
+            }
+        },
+
+        typ: {
+            get() {
+                return this.$store.state.typ
+            },
+            set(value) {
+                this.$store.commit('settyp',value);
+                this.$store.commit('prepocetzateplenie');
+                this.$store.commit('prepocetenergie');
+            }
+            
+        },
+
+        rozloha: {
+            get() {
+                return this.$store.state.rozloha
+            },
+            set(value) {
+                this.$store.commit('setrozloha',value);
+                this.$store.commit('prepocetenergie');
+            }
+        },
+
+        zateplenie: {
+            get() {
+                return this.$store.state.zateplenie
+            },
+            set(value) {
+                this.$store.commit('setzateplenie',value)
+                this.$store.commit('prepocetzateplenie')
+                this.$store.commit('prepocetenergie');
+            }
+        },
+
+    
     }
 
 }
