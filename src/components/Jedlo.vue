@@ -262,10 +262,11 @@ export default {
 <style scoped>
 
 .graf {
-    width: 30%;
     height: auto;
     position: relative;
-    left:35%;
+    margin-right:10%;
+    margin-left: 10%;
+    margin-top:10%;
 }
 
 .celkova_hodnota {

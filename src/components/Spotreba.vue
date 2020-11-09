@@ -25,7 +25,10 @@
                         <div v-if="details_spotreba==true">
                             <b-row  style="margin-bottom:2vh" align-v="start">    
                                 <b-col cols="1" lg="2" class="text-right"></b-col>
-                                <b-col cols="10" lg="4" class="text-left">Priemerne po koľkých rokoch vymeníte auto za nové?</b-col>
+                                <b-col cols="10" lg="4" class="text-left">Priemerne po koľkých rokoch vymeníte auto za nové?
+                                    <b-icon-question-circle-fill font-scale="1.2" id="question16"></b-icon-question-circle-fill>
+                                    <b-tooltip target="question16" title="Príklad: Vlastním 2 autá. Jedno auto vymením po 14-tich rokoch a druhé vymením po 10-tich rokoch. To znamená, že priemerne mením autá po 12-tich rokoch. Do odpoveďe preto zadám číslo 12."  variant="dark"></b-tooltip>
+                                </b-col>
                                 <b-col cols="10" lg="5" offset="1" offset-lg="0" class="text-right" > 
                                     <b-form-spinbutton v-on:change="countEmissions()" id="vekaut" v-model="vekaut" min="1" max="40"></b-form-spinbutton>
                                 </b-col>
@@ -61,7 +64,10 @@
                         <div v-if="details_spotreba==true">
                             <b-row  style="margin-bottom:2vh" align-v="start">    
                                 <b-col cols="1" lg="2" class="text-right"></b-col>
-                                <b-col cols="10" lg="4"  class="text-left">Priemerne ako často ich meníte?</b-col>
+                                <b-col cols="10" lg="4"  class="text-left">Priemerne ako často ich meníte?
+                                    <b-icon-question-circle-fill font-scale="1.2" id="question17"></b-icon-question-circle-fill>
+                                    <b-tooltip target="question17" title="Príklad: Z uvedených spotrebičov vlastním 3: Chladničku , práčku a sporák. Chladničku zvyknem meniť po 8-ich rokoch. Práčku mením raz za 12 rokov. Sporák mením po 16-tich rokoch. Do odpoveďe preto uvediem číslo 12, teda priemer týchto čísel. (8+12+16)/3=12 Tento princíp použite aj pri otázkach 18,19"  variant="dark"></b-tooltip>
+                                </b-col>
                                 <b-col lg="2" cols="3" offset="1" offset-lg="0" class="text-right">Raz za</b-col>
                                 <b-col lg="2" cols="5" class="text-right" >
                                     <b-form-spinbutton id="vekbielatechnika" v-model="vekbielatechnika" min="1" max="40" v-on:change="countEmissions()"></b-form-spinbutton>
@@ -278,7 +284,7 @@ export default {
     methods: {
         countEmissions() {
             if(this.details_spotreba==false) {
-                this.emisie_spotreba[0] = 7764*this.vlastnenieaut*1/(10*this.clenovia);
+                this.emisie_spotreba[0] = 7764*this.pocetaut*1/(10*this.clenovia);
                 this.emisie_spotreba[1] = 270.925*(1-this.druharuka/100)*this.vlastneniebielatechnika/(15*this.clenovia);
                 this.emisie_spotreba[2] = 196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(10*this.clenovia);
                 this.emisie_spotreba[3] = 257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(5);
@@ -341,15 +347,23 @@ export default {
                 return this.$store.state.rozloha
             },
         },
+        pocetaut: {
+            get() {
+                return this.$store.state.pocetaut
+            },
+        }
 
     },
     watch: {
         clenovia() {
-            this.fillChart()
+            this.countEmissions()
         },
         rozloha() {
-            this.fillChart()
+            this.countEmissions()
         },
+        pocetaut() {
+            this.countEmissions()
+        }
     }
 
 }
@@ -360,11 +374,11 @@ export default {
 <style scoped>
 
 .graf {
-    width: 30%;
     height: auto;
     position: relative;
-    left:35%;
-    margin-top: 10%;
+    margin-right:10%;
+    margin-left: 10%;
+    margin-top:10%;
 }
 
 .celkova_hodnota {

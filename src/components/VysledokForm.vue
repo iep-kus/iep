@@ -22,91 +22,14 @@
                             <div class="celkova_hodnota"><h2>{{uhlikova_stopa_celkovo}} kg CO2e</h2></div>
                         </div>
                     </b-col> 
-                    <b-col> 
-                        <div class="vysledok">
-                             
-                        </div>
-                    </b-col> 
                 </b-row>
                 
-                <b-row align-v="center">    
-                    <b-col> 
-                        <div class="vysledok">
-                             
-                        </div>
-                    </b-col> 
-                    
-                    
-                    <b-col> 
-                        <div class="vysledovka">
-                            
-                            <b-row>
-                                <b-col>
-                                    <div class="nadpis">
-                                         <h1> Ďakujem za pilotné testovanie  </h1>
-                                    </div>
-                                    <div class="graf">
-                                        
-                                    </div>
-                                </b-col>
-                                <b-col>
-                                    <div class="nadpis">
-                                        
-                                    </div>
-                                    <div class="graf">
-                                            
-                                    </div>
-                                </b-col>
-                            </b-row>
-                            
-                            
-                            
-                            <b-row>
-                                
-                                <b-col>
-                                    <div class="nadpis">
-                                       
-                                    </div>
-                    
-                                    <div class="graf">
-                                            
-                                    </div>
-                                </b-col>
-
-                                <b-col>
-                                    <div class="nadpis">
-                                        
-                                    </div>
-                                    <div class="graf">
-                                            
-                                    </div>
-                                </b-col>
-
-                            </b-row>
-
-
-                        </div>
-                    </b-col> 
                 
-                    
-                    
-                
-                
-                
-                
-                </b-row>
 
                 
                     
 
-                <b-row>
-                    <b-col>
-                        <h2>Simple verzia: čas: 5.40</h2>
-                    </b-col>
-                    <b-col>
-                        <h2>Advanced verzia: čas: 15.20</h2>
-                    </b-col>
-                </b-row>
+                
                 
             </div>
         </div>
@@ -228,24 +151,9 @@ h1 {
     position: relative;
 }
 
-.vysledok {
 
-    position: relative;
-    padding: 10%;
-    width: 90%;
-
-}
-
- vysledovka {
-
-    width: 90%;
-    background: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.36);
-    box-sizing: border-box;
-    box-shadow: 0px 30px 30px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
-
-
+.celkova_hodnota {
+    text-align: center;
 }
 
 .nadpis {

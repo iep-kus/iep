@@ -14,9 +14,11 @@
                 <div class="otazka">
                     <b-row  style="margin-bottom:2vh" align-v="center" cols-md="12" cols-sm="12" >      
                         <b-col md="1" cols="1" class="text-right" align-h="start">1.</b-col>
-                        <b-col md="5" cols="10" class="text-left" align-h="start">Aký je okres Vášho bydliska?</b-col>
+                        <b-col md="5" cols="10" class="text-left" align-h="start">Aký je okres Vášho bydliska?
+                            <b-icon-question-circle-fill font-scale="1.2" id="question1"></b-icon-question-circle-fill>
+                        </b-col>
                         <b-col md="5" cols="10" class="text-left" offset-md="0" offset="1" > <b-form-select v-model="okres" :options="okresval" label-field="Aký je okres Vášho bydliska?"></b-form-select></b-col>
-        
+                        <b-tooltip target="question1" title="V závislosti od výberu priradíme emisnú náročnosť teplárne od ktorej odoberáš teplo a teplú vodu. "  variant="dark"></b-tooltip>
                     </b-row>
                 </div>
 
@@ -62,7 +64,7 @@
                 <div class="otazka">
                     <b-row  style="margin-bottom:2vh" align-v="center">      
                         <b-col md="1" cols="1" class="text-right">5.</b-col>
-                        <b-col md="5" cols="10" class="text-left" align-h="start">Zateplenie budovy je:</b-col>
+                        <b-col md="5" cols="10" class="text-left" align-h="start">Zateplenie budovy je: <b-icon-question-circle-fill font-scale="1.2" id="question5"></b-icon-question-circle-fill></b-col>
                         <b-col md="5" cols="10" offset-md="0" offset="1" class="text-left" >                         
                             <b-form-radio-group
                             class="pt-2"
@@ -70,6 +72,7 @@
                             :options="['žiadne', 'čiastočné', 'úplné']"
                             ></b-form-radio-group>
                         </b-col>
+                         <b-tooltip target="question5" title="Za úplné považujeme zateplené steny, strechu, okná, dvere. Čiastočné znamená ak je nové/vymenené aspoň niečo z hore uvedeného. Žiadne znamená ak je všeto staré a steny ani strecha nie sú zateplené."  variant="dark"></b-tooltip>
                     </b-row>   
                 </div>               
                 
@@ -211,6 +214,7 @@ export default {
             },
             set(value) {
                 this.$store.commit('setrozloha',value);
+                this.$store.commit('prepocetzateplenie');
                 this.$store.commit('prepocetenergie');
             }
         },

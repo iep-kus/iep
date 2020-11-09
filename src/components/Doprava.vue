@@ -11,9 +11,9 @@
                     
                     
                     
-                    <b-row md="4" style="margin-bottom:2vh" align-h="start" align-v="center" cols="1" cols-sm="1" cols-md="1" cols-lg="1" class="text-left">   
-                        <b-col offset-md="0.5" cols="4" align-h="start"><h1>Doprava</h1></b-col>
-                        
+                    <b-row  style="margin-bottom:2vh" align-h="start" align-v="center"  class="text-left">   
+                        <b-col offset-md="0.5" align-h="start"><h1>Doprava</h1><b-icon-question-circle-fill font-scale="2" id="doprava-title"></b-icon-question-circle-fill></b-col>
+                        <b-tooltip target="doprava-title" title="Vrámci celej tejto kategórie prosím nezapočítavajte služobné cesty."  variant="dark"></b-tooltip>
                     </b-row> 
                     
                     
@@ -32,10 +32,11 @@
                         <div v-if="details_doprava==false">
                             <b-row  style="margin-bottom:2vh" align-v="center">      
                                 <b-col md="1" cols="1" class="text-right"></b-col>
-                                <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate vlastné auto?</b-col>
+                                <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate vlastné auto? <b-icon-question-circle-fill font-scale="1.2" id="question8"></b-icon-question-circle-fill></b-col>
                                 <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                     <b-form-select v-on:change="countEmissions_doprava()" v-model="frekvenciavlastne" :options="frekvenciadoprava"></b-form-select>
                                 </b-col>
+                                <b-tooltip target="question8" title="Cieľom je zistiť objem CO2e z automobilovej dopravy za posledný rok. Treba zahrnúť všetky cesty autom, cestovanie do práce ale aj cesty v roli spolujazdca. Nezapočítavajte služobné cesty."  variant="dark"></b-tooltip>
                             </b-row> 
                         </div>
 
@@ -318,7 +319,10 @@
                     <div class="otazka" >
                         <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
                             <b-col md="1" cols="1" class="text-right">9.</b-col>
-                            <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval prímestskými autobusmi za posledný/priemerný týždeň?</b-col>
+                            <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval autobusmi za posledný/priemerný týždeň?
+                                <b-icon-question-circle-fill font-scale="1.2" id="question9"></b-icon-question-circle-fill>
+                            </b-col>
+                            <b-tooltip target="question9" title="Medzi tieto autobusy rátame regionálne, medzimestské ale aj diaľkové autobusy"  variant="dark"></b-tooltip>
                             <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-on:change="countEmissions_doprava()" v-model="autobus" placeholder="Vložte údaj"></b-form-input></b-col>
                             <b-col md="2" cols="5"  class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="kmhodautobus" :options="['km', 'hod']"></b-form-select></b-col>
                         </b-row>
@@ -380,7 +384,10 @@
                         <b-row  style="margin-bottom:2vh" align-v="center" >      
                             <b-col md="1" cols="1" class="text-right" v-if="details_doprava==true">13.</b-col>
                             <b-col md="1" cols="1" class="text-right" v-if="details_doprava==false">11.</b-col>
-                            <b-col md="5" cols="11" class="text-left" align-h="start">Koľko letov si absolvoval za posledný rok?</b-col>
+                            <b-col md="5" cols="11" class="text-left" align-h="start">Koľko letov si absolvoval za posledný rok?
+                                <b-icon-question-circle-fill font-scale="1.2" id="question13"></b-icon-question-circle-fill>
+                            </b-col>
+                            <b-tooltip target="question13" title="Za jeden let považujeme či už jednosmerný alebo aj spiatočný let. Zahrnúť len súkromné lety nie služobné.  "  variant="dark"></b-tooltip>
                             <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                 <b-form-spinbutton v-on:change="Resetlet() && countEmissions_doprava()" id="pocetletov" v-model="pocetletov" min="0" max="20"></b-form-spinbutton>
                             </b-col>
@@ -1305,7 +1312,7 @@ export default {
 
 
 
-        pocetaut: 1,
+        
         cudzieauto:0,
         autobus:100,
         kmhodautobus: 'km',
@@ -1684,6 +1691,15 @@ export default {
                 
             }
         },
+        pocetaut: {
+            get() {
+                return this.$store.state.pocetaut
+            },
+            set(value) {
+                this.$store.commit('setpocetaut',value)
+                
+            }
+        },
     },
 
 
@@ -1707,11 +1723,11 @@ export default {
 }
 
 .graf {
-    width: 30%;
     height: auto;
     position: relative;
-    left:35%;
-    margin-top: 10%;
+    margin-right:10%;
+    margin-left: 10%;
+    margin-top:10%;
 }
 
 .celkova_hodnota {

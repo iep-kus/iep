@@ -153,17 +153,19 @@
                         </b-col>
                     </b-row>
 
-                    <div class="graf">
+                   
                     <DoughnutExample
-                            ref="byvanie_chart"
-                            :chart-data="chartData"
-                            :options="options"
-                            
-                        > 
+                        ref="byvanie_chart"
+                        :chart-data="chartData"
+                        :options="options"
+                        class="graf_byvanie"
+                        
+                    > 
                     </DoughnutExample>
                     <div class="celkova_hodnota"><h2>{{uhlikova_stopa_byvanie}} kg CO2e</h2></div>
+                    
                 </div>
-                </div>  
+                  
             </div>
         </div>
     </b-container>
@@ -187,10 +189,10 @@ export default {
       return {
                                                                                                                                                                                                                                                                                 
         options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: {
-            animateRotate: true,
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                animateRotate: true,
             },
         },
 
@@ -511,12 +513,15 @@ export default {
     width: 100%; padding-right: 0; padding-left: 0; margin-right: auto; margin-left: auto; 
 }
 
-.graf {
-    width: 30%;
+.graf_byvanie {
+   
     height: auto;
     position: relative;
-    left:35%;
+    margin-left: 10%;
+    margin-right: 10%;
+   
 }
+
 
 .celkova_hodnota {
     z-index: 1;

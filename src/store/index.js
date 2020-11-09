@@ -19,7 +19,7 @@ export default new Vuex.Store({
     
     
     
-    okres: null,
+    okres: 2,
     clenovia: 2,
     typ: 'bytovom dome',
     rozloha: 72,
@@ -55,7 +55,7 @@ export default new Vuex.Store({
 
     
     
-   
+   pocetaut: 1,
 
 
 
@@ -301,7 +301,9 @@ export default new Vuex.Store({
     setuhlikova_stopa_doprava(state,value) {
         state.uhlikova_stopa_doprava = value;
     },
-
+    setpocetaut(state, pocetaut) {
+        state.pocetaut = pocetaut;
+    },
 
 
 
