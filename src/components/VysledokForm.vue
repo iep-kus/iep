@@ -6,28 +6,32 @@
             <b-row class="nadpis"> 
                 <b-col class="text-left">Tvoja celková uhlíková stopa je <strong>{{uhlikova_stopa_celkovo}}</strong> kilogramov CO2e.</b-col>
             </b-row>
-            <b-row>
-                <b-col cols=12 md="4">
-                    <DoughnutExample
-                        ref="celkovo_chart"
-                        :chart-data="chartDataDoughnut"
-                        :options="optionsDoughnut"
-                        class="graf_celkovo"
-                        
-                    > 
-                    </DoughnutExample>
-                </b-col>
-                <b-col cols=12 md="8">
-                    <BarExample
-                        ref="celkovo_porovnanie_chart"
-                        :chart-data="chartDataBar"
-                        :options="optionsBar"
-                        class="graf_celkovo_porovnanie"
-                        
-                    > 
-                    </BarExample>
-                </b-col>
-            </b-row>
+            <div class="graf_celkovo">    
+                <b-row align-h="center">
+               
+                    <b-col cols=12 lg="3" order="1" order-lg="1">
+                        <DoughnutExample
+                            ref="celkovo_chart"
+                            :chart-data="chartDataDoughnut"
+                            :options="optionsDoughnut"                        
+                        > 
+                        </DoughnutExample>
+                    </b-col>
+                    <b-col cols=12 lg="6" order="3" order-lg="2">
+                        Suggestions
+                    </b-col>
+                    <b-col cols=12 lg="3" order="2" order-lg="3">
+                        <BarExample
+                            ref="celkovo_porovnanie_chart"
+                            :chart-data="chartDataBar"
+                            :options="optionsBar"    
+                        > 
+                        </BarExample>
+                    </b-col>
+                    
+                 
+                </b-row>
+            </div>
             <div class="pocastiach">
                  <div class="obsah">   
                     <b-row class="nadpis"> 
@@ -335,8 +339,8 @@ export default {
 .kategoria {
     height: 10%;
 }
-.graf{
-    size: 70%;
+.graf_celkovo{
+    margin-right: 5%;
 }
 
 </style>
