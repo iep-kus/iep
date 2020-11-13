@@ -184,16 +184,7 @@
 
 
 
-                    <div class="graf">
-                        <DoughnutExample
-                                ref="spotreba_chart"
-                                :chart-data="chartData"
-                                :options="options"
-                                
-                            > 
-                        </DoughnutExample>
-                        <div class="celkova_hodnota"><h2>{{uhlikova_stopa_spotreba}} kg CO2e</h2></div>
-                    </div>
+                    
 
 
 
@@ -214,60 +205,15 @@
 
 
 <script>
-import DoughnutExample from "./DoughnutExample.vue";
+
 
 export default {
     name: 'Spotreba',
-    components: {DoughnutExample},
+    components: {},
     data() {
       return {
         
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: {
-                animateRotate: true,
-            },
-        },
 
-        chartData :{
-        
-            labels: ["Automobil","Biela technika","Ostatné elektrospotrebiče","Osobná elektronika" ,"Nábytok"],
-            datasets: [
-            {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94' ,'#BEBEBE'],
-                data: [388.20,45.15,98.21,206.23,66],
-            }
-            ],
-        },
-
-
-        details_spotreba:false,
-
-        vlastnenieaut: 1,
-        vekaut:10,
-        
-        vlastneniebielatechnika:5,
-        vekbielatechnika:15,
-        
-
-        vlastnenieciernatechnika:10,
-        vekciernatechnika:10,
-        
-
-        vlastnenietechnika:4,
-        vektechnika:5,
-        
-        
-
-        
-
-
-       druharuka:0,
-
-
-
-        nakupauta:1 ,
         nakupaut: [
           { value: 1, text: 'Nové' },
           { value: 2, text: 'Novšie ako 3 roky' },
@@ -289,9 +235,9 @@ export default {
                 this.emisie_spotreba[2] = 196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(10*this.clenovia);
                 this.emisie_spotreba[3] = 257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(5);
                 this.emisie_spotreba[4] = this.nabytok(); 
-                this.chartData.datasets[0].data = this.emisie_spotreba;
+                
                 this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3] + +this.emisie_spotreba[4]);
-                this.updateChart();
+                
             }
             if(this.details_spotreba==true) {
                 this.emisie_spotreba[0] = 7764*this.vlastnenieaut*this.carage()/(this.vekaut*this.clenovia);
@@ -299,9 +245,9 @@ export default {
                 this.emisie_spotreba[2] = 196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(this.vekciernatechnika*this.clenovia);
                 this.emisie_spotreba[3] = 257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(this.vektechnika);
                 this.emisie_spotreba[4] = this.nabytok(); 
-                this.chartData.datasets[0].data = this.emisie_spotreba;
+                
                 this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3]+ +this.emisie_spotreba[4]);
-                this.updateChart();
+                
             }
             console.log(this.emisie_spotreba[0])
         },
@@ -311,9 +257,7 @@ export default {
             if(this.nakupauta==3){return 0.38}
             if(this.nakupauta==4){return 0.16}
         },
-        updateChart() {
-         this.$refs.spotreba_chart.update();
-        },
+        
         nabytok() {
             return Math.round(((39.5 + 31 + 27)*this.clenovia + 84 + (this.rozloha/50)*(42 + 26) + 90 + 25)/15*this.clenovia)
         }
@@ -351,7 +295,103 @@ export default {
             get() {
                 return this.$store.state.pocetaut
             },
-        }
+        },
+
+        details_spotreba: {
+            get() {
+                return this.$store.state.details_spotreba
+            },
+            set(value) {
+                this.$store.commit('setdetails_spotreba',value)
+            }
+        },
+        vlastnenieaut: {
+            get() {
+                return this.$store.state.vlastnenieaut
+            },
+            set(value) {
+                this.$store.commit('setvlastnenieaut',value)
+            }
+        },
+        vekaut: {
+            get() {
+                return this.$store.state.vekaut
+            },
+            set(value) {
+                this.$store.commit('setvekaut',value)
+            }
+        },
+
+        vlastneniebielatechnika: {
+            get() {
+                return this.$store.state.vlastneniebielatechnika
+            },
+            set(value) {
+                this.$store.commit('setvlastneniebielatechnika',value)
+            }
+        },
+        vekbielatechnika: {
+            get() {
+                return this.$store.state.vekbielatechnika
+            },
+            set(value) {
+                this.$store.commit('setvekbielatechnika',value)
+            }
+        },
+
+        vlastnenieciernatechnika: {
+            get() {
+                return this.$store.state.vlastnenieciernatechnika
+            },
+            set(value) {
+                this.$store.commit('setvlastnenieciernatechnika',value)
+            }
+        },
+        vekciernatechnika: {
+            get() {
+                return this.$store.state.vekciernatechnika
+            },
+            set(value) {
+                this.$store.commit('setvekciernatechnika',value)
+            }
+        },
+
+        vlastnenietechnika: {
+            get() {
+                return this.$store.state.vlastnenietechnika
+            },
+            set(value) {
+                this.$store.commit('setvlastnenietechnika',value)
+            }
+        },
+        vektechnika: {
+            get() {
+                return this.$store.state.vektechnika
+            },
+            set(value) {
+                this.$store.commit('setvektechnika',value)
+            }
+        },
+
+        druharuka: {
+            get() {
+                return this.$store.state.druharuka
+            },
+            set(value) {
+                this.$store.commit('setdruharuka',value)
+            }
+        },
+
+        nakupauta: {
+            get() {
+                return this.$store.state.nakupauta
+            },
+            set(value) {
+                this.$store.commit('setnakupauta',value)
+            }
+        },
+
+
 
     },
     watch: {

@@ -39,6 +39,14 @@ export default new Vuex.Store({
     selected4:'litrov',
     selected5:'prm',
 
+    obnovitelnezdroje: 'Nie',
+    vlastna: '',
+    dodavam: '',
+    vlastnakwhe: 'kWh',
+    dodavamkwhe: 'kWh',
+
+    details_byvanie: false,
+
     dom_vykurovanie_priemer: 188.84,
     byt_vykurovanie_priemer: 119.44,
     zateplenie_konverzia: 1, 
@@ -65,16 +73,81 @@ export default new Vuex.Store({
 
     emisie_doprava: [1199,633,31,788],
     
+    
+    
     emisie_jedlo: [210.6,449.7375,520.35,159.6,137.2,128.945],
+    
+    vegan: 'Nie',
+        
+    hovadzie: 3,
+    ostatne: 1,
+    mliecne: 1,
+    syry: 2,
+    zelenina: 1,
+    alkohol: 1,
+
+
+
 
     emisie_spotreba: [388.20,45.15,98.21,206.23,66],
+    details_spotreba:false,
+
+    vlastnenieaut: 1,
+    vekaut:10,
+    
+    vlastneniebielatechnika:5,
+    vekbielatechnika:15,
+    
+
+    vlastnenieciernatechnika:10,
+    vekciernatechnika:10,
+    
+
+    vlastnenietechnika:4,
+    vektechnika:5,
+
+
+    druharuka:0,
+
+    nakupauta:1 ,
+
+
+
 
 
     emisie_ziv_styl: [201.99,197.5,115.53],
 
+    details_ziv_styl:false,
+
+    druharukaoblecenie:20,
+
+    stan:0,
+    kemp:0,
+    hotel:10,
+    luxus:0,
+
+    plasty:'Áno',
+    sklo:'Áno',
+    papier: 'Áno',
+    bioodpad: 'Nie',
+
+    plastyrange:50,
+    sklorange:50,
+    papierrange: 50,
+    bioodpadrange: 0,
+
+    separovanie: ['','','',''],
+
+    nakupoblecenie: 2,
+
  },
  getters: {},
  mutations: {
+
+
+    setuhlikova_stopa_celkovo(state,value) {
+        state.uhlikova_stopa_celkovo = value;
+    },
 
 
 
@@ -168,7 +241,25 @@ export default new Vuex.Store({
         state.selected5 = selected5;
     }, 
 
+    setobnovitelnezdroje(state, value) {
+        state.obnovitelnezdroje = value;
+    },
+    setvlastna(state, value) {
+        state.vlastna = value;
+    },
+    setdodavam(state, value) {
+        state.dodavam = value;
+    },
+    setvlastnakwhe(state, value) {
+        state.vlastnakwhe = value;
+    },
+    setdodavamkwhe(state, value) {
+        state.dodavamkwhe = value;
+    },
 
+    setdetails_byvanie(state, value) {
+        state.details_byvanie = value;
+    },
 
 
 
@@ -314,6 +405,27 @@ export default new Vuex.Store({
     setuhlikova_stopa_jedlo(state,value) {
         state.uhlikova_stopa_jedlo = value;
     },
+    setvegan(state, value) {
+        state.vegan = value;
+    },
+    sethovadzie(state, value) {
+        state.hovadzie = value;
+    },
+    setostatne(state, value) {
+        state.ostatne = value;
+    },
+    setmliecne(state, value) {
+        state.mliecne = value;
+    },
+    setsyry(state, value) {
+        state.syry = value;
+    },
+    setzelenina(state, value) {
+        state.zelenina = value;
+    },
+    setalkohol(state, value) {
+        state.alkohol = value;
+    },
 
 
 
@@ -327,6 +439,57 @@ export default new Vuex.Store({
     },
 
 
+    setdetails_spotreba(state, value) {
+        state.details_spotreba = value;
+    },
+    setvlastnenieaut(state, value) {
+        state.vlastnenieaut = value;
+    },
+    setvekaut(state, value) {
+        state.vekaut = value;
+    },
+
+    setvlastnenibielatechnika(state, value) {
+        state.vlastneniebielatechnika = value;
+    },
+    setvekbielatechnika(state, value) {
+        state.vekbielatechnika = value;
+    },
+
+    setvlastnenieciernatechnika(state, value) {
+        state.vlastnenieciernatechnika = value;
+    },
+    setvekciernatechnika(state, value) {
+        state.vekciernatechnika = value;
+    },
+
+    setvlastnenietechnika(state, value) {
+        state.vlastnenietechnika = value;
+    },
+    setvektechnika(state, value) {
+        state.vektechnika = value;
+    },
+
+    setdruharuka(state, value) {
+        state.druharuka = value;
+    },
+
+    setnakupauta(state, value) {
+        state.nakupauta = value;
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     setemisie_ziv_styl(state,value) {
         state.emisie_ziv_styl = value;
@@ -334,7 +497,60 @@ export default new Vuex.Store({
     setuhlikova_stopa_ziv_styl(state,value) {
         state.uhlikova_stopa_ziv_styl = value;
     },
+    setdetails_ziv_styl(state, value) {
+        state.details_ziv_styl = value;
+    },
 
+    setdruharukaoblecenie(state, value) {
+        state.druharukaoblecenie = value;
+    },
+    
+    setstan(state, value) {
+        state.stan = value;
+    },
+    setkemp(state, value) {
+        state.kemp = value;
+    },
+    sethotel(state, value) {
+        state.hotel = value;
+    },
+    setluxus(state, value) {
+        state.luxus = value;
+    },
+
+    setpapier(state, value) {
+        state.papier = value;
+    },
+    setsklo(state, value) {
+        state.plasty = value;
+    },
+    setplasty(state, value) {
+        state.sklo = value;
+    },
+    setbioodpad(state, value) {
+        state.bioodpad = value;
+    },
+
+    setpapierrange(state, value) {
+        state.papierrange = value;
+    },
+    setsklorange(state, value) {
+        state.plastyrange = value;
+    },
+    setplastyrange(state, value) {
+        state.sklorange = value;
+    },
+    setbioodpadrange(state, value) {
+        state.bioodpadrange = value;
+    },
+
+    setseparovanie(state, value) {
+        state.separovanie = value;
+    },
+
+    setnakupoblecenie(state, value) {
+        state.nakupoblecenie = value;
+    },
 
 
     

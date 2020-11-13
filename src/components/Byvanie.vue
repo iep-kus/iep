@@ -38,7 +38,7 @@
 
                         </div> 
                         
-                        <div v-if="details==true">
+                        <div v-if="details_byvanie==true">
                             <b-row  style="margin-bottom: 2vh" align-v="stretch">      
                                     <b-col md="1" cols="1" class="text-right"></b-col>
                                     <b-col cols="11" class="text-left h-100" align-h="start">Uveďte konkrétnu spotrebu jednotlivých zdrojov energií alebo paliva (vykurovanie, varenie, spotrebiče...)</b-col>
@@ -121,7 +121,7 @@
                             </b-col>
                         </b-row>    
                         
-                        <div v-if="obnovitelnezdroje=='Áno' && details==true">
+                        <div v-if="obnovitelnezdroje=='Áno' && details_byvanie==true">
                             <b-row  style="margin-bottom: 2vh" align-v="center">      
                                 <b-col md="2" cols="1" class="text-right"></b-col>
                                 <b-col md="4" cols="11" class="text-left">Vlastná spotreba:</b-col>
@@ -148,22 +148,12 @@
                     <b-row align-h="center">
                         <b-col align-v="center">
                             <div >
-                                <b-button class="zacat" :pressed.sync="details">podrobnejšie</b-button>
+                                <b-button class="zacat" :pressed.sync="details_byvanie">podrobnejšie</b-button>
                             </div>
                         </b-col>
                     </b-row>
 
                    
-                    <DoughnutExample
-                        ref="byvanie_chart"
-                        :chart-data="chartData"
-                        :options="options"
-                        class="graf_byvanie"
-                        
-                    > 
-                    </DoughnutExample>
-                    <div class="celkova_hodnota"><h2>{{uhlikova_stopa_byvanie}} kg CO2e</h2></div>
-                    
                 </div>
                   
             </div>
@@ -173,12 +163,11 @@
 </template>
 
 <script>
-import DoughnutExample from "./DoughnutExample.vue";
  
 
 export default {
     name: 'Byvanie',
-    components: {DoughnutExample},
+    components: {},
     props: {
     },
 
@@ -188,29 +177,6 @@ export default {
     data() {
       return {
                                                                                                                                                                                                                                                                                 
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: {
-                animateRotate: true,
-            },
-        },
-
-        chartData :{
-        
-            labels: ["Centrálne vykurovanie","Elektrika","Zemný plyn","LPG","Tuhé palivo"],
-            datasets: [
-            {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
-                data: [413,260,0,0,0],
-            }
-            ],
-        },
- 
-        
-        
-       
-        details: false,
         
        
         
@@ -230,27 +196,19 @@ export default {
         
 
             
-        obnovitelnezdroje: 'Nie',
-        vlastna: '',
-        dodavam: '',
-        vlastnakwhe: 'kWh',
-        dodavamkwhe: 'kWh',
+        
 
     
       }
     },
 
     methods: {
-        updateChart() {
-         this.$refs.byvanie_chart.update();
-        },
+       
         fillData() {
             
-            this.chartData.datasets[0].data = [this.emisie_centralne()*this.centralne/this.clenovia,this.emisie_elektrika()*this.elektrika/this.clenovia,
+            this.emisie_jedlo = [this.emisie_centralne()*this.centralne/this.clenovia,this.emisie_elektrika()*this.elektrika/this.clenovia,
                 this.emisie_plyn()*this.plyn/this.clenovia,this.emisie_lpg()*this.lpg/this.clenovia,this.emisie_tuhe()*this.tuhe/this.clenovia];
-            this.emisie_jedlo = this.chartData.datasets[0].data;
-            this.uhlikova_stopa_byvanie = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]);
-            this.updateChart();
+            this.uhlikova_stopa_byvanie = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]);
             console.log(this.uhlikova_stopa_byvanie)
             
             
@@ -495,6 +453,56 @@ export default {
             get() {
                 return this.$store.state.centralne_jednotky
             },
+        },
+        
+        obnovitelnezdroje: {
+            get() {
+                return this.$store.state.obnovitelnezdroje
+            },
+            set(value) {
+                this.$store.commit('setobnovitelnezdroje',value)
+            }
+        },
+        vlastna: {
+            get() {
+                return this.$store.state.vlastna
+            },
+            set(value) {
+                this.$store.commit('setvlastna',value)
+            }
+        },
+        dodavam: {
+            get() {
+                return this.$store.state.dodavam
+            },
+            set(value) {
+                this.$store.commit('setdodavam',value)
+            }
+        },
+        vlastnakwhe: {
+            get() {
+                return this.$store.state.vlastnakwhe
+            },
+            set(value) {
+                this.$store.commit('setvlastnakwhe',value)
+            }
+        },
+        dodavamkwhe: {
+            get() {
+                return this.$store.state.dodavamkwhe
+            },
+            set(value) {
+                this.$store.commit('setdodavamkwhe',value)
+            }
+        },
+
+        details_byvanie: {
+            get() {
+                return this.$store.state.details_byvanie
+            },
+            set(value) {
+                this.$store.commit('setdetails_byvanie',value)
+            }
         },
 
     

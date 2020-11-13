@@ -1256,17 +1256,7 @@
                         </b-row>
 
 
-                        <div class="graf">
-                            <DoughnutExample
-                                    ref="doprava_chart"
-                                    :chart-data="chartData"
-                                    :options="options"
-                                    
-                                > 
-                            </DoughnutExample>
-                            <div class="celkova_hodnota"><h2>{{uhlikova_stopa_doprava}} kg CO2e</h2></div>
-                        </div>
-
+                        
 
                 </div>    
             </div> 
@@ -1277,40 +1267,16 @@
 
 
 <script>
-import DoughnutExample from "./DoughnutExample.vue";
+
 
 export default {
     name: 'Doprava',
-    components: {DoughnutExample},
+    components: {},
     data() {
       return {
 
         details_doprava: false,
         
-        
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: {
-                animateRotate: true,
-            },
-        },
-
-        chartData :{
-        
-            labels: ["Automobilová doprava","Hromadná doprava","Vlaková doprava","Letecká doprava"],
-            datasets: [
-            {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94'],
-                data: [1199,633,31,788],
-            }
-            ],
-        },
-
-
-
-
-
 
         
         cudzieauto:0,
@@ -1526,9 +1492,9 @@ export default {
             this.countEmissions_doprava()
         },
         countEmissions_doprava() {
-            this.chartData.datasets[0].data = [this.emisie_auta()+this.emisie_cudzie(), this.emisie_hromadna(), this.emisie_vlakova(), this.emisie_letecka()];
-            this.emisie_doprava = this.chartData.datasets[0].data;
-            this.uhlikova_stopa_doprava = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]);
+            this.emisie_doprava = [this.emisie_auta()+this.emisie_cudzie(), this.emisie_hromadna(), this.emisie_vlakova(), this.emisie_letecka()];
+            
+            this.uhlikova_stopa_doprava = Math.round(this.emisie_doprava[0]+this.emisie_doprava[1]+this.emisie_doprava[2]+this.emisie_doprava[3]);
             this.updateChart();
             console.log(this.emisie_doprava)
             console.log(this.frekvenciavlastne)

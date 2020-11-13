@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Kalkulacka from '../views/Kalkulacka.vue';
+import Kalkulacka_grafy from '../views/Kalkulacka_grafy.vue';
 import Metodologia from '../views/Metodologia.vue';
 import Kontakt from '../views/Kontakt.vue';
 
@@ -19,6 +20,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Kalkulacka.vue'),
+  },
+  {
+    path: '/kalkulacka/vysledky',
+    name: 'Kalkulacka_graf',
+    component: () => import('../views/Kalkulacka_grafy.vue'),
   },
   {
     path: '/Metodologia',

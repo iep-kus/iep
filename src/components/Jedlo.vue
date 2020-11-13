@@ -108,16 +108,7 @@
                 </div>  
 
 
-                <div class="graf">
-                    <DoughnutExample
-                            ref="jedlo_chart"
-                            :chart-data="chartData"
-                            :options="options"
-                            
-                        > 
-                    </DoughnutExample>
-                    <div class="celkova_hodnota"><h2>{{uhlikova_stopa_jedlo}} kg CO2e</h2></div>
-                </div>
+                
                 
 
 
@@ -130,21 +121,14 @@
 
 
 <script>
-import DoughnutExample from "./DoughnutExample.vue";
+
 
 export default {
     name: 'Jedlo',
-    components: {DoughnutExample},
+    components: {},
     data() {
       return {
 
-        options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: {
-            animateRotate: true,
-            },
-        },
 
         jedlofrekvencia: [
           { value: 0, text: 'V každom jedle' },
@@ -163,14 +147,7 @@ export default {
           { value: 4, text: 'Vôbec' }
         ],
 
-        vegan: 'Nie',
         
-        hovadzie: 3,
-        ostatne: 1,
-        mliecne: 1,
-        syry: 2,
-        zelenina: 1,
-        alkohol: 1,
         hovadzie_emisie:[2211.3,1474.2,842.4,210.6,52.65,0],
         ostatne_emisie:[674.60625,449.7375,256.9928571,64.24821429,16.06205357,0],
         mliecne_emisie:[780.525,520.35,297.3428571,74.33571429,17.10739726,0],
@@ -178,16 +155,7 @@ export default {
         zelenina_emisie:[137.2,91.46666667,52.26666667,13.06666667,3.266666667,0],
         alkohol_emisie:[338.480625,225.65375,128.945,32.23625,8.0590625,0],
 
-        chartData :{
         
-            labels: ["Hovädzie mäso","Ostatné mäso","mliečne výrobky a vajcia","Syry","Zelenina","Alkohol"],
-            datasets: [
-            {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE','#AD4B41'],
-                data: [210.6,449.7375,520.35,159.6,137.2,128.945],
-            }
-            ],
-        },
 
         
 
@@ -200,11 +168,11 @@ export default {
     methods: {
         countEmissions() {
             
-            this.chartData.datasets[0].data = [this.hovadzie_emisie[this.hovadzie],this.ostatne_emisie[this.ostatne],this.mliecne_emisie[this.mliecne],
+            this.emisie_jedlo = [this.hovadzie_emisie[this.hovadzie],this.ostatne_emisie[this.ostatne],this.mliecne_emisie[this.mliecne],
                 this.syry_emisie[this.syry],this.zelenina_emisie[this.zelenina],this.alkohol_emisie[this.alkohol]
             ];
-            this.emisie_jedlo = this.chartData.datasets[0].data;
-            this.uhlikova_stopa_jedlo = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]+this.chartData.datasets[0].data[5]);
+            
+            this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]);
             this.updateChart();
             
             
@@ -245,6 +213,69 @@ export default {
             },
             set(value) {
                 this.$store.commit('setuhlikova_stopa_jedlo',value)
+                
+            }
+        },
+        vegan: {
+            get() {
+                return this.$store.state.vegan
+            },
+            set(value) {
+                this.$store.commit('setvegan',value)
+                
+            }
+        },
+        hovadzie: {
+            get() {
+                return this.$store.state.hovadzie
+            },
+            set(value) {
+                this.$store.commit('sethovadzie',value)
+                
+            }
+        },
+        ostatne: {
+            get() {
+                return this.$store.state.ostatne
+            },
+            set(value) {
+                this.$store.commit('setostatne',value)
+                
+            }
+        },
+        mliecne: {
+            get() {
+                return this.$store.state.mliecne
+            },
+            set(value) {
+                this.$store.commit('setmliecne',value)
+                
+            }
+        },
+        syry: {
+            get() {
+                return this.$store.state.syry
+            },
+            set(value) {
+                this.$store.commit('setsyry',value)
+                
+            }
+        },
+        zelenina: {
+            get() {
+                return this.$store.state.zelenina
+            },
+            set(value) {
+                this.$store.commit('setzelenina',value)
+                
+            }
+        },
+        alkohol: {
+            get() {
+                return this.$store.state.alkohol
+            },
+            set(value) {
+                this.$store.commit('setalkohol',value)
                 
             }
         },

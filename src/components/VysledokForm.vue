@@ -1,68 +1,227 @@
-<template>
+<template>  
     
-      
     <b-container fluid>
-
+    
         <div class="celkovo">
-            <div class="obsah">  
-                <b-row>
-                    <h2>Tvoja uhlíková stopa</h2>
-                </b-row>
-                
-                <b-row>
-                    <b-col> 
-                        <div class="celkovy graf">
-                             <DoughnutExample
-                                    ref="celkovo_chart"
-                                    :chart-data="chartData"
-                                    :options="options"
-                                    
-                                > 
+            <b-row class="nadpis"> 
+                <b-col class="text-left">Tvoja celková uhlíková stopa je <strong>{{uhlikova_stopa_celkovo}}</strong> kilogramov CO2e.</b-col>
+            </b-row>
+            <b-row>
+                <b-col cols=12 md="4">
+                    <DoughnutExample
+                        ref="celkovo_chart"
+                        :chart-data="chartDataDoughnut"
+                        :options="optionsDoughnut"
+                        class="graf_celkovo"
+                        
+                    > 
+                    </DoughnutExample>
+                </b-col>
+                <b-col cols=12 md="8">
+                    <BarExample
+                        ref="celkovo_porovnanie_chart"
+                        :chart-data="chartDataBar"
+                        :options="optionsBar"
+                        class="graf_celkovo_porovnanie"
+                        
+                    > 
+                    </BarExample>
+                </b-col>
+            </b-row>
+            <div class="pocastiach">
+                 <div class="obsah">   
+                    <b-row class="nadpis"> 
+                        <b-col class="text-left"><h3>Bývanie</h3></b-col>
+                    </b-row>
+                    <b-row class="kategoria">
+                        <b-col cols=12 md="4">
+                            <DoughnutExample
+                            ref="celkovo_chart"
+                            :chart-data="chartData"
+                            :options="options1"
+                            class="graf"
+                            
+                        > 
                             </DoughnutExample>
-                            <div class="celkova_hodnota"><h2>{{uhlikova_stopa_celkovo}} kg CO2e</h2></div>
-                        </div>
-                    </b-col> 
-                </b-row>
-                
-                
+                        </b-col>
+                        <b-col cols=12 md="8">
+                        
+                        </b-col>
+                    </b-row>
 
-                
-                    
 
-                
-                
+
+                    <b-row class="nadpis"> 
+                        <b-col class="text-left"><h3>Doprava</h3></b-col>
+                    </b-row>
+                    <b-row class="kategoria">
+                        <b-col cols=12 md="4">
+                            <DoughnutExample
+                            ref="celkovo_chart"
+                            :chart-data="chartData"
+                            :options="options1"
+                            class="graf"
+                            
+                        > 
+                            </DoughnutExample>
+                        </b-col>
+                        <b-col cols=12 md="8">
+                        
+                        </b-col>
+                    </b-row>
+
+
+                    <b-row class="nadpis"> 
+                        <b-col class="text-left"><h3>Jedlo</h3></b-col>
+                    </b-row>
+                    <b-row class="kategoria">
+                        <b-col cols=12 md="4">
+                            <DoughnutExample
+                            ref="celkovo_chart"
+                            :chart-data="chartData"
+                            :options="options1"
+                            class="graf"
+                            
+                        > 
+                            </DoughnutExample>
+                        </b-col>
+                        <b-col cols=12 md="8">
+                        
+                        </b-col>
+                    </b-row>
+
+
+                    <b-row class="nadpis"> 
+                        <b-col class="text-left"><h3>Spotreba</h3></b-col>
+                    </b-row>
+                    <b-row class="kategoria">
+                        <b-col cols=12 md="4">
+                            <DoughnutExample
+                            ref="celkovo_chart"
+                            :chart-data="chartData"
+                            :options="options1"
+                            class="graf"
+                            
+                        > 
+                            </DoughnutExample>
+                        </b-col>
+                        <b-col cols=12 md="8">
+                        
+                        </b-col>
+                    </b-row>
+
+
+                    <b-row class="nadpis"> 
+                        <b-col class="text-left"><h3>životný štýl</h3></b-col>
+                    </b-row>
+                    <b-row class="kategoria">
+                        <b-col cols=12 md="4">
+                            <DoughnutExample
+                            ref="celkovo_chart"
+                            :chart-data="chartData"
+                            :options="options1"
+                            class="graf"
+                            
+                        > 
+                            </DoughnutExample>
+                        </b-col>
+                        <b-col cols=12 md="8">
+                        
+                        </b-col>
+                    </b-row>
+
+                </div>
             </div>
         </div>
-            
+    
+     
+
+
+
+     
     </b-container>
 
-    
 </template>
 
 
 <script>
 import DoughnutExample from "./DoughnutExample.vue";
+import BarExample from "./BarExample.vue";
 
 export default {
     name: 'VysledokForm',
-    components: {DoughnutExample},
+    components: {DoughnutExample,BarExample},
     data() {
       return { 
-        options: {
+        optionsDoughnut: {
         responsive: true,
+        legend: {
+            display: false
+         },
         maintainAspectRatio: false,
         animation: {
             animateRotate: true,
             },
         },
 
-        chartData :{
+        optionsBar: {
+            responsive: true,
+            legend: {
+                display: false
+            },
+            maintainAspectRatio: false,
+            animation: {
+                animateRotate: true,
+                },
+            scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						},
+						gridLines: {
+							display: true
+						}
+					}],
+					xAxes: [{
+						ticks: {
+							beginAtZero: true
+						},
+						gridLines: {
+							display: false
+						}
+					}]
+				},
+        },
+
+        options1: {
+        responsive: true,
+        legend: {
+            display: false
+         },
+        maintainAspectRatio: false,
+        animation: {
+            animateRotate: true,
+            },
+        },
+
+        chartDataDoughnut :{
         
             labels: ["Bývanie","Doprava","Jedlo","Spotreba","Životný štýl"],
             datasets: [
             {
                 backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
                 data: [673,2651,1657,804,515],
+            }
+            ],
+        },
+
+        chartDataBar :{
+        
+            labels: ["Slovák","Ty","Európan"],
+            datasets: [
+            {
+                backgroundColor: ['#6F6F6F','#FF6600','#6F6F6F'],
+                data: [5888,5888,8480],
             }
             ],
         },
@@ -98,6 +257,9 @@ export default {
             get() {
                 return this.$store.state.uhlikova_stopa_celkovo
             },
+            set(value) {
+                this.$store.commit('setuhlikova_stopa_celkovo',value)
+            }
         },
     },
     watch: {
@@ -125,89 +287,56 @@ export default {
 
     methods: {
         fillChart() {
-            this.chartData.datasets[0].data = [this.uhlikova_stopa_byvanie,this.uhlikova_stopa_doprava, this.uhlikova_stopa_jedlo,
-             this.uhlikova_stopa_spotreba, this.uhlikova_stopa_ziv_styl];
+            this.chartDataDoughnut.datasets[0].data = [this.uhlikova_stopa_byvanie,this.uhlikova_stopa_doprava, this.uhlikova_stopa_jedlo,
+            this.uhlikova_stopa_spotreba, this.uhlikova_stopa_ziv_styl];
+            this.uhlikova_stopa_celkovo = this.uhlikova_stopa_byvanie+this.uhlikova_stopa_doprava + this.uhlikova_stopa_jedlo + this.uhlikova_stopa_spotreba + this.uhlikova_stopa_ziv_styl;
+            this.chartDataBar.datasets[0].data[1] = this.uhlikova_stopa_celkovo
             this.updateChart()
+            this.updateChartBar()
         },
         updateChart() {
          this.$refs.celkovo_chart.update();
+        },
+        updateChartBar() {
+         this.$refs.celkovo_porovnanie_chart.update();
         },
     }
 }
 
 </script>
 
-<style  scoped>
-
-h1 {
-    padding: 5%;
-    font-weight: 1000;
-}
-
-.celkovo {
-    background-color:rgba(237, 237, 237, 1);
     
-    overflow: auto;
-    position: relative;
-}
 
-
-.celkova_hodnota {
-    text-align: center;
+<style scoped>
+.celkovo {
+    padding: 5%;
 }
 
 .nadpis {
-    padding: 5%;
-    text-align: left;
-    margin-top: 20vh;
+    font-size: 2rem;
+    font-weight: 1000;
+    margin-bottom: 5%;
 }
 
-.graf {
-    display: block;
-    position: relative;
-    margin-left: 5vh;
-    margin-right: auto;
-    text-align: left; 
-    height: 15vh; 
-    
+.pocastiach {
+    margin-top: 10%;
+    background: #F2F2F2;
+    box-shadow: 5px 10px 10px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin-left: 5%;
+    width:90%;
+    height: 250vh;
 }
 
 .obsah {
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 10vh;
+    padding: 5%;
 }
 
-.zacat {
-    position: relative;
-  text-align: center;
-  top: 5vh;
-  margin-left: auto;
-  margin-right: auto;
-  vertical-align: middle;
-  padding: 1rem;
-  width: 223px;
-   height: 52px;  
-   background: #FF6600;
-    border-radius: 20px; 
-    border: 0px solid #000000;
-    color: white;
-
-   
+.kategoria {
+    height: 10%;
 }
-
-.zacat {
-  transition-duration: 0.4s;
+.graf{
+    size: 70%;
 }
-
-.zacat:hover {
-  background-color: rgba(172, 69, 0, 1); /* Green */
-  color: white;
-}
-
-.container-fluid { 
-    width: 100%; padding-right: 0; padding-left: 0; margin-right: auto; margin-left: auto; 
-}
-
 
 </style>

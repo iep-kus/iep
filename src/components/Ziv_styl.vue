@@ -180,16 +180,6 @@
 
 
 
-                    <div class="graf">
-                        <DoughnutExample
-                                ref="ziv_styl_chart"
-                                :chart-data="chartData"
-                                :options="options"
-                                
-                            > 
-                        </DoughnutExample>
-                        <div class="celkova_hodnota"><h2>{{uhlikova_stopa_ziv_styl}} kg CO2e</h2></div>
-                    </div>
 
 
 
@@ -210,65 +200,15 @@
 
 
 <script>
-import DoughnutExample from "./DoughnutExample.vue";
+
 
 export default {
     name: 'Ziv_styl',
-    components: {DoughnutExample},
+    components: {},
     data() {
       return {
-          
-        options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: {
-            animateRotate: true,
-            },
-        },
 
-        chartData :{
-        
-            labels: ["Oblečenie","Dovolenkovanie","Odpady"],
-            datasets: [
-            {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5'],
-                data: [201.99,197.5,115.53],
-            }
-            ],
-        },
-
-
-        details_ziv_styl:false,
-
-        
-
-
-        druharukaoblecenie:20,
-
-
-
-        stan:0,
-        kemp:0,
-        hotel:10,
-        luxus:0,
-
-
-        plasty:'Áno',
-        sklo:'Áno',
-        papier: 'Áno',
-        bioodpad: 'Nie',
-
-        plastyrange:50,
-        sklorange:50,
-        papierrange: 50,
-        bioodpadrange: 0,
-
-        separovanie: ['','','',''],
-
-
-
-
-        nakupoblecenie: 2,
+    
         oblecenie: [
           { value: 0, text: 'Niekoľkokrát do týždňa' },
           { value: 1, text: 'Niekoľkokrát mesačne' },
@@ -289,7 +229,7 @@ export default {
             this.emisie_ziv_styl[0] = (1-this.druharukaoblecenie/100)*this.oblecenie_emisie[this.nakupoblecenie];
             this.emisie_ziv_styl[1] = 10*this.kemp + 19.75*this.hotel + 54*this.luxus;
             this.emisie_ziv_styl[2] = this.odpady();
-            this.chartData.datasets[0].data = this.emisie_ziv_styl;
+           
             this.uhlikova_stopa_ziv_styl = Math.round(this.emisie_ziv_styl[0]+this.emisie_ziv_styl[1]+this.emisie_ziv_styl[2]);
             this.updateChart();     
         },
@@ -357,8 +297,7 @@ export default {
                 return this.$store.state.emisie_ziv_styl
             },
             set(value) {
-                this.$store.commit('setemisie_ziv_styl',value)
-                
+                this.$store.commit('setemisie_ziv_styl',value)    
             }
         },
         uhlikova_stopa_ziv_styl: {
@@ -370,6 +309,124 @@ export default {
                 
             }
         },
+        druharukaoblecenie: {
+            get() {
+                return this.$store.state.druharukaoblecenie
+            },
+            set(value) {
+                this.$store.commit('setdruharukaoblecenie',value)    
+            }
+        },
+        details_ziv_styl: {
+            get() {
+                return this.$store.state.details_ziv_styl
+            },
+            set(value) {
+                this.$store.commit('setdetails_ziv_styl',value)    
+            }
+        },
+
+        stan: {
+            get() {
+                return this.$store.state.stan
+            },
+            set(value) {
+                this.$store.commit('setstan',value)    
+            }
+        },
+        kemp: {
+            get() {
+                return this.$store.state.kemp
+            },
+            set(value) {
+                this.$store.commit('setkemp',value)    
+            }
+        },
+        hotel: {
+            get() {
+                return this.$store.state.hotel
+            },
+            set(value) {
+                this.$store.commit('sethotel',value)    
+            }
+        },
+        luxus: {
+            get() {
+                return this.$store.state.luxus
+            },
+            set(value) {
+                this.$store.commit('setluxus',value)    
+            }
+        },
+        
+        plasty: {
+            get() {
+                return this.$store.state.plasty
+            },
+            set(value) {
+                this.$store.commit('setplasty',value)    
+            }
+        },
+        papier: {
+            get() {
+                return this.$store.state.papier
+            },
+            set(value) {
+                this.$store.commit('setpapier',value)    
+            }
+        },
+        sklo: {
+            get() {
+                return this.$store.state.sklo
+            },
+            set(value) {
+                this.$store.commit('setsklo',value)    
+            }
+        },
+        bioodpad: {
+            get() {
+                return this.$store.state.bioodpad
+            },
+            set(value) {
+                this.$store.commit('setbioodpad',value)    
+            }
+        },
+
+        plastyrange: {
+            get() {
+                return this.$store.state.plastyrange
+            },
+            set(value) {
+                this.$store.commit('setplastyrange',value)    
+            }
+        },
+        papierrange: {
+            get() {
+                return this.$store.state.papierrange
+            },
+            set(value) {
+                this.$store.commit('setpapierrange',value)    
+            }
+        },
+        sklorange: {
+            get() {
+                return this.$store.state.sklorange
+            },
+            set(value) {
+                this.$store.commit('setsklorange',value)    
+            }
+        },
+        bioodpadrange: {
+            get() {
+                return this.$store.state.bioodpadrange
+            },
+            set(value) {
+                this.$store.commit('setbioodpadrange',value)    
+            }
+        },
+
+
+
 
     
     }
