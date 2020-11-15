@@ -11,7 +11,7 @@
                 <div class="graf_celkovo">    
                     <b-row align-h="center">
                 
-                        <b-col cols=12 lg="3" order="1" order-lg="1">
+                        <b-col cols=12 md="6" lg="3" order="1" order-md="1">
                             <DoughnutExample
                                 ref="celkovo_chart"
                                 :chart-data="chartDataDoughnut"
@@ -19,27 +19,30 @@
                             > 
                             </DoughnutExample>
                         </b-col>
-                        <b-col cols=12 lg="6" order="3" order-lg="2" class="[text-left,suggestions-column]">
+                        <b-col cols=12 md="12" lg="6" order="3" order-md="3" order-lg="2" class="[text-left,suggestions-column]">
                             <div class="nadpis-undertitle"><b-row><h2>Zhrnutie</h2></b-row></div>
                             <div class="suggestions">
                                 <div class="suggestion" v-if="celkovo_sugg_between">
-                                    čo je o <strong>{{diff_sugg_between1}}</strong> kg CO2e viac ako priemerný Slovák, no o <strong>{{diff_sugg_between2}}</strong> kg CO2e menej ako priemerný Európan
+                                    To je o <strong>{{diff_sugg_between1}}</strong> kg CO2e viac ako priemerný Slovák, no o <strong>{{diff_sugg_between2}}</strong> kg CO2e menej ako priemerný Európan
                                 </div>
                                 <div class="suggestion" v-if="celkovo_sugg_over">
-                                    čo je až o <strong>{{diff_sugg_over1}}</strong> kg CO2e viac ako priemerný Slovák no dokonca o <strong>{{diff_sugg_over2}}</strong> kg CO2e viac ako priemerný Európan
+                                    To je až o <strong>{{diff_sugg_over1}}</strong> kg CO2e viac ako priemerný Slovák a takisto aj o <strong>{{diff_sugg_over2}}</strong> kg CO2e viac ako priemerný Európan
                                 </div>
                                 <div class="suggestion" v-if="celkovo_sugg_under">
-                                    čo je o <strong>{{diff_sugg_under1}}</strong> kg CO2e menej ako priemerný Slovák no dokonca až o <strong>{{diff_sugg_under2}}</strong> kg CO2e menej ako priemerný Európan
+                                    To je o <strong>{{diff_sugg_under1}}</strong> kg CO2e menej ako priemerný Slovák no dokonca až o <strong>{{diff_sugg_under2}}</strong> kg CO2e menej ako priemerný Európan
                                 </div>
                                 <div class="suggestion">
-                                    najväčšiu časť tvojej uhlíkovej stopy tvorí kategória <strong>{{sugg_biggest_name}}</strong> a to <strong>{{sugg_biggest_ratio}}%</strong> z celku, čo je <strong>{{sugg_biggest_value}}</strong> kg CO2e
+                                    Najväčšiu časť tvojej uhlíkovej stopy tvorí kategória <strong>{{sugg_biggest_name}}</strong> a to <strong>{{sugg_biggest_ratio}}%</strong> z celku, čo je <strong>{{sugg_biggest_value}}</strong> kg CO2e
                                 </div>
                                 <div class="suggestion">
-                                    naopak najmenšiu časť tvojej uhlíkovej stopy tvorí kategória <strong>{{sugg_lowest_name}}</strong> a to <strong>{{sugg_lowest_ratio}}%</strong> z celku, čo je <strong>{{sugg_lowest_value}}</strong> kg CO2e
+                                    Naopak najmenšiu časť tvojej uhlíkovej stopy tvorí kategória <strong>{{sugg_lowest_name}}</strong> a to <strong>{{sugg_lowest_ratio}}%</strong> z celku, čo je <strong>{{sugg_lowest_value}}</strong> kg CO2e
+                                </div>
+                                <div class="suggestion">
+                                    Ak by si ročne nasadil <strong>{{stromy}}</strong> stromov, tvoja uhlíková stopa by bola nulová :)
                                 </div>
                             </div> 
                         </b-col>
-                        <b-col cols=12 lg="3" order="2" order-lg="3">
+                        <b-col cols=12 md="6" lg="3" order="2" order-md="2" order-lg="3">
                             <BarExample
                                 ref="celkovo_porovnanie_chart"
                                 :chart-data="chartDataBar"
@@ -57,99 +60,61 @@
             <div class="pocastiach">
                  <div class="obsah">   
                     <b-row class="nadpis"> 
-                        <b-col class="text-left"><h3>Bývanie</h3></b-col>
+                        <b-col cols="12" md="6" class="text-left"><h3>Bývanie</h3></b-col>
+                        <b-col cols="12" md="6" class="text-left"><h3>Doprava</h3></b-col>
                     </b-row>
                     <b-row class="kategoria">
-                        <b-col cols=12 md="4">
+                        <b-col cols=12 md="2">
                             <DoughnutExample
-                            ref="celkovo_chart"
-                            :chart-data="chartData"
+                            ref="celkovo_byvanie"
+                            :chart-data="chartData_byvanie"
                             :options="options1"
                             class="graf"
                             
                         > 
                             </DoughnutExample>
                         </b-col>
-                        <b-col cols=12 md="8">
+                        <b-col cols=12 md="4">
                         
                         </b-col>
-                    </b-row>
-
-
-
-                    <b-row class="nadpis"> 
-                        <b-col class="text-left"><h3>Doprava</h3></b-col>
-                    </b-row>
-                    <b-row class="kategoria">
-                        <b-col cols=12 md="4">
-                            <DoughnutExample
-                            ref="celkovo_chart"
-                            :chart-data="chartData"
-                            :options="options1"
-                            class="graf"
-                            
-                        > 
-                            </DoughnutExample>
+                        <b-col cols=12 md="2">
+                           
                         </b-col>
-                        <b-col cols=12 md="8">
+                        <b-col cols=12 md="4">
                         
                         </b-col>
                     </b-row>
 
 
                     <b-row class="nadpis"> 
-                        <b-col class="text-left"><h3>Jedlo</h3></b-col>
+                        <b-col cols="12" md="6" class="text-left"><h3>Jedlo</h3></b-col>
+                        <b-col cols="12" md="6" class="text-left"><h3>Spotreba</h3></b-col>
                     </b-row>
                     <b-row class="kategoria">
-                        <b-col cols=12 md="4">
-                            <DoughnutExample
-                            ref="celkovo_chart"
-                            :chart-data="chartData"
-                            :options="options1"
-                            class="graf"
+                        <b-col cols=12 md="2">
                             
-                        > 
-                            </DoughnutExample>
                         </b-col>
-                        <b-col cols=12 md="8">
+                        <b-col cols=12 md="4">
+                        
+                        </b-col>
+                        <b-col cols=12 md="2">
+                            
+                        </b-col>
+                        <b-col cols=12 md="4">
                         
                         </b-col>
                     </b-row>
 
 
-                    <b-row class="nadpis"> 
-                        <b-col class="text-left"><h3>Spotreba</h3></b-col>
-                    </b-row>
-                    <b-row class="kategoria">
-                        <b-col cols=12 md="4">
-                            <DoughnutExample
-                            ref="celkovo_chart"
-                            :chart-data="chartData"
-                            :options="options1"
-                            class="graf"
-                            
-                        > 
-                            </DoughnutExample>
-                        </b-col>
-                        <b-col cols=12 md="8">
-                        
-                        </b-col>
-                    </b-row>
+                    
 
 
                     <b-row class="nadpis"> 
-                        <b-col class="text-left"><h3>životný štýl</h3></b-col>
+                        <b-col cols="12" md="6" class="text-left"><h3>životný štýl</h3></b-col>
                     </b-row>
                     <b-row class="kategoria">
                         <b-col cols=12 md="4">
-                            <DoughnutExample
-                            ref="celkovo_chart"
-                            :chart-data="chartData"
-                            :options="options1"
-                            class="graf"
                             
-                        > 
-                            </DoughnutExample>
                         </b-col>
                         <b-col cols=12 md="8">
                         
@@ -258,6 +223,17 @@ export default {
             ],
         },
 
+        chartData_byvanie :{
+        
+            labels: ["Centrálne vykurovanie","Elektrika","Zemný plyn","LPG","Tuhé palivo"],
+            datasets: [
+            {
+                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
+                data: [413,260,0,0,0],
+            }
+            ],
+        },
+
         celkovo_sugg_under : false,
         diff_sugg_under1: 0,
         diff_sugg_under2: 0,
@@ -277,6 +253,7 @@ export default {
         sugg_biggest_ratio:0,
         sugg_lowest_ratio:0,
 
+        stromy: 0,
 
 
 
@@ -391,12 +368,16 @@ export default {
             this.updateChart()
             this.celkovo_suggestions(this.chartDataDoughnut.datasets[0].data)
             this.updateChartBar()
+            this.updateChartByvanie()
         },
         updateChart() {
          this.$refs.celkovo_chart.update();
         },
         updateChartBar() {
          this.$refs.celkovo_porovnanie_chart.update();
+        }, 
+        updateChartByvanie() {
+         this.$refs.celkovo_byvanie.update();
         },
         celkovo_suggestions(value) {
             if(this.uhlikova_stopa_celkovo > 5888 && this.uhlikova_stopa_celkovo < 8480 ) {
@@ -433,6 +414,8 @@ export default {
             this.sugg_lowest_name = section_names[this.celkovo_sugg_lowest]
             console.log(this.celkovo_sugg_biggest)
             console.log(this.celkovo_sugg_lowest)
+
+            this.stromy = Math.round(this.uhlikova_stopa_celkovo/100);
             
         },
         indexOfMax(arr) {
@@ -507,7 +490,7 @@ export default {
     border-radius: 10px;
     margin-left: 5%;
     width:90%;
-    height: 250vh;
+    height: 150vh;
 }
 
 .obsah {
@@ -523,7 +506,7 @@ export default {
 }
 
 .background-cover {
-    background: linear-gradient(180deg, rgba(206, 206, 206, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%),url('../assets/background-results.jpg') 50% 50%;
+    background: linear-gradient(180deg, rgba(206, 206, 206, 0.24) 5.21%, rgba(1, 1, 1, 0) 100%),url('../assets/background-results.jpg') 50% 50%;
     background-size: cover;
 }
 

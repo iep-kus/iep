@@ -496,15 +496,16 @@ export default {
 
 .zacat {
     position: relative;
-  text-align: center;
-  top: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
-  vertical-align: center;
+    text-align: center;
+    top: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    vertical-align: center;
 
-  width: 10rem;
-   height: 3rem;  
-   background: #FF6600;
+    width: 10rem;
+    height: 3rem;  
+    background: #FF6600;
     border-radius: 20px; 
     border: 0px solid #000000;
     color: white;
