@@ -41,7 +41,7 @@
                         <div v-if="details_byvanie==true">
                             <b-row  style="margin-bottom: 2vh" align-v="stretch">      
                                     <b-col md="1" cols="1" class="text-right"></b-col>
-                                    <b-col cols="11" class="text-left h-100" align-h="start">Uveďte konkrétnu spotrebu jednotlivých zdrojov energií alebo paliva (vykurovanie, varenie, spotrebiče...)</b-col>
+                                    <b-col cols="11" class="text-left h-100" align-h="start">Uveďte konkrétnu ročnú spotrebu jednotlivých zdrojov energií alebo paliva (vykurovanie, varenie, spotrebiče...)</b-col>
                             </b-row>    
                                 
                             <div>

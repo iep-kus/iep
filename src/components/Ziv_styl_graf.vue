@@ -350,6 +350,14 @@ export default {
                 this.$store.commit('setdruharukaoblecenie',value)    
             }
         },
+        nakupoblecenie: {
+            get() {
+                return this.$store.state.nakupoblecenie
+            },
+            set(value) {
+                this.$store.commit('setnakupoblecenie',value)    
+            }
+        },
         details_ziv_styl: {
             get() {
                 return this.$store.state.details_ziv_styl

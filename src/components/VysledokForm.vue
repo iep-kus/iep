@@ -2,36 +2,58 @@
     
     <b-container fluid>
     
-        <div class="celkovo">
-            <b-row class="nadpis"> 
-                <b-col class="text-left">Tvoja celková uhlíková stopa je <strong>{{uhlikova_stopa_celkovo}}</strong> kilogramov CO2e.</b-col>
-            </b-row>
-            <div class="graf_celkovo">    
-                <b-row align-h="center">
-               
-                    <b-col cols=12 lg="3" order="1" order-lg="1">
-                        <DoughnutExample
-                            ref="celkovo_chart"
-                            :chart-data="chartDataDoughnut"
-                            :options="optionsDoughnut"                        
-                        > 
-                        </DoughnutExample>
-                    </b-col>
-                    <b-col cols=12 lg="6" order="3" order-lg="2">
-                        Suggestions
-                    </b-col>
-                    <b-col cols=12 lg="3" order="2" order-lg="3">
-                        <BarExample
-                            ref="celkovo_porovnanie_chart"
-                            :chart-data="chartDataBar"
-                            :options="optionsBar"    
-                        > 
-                        </BarExample>
-                    </b-col>
-                    
-                 
+        
+        <div class="background-cover"> 
+            <div class="celkovo">  
+                <b-row class="nadpis-title"> 
+                    <b-col class="text-left">Tvoja celková uhlíková stopa je <strong>{{uhlikova_stopa_celkovo}}</strong> kilogramov CO2e ročne.</b-col>
                 </b-row>
+                <div class="graf_celkovo">    
+                    <b-row align-h="center">
+                
+                        <b-col cols=12 lg="3" order="1" order-lg="1">
+                            <DoughnutExample
+                                ref="celkovo_chart"
+                                :chart-data="chartDataDoughnut"
+                                :options="optionsDoughnut"                        
+                            > 
+                            </DoughnutExample>
+                        </b-col>
+                        <b-col cols=12 lg="6" order="3" order-lg="2" class="[text-left,suggestions-column]">
+                            <div class="nadpis-undertitle"><b-row><h2>Zhrnutie</h2></b-row></div>
+                            <div class="suggestions">
+                                <div class="suggestion" v-if="celkovo_sugg_between">
+                                    čo je o <strong>{{diff_sugg_between1}}</strong> kg CO2e viac ako priemerný Slovák, no o <strong>{{diff_sugg_between2}}</strong> kg CO2e menej ako priemerný Európan
+                                </div>
+                                <div class="suggestion" v-if="celkovo_sugg_over">
+                                    čo je až o <strong>{{diff_sugg_over1}}</strong> kg CO2e viac ako priemerný Slovák no dokonca o <strong>{{diff_sugg_over2}}</strong> kg CO2e viac ako priemerný Európan
+                                </div>
+                                <div class="suggestion" v-if="celkovo_sugg_under">
+                                    čo je o <strong>{{diff_sugg_under1}}</strong> kg CO2e menej ako priemerný Slovák no dokonca až o <strong>{{diff_sugg_under2}}</strong> kg CO2e menej ako priemerný Európan
+                                </div>
+                                <div class="suggestion">
+                                    najväčšiu časť tvojej uhlíkovej stopy tvorí kategória <strong>{{sugg_biggest_name}}</strong> a to <strong>{{sugg_biggest_ratio}}%</strong> z celku, čo je <strong>{{sugg_biggest_value}}</strong> kg CO2e
+                                </div>
+                                <div class="suggestion">
+                                    naopak najmenšiu časť tvojej uhlíkovej stopy tvorí kategória <strong>{{sugg_lowest_name}}</strong> a to <strong>{{sugg_lowest_ratio}}%</strong> z celku, čo je <strong>{{sugg_lowest_value}}</strong> kg CO2e
+                                </div>
+                            </div> 
+                        </b-col>
+                        <b-col cols=12 lg="3" order="2" order-lg="3">
+                            <BarExample
+                                ref="celkovo_porovnanie_chart"
+                                :chart-data="chartDataBar"
+                                :options="optionsBar"    
+                            > 
+                            </BarExample>
+                        </b-col>
+                        
+                    
+                    </b-row>
+                </div>
             </div>
+        </div>
+        <div class="celkovo">    
             <div class="pocastiach">
                  <div class="obsah">   
                     <b-row class="nadpis"> 
@@ -160,12 +182,14 @@ export default {
         optionsDoughnut: {
         responsive: true,
         legend: {
-            display: false
+            display: false,
+            
          },
         maintainAspectRatio: false,
         animation: {
             animateRotate: true,
             },
+        cutoutPercentage: 55
         },
 
         optionsBar: {
@@ -180,15 +204,18 @@ export default {
             scales: {
 					yAxes: [{
 						ticks: {
-							beginAtZero: true
+                            beginAtZero: true,
+                            fontColor: "#FFFFFF",
 						},
 						gridLines: {
-							display: true
+                            display: true,
+                            fontColor: '#FFFFFF',
 						}
 					}],
 					xAxes: [{
 						ticks: {
-							beginAtZero: true
+                            beginAtZero: true,
+                            fontColor: '#FFFFFF',
 						},
 						gridLines: {
 							display: false
@@ -215,6 +242,7 @@ export default {
             {
                 backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
                 data: [673,2651,1657,804,515],
+                borderWidth: 0
             }
             ],
         },
@@ -229,6 +257,31 @@ export default {
             }
             ],
         },
+
+        celkovo_sugg_under : false,
+        diff_sugg_under1: 0,
+        diff_sugg_under2: 0,
+        celkovo_sugg_between : true,
+        diff_sugg_between1: 0,
+        diff_sugg_between2: 0,
+        celkovo_sugg_over : false,
+        diff_sugg_over1: 0,
+        diff_sugg_over2: 0,
+
+        celkovo_sugg_biggest : 1,
+        sugg_biggest_value: 0,
+        celkovo_sugg_lowest : 4,
+        sugg_lowest_value: 0,
+        sugg_biggest_name: '',
+        sugg_lowest_name: '',
+        sugg_biggest_ratio:0,
+        sugg_lowest_ratio:0,
+
+
+
+
+
+
       }
     },
     computed: {
@@ -265,37 +318,78 @@ export default {
                 this.$store.commit('setuhlikova_stopa_celkovo',value)
             }
         },
+        emisie_byvanie: {
+            get() {
+                return this.$store.state.emisie_byvanie
+            },
+        },
+        emisie_doprava: {
+            get() {
+                return this.$store.state.emisie_doprava
+            },
+        },
+        emisie_jedlo: {
+            get() {
+                return this.$store.state.emisie_jedlo
+            },
+        },
+        emisie_spotreba: {
+            get() {
+                return this.$store.state.emisie_spotreba
+            },
+        },
+        emisie_ziv_styl: {
+            get() {
+                return this.$store.state.emisie_ziv_styl
+            },
+        },
     },
     watch: {
         uhlikova_stopa_byvanie() {
-            this.fillChart()
-            
+            this.fillChart()           
         },
         uhlikova_stopa_doprava() {
-            this.fillChart()
-            
+            this.fillChart()           
         },
         uhlikova_stopa_jedlo() {
-            this.fillChart()
-            
+            this.fillChart()            
         },
         uhlikova_stopa_spotreba() {
             this.fillChart()
-            
-        },
+            },
         uhlikova_stopa_ziv_styl() {
-            this.fillChart()
-            
+            this.fillChart()    
         },
+        emisie_byvanie() {
+            this.fillChart()           
+        },
+        emisie_doprava() {
+            this.fillChart()           
+        },
+        emisie_jedlo() {
+            this.fillChart()            
+        },
+        emisie_spotreba() {
+            this.fillChart()
+            },
+        emisie_ziv_styl() {
+            this.fillChart()    
+        },
+    },
+    
+    mounted() {
+            this.fillChart();
     },
 
     methods: {
+        
         fillChart() {
             this.chartDataDoughnut.datasets[0].data = [this.uhlikova_stopa_byvanie,this.uhlikova_stopa_doprava, this.uhlikova_stopa_jedlo,
             this.uhlikova_stopa_spotreba, this.uhlikova_stopa_ziv_styl];
             this.uhlikova_stopa_celkovo = this.uhlikova_stopa_byvanie+this.uhlikova_stopa_doprava + this.uhlikova_stopa_jedlo + this.uhlikova_stopa_spotreba + this.uhlikova_stopa_ziv_styl;
             this.chartDataBar.datasets[0].data[1] = this.uhlikova_stopa_celkovo
             this.updateChart()
+            this.celkovo_suggestions(this.chartDataDoughnut.datasets[0].data)
             this.updateChartBar()
         },
         updateChart() {
@@ -303,6 +397,77 @@ export default {
         },
         updateChartBar() {
          this.$refs.celkovo_porovnanie_chart.update();
+        },
+        celkovo_suggestions(value) {
+            if(this.uhlikova_stopa_celkovo > 5888 && this.uhlikova_stopa_celkovo < 8480 ) {
+                this.celkovo_sugg_between = true
+                this.celkovo_sugg_under = false
+                this.celkovo_sugg_over = false
+                this.diff_sugg_between1 = this.uhlikova_stopa_celkovo - 5888
+                this.diff_sugg_between2 = 8480 - this.uhlikova_stopa_celkovo 
+            }
+            if(this.uhlikova_stopa_celkovo < 5888) {
+                this.celkovo_sugg_between = false
+                this.celkovo_sugg_under = true
+                this.celkovo_sugg_over = false
+                this.diff_sugg_under1 = 5888 - this.uhlikova_stopa_celkovo
+                this.diff_sugg_under2 = 8480 - this.uhlikova_stopa_celkovo 
+            }
+            if(this.uhlikova_stopa_celkovo > 8480 ) {
+                this.celkovo_sugg_between = false
+                this.celkovo_sugg_under = false
+                this.celkovo_sugg_over = true
+                this.diff_sugg_over1 = this.uhlikova_stopa_celkovo - 5888
+                this.diff_sugg_over2 = this.uhlikova_stopa_celkovo - 8480
+            }
+            this.celkovo_sugg_biggest = this.indexOfMax(value)
+            this.sugg_biggest_value = value[this.celkovo_sugg_biggest]
+            this.sugg_biggest_ratio = Math.round(100*(this.sugg_biggest_value/this.uhlikova_stopa_celkovo))
+            
+            this.celkovo_sugg_lowest = this.indexOfMin(value)
+            this.sugg_lowest_value = value[this.celkovo_sugg_lowest]
+            this.sugg_lowest_ratio = Math.round(100*(this.sugg_lowest_value/this.uhlikova_stopa_celkovo))
+
+            const section_names = ["bývanie","doprava","jedlo","spotreba","životný štýl"]
+            this.sugg_biggest_name = section_names[this.celkovo_sugg_biggest]
+            this.sugg_lowest_name = section_names[this.celkovo_sugg_lowest]
+            console.log(this.celkovo_sugg_biggest)
+            console.log(this.celkovo_sugg_lowest)
+            
+        },
+        indexOfMax(arr) {
+            if (arr.length === 0) {
+                return -1;
+            }
+
+            var max = arr[0];
+            var maxIndex = 0;
+
+            for (var i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    maxIndex = i;
+                    max = arr[i];
+                }
+            }
+
+            return maxIndex;
+        },
+        indexOfMin(arr) {
+            if (arr.length === 0) {
+                return -1;
+            }
+
+            var min = arr[0];
+            var minIndex = 0;
+
+            for (var i = 1; i < arr.length; i++) {
+                if (arr[i] < min) {
+                    minIndex = i;
+                    min = arr[i];
+                }
+            }
+
+            return minIndex;
         },
     }
 }
@@ -320,6 +485,19 @@ export default {
     font-size: 2rem;
     font-weight: 1000;
     margin-bottom: 5%;
+   
+}
+
+.nadpis-title {
+    font-size: 2rem;
+    font-weight: 1000;
+    margin-bottom: 5%;
+    color: white;
+}
+
+.nadpis-undertitle {
+    margin-left: 5%;
+    color: white;
 }
 
 .pocastiach {
@@ -341,6 +519,32 @@ export default {
 }
 .graf_celkovo{
     margin-right: 5%;
+   
+}
+
+.background-cover {
+    background: linear-gradient(180deg, rgba(206, 206, 206, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%),url('../assets/background-results.jpg') 50% 50%;
+    background-size: cover;
+}
+
+.suggestions {
+    padding: 5%;
+    overflow: auto;
+    background: rgba(85, 85, 85, 0.65);
+    border-radius: 10px;
+    color: white;
+}
+.suggestion {
+    margin-bottom:5% ;
+    color: white;
+}
+.suggestions-column {
+    padding: 5%;
+    color: white;
+}
+
+.container-fluid { 
+    width: 100%; padding-right: 0; padding-left: 0; margin-right: auto; margin-left: auto; 
 }
 
 </style>

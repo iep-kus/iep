@@ -307,7 +307,7 @@
                         <div v-if="details_doprava==false">
                             <b-row  style="margin-bottom:2vh" align-v="center">      
                                 <b-col md="1" cols="1" class="text-right">8b.</b-col>
-                                <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate dopravu cudzím autom (BlaBlaCar, Uber, Taxi, kamarát...)?</b-col>
+                                <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate dopravu cudzím autom za posledný rok (BlaBlaCar, Uber, Taxi, kamarát...)?</b-col>
                                 <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                     <b-form-select v-model="frekvenciacudzie" v-on:change="countEmissions_doprava()" :options="frekvenciadoprava"></b-form-select>
                                 </b-col>
@@ -330,7 +330,7 @@
                         <div v-if="details_doprava==false">
                             <b-row  style="margin-bottom:2vh" align-v="center">      
                                 <b-col md="1" cols="1" class="text-right">9.</b-col>
-                                <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate hromadnú dopravu? (okrem vlakovej)</b-col>
+                                <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate hromadnú dopravu za posledný rok? (okrem vlakovej)</b-col>
                                 <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                     <b-form-select v-model="frekvenciamhd" v-on:change="countEmissions_doprava()" :options="frekvenciadoprava"></b-form-select>
                                 </b-col>
@@ -358,7 +358,7 @@
                         <div v-if="details_doprava==false">
                             <b-row  style="margin-bottom:2vh" align-v="center">      
                                 <b-col md="1" cols="1" class="text-right">10.</b-col>
-                                <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate vlakovú dopravu?</b-col>
+                                <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate vlakovú dopravu za posledný rok?</b-col>
                                 <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                     <b-form-select v-on:change="countEmissions_doprava()" v-model="frekvenciavlak" :options="frekvenciadoprava"></b-form-select>
                                 </b-col>
@@ -371,7 +371,7 @@
                     <div class="otazka" v-if="details_doprava==true">
                         <b-row  style="margin-bottom:2vh" align-v="center">      
                             <b-col md="1" cols="1" class="text-right">12.</b-col>
-                            <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval MHD (električkami, autobusmi, trolejbusmi)?</b-col>
+                            <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval MHD (električkami, autobusmi, trolejbusmi) za posledný/priemerný týždeň?</b-col>
                             <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-on:change="countEmissions_doprava()" v-model="mhd" placeholder="Vložte údaj"></b-form-input></b-col>
                             <b-col md="2" cols="5" class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="kmhodmhd" :options="['km', 'hod']"></b-form-select></b-col>
                         </b-row> 
@@ -1275,19 +1275,7 @@ export default {
     data() {
       return {
 
-        details_doprava: false,
-        
 
-        
-        cudzieauto:0,
-        autobus:100,
-        kmhodautobus: 'km',
-        vlak:100,
-        kmhodvlak:'km',
-        typvlak: 'elektrický',
-        pocetletov:2,
-        mhd:2,
-        kmhodmhd:'hod',
 
         frekvenciadoprava: [
          
@@ -1300,10 +1288,6 @@ export default {
           { value: 7, text: 'Raz za 2 týždne východ-západ a späť' }
         ], 
 
-        frekvenciavlastne: 3,
-        frekvenciacudzie: 5,
-        frekvenciamhd: 2,
-        frekvenciavlak: 5,
 
         kilometre_cudzie_doprava: [15000,11888,8000,4000,1000,0,23400],
         kilometre_hromadna_doprava: [3750,2972,2000,1000,250,0,23400],
@@ -1663,6 +1647,134 @@ export default {
             },
             set(value) {
                 this.$store.commit('setpocetaut',value)
+                
+            }
+        },
+
+        details_doprava: {
+            get() {
+                return this.$store.state.details_doprava
+            },
+            set(value) {
+                this.$store.commit('setdetails_doprava',value)
+                
+            }
+        },
+        cudzieauto: {
+            get() {
+                return this.$store.state.cudzieauto
+            },
+            set(value) {
+                this.$store.commit('setcudzieauto',value)
+                
+            }
+        },
+        autobus: {
+            get() {
+                return this.$store.state.autobus
+            },
+            set(value) {
+                this.$store.commit('setautobus',value)
+                
+            }
+        },
+        kmhodautobus: {
+            get() {
+                return this.$store.state.kmhodautobus
+            },
+            set(value) {
+                this.$store.commit('setkmhodautobus',value)
+                
+            }
+        },
+        vlak: {
+            get() {
+                return this.$store.state.vlak
+            },
+            set(value) {
+                this.$store.commit('setvlak',value)
+                
+            }
+        },
+
+        kmhodvlak: {
+            get() {
+                return this.$store.state.kmhodvlak
+            },
+            set(value) {
+                this.$store.commit('setkmhodvlak',value)
+                
+            }
+        },
+        typvlak: {
+            get() {
+                return this.$store.state.typvlak
+            },
+            set(value) {
+                this.$store.commit('settypvlak',value)
+                
+            }
+        },
+        pocetletov: {
+            get() {
+                return this.$store.state.pocetletov
+            },
+            set(value) {
+                this.$store.commit('setpocetletov',value)
+                
+            }
+        },
+        mhd: {
+            get() {
+                return this.$store.state.mhd
+            },
+            set(value) {
+                this.$store.commit('setmhd',value)
+                
+            }
+        },
+        kmhodmhd: {
+            get() {
+                return this.$store.state.kmhodmhd
+            },
+            set(value) {
+                this.$store.commit('setkmhodmhd',value)
+                
+            }
+        },
+        frekvenciamhd: {
+            get() {
+                return this.$store.state.frekvenciamhd
+            },
+            set(value) {
+                this.$store.commit('setfrekvenciamhd',value)
+                
+            }
+        },
+        frekvenciavlastne: {
+            get() {
+                return this.$store.state.frekvenciavlastne
+            },
+            set(value) {
+                this.$store.commit('setfrekvenciavlastne',value)
+                
+            }
+        },
+        frekvenciavlak: {
+            get() {
+                return this.$store.state.frekvenciavlak
+            },
+            set(value) {
+                this.$store.commit('setfrekvenciavlak',value)
+                
+            }
+        },
+        frekvenciacudzie: {
+            get() {
+                return this.$store.state.frekvenciacudzie
+            },
+            set(value) {
+                this.$store.commit('setfrekvenciacudzie',value)
                 
             }
         },

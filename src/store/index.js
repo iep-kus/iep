@@ -72,8 +72,26 @@ export default new Vuex.Store({
     emisie_byvanie: [210.6,449.7375,520.35,159.6,137.2,128.945],
 
     emisie_doprava: [1199,633,31,788],
+
+    details_doprava: false,
+         
+    cudzieauto:0,
+    autobus:100,
+    kmhodautobus: 'km',
+    vlak:100,
+    kmhodvlak:'km',
+    typvlak: 'elektrický',
+    pocetletov:2,
+    mhd:2,
+    kmhodmhd:'hod',
     
-    
+    frekvenciavlastne: 3,
+    frekvenciacudzie: 5,
+    frekvenciamhd: 2,
+    frekvenciavlak: 5,
+
+
+
     
     emisie_jedlo: [210.6,449.7375,520.35,159.6,137.2,128.945],
     
@@ -395,6 +413,51 @@ export default new Vuex.Store({
     setpocetaut(state, pocetaut) {
         state.pocetaut = pocetaut;
     },
+    
+    setdetails_doprava(state, value) {
+        state.details_doprava = value;
+    },
+    
+    setcudzieauto(state, value) {
+        state.cudzieauto = value;
+    },
+    setautobus(state, value) {
+        state.autobus = value;
+    },
+    setkmhodautobus(state, value) {
+        state.kmhodautobus = value;
+    },
+    setvlak(state, value) {
+        state.vlak = value;
+    },
+    setkmhodvlak(state, value) {
+        state.kmhodvlak = value;
+    },
+    settypvlak(state, value) {
+        state.typvlak = value;
+    },
+    setpocetletov(state, value) {
+        state.pocetletov = value;
+    },
+    setmhd(state, value) {
+        state.mhd = value;
+    },
+    setkmhodmhd(state, value) {
+        state.kmhodmhd = value;
+    },
+    
+    setfrekvenciavlastne(state, value) {
+        state.frekvenciavlastne = value;
+    },
+    setfrekvenciacudzie(state, value) {
+        state.frekvenciacudzie = value;
+    },
+    setfrekvenciavlak(state, value) {
+        state.frekvenciavlak = value;
+    },
+    setfrekvenciamhd(state, value) {
+        state.frekvenciamhd = value;
+    },
 
 
 
@@ -504,7 +567,7 @@ export default new Vuex.Store({
     setdruharukaoblecenie(state, value) {
         state.druharukaoblecenie = value;
     },
-    
+   
     setstan(state, value) {
         state.stan = value;
     },

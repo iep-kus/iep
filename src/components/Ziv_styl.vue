@@ -309,6 +309,14 @@ export default {
                 
             }
         },
+        nakupoblecenie: {
+            get() {
+                return this.$store.state.nakupoblecenie
+            },
+            set(value) {
+                this.$store.commit('setnakupoblecenie',value)    
+            }
+        },
         druharukaoblecenie: {
             get() {
                 return this.$store.state.druharukaoblecenie
