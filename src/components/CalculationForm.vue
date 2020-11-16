@@ -4,17 +4,17 @@
     <div>
     
 
+        <vue-scroll-snap>
+            <div><Byvanie></Byvanie></div>
+            
+            <div><Doprava></Doprava></div>
+            
+            <div><Jedlo></Jedlo></div>
 
-        <Byvanie></Byvanie>
-        
-        <Doprava></Doprava>
-        
-        <Jedlo></Jedlo>
+            <div><Spotreba></Spotreba></div>
 
-        <Spotreba></Spotreba>
-
-        <Ziv_styl></Ziv_styl>
-
+            <div><Ziv_styl></Ziv_styl></div>
+        </vue-scroll-snap>
 
 
 
@@ -34,10 +34,11 @@ import Doprava from '@/components/Doprava'
 import Jedlo from '@/components/Jedlo'
 import Spotreba from '@/components/Spotreba'
 import Ziv_styl from '@/components/Ziv_styl'
+import VueScrollSnap from "vue-scroll-snap";
 
 export default {
     name: 'CalculationForm',
-    components: {Byvanie,Doprava,Jedlo,Spotreba,Ziv_styl},
+    components: {Byvanie,Doprava,Jedlo,Spotreba,Ziv_styl,VueScrollSnap},
 }
 
 

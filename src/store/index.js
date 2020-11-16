@@ -352,10 +352,12 @@ export default new Vuex.Store({
 
         if (state.vykurovanievybrate.includes(4)){
             if (state.selected4=='litrov'){
-                state.lpg = String(Math.round(state.rozloha*state.zateplenie_konverzia))
+                if(state.typ=='bytovom dome'){state.lpg = String(885)}
+                if(state.typ=='rodinnom dome'){state.lpg = String(777) }
             }
             else {
-                state.lpg = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.lpg_jednotky))
+                if(state.typ=='bytovom dome'){state.lpg = String(885*0.59)}
+                if(state.typ=='rodinnom dome'){state.lpg = String(777*0.59) }
             }
         }
         if (!state.vykurovanievybrate.includes(4)) { state.lpg= '0'}

@@ -67,21 +67,6 @@ h3 {
     padding: 5%;
 }
 
-.nav-link-wrapper {
-    height: 1.5rem;
-    position: center;
-    text-align: center;
-    z-index: 10;
-  }
-.nav-link-wrapper a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.5s;
-  }
-.nav-link-wrapper:hover {
-    color: #FF6600;
-  }
-
 
 .zacat {
     position: relative;
@@ -101,6 +86,7 @@ h3 {
     font-weight: 1000;
     transition: color 0.5s;
     z-index: 1;
+    margin-bottom: 10%;
     
 
 
@@ -112,6 +98,7 @@ h3 {
     text-align: center;
     position: center;
     margin-left: 2.5rem;
+    margin-bottom: 10%;
 }
 
 .zacat {

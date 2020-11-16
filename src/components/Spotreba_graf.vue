@@ -74,7 +74,7 @@
                                     <b-col cols="1" class="text-right">17.</b-col>
                                     <b-col cols="10" lg="5" class="text-left" align-h="start">Koľko z týchto elektrospotrebičov vlastníte? (chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia)</b-col>
                                     <b-col cols="10" lg="5" offset="1" offset-lg="0" class="text-left" align-h="start">
-                                        <b-form-spinbutton id="vlastneniebielatechnika" v-model="vlastneniebielatechnika" min="0" max="6" v-on:change="countEmissions()"></b-form-spinbutton>
+                                        <b-form-spinbutton id="vlastneniebielatechnika" v-model="vlastneniebielatechnika" min="0" max="7" v-on:change="countEmissions()"></b-form-spinbutton>
                                     </b-col>
                                 </b-row>
                                 <div v-if="details_spotreba==true">
