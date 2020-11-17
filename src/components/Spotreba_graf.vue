@@ -8,7 +8,8 @@
             <div class="spotreba">
                 <div class="wrapper-right">    
                     <b-row md="4" style="height: 20vh" align-h="start" align-v="center" cols="1" cols-sm="1" cols-md="1" cols-lg="1" class="text-left">   
-                        <b-col offset-md="0.5" cols="4" align-h="start"><h1>Spotreba</h1></b-col>
+                        <b-col offset-md="0.5" align-h="start"><h1>Spotreba</h1><b-icon-question-circle-fill font-scale="2" id="spotreba-title"></b-icon-question-circle-fill></b-col>
+                        <b-tooltip target="spotreba-title" title="Vrámci celej tejto kategórie prosím nezapočítavajte služobné zariadenia."  variant="dark"></b-tooltip>
                         
                     </b-row>   
                     
@@ -236,6 +237,7 @@ export default {
             animation: {
                 animateRotate: true,
             },
+            cutoutPercentage: 55
         },
 
         chartData :{
@@ -262,6 +264,8 @@ export default {
         
       }
     },
+
+    
 
     methods: {
         countEmissions() {

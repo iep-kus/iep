@@ -2,11 +2,11 @@
     <b-container fluid>
         <div class="vypocitat">   
             <div class="obsah">
-                <b-row class="text-left" style="margin-left:0%">
-                    <b-col align-h="start"><div class="title">Hotovo!</div></b-col>
+                <b-row class="text-center" style="margin-left:0%">
+                    <b-col align-h="start"><div class="title"><h1>Hotovo!</h1></div></b-col>
                 </b-row>
                 <b-row class="text-left" style="margin-left:0%">
-                    <b-col align-h="start"><h3>Pre výpočet tvojej uhlíkovej stopy stlač tlačítko <strong>Vypočítať!</strong></h3></b-col>
+                    <b-col align-h="start"><div class="undertitle"><h4>Pre výpočet tvojej uhlíkovej stopy stlač tlačítko <strong>Vypočítať!</strong></h4></div></b-col>
                 </b-row>
             
                 <b-row class="zacat">
@@ -42,11 +42,21 @@ h3 {
     color: whitesmoke;
 }
 
+h1 {
+    color: white;
+    font-family: 'montserrat-bold' ;
+    font-size: 3rem;
+}
+
 .title {
     margin-left: 0%;
+   
+    
+}
+.undertitle {
+    margin-top: 5%;
     color: white;
-    font-size: 5rem;
-    font-weight: 1100;
+    text-align: center;
 }
 
 .box {
@@ -74,6 +84,7 @@ h3 {
     top: 5vh;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 5%;
     vertical-align: middle;
     padding: 1rem;
     width: 20rem;

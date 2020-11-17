@@ -6,7 +6,7 @@
         <div class="background-cover"> 
             <div class="celkovo">  
                 <b-row class="nadpis-title"> 
-                    <b-col class="text-left"><h1>Tvoja celková uhlíková stopa je <strong>{{uhlikova_stopa_celkovo}}</strong> kilogramov CO2e ročne.</h1></b-col>
+                    <b-col class="text-center"><h1>Tvoja celková uhlíková stopa je <strong>{{uhlikova_stopa_celkovo}}</strong> kilogramov CO2e ročne.</h1></b-col>
                 </b-row>
                 <div class="graf_celkovo">    
                     <b-row align-h="center" align-v="center">
@@ -20,7 +20,6 @@
                             </DoughnutExample>
                         </b-col>
                         <b-col cols=12 md="12" lg="6" order="3" order-md="3" order-lg="2" class="[text-left,suggestions-column]">
-                            <div class="nadpis-undertitle"><b-row><h2>Zhrnutie</h2></b-row></div>
                             <div class="suggestions">
                                 <div class="suggestion" v-if="celkovo_sugg_between">
                                     To je o <strong>{{diff_sugg_between1}}</strong> kg CO2e viac ako priemerný Slovák, no o <strong>{{diff_sugg_between2}}</strong> kg CO2e menej ako priemerný Európan
@@ -38,7 +37,7 @@
                                     Naopak najmenšiu časť tvojej uhlíkovej stopy tvorí kategória <strong>{{sugg_lowest_name}}</strong> a to <strong>{{sugg_lowest_ratio}}%</strong> z celku, čo je <strong>{{sugg_lowest_value}}</strong> kg CO2e
                                 </div>
                                 <div class="suggestion">
-                                    Ak by si ročne nasadil <strong>{{stromy}}</strong> stromov, tvoja uhlíková stopa by bola nulová :)
+                                    Ak by si každoročne nasadil <strong>{{stromy}}</strong> stromov, tvoja uhlíková stopa by bola nulová :)
                                 </div>
                             </div> 
                         </b-col>
@@ -56,98 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="celkovo">  
-            <b-row><h1>Výsledky po jednotlivých kategóriách</h1></b-row>  
-            <div class="pocastiach">
-                <div class="obsah">   
-                    <b-row class="nadpis"> 
-                        <b-col cols="12" md="6" class="text-left"><h3>Bývanie</h3></b-col>
-                        <b-col cols="12" md="6" class="text-left"><h3>Doprava</h3></b-col>
-                    </b-row>
-                    <b-row class="kategoria">
-                        <b-col cols=12 md="2">
-                            <DoughnutExample
-                            ref="celkovo_byvanie"
-                            :chart-data="chartData_byvanie"
-                            :options="options1"
-                            class="graf"
-                            > 
-                            </DoughnutExample>
-                        </b-col>
-                        <b-col cols=12 md="4">
-                        
-                        </b-col>
-                        <b-col cols=12 md="2">
-                           <DoughnutExample
-                            ref="celkovo_doprava"
-                            :chart-data="chartData_doprava"
-                            :options="options1"
-                            class="graf"
-                            > 
-                            </DoughnutExample>
-                        </b-col>
-                        <b-col cols=12 md="4">
-                            
-                        </b-col>
-                    </b-row>
-
-
-                    <b-row class="nadpis-2"> 
-                        <b-col cols="12" md="6" class="text-left"><h3>Jedlo</h3></b-col>
-                        <b-col cols="12" md="6" class="text-left"><h3>Spotreba</h3></b-col>
-                    </b-row>
-                    <b-row class="kategoria">
-                        <b-col cols=12 md="2">
-                            <DoughnutExample
-                            ref="celkovo_jedlo"
-                            :chart-data="chartData_jedlo"
-                            :options="options1"
-                            class="graf"
-                            > 
-                            </DoughnutExample>
-                        </b-col>
-                        <b-col cols=12 md="4">
-                        
-                        </b-col>
-                        <b-col cols=12 md="2">
-                            <DoughnutExample
-                            ref="celkovo_spotreba"
-                            :chart-data="chartData_spotreba"
-                            :options="options1"
-                            class="graf"
-                            > 
-                            </DoughnutExample>
-                        </b-col>
-                        <b-col cols=12 md="4">
-                        
-                        </b-col>
-                    </b-row>
-
-
-                    
-
-
-                    <b-row class="nadpis-2"> 
-                        <b-col cols="12" md="6" class="text-left"><h3>životný štýl</h3></b-col>
-                    </b-row>
-                    <b-row class="kategoria-2">
-                        <b-col cols=12 md="2">
-                            <DoughnutExample
-                            ref="celkovo_ziv_styl"
-                            :chart-data="chartData_ziv_styl"
-                            :options="options1"
-                            class="graf"
-                            > 
-                            </DoughnutExample>
-                        </b-col>
-                        <b-col cols=12 md="4">
-                        
-                        </b-col>
-                    </b-row>
-
-                </div>
-            </div>
-        </div>
+    
     
      
 
@@ -174,6 +82,13 @@ export default {
             display: false,
             
          },
+        title: {
+            display: true,
+            text: 'Tvoja uhlíková stopa podľa kategórií (v kg CO2e)',
+            fontColor: "#FFFFFF",
+            fontSize: 15,
+            fontFamily: "montserrat",
+        },
         maintainAspectRatio: false,
         animation: {
             animateRotate: true,
@@ -185,6 +100,13 @@ export default {
             responsive: true,
             legend: {
                 display: false
+            },
+            title: {
+                display: true,
+                text: 'Porovnanie s priemerným Slovákom a Európanom (v kg CO2e)',
+                fontColor: "#FFFFFF",
+                fontSize: 15,
+                fontFamily: "montserrat",
             },
             maintainAspectRatio: false,
             animation: {
@@ -248,61 +170,7 @@ export default {
             ],
         },
 
-        chartData_byvanie :{
-        
-            labels: ["Centrálne vykurovanie","Elektrina","Zemný plyn","LPG","Tuhé palivo"],
-            datasets: [
-            {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
-                data: [413,260,0,0,0],
-            }
-            ],
-        },
-
-        chartData_doprava :{
-        
-            labels: ["Automobilová doprava","Hromadná doprava","Vlaková doprava","Letecká doprava"],
-            datasets: [
-            {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94'],
-                data: [1199,633,31,788],
-            }
-            ],
-        },
-
-        chartData_jedlo :{
-        
-            labels: ["Hovädzie mäso","Ostatné mäso","mliečne výrobky a vajcia","Syry","Zelenina","Alkohol"],
-            datasets: [
-            {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE','#AD4B41'],
-                data: [210.6,449.7375,520.35,159.6,137.2,128.945],
-            }
-            ],
-        },
-
-        chartData_spotreba :{
-        
-            labels: ["Automobil","Biela technika","Ostatné elektrospotrebiče","Osobná elektronika" ,"Nábytok"],
-            datasets: [
-            {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94' ,'#BEBEBE'],
-                data: [388.20,45.15,98.21,206.23,66],
-            }
-            ],
-        },
-
-        chartData_ziv_styl :{
-        
-            labels: ["Oblečenie","Dovolenkovanie","Odpady"],
-            datasets: [
-            {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5'],
-                data: [201.99,197.5,115.53],
-            }
-            ],
-        },
-
+       
 
         celkovo_sugg_under : false,
         diff_sugg_under1: 0,
@@ -438,11 +306,7 @@ export default {
             this.updateChart()
             this.celkovo_suggestions(this.chartDataDoughnut.datasets[0].data)
             this.updateChartBar()
-            this.updateChartByvanie()
-            this.updateChartDoprava()
-            this.updateChartJedlo()
-            this.updateChartSpotreba()
-            this.updateChartZivstyl()
+
         },
         updateChart() {
          this.$refs.celkovo_chart.update();
@@ -450,21 +314,7 @@ export default {
         updateChartBar() {
          this.$refs.celkovo_porovnanie_chart.update();
         }, 
-        updateChartByvanie() {
-         this.$refs.celkovo_byvanie.update();
-        },
-        updateChartDoprava() {
-         this.$refs.celkovo_doprava.update();
-        },
-        updateChartJedlo() {
-         this.$refs.celkovo_jedlo.update();
-        },
-        updateChartSpotreba() {
-         this.$refs.celkovo_spotreba.update();
-        },
-        updateChartZivstyl() {
-         this.$refs.celkovo_ziv_styl.update();
-        },
+       
         celkovo_suggestions(value) {
             if(this.uhlikova_stopa_celkovo > 5888 && this.uhlikova_stopa_celkovo < 8480 ) {
                 this.celkovo_sugg_between = true
@@ -501,7 +351,7 @@ export default {
             console.log(this.celkovo_sugg_biggest)
             console.log(this.celkovo_sugg_lowest)
 
-            this.stromy = Math.round(this.uhlikova_stopa_celkovo/100);
+            this.stromy = Math.round(this.uhlikova_stopa_celkovo/1100);
             
         },
         indexOfMax(arr) {

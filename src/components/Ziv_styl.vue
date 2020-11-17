@@ -223,7 +223,10 @@ export default {
         
       }
     },
-
+    
+    mounted() {
+            this.countEmissions_ziv();
+    },
     methods: {
         countEmissions_ziv() {
             this.emisie_ziv_styl[0] = (1-this.druharukaoblecenie/100)*this.oblecenie_emisie[this.nakupoblecenie];

@@ -247,6 +247,7 @@ export default {
     
       }
     },
+    
 
     methods: {
         updateChart() {
@@ -256,7 +257,7 @@ export default {
             
             this.chartData.datasets[0].data = [this.emisie_centralne()*this.centralne/this.clenovia,this.emisie_elektrika()*this.elektrika/this.clenovia,
                 this.emisie_plyn()*this.plyn/this.clenovia,this.emisie_lpg()*this.lpg/this.clenovia,this.emisie_tuhe()*this.tuhe/this.clenovia];
-            this.emisie_jedlo = this.chartData.datasets[0].data;
+            this.emisie_byvanie = this.chartData.datasets[0].data;
             this.uhlikova_stopa_byvanie = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]);
             this.updateChart();
             console.log(this.uhlikova_stopa_byvanie)
@@ -355,9 +356,7 @@ export default {
         tuhe() {
             this.fillData();
         },
-        emisie_byvanie() {
-            this.fillData();
-        },
+        
     },
     
     
@@ -555,6 +554,8 @@ export default {
                 this.$store.commit('setdetails_byvanie',value)
             }
         },
+
+      
 
     
     }

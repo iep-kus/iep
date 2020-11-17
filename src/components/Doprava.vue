@@ -1440,6 +1440,10 @@ export default {
         
       }
     },
+
+    mounted() {
+            this.countEmissions_doprava();
+    },
     
     methods: {
         

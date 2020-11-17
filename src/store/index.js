@@ -69,7 +69,7 @@ export default new Vuex.Store({
 
 
 
-    emisie_byvanie: [210.6,449.7375,520.35,159.6,137.2,128.945],
+    emisie_byvanie: [210.6,449.7375,520.35,159.6,137.2],
 
     emisie_doprava: [1199,633,31,788],
 
@@ -349,6 +349,9 @@ export default new Vuex.Store({
                 state.plyn = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.plyn_jednotky))
             }
         }
+        if (!state.vykurovanievybrate.includes(3)) {
+            state.plyn = String(0)
+        }
 
         if (state.vykurovanievybrate.includes(4)){
             if (state.selected4=='litrov'){
@@ -365,10 +368,13 @@ export default new Vuex.Store({
         
         if (state.vykurovanievybrate.includes(5)){
             if (state.selected5=='prm'){
-                state.tuhe = 10
+                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*24*180/(3.2*1000*1212.96)))
             }
-            else {
-                state.tuhe = 8700
+            if (state.selected5=='t'){
+                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*24*180/(3.2*1000*1000)))
+            }
+            if (state.selected5=='m3'){
+                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*24*180/(3.2*1000*910)))
             }
         }
         if (!state.vykurovanievybrate.includes(5)) { state.tuhe = '0'}
@@ -600,10 +606,10 @@ export default new Vuex.Store({
         state.papierrange = value;
     },
     setsklorange(state, value) {
-        state.plastyrange = value;
+        state.sklorange = value;
     },
     setplastyrange(state, value) {
-        state.sklorange = value;
+        state.plastyrange = value;
     },
     setbioodpadrange(state, value) {
         state.bioodpadrange = value;

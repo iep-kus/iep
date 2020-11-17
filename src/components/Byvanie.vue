@@ -201,6 +201,9 @@ export default {
     
       }
     },
+    mounted() {
+            this.fillData();
+    },
 
     methods: {
        

@@ -1314,6 +1314,7 @@ export default {
             animation: {
                 animateRotate: true,
             },
+            cutoutPercentage: 55
         },
 
         chartData :{
@@ -1493,6 +1494,9 @@ export default {
         
       }
     },
+    
+   
+    
     
     methods: {
         
