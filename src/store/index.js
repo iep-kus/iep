@@ -61,9 +61,9 @@ export default new Vuex.Store({
     lpg_jednotky: 0.59,
     tuhe_jednotky: 0.865,
 
+    path_vypocitat: false,
     
-    
-   pocetaut: 1,
+    pocetaut: 1,
 
 
 
@@ -157,6 +157,9 @@ export default new Vuex.Store({
     separovanie: ['','','',''],
 
     nakupoblecenie: 2,
+
+
+
 
  },
  getters: {},
@@ -623,8 +626,11 @@ export default new Vuex.Store({
         state.nakupoblecenie = value;
     },
 
+    setpath_vypocitat(state) {
+        state.path_vypocitat = true;
+    },
 
-    
+
 
  },
  actions: {}

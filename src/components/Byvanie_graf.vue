@@ -641,6 +641,14 @@ export default {
    
 }
 
+.do_your_own {
+    padding: 10%;
+    
+    overflow: auto;
+    background-color:whitesmoke;
+    font-family: 'montserrat-bold';
+}
+
 
 
 

@@ -22,7 +22,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Kalkulacka.vue'),
   },
   {
-    path: '/kalkulacka/vysledky',
+    path: '/kalkulacka/vysledky/:user_key',
     name: 'Kalkulacka_graf',
     component: () => import('../views/Kalkulacka_grafy.vue'),
   },

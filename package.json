@@ -12,11 +12,13 @@
     "bootstrap-vue": "^2.17.3",
     "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
+    "firebase": "^8.0.2",
     "sass": "^1.29.0",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1",
     "vue-router": "^3.4.6",
     "vue-scroll-snap": "^0.1.9",
+    "vue-social-sharing": "^3.0.3",
     "vuex": "^3.5.1"
   },
   "devDependencies": {

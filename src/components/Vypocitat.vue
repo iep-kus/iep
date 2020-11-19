@@ -9,13 +9,8 @@
                     <b-col align-h="start"><div class="undertitle"><h4>Pre výpočet tvojej uhlíkovej stopy stlač tlačítko <strong>Vypočítať!</strong></h4></div></b-col>
                 </b-row>
             
-                <b-row class="zacat">
-                    <div class="button_vysledky">
-                        <router-link to="/Kalkulacka/vysledky">
-                            Vypočítať!
-                        </router-link>
-                    </div>  
-                </b-row>
+                
+                <b-button class="zacat" @click="save_data()" >Vypočítať!</b-button>
             </div>
             
 
@@ -29,9 +24,72 @@
 
 
 <script>
+import database from '../firebase/index.js'
 
 export default {
     name: 'Vypocitat',
+    methods: {
+        async save_data() {
+            this.$store.commit('setpath_vypocitat')
+            this.uhlikova_stopa_celkovo = this.uhlikova_stopa_byvanie + this.uhlikova_stopa_doprava + this.uhlikova_stopa_jedlo + this.uhlikova_stopa_spotreba + this.uhlikova_stopa_ziv_styl
+            try {
+            const user_report = database.ref('/report').push();
+            await user_report.set({
+                celkovo: this.uhlikova_stopa_celkovo,
+                byvanie: this.uhlikova_stopa_byvanie,
+                doprava: this.uhlikova_stopa_doprava,
+                jedlo: this.uhlikova_stopa_jedlo,
+                spotreba: this.uhlikova_stopa_spotreba,
+                zivotny_styl: this.uhlikova_stopa_ziv_styl,
+                
+            });
+            this.$router.push({name:'Kalkulacka_graf',params: {user_key : user_report.key}})
+            
+            // this will be the unique hash
+            console.log(user_report.key);
+            } catch (err) {
+            console.log(err);
+            }
+
+            
+        }
+    },
+
+    computed: {
+        uhlikova_stopa_byvanie: {
+            get() {
+                return this.$store.state.uhlikova_stopa_byvanie
+            },
+        },
+        uhlikova_stopa_doprava: {
+            get() {
+                return this.$store.state.uhlikova_stopa_doprava
+            },
+        },
+        uhlikova_stopa_jedlo: {
+            get() {
+                return this.$store.state.uhlikova_stopa_jedlo
+            },
+        },
+        uhlikova_stopa_spotreba: {
+            get() {
+                return this.$store.state.uhlikova_stopa_spotreba
+            },
+        },
+        uhlikova_stopa_ziv_styl: {
+            get() {
+                return this.$store.state.uhlikova_stopa_ziv_styl
+            },
+        },
+        uhlikova_stopa_celkovo: {
+            get() {
+                return this.$store.state.uhlikova_stopa_celkovo
+            },
+            set(value) {
+                this.$store.commit('setuhlikova_stopa_celkovo',value)
+            }
+        },
+    }
     
 }
 
@@ -89,7 +147,7 @@ h1 {
     padding: 1rem;
     width: 20rem;
     height: 6rem; 
-    background-color:white;
+    background-color: #FF6600;
     border-radius: 20px; 
     border: 3px solid white;
     color: white;
