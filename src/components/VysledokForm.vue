@@ -100,7 +100,7 @@
                     quote="neviem čo toto chce byť"
                     hashtags="uhlikovastopa"
                 >
-                    Share on Facebook
+                    <shareButton></shareButton>
                 </ShareNetwork>
                 
             </div>  
@@ -127,10 +127,11 @@
 <script>
 import DoughnutExample from "./DoughnutExample.vue";
 import BarExample from "./BarExample.vue";
+import shareButton from "./shareButton.vue";
 
 export default {
     name: 'VysledokForm',
-    components: {DoughnutExample,BarExample},
+    components: {DoughnutExample,BarExample,shareButton},
     data() {
       return { 
         optionsDoughnut: {
@@ -550,6 +551,9 @@ export default {
 
 .share_button {
     margin-bottom: 5%;
+    justify-content: center;
+    text-align: center;
+    height: auto;
 }
 
 .nadpis-title {
