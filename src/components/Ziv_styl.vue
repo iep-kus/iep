@@ -234,7 +234,7 @@ export default {
             this.emisie_ziv_styl[2] = this.odpady();
            
             this.uhlikova_stopa_ziv_styl = Math.round(this.emisie_ziv_styl[0]+this.emisie_ziv_styl[1]+this.emisie_ziv_styl[2]);
-            this.updateChart();     
+                 
         },
         odpady() {
             let plast=0;
@@ -277,9 +277,7 @@ export default {
                 
             }
         },
-        updateChart() {
-         this.$refs.ziv_styl_chart.update();
-        },
+        
         Reset() {
             
         this.druharukaoblecenie=20;

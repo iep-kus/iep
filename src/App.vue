@@ -21,7 +21,6 @@ export default {
     navbar,AppFooter
   },
   
-  
 }
 
 </script>

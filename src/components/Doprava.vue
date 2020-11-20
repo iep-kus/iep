@@ -1442,7 +1442,7 @@ export default {
     },
 
     mounted() {
-            this.countEmissions_doprava();
+        this.countEmissions_doprava();
     },
     
     methods: {
@@ -1483,9 +1483,8 @@ export default {
             this.emisie_doprava = [this.emisie_auta()+this.emisie_cudzie(), this.emisie_hromadna(), this.emisie_vlakova(), this.emisie_letecka()];
             
             this.uhlikova_stopa_doprava = Math.round(this.emisie_doprava[0]+this.emisie_doprava[1]+this.emisie_doprava[2]+this.emisie_doprava[3]);
-            this.updateChart();
-            console.log(this.emisie_doprava)
-            console.log(this.frekvenciavlastne)
+            
+            
         },
 
         emisie_auta() {
@@ -1617,9 +1616,7 @@ export default {
             if(value>10000) {return 2.31 + value*0.000017}
         },
         
-        updateChart() {
-         this.$refs.doprava_chart.update();
-        },
+        
         
         
         

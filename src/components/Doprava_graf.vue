@@ -334,7 +334,7 @@
                             
                             
                             <div class="otazka" >
-                                <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
+                                <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava">      
                                     <b-col md="1" cols="1" class="text-right">9.</b-col>
                                     <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval autobusmi za posledný/priemerný týždeň?
                                         <b-icon-question-circle-fill font-scale="1.2" id="question9"></b-icon-question-circle-fill>
@@ -344,7 +344,7 @@
                                     <b-col md="2" cols="5"  class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="kmhodautobus" :options="['km', 'hod']"></b-form-select></b-col>
                                 </b-row>
 
-                                <div v-if="details_doprava==false">
+                                <div v-if="!details_doprava">
                                     <b-row  style="margin-bottom:2vh" align-v="center">      
                                         <b-col md="1" cols="1" class="text-right">9.</b-col>
                                         <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate hromadnú dopravu za posledný rok? (okrem vlakovej)</b-col>
@@ -1267,7 +1267,7 @@
                             <b-row align-h="center">
                                 <b-col align-v="center">
                                     <div >
-                                        <b-button class="zacat" :pressed.sync="details_doprava" @click="countEmissions_doprava()">podrobnejšie</b-button>
+                                        <b-button class="zacat" :pressed.sync="details_doprava">podrobnejšie</b-button>
                                     </div>
                                 </b-col>
                             </b-row>
@@ -1678,10 +1678,8 @@ export default {
         
     },
 
-    watch: {
-        emisie_doprava(){
-            this.countEmissions_doprava()
-        }
+    mounted() {
+       this.countEmissions_doprava();
     },
     
     computed: {

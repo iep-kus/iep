@@ -252,7 +252,7 @@ export default {
                 this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3]+ +this.emisie_spotreba[4]);
                 
             }
-            console.log(this.emisie_spotreba[0])
+            
         },
         carage() {
             if(this.nakupauta==1){return 1}

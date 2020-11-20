@@ -177,7 +177,7 @@ export default {
             ];
             
             this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]);
-            this.updateChart();
+            
             
             
             
@@ -187,14 +187,12 @@ export default {
                 this.chartData.datasets[0].data = [0,0,0,0,137.2,8.0590625];
                 this.emisie_jedlo = this.chartData.datasets[0].data;
                 this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[4]+this.emisie_jedlo[5]);
-                this.updateChart();
+                
 
             }
             if(this.vegan=='Áno'){this.countEmissions()}
         },
-        updateChart() {
-         this.$refs.jedlo_chart.update();
-        },
+        
         
     },
 

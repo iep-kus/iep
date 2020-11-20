@@ -32,44 +32,42 @@
                                 </div>
 
 
+                                <div class="suggestion" v-if="byv_zat">
+                                    Vyzerá to, že uhlíková stopa tvojho bývania je výrazne vyššia ako stopa bývania bežného Slováka. Skúste zvážiť investíciu do zníženia energetickej náročnosti Vášho bývania.
+                                </div>
                                 <div class="suggestion" v-if="byv">
-                                    byv
+                                    Vyzerá to, že uhlíková stopa tvojho bývania je výrazne vyššia ako stopa bežného Slováka. Jednou z možností na jej zníženie by mohla byť zmena typu kúrenia. 
                                 </div>
                                 <div class="suggestion" v-if="dop_aut">
-                                   dop1
+                                    Zdá sa, že automobilová doprava tvorí veľkú časť tvojej uhlíkovej stopy. Najlepšou možnosťou by bolo jazdiť viac vlakmi alebo MHD. 
                                 </div>
-                                <div class="suggestion" v-if="dop_mhd">
-                                    dop2
-                                </div>
-                                <div class="suggestion" v-if="dop_vla">
-                                    dop3
-                                </div>
+                            
                                 <div class="suggestion" v-if="dop_let">
-                                    dop14
+                                    Vyzerá to, že emisne najnáročnejšie je tvoje lietanie. Skús nahradiť lietanie aspoň na krátku vzdialenosť vlakmi. 
                                 </div>
                                 <div class="suggestion" v-if="jed_hov">
-                                    jed1
+                                    Zdá sa, že tvoj jedálniček obsahuje veľmi veľa hovädzieho mäsa. Práve to je emisne najnáročnejšie a preto to navyšuje tvoju uhlíkovú stopu.
                                 </div>
                                 <div class="suggestion" v-if="jed_ost">
-                                   jed2
+                                   Tvoja spotreba mäsa je výrazne vyššia ako spotreba bežného Slováka. Hoci žiadne iné mäso nie je tak emisne náročné ako hovädzie, výrazne zvyšuje tvoju uhlíkovú stopu.
                                 </div>
                                 <div class="suggestion" v-if="jed_mli">
-                                    jed3
+                                    Chov hovädzieho dobytka a následná výroba mliečnych výrobkov je emisne celkom náročná. Skús zvážiť obmedzenie spotreby týchto výrobkov.
                                 </div>
                                 <div class="suggestion" v-if="jed_syr">
-                                    jed4
+                                    Syry podobne ako mliečne výrobky sú emisné celkom náročné.
                                 </div>
                                 <div class="suggestion" v-if="spo">
-                                    spo
+                                    Zdá sa, že kategória spotreba u teba tvorí relatívne výraznu uhlíkovú stopu. Pri výrobe týchto elektronických zariadení a ich následnom dovoze na Slovensko vzniká relatívne vysoká uhlíková stopa. Obmedzením nákupov týchto zariadení môžeš svoju uhlíkovú stopu výrazne znížiť.
+                                </div>
+                                <div class="suggestion" v-if="ziv_obl">
+                                    Vyzerá to, že nakupovanie oblečenia je jednou z tvojich obľúbených činností. Avšak pri výrobe oblečenia a pri jeho transporte vzniká veľmi veľká uhlíková stopa. Porozmýšlaj o častejšom nákupe oblečenia z druhej ruky. Ušetríš aj v peňaženke, no takisto aj znížiš svoju uhlíkovú stopu.
                                 </div>
                                 <div class="suggestion" v-if="ziv_dov">
-                                    ziv1
-                                </div>
-                                <div class="suggestion" v-if="ziv_dov">
-                                    ziv2
+                                    Nie tvoje aktivity doma ale aj dovolenkovanie mimo domu môže výrazne zvýšiť tvoju uhlíkovú stopu. Čím vyššia kvalita služieb, tým vyššia uhlíková stopa. 
                                 </div>
                                 <div class="suggestion" v-if="ziv_odp">
-                                    ziv3
+                                    Zdá sa, že uhlíková stopa tvojho odpadu je vyššia ako u priemerného Slováka. Skús viac triediť! Pomôže to planéte, tvojmu mestu no takisto aj tebe. 
                                 </div>
 
 
@@ -94,15 +92,15 @@
                 </div>
             </div>
             <div class="share_button"> 
-                <ShareNetwork
+               <ShareNetwork
                     network="facebook"
-                    :url= "url"
-                        title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
-                        description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
-                        quote="The hot reload is so fast it\'s near instant. - Evan You"
-                        hashtags="vuejs,vite"
+                    :url="'https://iep-stranka.vercel.app'+$route.fullPath"
+                    title="testujeme facebook share"
+                    description="popisok nejaký."
+                    quote="neviem čo toto chce byť"
+                    hashtags="uhlikovastopa"
                 >
-                    <img :src='require(`@/assets/facebook-share.png`)' />
+                    Share on Facebook
                 </ShareNetwork>
                 
             </div>  
@@ -253,6 +251,7 @@ export default {
         stromy: 0,
 
         byv: false,
+        byv_zat: false,
 
         dop_aut: false,
         dop_mhd: false,
@@ -271,16 +270,19 @@ export default {
         ziv_odp: false,
 
         
-        diff : [0,0,0,0,0,0,0,0, 0 ,0 , 0],
+        
 
         url : '',
 
-
+       
 
       }
     },
+
     
-    
+    created() {
+        console.log(this.$route.fullPath)
+    },
 
     computed: {
         uhlikova_stopa_byvanie: {
@@ -341,6 +343,11 @@ export default {
                 return this.$store.state.emisie_ziv_styl
             },
         },
+        zateplenie:  {
+            get() {
+                return this.$store.state.zateplenie
+            },
+        },
     },
     watch: {
         uhlikova_stopa_byvanie() {
@@ -377,7 +384,7 @@ export default {
     
     mounted() {
             this.fillChart();
-            this.getURL();
+            
     },
 
     methods: {
@@ -391,6 +398,7 @@ export default {
             this.celkovo_suggestions(this.chartDataDoughnut.datasets[0].data)
             this.updateChartBar()
             this.update_suggestions()
+            this.url= this.$route.query.page
 
 
         },
@@ -434,8 +442,7 @@ export default {
             const section_names = ["bývanie","doprava","jedlo","spotreba","životný štýl"]
             this.sugg_biggest_name = section_names[this.celkovo_sugg_biggest]
             this.sugg_lowest_name = section_names[this.celkovo_sugg_lowest]
-            console.log(this.celkovo_sugg_biggest)
-            console.log(this.celkovo_sugg_lowest)
+            
 
             this.stromy = Math.round(this.uhlikova_stopa_celkovo/1100);
             
@@ -451,24 +458,6 @@ export default {
             for (var i = 1; i < arr.length; i++) {
                 if (arr[i] > max) {
                     maxIndex = i;
-                    max = arr[i];
-                }
-            }
-
-            return maxIndex;
-        },
-        indexOfMax2(arr) {
-            if (arr.length === 0) {
-                return -1;
-            }
-
-            var max = arr[0];
-            var maxIndex = [0,0];
-
-            for (var i = 1; i < arr.length; i++) {
-                if (arr[i] > max) {
-                    maxIndex[1]= maxIndex[0]
-                    maxIndex[0] = i;
                     max = arr[i];
                 }
             }
@@ -493,44 +482,56 @@ export default {
             return minIndex;
         },
         update_suggestions() {
-            let emissions = [this.uhlikova_stopa_byvanie,this.emisie_doprava[0],this.emisie_doprava[3],this.emisie_jedlo[0],this.emisie_jedlo[1],this.emisie_jedlo[2],this.emisie_jedlo[3],this.uhlikova_stopa_spotreba,this.emisie_ziv_styl]
+            let diff = [0,0,0,0,0,0,0,0,0,0,0];
+            let emissions = [this.uhlikova_stopa_byvanie,this.emisie_doprava[0],this.emisie_doprava[3],this.emisie_jedlo[0],this.emisie_jedlo[1],this.emisie_jedlo[2],this.emisie_jedlo[3],this.uhlikova_stopa_spotreba,this.emisie_ziv_styl[0],this.emisie_ziv_styl[1],this.emisie_ziv_styl[2]]
             const average_slovak = [2084,1199,789,150,300,400,120,815, 200 , 195 , 115]
             for (var i = 0; i < average_slovak.length; i++) {
-                this.diff[i] = emissions[i]-average_slovak[i]; 
+                diff[i] = emissions[i]-average_slovak[i]; 
             }
-            let maxIndex = this.indexOfMax2(this.diff);
-            const show = [this.byv,this.dop_aut,this.dop_mhd,this.dop_vla,this.dop_let,this.jed_hov,this.jed_ost,this.jed_mli,this.jed_syr,this.spo,this.ziv_obl,this.ziv_dov,this.ziv_odp]
-            if(maxIndex[0]==0 || maxIndex[1]==0){this.byv=true}
-            if(maxIndex[0]==1 || maxIndex[1]==1){this.dop_aut=true}
-            if(maxIndex[0]==2 || maxIndex[1]==2){this.dop_mhd=true}
-            if(maxIndex[0]==3 || maxIndex[1]==3){this.dop_vla=true}
-            if(maxIndex[0]==4 || maxIndex[1]==4){this.dop_let=true}
-            if(maxIndex[0]==5 || maxIndex[1]==5){this.jed_hov=true}
-            if(maxIndex[0]==6 || maxIndex[1]==6){this.jed_ost=true}
-            if(maxIndex[0]==7 || maxIndex[1]==7){this.jed_mli=true}
-            if(maxIndex[0]==8 || maxIndex[1]==8){this.jed_syr=true}
-            if(maxIndex[0]==9 || maxIndex[1]==9){this.spo=true}
-            if(maxIndex[0]==10 || maxIndex[1]==10){this.ziv_obl=true}
-            if(maxIndex[0]==11 || maxIndex[1]==11){this.ziv_dov=true}
-            if(maxIndex[0]==12 || maxIndex[1]==12){this.ziv_odp=true}
-            if(maxIndex[0]!=0 && maxIndex[1]!=0){this.byv=false}
-            if(maxIndex[0]!=1 && maxIndex[1]!=1){this.dop_aut=false}
-            if(maxIndex[0]!=2 && maxIndex[1]!=2){this.dop_mhd=false}
-            if(maxIndex[0]!=3 && maxIndex[1]!=3){this.dop_vla=false}
-            if(maxIndex[0]!=4 && maxIndex[1]!=4){this.dop_let=false}
-            if(maxIndex[0]!=5 && maxIndex[1]!=5){this.jed_hov=false}
-            if(maxIndex[0]!=6 && maxIndex[1]!=6){this.jed_ost=false}
-            if(maxIndex[0]!=7 && maxIndex[1]!=7){this.jed_mli=false}
-            if(maxIndex[0]!=8 && maxIndex[1]!=8){this.jed_syr=false}
-            if(maxIndex[0]!=9 && maxIndex[1]!=9){this.spo=false}
-            if(maxIndex[0]!=10 && maxIndex[1]!=10){this.ziv_obl=false}
-            if(maxIndex[0]!=11 && maxIndex[1]!=11){this.ziv_dov=false}
-            if(maxIndex[0]!=12 && maxIndex[1]!=12){this.ziv_odp=false}
+            const maxIndex = this.indexOfMax(diff);
+            
+            diff.splice(maxIndex,1);
+            
+            let maxIndex2 = this.indexOfMax(diff);
+            
+            if(maxIndex2>=maxIndex){
+                maxIndex2 = maxIndex2+1;
+            }
+            
+            
+            if(maxIndex==0 || maxIndex2==0){
+                if(this.zateplenie=='žiadne' || this.zateplenie=='čiastočné'){ this.byv_zat=true}
+                else { this.byv = true}
+            }
+            if(maxIndex==1 || maxIndex2==1){this.dop_aut=true}
+            if(maxIndex==2 || maxIndex2==2){this.dop_let=true}
+            if(maxIndex==3 || maxIndex2==3){this.jed_hov=true}
+            if(maxIndex==4 || maxIndex2==4){this.jed_ost=true}
+            if(maxIndex==5 || maxIndex2==5){this.jed_mli=true}
+            if(maxIndex==6 || maxIndex2==6){this.jed_syr=true}
+            if(maxIndex==7 || maxIndex2==7){this.spo=true}
+            if(maxIndex==8 || maxIndex2==8){this.ziv_obl=true}
+            if(maxIndex==9 || maxIndex2==9){this.ziv_dov=true}
+            if(maxIndex==10 || maxIndex2==10){this.ziv_odp=true}
+            
+            if(maxIndex!=0 && maxIndex2!=0){this.byv=false; this.byv_zat = false}
+            if(maxIndex!=1 && maxIndex2!=1){this.dop_aut=false}
+            if(maxIndex!=2 && maxIndex2!=2){this.dop_let=false}
+            if(maxIndex!=3 && maxIndex2!=3){this.jed_hov=false}
+            if(maxIndex!=4 && maxIndex2!=4){this.jed_ost=false}
+            if(maxIndex!=5 && maxIndex2!=5){this.jed_mli=false}
+            if(maxIndex!=6 && maxIndex2!=6){this.jed_syr=false}
+            if(maxIndex!=7 && maxIndex2!=7){this.spo=false}
+            if(maxIndex!=8 && maxIndex2!=8){this.ziv_obl=false}
+            if(maxIndex!=9 && maxIndex2!=9){this.ziv_dov=false}
+            if(maxIndex!=10 && maxIndex2!=10){this.ziv_odp=false}
+
+            console.log(diff,maxIndex,maxIndex2,this.byv,this.ziv_obl)
 
         },
-        getUrl() {
-            this.url= this.$route.query.page
-        }
+        
+            
+        
     }
 }
 

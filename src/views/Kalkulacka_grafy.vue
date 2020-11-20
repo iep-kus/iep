@@ -128,7 +128,7 @@ export default {
             datasets: [
             {
                 backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
-                data: [673,2651,1657,804,515],
+                data: [0,0,0,0,0],
                 borderWidth: 0
             }
             ],
@@ -140,7 +140,7 @@ export default {
             datasets: [
             {
                 backgroundColor: ['#6F6F6F','#FF6600','#6F6F6F'],
-                data: [5888,5888,8480],
+                data: [5888,0,8480],
             }
             ],
         },
@@ -158,16 +158,18 @@ export default {
     
 
     created() {
-        var user_reportId = this.$route.params.user_key;
-        database.ref('report/'+ user_reportId).once("value").then((snapshot)=>{
-            this.celkovo = snapshot.child("celkovo").val();
-            this.byvanie = snapshot.child("byvanie").val();
-            this.doprava = snapshot.child("doprava").val();
-            this.jedlo = snapshot.child("jedlo").val();
-            this.spotreba = snapshot.child("spotreba").val();
-            this.ziv_styl = snapshot.child("ziv_styl").val();
+        if(this.path_vypocitat==false){
+            var user_reportId = this.$route.params.user_key;
+            database.ref('report/'+ user_reportId).once("value").then((snapshot)=>{
+                this.celkovo = snapshot.child("celkovo").val();
+                this.byvanie = snapshot.child("byvanie").val();
+                this.doprava = snapshot.child("doprava").val();
+                this.jedlo = snapshot.child("jedlo").val();
+                this.spotreba = snapshot.child("spotreba").val();
+                this.ziv_styl = snapshot.child("zivotny_styl").val();
             })
-
+        }
+        
     },
     
     computed: {
