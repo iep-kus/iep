@@ -28,7 +28,7 @@
                                     To je až o <strong>{{diff_sugg_over1}}</strong> kg CO2e viac ako priemerný Slovák a takisto aj o <strong>{{diff_sugg_over2}}</strong> kg CO2e viac ako priemerný Európan
                                 </div>
                                 <div class="suggestion" v-if="celkovo_sugg_under">
-                                    To je o <strong>{{diff_sugg_under1}}</strong> kg CO2e menej ako priemerný Slovák no dokonca až o <strong>{{diff_sugg_under2}}</strong> kg CO2e menej ako priemerný Európan
+                                    To je o <strong>{{diff_sugg_under1}}</strong> kg CO2e menej ako priemerný Slovák no dokonca až o <strong>{{diff_sugg_under2}}</strong> kg CO2e menej ako priemerný Európan. To ešte neznamená, že sa nemôžeš ďalej zlepšovať.
                                 </div>
 
 
@@ -49,7 +49,7 @@
                                     Zdá sa, že tvoj jedálniček obsahuje veľmi veľa hovädzieho mäsa. Práve to je emisne najnáročnejšie a preto to navyšuje tvoju uhlíkovú stopu.
                                 </div>
                                 <div class="suggestion" v-if="jed_ost">
-                                   Tvoja spotreba mäsa je výrazne vyššia ako spotreba bežného Slováka. Hoci žiadne iné mäso nie je tak emisne náročné ako hovädzie, výrazne zvyšuje tvoju uhlíkovú stopu.
+                                   Tvoja spotreba mäsa je výrazne vyššia ako spotreba bežného Slováka. Pri chove zvierat, následnej produkcii a transporte mäsa však vzniká výrazna uhlíkova stopa. Skús zmeniť svoj jedálniček a pomôž planéte.
                                 </div>
                                 <div class="suggestion" v-if="jed_mli">
                                     Chov hovädzieho dobytka a následná výroba mliečnych výrobkov je emisne celkom náročná. Skús zvážiť obmedzenie spotreby týchto výrobkov.
@@ -269,7 +269,7 @@ export default {
         ziv_obl: false,
         ziv_dov: false,
         ziv_odp: false,
-
+        
         
         
 

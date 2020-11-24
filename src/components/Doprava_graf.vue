@@ -6,7 +6,7 @@
                 
         <div class="item">
             <div class="doprava">
-                <div class="wrapper-right">    
+                <div class="wrapper-right" v-if="path_vypocitat">    
                     
                     
                     
@@ -1287,7 +1287,9 @@
 
 
 
-                </div>    
+                </div>
+                
+                
             </div> 
         </div>
     </b-container>
@@ -1347,34 +1349,6 @@ export default {
         kilometre_hromadna_doprava: [3750,2972,2000,1000,250,0,23400],
         kilometre_vlakova_doprava: [15000,11888,8000,4000,1000,0,23400],
 
-
-
-        kilometre1:5000,
-        spotreba1:6,
-        osoby1:2,
-        palivo1:1,
-
-
-        kilometre2:0,
-        spotreba2:6,
-        osoby2:2,
-        palivo2:1,
-
-        kilometre3:0,
-        spotreba3:6,
-        osoby3:2,
-        palivo3:1,
-
-        kilometre4:0,
-        spotreba4:6,
-        osoby4:2,
-        palivo4:1,
-
-        kilometre5:0,
-        spotreba5:6,
-        osoby5:2,
-        palivo5:1,
-
         palivo: [
          
           { value: 1, text: 'litrov benzínu na 100 km' },
@@ -1400,85 +1374,6 @@ export default {
           { value: 1, text: 'Nie' }
         ], 
 
-        let1:2,
-        m1: 1,
-        s1: 2,
-
-        let2:0,
-        m2: 1,
-        s2: 2,
-
-        let3:0,
-        m3: 1,
-        s3: 2,
-
-        let4:0,
-        m4: 1,
-        s4: 2,
-
-        let5:0,
-        m5: 1,
-        s5: 2,
-
-        let6:0,
-        m6: 1,
-        s6: 2,
-
-        let7:0,
-        m7: 1,
-        s7: 2,
-
-        let8:0,
-        m8: 1,
-        s8: 2,
-
-        let9:0,
-        m9: 1,
-        s9: 2,
-
-        let10:0,
-        m10: 1,
-        s10: 2,
-
-        let11:0,
-        m11: 1,
-        s11: 2,
-
-        let12:0,
-        m12: 1,
-        s12: 2,
-
-        let13:0,
-        m13: 1,
-        s13: 2,
-
-        let14:0,
-        m14: 1,
-        s14: 2,
-
-        let15:0,
-        m15: 1,
-        s15: 2,
-
-        let16:0,
-        m16: 1,
-        s16: 2,
-
-        let17:0,
-        m17: 1,
-        s17:2,
-
-        let18:0,
-        m18: 1,
-        s18: 2,
-
-        let19:0,
-        m19: 1,
-        s19: 2,
-
-        let20:0,
-        m20: 1,
-        s20: 2,
 
 
 
@@ -1838,6 +1733,444 @@ export default {
                 
             }
         },
+        path_vypocitat: {
+            get() {
+                return this.$store.state.path_vypocitat
+            },
+        },
+        kilometre1: {
+            get() {
+                return this.$store.state.kilometre1
+            },
+            set(value) {
+                this.$store.commit('setkilometre1',value)    
+            }
+        },
+        spotreba1: {
+            get() {
+                return this.$store.state.spotreba1
+            },
+            set(value) {
+                this.$store.commit('setspotreba1',value)    
+            }
+        },
+        palivo1: {
+            get() {
+                return this.$store.state.palivo1
+            },
+            set(value) {
+                this.$store.commit('setpalivo1',value)    
+            }
+        },
+        osoby1: {
+            get() {
+                return this.$store.state.osoby1
+            },
+            set(value) {
+                this.$store.commit('setosoby1',value)   
+            }
+        },
+
+        kilometre2: {
+            get() {
+                return this.$store.state.kilometre2
+            },
+            set(value) {
+                this.$store.commit('setkilometre2',value)   
+            }
+        },
+        spotreba2: {
+            get() {
+                return this.$store.state.spotreba2
+            },
+            set(value) {
+                this.$store.commit('setspotreba2',value)   
+            }
+        },
+        palivo2: {
+            get() {
+                return this.$store.state.palivo2
+            },
+            set(value) {
+                this.$store.commit('setpalivo2',value)    
+            }
+        },
+        osoby2: {
+            get() {
+                return this.$store.state.osoby2
+            },
+            set(value) {
+                this.$store.commit('setosoby2',value)    
+            }
+        },
+
+        kilometre3: {
+            get() {
+                return this.$store.state.kilometre3
+            },
+            set(value) {
+                this.$store.commit('setkilometre3',value)   
+            }
+        },
+        spotreba3: {
+            get() {
+                return this.$store.state.spotreba3
+            },
+            set(value) {
+                this.$store.commit('setspotreba3',value)     
+            }
+        },
+        palivo3: {
+            get() {
+                return this.$store.state.palivo3
+            },
+            set(value) {
+                this.$store.commit('setpalivo3',value)    
+            }
+        },
+        osoby3: {
+            get() {
+                return this.$store.state.osoby3
+            },
+            set(value) {
+                this.$store.commit('setosoby3',value)    
+            }
+        },
+
+        kilometre4: {
+            get() {
+                return this.$store.state.kilometre4
+            },
+            set(value) {
+                this.$store.commit('setkilometre4',value)
+                
+            }
+        },
+        spotreba4: {
+            get() {
+                return this.$store.state.spotreba4
+            },
+            set(value) {
+                this.$store.commit('setspotreba4',value)
+                
+            }
+        },
+        palivo4: {
+            get() {
+                return this.$store.state.palivo4
+            },
+            set(value) {
+                this.$store.commit('setpalivo4',value)
+                
+            }
+        },
+        osoby4: {
+            get() {
+                return this.$store.state.osoby4
+            },
+            set(value) {
+                this.$store.commit('setosoby4',value)
+                
+            }
+        },
+
+        kilometre5: {
+            get() {
+                return this.$store.state.kilometre5
+            },
+            set(value) {
+                this.$store.commit('setkilometre5',value)
+                
+            }
+        },
+        spotreba5: {
+            get() {
+                return this.$store.state.spotreba5
+            },
+            set(value) {
+                this.$store.commit('setspotreba5',value)
+                
+            }
+        },
+        palivo5: {
+            get() {
+                return this.$store.state.palivo5
+            },
+            set(value) {
+                this.$store.commit('setpalivo5',value)
+                
+            }
+        },
+        osoby5: {
+            get() {
+                return this.$store.state.osoby5
+            },
+            set(value) {
+                this.$store.commit('setosoby5',value)
+                
+            }
+        },
+
+        let1: {
+            get() {return this.$store.state.let1},
+            set(value) {this.$store.commit('setlet1',value)}
+        },
+        m1: {
+            get() {return this.$store.state.m1},
+            set(value) {this.$store.commit('setm1',value)}
+        },
+        s1: {
+            get() {return this.$store.state.s1},
+            set(value) {this.$store.commit('sets1',value)}
+        },
+
+        let2: {
+            get() {return this.$store.state.let2},
+            set(value) {this.$store.commit('setlet2',value)}
+        },
+        m2: {
+            get() {return this.$store.state.m2},
+            set(value) {this.$store.commit('setm2',value)}
+        },
+        s2: {
+            get() {return this.$store.state.s2},
+            set(value) {this.$store.commit('sets2',value)}
+        },
+
+        let3: {
+            get() {return this.$store.state.let3},
+            set(value) {this.$store.commit('setlet3',value)}
+        },
+        m3: {
+            get() {return this.$store.state.m3},
+            set(value) {this.$store.commit('setm3',value)}
+        },
+        s3: {
+            get() {return this.$store.state.s3},
+            set(value) {this.$store.commit('sets3',value)}
+        },
+
+        let4: {
+            get() {return this.$store.state.let4},
+            set(value) {this.$store.commit('setlet4',value)}
+        },
+        m4: {
+            get() {return this.$store.state.m4},
+            set(value) {this.$store.commit('setm4',value)}
+        },
+        s4: {
+            get() {return this.$store.state.s4},
+            set(value) {this.$store.commit('sets4',value)}
+        },
+
+        let5: {
+            get() {return this.$store.state.let5},
+            set(value) {this.$store.commit('setlet5',value)}
+        },
+        m5: {
+            get() {return this.$store.state.m5},
+            set(value) {this.$store.commit('setm5',value)}
+        },
+        s5: {
+            get() {return this.$store.state.s5},
+            set(value) {this.$store.commit('sets5',value)}
+        },
+        
+        let6: {
+            get() {return this.$store.state.let6},
+            set(value) {this.$store.commit('setlet6',value)}
+        },
+        m6: {
+            get() {return this.$store.state.m6},
+            set(value) {this.$store.commit('setm6',value)}
+        },
+        s6: {
+            get() {return this.$store.state.s6},
+            set(value) {this.$store.commit('sets6',value)}
+        },
+
+        let7: {
+            get() {return this.$store.state.let7},
+            set(value) {this.$store.commit('setlet7',value)}
+        },
+        m7: {
+            get() {return this.$store.state.m7},
+            set(value) {this.$store.commit('setm7',value)}
+        },
+        s7: {
+            get() {return this.$store.state.s7},
+            set(value) {this.$store.commit('sets7',value)}
+        },
+
+        let8: {
+            get() {return this.$store.state.let8},
+            set(value) {this.$store.commit('setlet8',value)}
+        },
+        m8: {
+            get() {return this.$store.state.m8},
+            set(value) {this.$store.commit('setm8',value)}
+        },
+        s8: {
+            get() {return this.$store.state.s8},
+            set(value) {this.$store.commit('sets8',value)}
+        },
+
+        let9: {
+            get() {return this.$store.state.let9},
+            set(value) {this.$store.commit('setlet9',value)}
+        },
+        m9: {
+            get() {return this.$store.state.m9},
+            set(value) {this.$store.commit('setm9',value)}
+        },
+        s9: {
+            get() {return this.$store.state.s9},
+            set(value) {this.$store.commit('sets9',value)}
+        },
+
+        let10: {
+            get() {return this.$store.state.let10},
+            set(value) {this.$store.commit('setlet10',value)}
+        },
+        m10: {
+            get() {return this.$store.state.m10},
+            set(value) {this.$store.commit('setm10',value)}
+        },
+        s10: {
+            get() {return this.$store.state.s10},
+            set(value) {this.$store.commit('sets10',value)}
+        },
+
+        let11: {
+            get() {return this.$store.state.let11},
+            set(value) {this.$store.commit('setlet11',value)}
+        },
+        m11: {
+            get() {return this.$store.state.m11},
+            set(value) {this.$store.commit('setm11',value)}
+        },
+        s11: {
+            get() {return this.$store.state.s11},
+            set(value) {this.$store.commit('sets11',value)}
+        },
+
+        let12: {
+            get() {return this.$store.state.let12},
+            set(value) {this.$store.commit('setlet12',value)}
+        },
+        m12: {
+            get() {return this.$store.state.m12},
+            set(value) {this.$store.commit('setm12',value)}
+        },
+        s12: {
+            get() {return this.$store.state.s12},
+            set(value) {this.$store.commit('sets12',value)}
+        },
+
+        let13: {
+            get() {return this.$store.state.let13},
+            set(value) {this.$store.commit('setlet13',value)}
+        },
+        m13: {
+            get() {return this.$store.state.m13},
+            set(value) {this.$store.commit('setm13',value)}
+        },
+        s13: {
+            get() {return this.$store.state.s13},
+            set(value) {this.$store.commit('sets13',value)}
+        },
+
+        let14: {
+            get() {return this.$store.state.let14},
+            set(value) {this.$store.commit('setlet14',value)}
+        },
+        m14: {
+            get() {return this.$store.state.m14},
+            set(value) {this.$store.commit('setm14',value)}
+        },
+        s14: {
+            get() {return this.$store.state.s14},
+            set(value) {this.$store.commit('sets14',value)}
+        },
+
+        let15: {
+            get() {return this.$store.state.let15},
+            set(value) {this.$store.commit('setlet15',value)}
+        },
+        m15: {
+            get() {return this.$store.state.m15},
+            set(value) {this.$store.commit('setm15',value)}
+        },
+        s15: {
+            get() {return this.$store.state.s15},
+            set(value) {this.$store.commit('sets15',value)}
+        },
+
+        let16: {
+            get() {return this.$store.state.let16},
+            set(value) {this.$store.commit('setlet16',value)}
+        },
+        m16: {
+            get() {return this.$store.state.m16},
+            set(value) {this.$store.commit('setm16',value)}
+        },
+        s16: {
+            get() {return this.$store.state.s16},
+            set(value) {this.$store.commit('sets16',value)}
+        },
+
+        let17: {
+            get() {return this.$store.state.let17},
+            set(value) {this.$store.commit('setlet17',value)}
+        },
+        m17: {
+            get() {return this.$store.state.m17},
+            set(value) {this.$store.commit('setm17',value)}
+        },
+        s17: {
+            get() {return this.$store.state.s17},
+            set(value) {this.$store.commit('sets17',value)}
+        },
+
+        let18: {
+            get() {return this.$store.state.let18},
+            set(value) {this.$store.commit('setlet18',value)}
+        },
+        m18: {
+            get() {return this.$store.state.m18},
+            set(value) {this.$store.commit('setm18',value)}
+        },
+        s18: {
+            get() {return this.$store.state.s18},
+            set(value) {this.$store.commit('sets18',value)}
+        },
+
+        let19: {
+            get() {return this.$store.state.let19},
+            set(value) {this.$store.commit('setlet19',value)}
+        },
+        m19: {
+            get() {return this.$store.state.m19},
+            set(value) {this.$store.commit('setm19',value)}
+        },
+        s19: {
+            get() {return this.$store.state.s19},
+            set(value) {this.$store.commit('sets19',value)}
+        },
+
+        let20: {
+            get() {return this.$store.state.let20},
+            set(value) {this.$store.commit('setlet20',value)}
+        },
+        m20: {
+            get() {return this.$store.state.m20},
+            set(value) {this.$store.commit('setm20',value)}
+        },
+        s20: {
+            get() {return this.$store.state.s20},
+            set(value) {this.$store.commit('sets20',value)}
+        },
+
     },
 
 

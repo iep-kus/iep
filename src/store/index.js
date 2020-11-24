@@ -90,6 +90,116 @@ export default new Vuex.Store({
     frekvenciamhd: 2,
     frekvenciavlak: 5,
 
+    kilometre1:5000,
+    spotreba1:6,
+    osoby1:2,
+    palivo1:1,
+
+
+    kilometre2:0,
+    spotreba2:6,
+    osoby2:2,
+    palivo2:1,
+
+    kilometre3:0,
+    spotreba3:6,
+    osoby3:2,
+    palivo3:1,
+
+    kilometre4:0,
+    spotreba4:6,
+    osoby4:2,
+    palivo4:1,
+
+    kilometre5:0,
+    spotreba5:6,
+    osoby5:2,
+    palivo5:1,
+
+
+
+    let1:2,
+    m1: 1,
+    s1: 2,
+
+    let2:0,
+    m2: 1,
+    s2: 2,
+
+    let3:0,
+    m3: 1,
+    s3: 2,
+
+    let4:0,
+    m4: 1,
+    s4: 2,
+
+    let5:0,
+    m5: 1,
+    s5: 2,
+
+    let6:0,
+    m6: 1,
+    s6: 2,
+
+    let7:0,
+    m7: 1,
+    s7: 2,
+
+    let8:0,
+    m8: 1,
+    s8: 2,
+
+    let9:0,
+    m9: 1,
+    s9: 2,
+
+    let10:0,
+    m10: 1,
+    s10: 2,
+
+    let11:0,
+    m11: 1,
+    s11: 2,
+
+    let12:0,
+    m12: 1,
+    s12: 2,
+
+    let13:0,
+    m13: 1,
+    s13: 2,
+
+    let14:0,
+    m14: 1,
+    s14: 2,
+
+    let15:0,
+    m15: 1,
+    s15: 2,
+
+    let16:0,
+    m16: 1,
+    s16: 2,
+
+    let17:0,
+    m17: 1,
+    s17:2,
+
+    let18:0,
+    m18: 1,
+    s18: 2,
+
+    let19:0,
+    m19: 1,
+    s19: 2,
+
+    let20:0,
+    m20: 1,
+    s20: 2,
+
+
+
 
 
     
@@ -469,6 +579,280 @@ export default new Vuex.Store({
     setfrekvenciamhd(state, value) {
         state.frekvenciamhd = value;
     },
+
+    setkilometre1(state, value) {
+        state.kilometre1 = value;
+    },
+    setspotreba1(state, value) {
+        state.spotreba1 = value;
+    },
+    setosoby1(state, value) {
+        state.osoby1 = value;
+    },
+    setpalivo1(state, value) {
+        state.palivo1 = value;
+    },
+
+    setkilometre2(state, value) {
+        state.kilometre2 = value;
+    },
+    setspotreba2(state, value) {
+        state.spotreba2 = value;
+    },
+    setosoby2(state, value) {
+        state.osoby2 = value;
+    },
+    setpalivo2(state, value) {
+        state.palivo2 = value;
+    },
+
+    setkilometre3(state, value) {
+        state.kilometre3 = value;
+    },
+    setspotreba3(state, value) {
+        state.spotreba3 = value;
+    },
+    setosoby3(state, value) {
+        state.osoby3 = value;
+    },
+    setpalivo3(state, value) {
+        state.palivo3 = value;
+    },
+
+    setkilometre4(state, value) {
+        state.kilometre4 = value;
+    },
+    setspotreba4(state, value) {
+        state.spotreba4 = value;
+    },
+    setosoby4(state, value) {
+        state.osoby4 = value;
+    },
+    setpalivo4(state, value) {
+        state.palivo4 = value;
+    },
+
+    setkilometre5(state, value) {
+        state.kilometre5 = value;
+    },
+    setspotreba5(state, value) {
+        state.spotreba5 = value;
+    },
+    setosoby5(state, value) {
+        state.osoby5 = value;
+    },
+    setpalivo5(state, value) {
+        state.palivo5 = value;
+    },
+
+
+
+
+    setlet1(state, value) {
+        state.let1 = value;
+    },
+    setm1(state, value) {
+        state.m1 = value;
+    },
+    sets1(state, value) {
+        state.s1 = value;
+    },
+
+
+
+    setlet2(state, value) {
+        state.let2 = value;
+    },
+    setm2(state, value) {
+        state.m2 = value;
+    },
+    sets2(state, value) {
+        state.s2 = value;
+    },
+
+
+    setlet3(state, value) {
+        state.let3 = value;
+    },
+    setm3(state, value) {
+        state.m3 = value;
+    },
+    sets3(state, value) {
+        state.s3 = value;
+    },
+
+
+    setlet4(state, value) {
+        state.let4 = value;
+    },
+    setm4(state, value) {
+        state.m4 = value;
+    },
+    sets4(state, value) {
+        state.s4 = value;
+    },
+
+    setlet5(state, value) {
+        state.let5 = value;
+    },
+    setm5(state, value) {
+        state.m5 = value;
+    },
+    sets5(state, value) {
+        state.s5 = value;
+    },
+
+    setlet6(state, value) {
+        state.let6 = value;
+    },
+    setm6(state, value) {
+        state.m6 = value;
+    },
+    sets6(state, value) {
+        state.s6 = value;
+    },
+
+    setlet7(state, value) {
+        state.let7 = value;
+    },
+    setm7(state, value) {
+        state.m7 = value;
+    },
+    sets7(state, value) {
+        state.s7 = value;
+    },
+
+    setlet8(state, value) {
+        state.let8 = value;
+    },
+    setm8(state, value) {
+        state.m8 = value;
+    },
+    sets8(state, value) {
+        state.s8 = value;
+    },
+
+    setlet9(state, value) {
+        state.let9 = value;
+    },
+    setm9(state, value) {
+        state.m9 = value;
+    },
+    sets9(state, value) {
+        state.s9 = value;
+    },
+
+    setlet10(state, value) {
+        state.let10 = value;
+    },
+    setm10(state, value) {
+        state.m10 = value;
+    },
+    sets10(state, value) {
+        state.s10 = value;
+    },
+
+    setlet11(state, value) {
+        state.let11 = value;
+    },
+    setm11(state, value) {
+        state.m11 = value;
+    },
+    sets11(state, value) {
+        state.s11 = value;
+    },
+
+    setlet12(state, value) {
+        state.let12 = value;
+    },
+    setm12(state, value) {
+        state.m12 = value;
+    },
+    sets12(state, value) {
+        state.s12 = value;
+    },
+
+    setlet13(state, value) {
+        state.let13 = value;
+    },
+    setm13(state, value) {
+        state.m13 = value;
+    },
+    sets13(state, value) {
+        state.s13 = value;
+    },
+
+    setlet14(state, value) {
+        state.let14 = value;
+    },
+    setm14(state, value) {
+        state.m14 = value;
+    },
+    sets14(state, value) {
+        state.s14 = value;
+    },
+
+    setlet15(state, value) {
+        state.let15 = value;
+    },
+    setm15(state, value) {
+        state.m15 = value;
+    },
+    sets15(state, value) {
+        state.s15 = value;
+    },
+
+    setlet16(state, value) {
+        state.let16 = value;
+    },
+    setm16(state, value) {
+        state.m16 = value;
+    },
+    sets16(state, value) {
+        state.s16 = value;
+    },
+
+    setlet17(state, value) {
+        state.let17 = value;
+    },
+    setm17(state, value) {
+        state.m17 = value;
+    },
+    sets17(state, value) {
+        state.s17 = value;
+    },
+
+    setlet18(state, value) {
+        state.let18 = value;
+    },
+    setm18(state, value) {
+        state.m18 = value;
+    },
+    sets18(state, value) {
+        state.s18 = value;
+    },
+
+    setlet19(state, value) {
+        state.let19 = value;
+    },
+    setm19(state, value) {
+        state.m19 = value;
+    },
+    sets19(state, value) {
+        state.s19 = value;
+    },
+
+    setlet20(state, value) {
+        state.let20 = value;
+    },
+    setm20(state, value) {
+        state.m20 = value;
+    },
+    sets20(state, value) {
+        state.s20 = value;
+    },
+
+  
 
 
 

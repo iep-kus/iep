@@ -2,7 +2,7 @@
     
     <b-container fluid >
         
-        <b-row>
+        <b-row align-v="center">
             
             
             
@@ -10,7 +10,6 @@
                 <div>
                 <b-card
                     title="Analýzy"
-                    img-src='require(`@/assets/iep-logo_var2.png`)'
                     img-alt="Image"
                     img-top
                     tag="article"
@@ -18,7 +17,7 @@
                     class="mb-2"
                 >
                     <b-card-text>
-                    Take hocico o analyzach tohto druhu aaaaaaaaaaaaaaaaaaaaaaaaaarrdsvvthrwewdgsgdfvrea.
+                    Podrobne skúmajú vymedzenú problematiku a poväčšine obsahujú odporúčania pre "policymakerov". Analýzy sú spravidla dlhšie materiály (30+ strán) určené pre širšiu odbornú verejnosť.
                     </b-card-text>
 
                     <b-button href="#" variant="primary">Dokumenty</b-button>
@@ -32,7 +31,7 @@
             <b-col>
                 <div>
                 <b-card
-                    title="Analýzy"
+                    title="Komentáre"
                     img :src='require(`@/assets/iep-logo_var2.png`)'
                     img-alt="Image"
                     img-top
@@ -41,7 +40,7 @@
                     class="mb-2"
                 >
                     <b-card-text>
-                    Take hocico o analyzach tohto druhu aaaaaaaaaaaaaaaaaaaaaaaaaarrdsvvthrwewdgsgdfvrea.
+                    Krátke informatívne dokumenty určené pre širšiu verejnosť a média. Komentáre tiež môžu obsahovať odporúčania.
                     </b-card-text>
 
                     <b-button href="#" variant="primary">Dokumenty</b-button>
@@ -57,7 +56,7 @@
             <b-col>
                 <div>
                 <b-card
-                    title="Analýzy"
+                    title="Kalkulačky"
                     img :src='require(`@/assets/iep-logo_var2.png`)'
                     img-alt="Image"
                     img-top
@@ -66,7 +65,7 @@
                     class="mb-2"
                 >
                     <b-card-text>
-                    Take hocico o analyzach tohto druhu aaaaaaaaaaaaaaaaaaaaaaaaaarrdsvvthrwewdgsgdfvrea.
+                    Názorne ilustrujú závery viacerých našich štúdií a poskytujú priestor na personalizovaný výpočet
                     </b-card-text>
 
                     <b-button href="#" variant="primary">Dokumenty</b-button>

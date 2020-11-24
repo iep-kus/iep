@@ -3,7 +3,7 @@
     <div class="btn__container">  
         <a class="btn-f">
         <i class="fab fa-facebook"></i>
-        <span>facebook</span>
+        <span>zdieľaj</span>
     </a>
     </div>
     
@@ -38,7 +38,7 @@ export default {
     padding: 1rem 2rem;
     text-decoration: none;
     color: #286ED6;
-    
+    border-radius: 10px;
     transition: all .2s ease-in-out;
    
     i {
@@ -57,17 +57,19 @@ export default {
    
    &:hover {
     transform: scale(1.1);
+    cursor: pointer;
     background-color: #286ED6;
     box-shadow: 0px 10px 30px rgba(0,0,0,0.10);
       i {
         transform: translateX(45px);
-        padding-right: 0;
+        padding-right: 2.5rem;
         color: #FFF;
         align-self: center;
+        justify-content: center;
 
       }
       span {
-        transform: translateX(30px);
+        transform: translateX(45px);
         opacity: 0;
       }
     }
