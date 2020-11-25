@@ -51,7 +51,7 @@
 
         
         <div >
-            <b-button class="zacat" :pressed.sync="details_kalkulacka">Chcem vedieť viac</b-button>
+            <b-button class="zacat" @click="toStart()" :pressed.sync="details_kalkulacka">Chcem vedieť viac</b-button>
         </div>
 
 
@@ -70,6 +70,11 @@ export default {
       return {
         details_kalkulacka : false,
       }
+    },
+    methods: {
+        toStart() {
+            window.scrollTo(0, 0);
+        }
     },
 }
 </script>

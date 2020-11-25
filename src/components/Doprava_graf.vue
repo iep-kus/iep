@@ -1337,7 +1337,7 @@ export default {
           { value: 1, text: 'Môj jediný spôsob dopravy' },
           { value: 2, text: 'Každý deň' },
           { value: 3, text: 'Niekoľkokrát týždenne' },
-          { value: 4, text: 'Príležitostne' },
+          { value: 4, text: 'Niekoľkokrát mesačne' },
           { value: 5, text: 'Niekoľkokrát ročne' },
           { value: 6, text: 'Vôbec' },
           { value: 7, text: 'Raz za 2 týždne východ-západ a späť' }

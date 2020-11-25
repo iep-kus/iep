@@ -25,13 +25,13 @@ export default new Vuex.Store({
     rozloha: 72,
     zateplenie: 'čiastočné',
     
-    vykurovanievybrate: [1],
+    vykurovanievybrate: 1,
 
     centralne: '8600',
     elektrika: '3075',
-    plyn: '',
-    lpg: '',
-    tuhe: '',
+    plyn: '0',
+    lpg: '0',
+    tuhe: '0',
 
     selected1:'kWh',
     selected2:'kWh',
@@ -90,7 +90,7 @@ export default new Vuex.Store({
     frekvenciamhd: 2,
     frekvenciavlak: 5,
 
-    kilometre1:5000,
+    kilometre1:11888,
     spotreba1:6,
     osoby1:2,
     palivo1:1,
@@ -259,10 +259,10 @@ export default new Vuex.Store({
     papier: 'Áno',
     bioodpad: 'Nie',
 
-    plastyrange:50,
-    sklorange:50,
-    papierrange: 50,
-    bioodpadrange: 0,
+    plastyrange:75,
+    sklorange:75,
+    papierrange: 75,
+    bioodpadrange: 25,
 
     separovanie: ['','','',''],
 
@@ -417,7 +417,7 @@ export default new Vuex.Store({
 
     prepocetenergie(state) {
         
-        if (state.vykurovanievybrate.includes(1)){
+        if (state.vykurovanievybrate==1){
             if (state.selected1=='kWh'){
                 state.centralne = String(Math.round(state.rozloha*state.zateplenie_konverzia))
             }
@@ -425,12 +425,12 @@ export default new Vuex.Store({
                 state.centralne = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.centralne_jednotky))
             }
         }
-        if (!state.vykurovanievybrate.includes(1)) { state.centralne = '0'}
+        if (state.vykurovanievybrate!=1) { state.centralne = '0'}
 
 
 
 
-        if (state.vykurovanievybrate.includes(2)){
+        if (state.vykurovanievybrate==2){
             if (state.selected2=='kWh'){
                 if(state.typ=='bytovom dome'){state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia + (365.51 + 59.76*state.clenovia)/state.elektrika_jednotky))}
                 else{state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia + (635.69 + 29.781*state.clenovia)/state.elektrika_jednotky))}
@@ -440,7 +440,7 @@ export default new Vuex.Store({
                 else{state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.elektrika_jednotky + 635.69 + 29.781*state.clenovia))}
             }
         }
-        if (!state.vykurovanievybrate.includes(2)) { 
+        if (state.vykurovanievybrate!=2) { 
             if (state.selected2=='kWh'){
                 if(state.typ=='bytovom dome'){state.elektrika = String(Math.round((365.51 + 59.76*state.clenovia)/state.elektrika_jednotky))}
                 else{state.elektrika = String(Math.round((635.69 + 29.781*state.clenovia)/state.elektrika_jednotky))}
@@ -454,7 +454,7 @@ export default new Vuex.Store({
         
 
 
-        if (state.vykurovanievybrate.includes(3)){
+        if (state.vykurovanievybrate==3){
             if (state.selected3=='kWh'){
                 state.plyn = String(Math.round(state.rozloha*state.zateplenie_konverzia))
             }
@@ -462,11 +462,11 @@ export default new Vuex.Store({
                 state.plyn = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.plyn_jednotky))
             }
         }
-        if (!state.vykurovanievybrate.includes(3)) {
+        if (state.vykurovanievybrate!=3) {
             state.plyn = String(0)
         }
 
-        if (state.vykurovanievybrate.includes(4)){
+        if (state.vykurovanievybrate==4){
             if (state.selected4=='litrov'){
                 if(state.typ=='bytovom dome'){state.lpg = String(885)}
                 if(state.typ=='rodinnom dome'){state.lpg = String(777) }
@@ -476,10 +476,10 @@ export default new Vuex.Store({
                 if(state.typ=='rodinnom dome'){state.lpg = String(777*0.59) }
             }
         }
-        if (!state.vykurovanievybrate.includes(4)) { state.lpg= '0'}
+        if (state.vykurovanievybrate!=4) { state.lpg= '0'}
 
         
-        if (state.vykurovanievybrate.includes(5)){
+        if (state.vykurovanievybrate==5){
             if (state.selected5=='prm'){
                 state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*24*180/(3.2*1000*1212.96)))
             }
@@ -490,7 +490,7 @@ export default new Vuex.Store({
                 state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*24*180/(3.2*1000*910)))
             }
         }
-        if (!state.vykurovanievybrate.includes(5)) { state.tuhe = '0'}
+        if (state.vykurovanievybrate!=5) { state.tuhe = '0'}
         
         
         
@@ -978,28 +978,44 @@ export default new Vuex.Store({
 
     setpapier(state, value) {
         state.papier = value;
+        if(value=='Áno'){state.papierrange=75}
+        if(value=='Nie'){state.papierrange=25}
     },
     setsklo(state, value) {
-        state.plasty = value;
+        state.sklo = value;
+        if(value=='Áno'){state.sklorange=75}
+        if(value=='Nie'){state.sklorange=25}
     },
     setplasty(state, value) {
-        state.sklo = value;
+        state.plasty = value;
+        if(value=='Áno'){state.plastyrange=75}
+        if(value=='Nie'){state.plastyrange=25}
     },
     setbioodpad(state, value) {
-        state.bioodpad = value;
+        state.bioodpad = value; 
+        if(value=='Áno'){state.bioodpadrange=75}
+        if(value=='Nie'){state.bioodpadrange=25}
     },
 
     setpapierrange(state, value) {
         state.papierrange = value;
+        if(value>=50){state.papier='Áno'}
+        if(value<50){state.papier='Nie'}
     },
     setsklorange(state, value) {
         state.sklorange = value;
+        if(value>=50){state.sklo='Áno'}
+        if(value<50){state.sklo='Nie'}
     },
     setplastyrange(state, value) {
         state.plastyrange = value;
+        if(value>=50){state.plasty='Áno'}
+        if(value<50){state.plasty='Nie'}
     },
     setbioodpadrange(state, value) {
         state.bioodpadrange = value;
+        if(value>=50){state.bioodpad='Áno'}
+        if(value<50){state.bioodpad='Nie'}
     },
 
     setseparovanie(state, value) {

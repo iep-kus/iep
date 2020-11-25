@@ -17,21 +17,21 @@
                         <div> 
                             <b-row style="margin-bottom: 2vh"  align-v="center">      
                                 <b-col cols="1" class="text-right">6.</b-col>
-                                <b-col cols="11" class="text-left" align-h="start">Aké zdroje energie alebo palivo primárne používate na vykurovanie a ohrev vody?</b-col>
+                                <b-col cols="11" class="text-left" align-h="start">Aký zdroj energie alebo palivo primárne používate na vykurovanie a ohrev vody?</b-col>
                             </b-row> 
                         </div> 
                         <div>   
                             <b-row  style="margin-bottom: 2vh" align-v="center">    
                                     <b-col cols="1" class="text-right"></b-col>
                                     <b-col cols="11" class="text-left" > 
-                                    <b-form-checkbox-group
+                                    <b-form-radio-group
                                             id="kurenie"
                                             v-model="vykurovanievybrate"
                                             :options="vykurovanie"
                                             name="vykurovanie"
                                             v-on:change="fillData()"
                                             
-                                    ></b-form-checkbox-group>
+                                    ></b-form-radio-group>
                                     </b-col>
                     
                             </b-row>
@@ -45,7 +45,7 @@
                             </b-row>    
                                 
                             <div>
-                                <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate.includes(1)" >    
+                                <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate=='1'" >    
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">Centrálne vykurovanie:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
@@ -81,7 +81,7 @@
                             </div>
 
                             <div>
-                                <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate.includes(4)">    
+                                <b-row  style="margin-bottom: 2vh" align-v="center">    
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">LPG:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
@@ -93,7 +93,7 @@
                             </div>
 
                             <div>
-                                <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate.includes(5)">    
+                                <b-row  style="margin-bottom: 2vh" align-v="center">    
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">Tuhé palivo:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 

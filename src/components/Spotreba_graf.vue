@@ -177,9 +177,10 @@
                                     <b-col lg="1" cols="1" class="text-right" v-if="details_spotreba==true">20.</b-col>
                                     <b-col lg="1" cols="1" class="text-right" v-if="details_spotreba==false">19.</b-col>
                                     <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko percent tvojich všetkých nákupov (biela technika a iné elektrospotrebiče, osobná elektronika alebo nábytok) tvoria nákupy z druhej ruky?</b-col>
-                                    <b-col lg="5" cols="10" offset="1" offset-lg="0" class="text-left" align-h="start" >
+                                    <b-col lg="4" cols="8" offset="1" offset-lg="0" class="text-left" align-h="start" >
                                         <b-form-input type="range" id="druharuka" v-model="druharuka" min="0" max="100" v-on:change="countEmissions()"></b-form-input>
                                     </b-col>
+                                    <b-col lg="1" cols="2" class="text-right">{{druharuka}}%</b-col>
                                 </b-row>
                                 
                             </div>

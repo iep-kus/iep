@@ -322,7 +322,7 @@
                             <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval autobusmi za posledný/priemerný týždeň?
                                 <b-icon-question-circle-fill font-scale="1.2" id="question9"></b-icon-question-circle-fill>
                             </b-col>
-                            <b-tooltip target="question9" title="Medzi tieto autobusy rátame regionálne, medzimestské ale aj diaľkové autobusy"  variant="dark"></b-tooltip>
+                            <b-tooltip target="question9" title="Medzi tieto autobusy rátame regionálne ale aj diaľkové autobusy"  variant="dark"></b-tooltip>
                             <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-on:change="countEmissions_doprava()" v-model="autobus" placeholder="Vložte údaj"></b-form-input></b-col>
                             <b-col md="2" cols="5"  class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="kmhodautobus" :options="['km', 'hod']"></b-form-select></b-col>
                         </b-row>
@@ -384,10 +384,14 @@
                         <b-row  style="margin-bottom:2vh" align-v="center" >      
                             <b-col md="1" cols="1" class="text-right" v-if="details_doprava==true">13.</b-col>
                             <b-col md="1" cols="1" class="text-right" v-if="details_doprava==false">11.</b-col>
-                            <b-col md="5" cols="11" class="text-left" align-h="start">Koľko letov si absolvoval za posledný rok?
-                                <b-icon-question-circle-fill font-scale="1.2" id="question13"></b-icon-question-circle-fill>
+                            <b-col v-if="details_doprava==false" md="5" cols="11" class="text-left" align-h="start">Koľko letov si absolvoval za posledný rok?
+                                <b-icon-question-circle-fill font-scale="1.2" id="question13a"></b-icon-question-circle-fill>
                             </b-col>
-                            <b-tooltip target="question13" title="Za jeden let považujeme či už jednosmerný alebo aj spiatočný let. Zahrnúť len súkromné lety nie služobné.  "  variant="dark"></b-tooltip>
+                            <b-col v-if="details_doprava==true" md="5" cols="11" class="text-left" align-h="start">Koľko letov si absolvoval za posledný rok?
+                                <b-icon-question-circle-fill font-scale="1.2" id="question13b"></b-icon-question-circle-fill>
+                            </b-col>
+                            <b-tooltip target="question13a" title="Za jeden let považujeme jednosmerný let. Ak ste leteli tam aj späť, započítajte lety 2. Zahrnúť len súkromné lety nie služobné.  "  variant="dark"></b-tooltip>
+                            <b-tooltip target="question13b" title="Za jeden let považujeme či už jednosmerný alebo aj spiatočný let. Zahrnúť len súkromné lety nie služobné.  "  variant="dark"></b-tooltip>
                             <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                 <b-form-spinbutton v-on:change="Resetlet() && countEmissions_doprava()" id="pocetletov" v-model="pocetletov" min="0" max="20"></b-form-spinbutton>
                             </b-col>
@@ -1282,7 +1286,7 @@ export default {
           { value: 1, text: 'Môj jediný spôsob dopravy' },
           { value: 2, text: 'Každý deň' },
           { value: 3, text: 'Niekoľkokrát týždenne' },
-          { value: 4, text: 'Príležitostne' },
+          { value: 4, text: 'Niekoľkokrát mesačne' },
           { value: 5, text: 'Niekoľkokrát ročne' },
           { value: 6, text: 'Vôbec' },
           { value: 7, text: 'Raz za 2 týždne východ-západ a späť' }
@@ -1470,7 +1474,7 @@ export default {
 
         emisie_letecka() {
             if(this.details_doprava==false) {
-                return this.pocetletov*394.31
+                return this.pocetletov*394.31/2
             }
             
             let letectvo = [this.let1,this.let2,this.let3,this.let4,this.let5,this.let6,this.let7,this.let8,this.let9,this.let10,this.let11,this.let12,this.let13,this.let14,this.let15,this.let16,this.let17,this.let18,this.let19,this.let20]
