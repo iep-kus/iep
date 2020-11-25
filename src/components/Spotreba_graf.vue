@@ -34,28 +34,28 @@
                             <div class="otazka">
                                 <b-row v-if="details_spotreba==true" style="margin-bottom:2.5vh" align-v="start">      
                                     <b-col cols="1" class="text-right">16.</b-col>
-                                    <b-col cols="10" lg="5" class="text-left" align-h="start">Koľko áut vlastní Vaša domácnosť?</b-col>
-                                    <b-col cols="11" lg="5" offset="1" offset-lg="0" class="text-left" align-h="start">
+                                    <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko áut vlastní Vaša domácnosť?</b-col>
+                                    <b-col cols="10" xl="5" offset="1" offset-xl="0" class="text-left" align-h="start">
                                         <b-form-spinbutton v-on:change="countEmissions()" id="vlastnenieaut" v-model="vlastnenieaut" min="0" max="20"></b-form-spinbutton>
                                     </b-col>
                                 </b-row>
                                 <div v-if="details_spotreba==true">
                                     <b-row  style="margin-bottom:2vh" align-v="start">    
-                                        <b-col cols="1" lg="2" class="text-right"></b-col>
-                                        <b-col cols="10" lg="4" class="text-left">Priemerne po koľkých rokoch vymeníte auto za nové?
+                                        <b-col cols="1" xl="2" class="text-right"></b-col>
+                                        <b-col cols="10" xl="4" class="text-left">Priemerne po koľkých rokoch vymeníte auto za nové?
                                             <b-icon-question-circle-fill font-scale="1.2" id="question16"></b-icon-question-circle-fill>
                                             <b-tooltip target="question16" title="Príklad: Vlastním 2 autá. Jedno auto vymením po 14-tich rokoch a druhé vymením po 10-tich rokoch. To znamená, že priemerne mením autá po 12-tich rokoch. Do odpoveďe preto zadám číslo 12."  variant="dark"></b-tooltip>
                                         </b-col>
-                                        <b-col cols="10" lg="5" offset="1" offset-lg="0" class="text-right" > 
+                                        <b-col cols="10" xl="5" offset="1" offset-xl="0" class="text-right" > 
                                             <b-form-spinbutton v-on:change="countEmissions()" id="vekaut" v-model="vekaut" min="1" max="40"></b-form-spinbutton>
                                         </b-col>
                             
                                     </b-row>
 
                                     <b-row  style="margin-bottom:2vh" align-v="start">    
-                                        <b-col cols="1" lg="2" class="text-right"></b-col>
-                                        <b-col cols="10" lg="4" class="text-left">Prevažne kupujete autá:</b-col>
-                                        <b-col cols="10" lg="5" offset="1" offset-lg="0" class="text-right" > 
+                                        <b-col cols="1" xl="2" class="text-right"></b-col>
+                                        <b-col cols="10" xl="4" class="text-left">Prevažne kupujete autá:</b-col>
+                                        <b-col cols="10" xl="5" offset="1" offset-xl="0" class="text-right" > 
                                             <b-form-select v-on:change="countEmissions()" v-model="nakupauta" :options="nakupaut"></b-form-select>
                                         </b-col>
                             
@@ -73,25 +73,25 @@
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
                                     <b-col cols="1" class="text-right">17.</b-col>
-                                    <b-col cols="10" lg="5" class="text-left" align-h="start">Koľko z týchto elektrospotrebičov vlastníte? (chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia)</b-col>
-                                    <b-col cols="10" lg="5" offset="1" offset-lg="0" class="text-left" align-h="start">
+                                    <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko z týchto elektrospotrebičov vlastníte? (chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia)</b-col>
+                                    <b-col cols="10" xl="5" offset="1" offset-xl="0" class="text-left" align-h="start">
                                         <b-form-spinbutton id="vlastneniebielatechnika" v-model="vlastneniebielatechnika" min="0" max="7" v-on:change="countEmissions()"></b-form-spinbutton>
                                     </b-col>
                                 </b-row>
                                 <div v-if="details_spotreba==true">
                                     <b-row  style="margin-bottom:2vh" align-v="start">    
-                                        <b-col cols="1" lg="2" class="text-right"></b-col>
-                                        <b-col cols="10" lg="4"  class="text-left">Priemerne ako často ich meníte?
+                                        <b-col cols="1" xl="2" class="text-right"></b-col>
+                                        <b-col cols="10" xl="4"  class="text-left">Priemerne ako často ich meníte?
                                             <b-icon-question-circle-fill font-scale="1.2" id="question17"></b-icon-question-circle-fill>
                                             <b-tooltip target="question17" title="Príklad: Z uvedených spotrebičov vlastním 3: Chladničku , práčku a sporák. Chladničku zvyknem meniť po 8-ich rokoch. Práčku mením raz za 12 rokov. Sporák mením po 16-tich rokoch. Do odpoveďe preto uvediem číslo 12, teda priemer týchto čísel. (8+12+16)/3=12 Tento princíp použite aj pri otázkach 18,19"  variant="dark"></b-tooltip>
                                         </b-col>
-                                        <b-col lg="2" cols="3" offset="1" offset-lg="0" class="text-right">Raz za</b-col>
-                                        <b-col lg="2" cols="5" class="text-right" >
+                                        <b-col xl="1" cols="3" offset="1" offset-xl="0" class="text-right">Raz za</b-col>
+                                        <b-col xl="3" cols="5" class="text-right" >
                                             <b-form-spinbutton id="vekbielatechnika" v-model="vekbielatechnika" min="1" max="40" v-on:change="countEmissions()"></b-form-spinbutton>
                                         </b-col> 
                                         
-                                        <b-col lg="1" cols="2" class="text-left" v-if="vekbielatechnika>4">rokov</b-col>
-                                        <b-col lg="1" cols="2" class="text-left" v-if="vekbielatechnika<5">roky</b-col>
+                                        <b-col xl="1" cols="2" class="text-left" v-if="vekbielatechnika>4">rokov</b-col>
+                                        <b-col xl="1" cols="2" class="text-left" v-if="vekbielatechnika<5">roky</b-col>
                                     
                                     </b-row>
 
@@ -106,24 +106,24 @@
 
                             <div class="otazka" v-if="details_spotreba==true">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
-                                    <b-col lg="1" cols="1" class="text-right">18.</b-col>
-                                    <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko ďalších elektronických zariadení, ktoré používa viacero členov domácností, máte? (televízor, repráky, herná konzola, vysávač, kuchynské roboty, kávovar, rýchlovarná kanvica, mikrovlnka, odšťavovač, žehlička, ohrievač... )</b-col>
-                                    <b-col lg="5" cols="10" offset-lg="0" offset="1" class="text-left" align-h="start">
+                                    <b-col xl="1" cols="1" class="text-right">18.</b-col>
+                                    <b-col xl="5" cols="10" class="text-left" align-h="start">Koľko ďalších elektronických zariadení, ktoré používa viacero členov domácností, máte? (televízor, repráky, herná konzola, vysávač, kuchynské roboty, kávovar, rýchlovarná kanvica, mikrovlnka, odšťavovač, žehlička, ohrievač... )</b-col>
+                                    <b-col xl="5" cols="10" offset-xl="0" offset="1" class="text-left" align-h="start">
                                         <b-form-spinbutton id="vlastnenieciernatechnika" v-model="vlastnenieciernatechnika" min="0" max="20" v-on:change="countEmissions()"></b-form-spinbutton>
                                     </b-col>
                                 </b-row>
 
                                 <div v-if="details_spotreba==true">
                                     <b-row  style="margin-bottom:2vh" align-v="start">    
-                                        <b-col lg="2" cols="1" class="text-right"></b-col>
-                                        <b-col lg="4" cols="10" class="text-left">Priemerne ako často ich meníte?</b-col>
-                                        <b-col lg="2" cols="3" offset="1" offset-lg="0" class="text-right">Raz za</b-col>
-                                        <b-col lg="2" cols="5" class="text-right" >
+                                        <b-col xl="2" cols="1" class="text-right"></b-col>
+                                        <b-col xl="4" cols="10" class="text-left">Priemerne ako často ich meníte?</b-col>
+                                        <b-col xl="1" cols="3" offset="1" offset-xl="0" class="text-right">Raz za</b-col>
+                                        <b-col xl="3" cols="5" class="text-right" >
                                             
                                             <b-form-spinbutton id="vekciernatechnika" v-model="vekciernatechnika" min="1" max="40" v-on:change="countEmissions()"></b-form-spinbutton>
                                         </b-col> 
-                                        <b-col lg="1" cols="2" class="text-right" v-if="vekciernatechnika>4">rokov</b-col>
-                                        <b-col lg="1" cols="2" class="text-right" v-if="vekciernatechnika<5">roky</b-col>
+                                        <b-col xl="1" cols="2" class="text-right" v-if="vekciernatechnika>4">rokov</b-col>
+                                        <b-col xl="1" cols="2" class="text-right" v-if="vekciernatechnika<5">roky</b-col>
                             
                                     </b-row>
 
@@ -140,24 +140,24 @@
 
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
-                                    <b-col lg="1" cols="1" class="text-right" v-if="details_spotreba==true">19.</b-col>
-                                    <b-col lg="1" cols="1" class="text-right" v-if="details_spotreba==false">18.</b-col>
-                                    <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko zariadení z osobnej elektroniky vlastníš? (mobil, notebook, tablet, smart hodinky, power banka, čítačka kníh ...)</b-col>
-                                    <b-col lg="5" cols="10" offset="1" offset-lg="0" class="text-left" align-h="start">
+                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==true">19.</b-col>
+                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==false">18.</b-col>
+                                    <b-col xl="5" cols="10" class="text-left" align-h="start">Koľko zariadení z osobnej elektroniky vlastníš? (mobil, notebook, tablet, smart hodinky, power banka, čítačka kníh ...)</b-col>
+                                    <b-col xl="5" cols="10" offset="1" offset-xl="0" class="text-left" align-h="start">
                                         <b-form-spinbutton id="vlastnenietechnika" v-model="vlastnenietechnika" min="0" max="20" v-on:change="countEmissions()">
                                     </b-form-spinbutton></b-col>
                                 </b-row>
                                 <div v-if="details_spotreba==true">
                                     <b-row  style="margin-bottom:2vh" align-v="start">    
-                                        <b-col lg="2" cols="1" class="text-right"></b-col>
-                                        <b-col lg="4" cols="10" class="text-left">Priemerne ako často ich meníš?</b-col>
-                                        <b-col lg="2" cols="3" offset-lg="0" offset="1" class="text-right">Raz za</b-col>
-                                        <b-col lg="2" cols="5" class="text-right" >
+                                        <b-col xl="2" cols="1" class="text-right"></b-col>
+                                        <b-col xl="4" cols="10" class="text-left">Priemerne ako často ich meníš?</b-col>
+                                        <b-col xl="1" cols="3" offset-xl="0" offset="1" class="text-right">Raz za</b-col>
+                                        <b-col xl="3" cols="5" class="text-right" >
                                             
                                             <b-form-spinbutton id="vektechnika" v-model="vektechnika" min="1" max="40" v-on:change="countEmissions()"></b-form-spinbutton>
                                         </b-col> 
-                                        <b-col lg="1" cols="2" class="text-right" v-if="vektechnika>4">rokov</b-col>
-                                        <b-col lg="1" cols="2" class="text-right" v-if="vektechnika<5">roky</b-col>
+                                        <b-col xl="1" cols="2" class="text-right" v-if="vektechnika>4">rokov</b-col>
+                                        <b-col xl="1" cols="2" class="text-right" v-if="vektechnika<5">roky</b-col>
                             
                                     </b-row>
 
@@ -174,13 +174,13 @@
 
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
-                                    <b-col lg="1" cols="1" class="text-right" v-if="details_spotreba==true">20.</b-col>
-                                    <b-col lg="1" cols="1" class="text-right" v-if="details_spotreba==false">19.</b-col>
-                                    <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko percent tvojich všetkých nákupov (biela technika a iné elektrospotrebiče, osobná elektronika alebo nábytok) tvoria nákupy z druhej ruky?</b-col>
-                                    <b-col lg="4" cols="8" offset="1" offset-lg="0" class="text-left" align-h="start" >
+                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==true">20.</b-col>
+                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==false">19.</b-col>
+                                    <b-col xl="5" cols="10" class="text-left" align-h="start">Koľko percent tvojich všetkých nákupov (biela technika a iné elektrospotrebiče, osobná elektronika alebo nábytok) tvoria nákupy z druhej ruky?</b-col>
+                                    <b-col xl="4" cols="8" offset="1" offset-xl="0" class="text-left" align-h="start" >
                                         <b-form-input type="range" id="druharuka" v-model="druharuka" min="0" max="100" v-on:change="countEmissions()"></b-form-input>
                                     </b-col>
-                                    <b-col lg="1" cols="2" class="text-right">{{druharuka}}%</b-col>
+                                    <b-col xl="1" cols="2" class="text-right">{{druharuka}}%</b-col>
                                 </b-row>
                                 
                             </div>
