@@ -95,17 +95,28 @@
                 </div>
             </div>
             <div class="share_button"> 
-               <ShareNetwork
-                    network="facebook"
-                    :url="'https://iep-stranka.vercel.app'+$route.fullPath"
-                    title="testujeme facebook share"
-                    description="popisok nejaký."
-                    quote="neviem čo toto chce byť"
-                    hashtags="uhlikovastopa"
-                >
-                    <shareButton></shareButton>
-                </ShareNetwork>
-                
+                <div class="share_button_item_excel">
+                    <download-excel 
+                        :fetch = "fillExcel"
+                        :fields = "json_fields"
+                        worksheet="Moja uhlikova stopa"
+                        name="moja_uhlikova_stopa.xls"
+                        >
+                        <saveButton></saveButton>
+                    </download-excel>
+                </div>
+                <div class="share_button_item_facebook">
+                    <ShareNetwork
+                        network="facebook"
+                        :url="'https://iep-stranka.vercel.app'+$route.fullPath"
+                        title="testujeme facebook share"
+                        description="popisok nejaký."
+                        quote="neviem čo toto chce byť"
+                        hashtags="uhlikovastopa"
+                    >
+                        <shareButton></shareButton>
+                    </ShareNetwork>
+                </div>
             </div>  
         </div>
         <div class="background_dyo">
@@ -131,10 +142,11 @@
 import DoughnutExample from "./DoughnutExample.vue";
 import BarExample from "./BarExample.vue";
 import shareButton from "./shareButton.vue";
+import saveButton from "./saveButton.vue";
 
 export default {
     name: 'VysledokForm',
-    components: {DoughnutExample,BarExample,shareButton},
+    components: {DoughnutExample,BarExample,shareButton,saveButton},
     data() {
       return { 
         optionsDoughnut: {
@@ -278,15 +290,22 @@ export default {
 
         url : '',
 
+        
+        json_fields: {
+    
+            Kategória: "kategoria",
+            Hodnota_v_kg_CO2e: "hodnota",
+              
+        },
+    
+
        
 
       }
     },
 
     
-    created() {
-        console.log(this.$route.fullPath)
-    },
+   
 
     computed: {
         uhlikova_stopa_byvanie: {
@@ -393,6 +412,70 @@ export default {
 
     methods: {
         
+        fillExcel() {
+            const celkovo = [
+                {kategoria: " " , hodnota: null},
+                {kategoria: "Bývanie" , hodnota: null},
+                {kategoria: "Centrálne vykurovanie" , hodnota: Math.round(this.emisie_byvanie[0])},
+                {kategoria: "Elektrina" , hodnota: Math.round(this.emisie_byvanie[1])},
+                {kategoria: "Zemný plyn" , hodnota: Math.round(this.emisie_byvanie[2])},
+                {kategoria: "LPG" , hodnota: Math.round(this.emisie_byvanie[3])},
+                {kategoria: "Tuhé palivo" , hodnota: Math.round(this.emisie_byvanie[4])},
+                {kategoria: "Bývanie-celkovo" , hodnota: this.uhlikova_stopa_byvanie},
+                
+                {kategoria: " " , hodnota: null},
+
+                {kategoria: "Doprava" , hodnota: null},
+                {kategoria: "Automobilová doprava" , hodnota: Math.round(this.emisie_doprava[0])},
+                {kategoria: "Hromadná doprava" , hodnota: Math.round(this.emisie_doprava[1])},
+                {kategoria: "Vlaková doprava" , hodnota: Math.round(this.emisie_doprava[2])},
+                {kategoria: "Letecká doprava" , hodnota: Math.round(this.emisie_doprava[3])},
+                {kategoria: "Doprava-celkovo" , hodnota: this.uhlikova_stopa_doprava},
+
+                {kategoria: " " , hodnota: null},
+                
+                {kategoria: "Jedlo" , hodnota: null},
+                {kategoria: "Hovädzie mäso" , hodnota: Math.round(this.emisie_jedlo[0])},
+                {kategoria: "Ostatné mäso" , hodnota: Math.round(this.emisie_jedlo[1])},
+                {kategoria: "Mliečne výrobky a vajcia" , hodnota: Math.round(this.emisie_jedlo[2])},
+                {kategoria: "Syry" , hodnota: Math.round(this.emisie_jedlo[3])},
+                {kategoria: "Zelenina" , hodnota: Math.round(this.emisie_jedlo[4])},
+                {kategoria: "Alkohol" , hodnota: Math.round(this.emisie_jedlo[5])},
+
+                {kategoria: "Jedlo-celkovo" , hodnota: this.uhlikova_stopa_jedlo},
+                
+                {kategoria: " " , hodnota: null},
+                
+                {kategoria: "Spotreba" , hodnota: null},
+                {kategoria: "Autá" , hodnota: Math.round(this.emisie_spotreba[0])},
+                {kategoria: "Biela technika" , hodnota: Math.round(this.emisie_spotreba[1])},
+                {kategoria: "Elektrospotrebiče" , hodnota: Math.round(this.emisie_spotreba[2])},
+                {kategoria: "Osobná elektronika" , hodnota: Math.round(this.emisie_spotreba[3])},
+                {kategoria: "Spotreba-celkovo" , hodnota: this.uhlikova_stopa_spotreba},
+
+                {kategoria: " " , hodnota: null},
+
+                {kategoria: "Životný štýl" , hodnota: null},
+                {kategoria: "Oblečenie" , hodnota: Math.round(this.emisie_ziv_styl[0])},
+                {kategoria: "Dovolenkovanie" , hodnota: Math.round(this.emisie_ziv_styl[1])},
+                {kategoria: "Odpady" , hodnota: Math.round(this.emisie_ziv_styl[2])},
+                {kategoria: "Životný štýl-celkovo" , hodnota: this.uhlikova_stopa_ziv_styl},
+                
+                {kategoria: " " , hodnota: null},
+
+                {kategoria: "Celková uhlíková stopa" , hodnota: this.uhlikova_stopa_celkovo},
+                
+                {kategoria: " " , hodnota: null},
+                
+                {kategoria: "Link na výsledok" , hodnota: 'https://iep-stranka.vercel.app'+this.$route.fullPath },
+                
+                
+                ];
+            console.log(celkovo)
+            return celkovo
+        },
+
+
         fillChart() {
             this.chartDataDoughnut.datasets[0].data = [this.uhlikova_stopa_byvanie,this.uhlikova_stopa_doprava, this.uhlikova_stopa_jedlo,
             this.uhlikova_stopa_spotreba, this.uhlikova_stopa_ziv_styl];
@@ -555,9 +638,17 @@ export default {
 .share_button {
     margin-bottom: 5%;
     justify-content: center;
+    display: flex;
     text-align: center;
     height: auto;
 }
+.share_button_item_excel {
+    margin-right: 2%;
+}
+.share_button_item_facebook {
+    margin-left: 2%;
+}
+
 
 .nadpis-title {
     font-family: 'montserrat-bold' ;

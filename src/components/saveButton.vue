@@ -1,9 +1,9 @@
 <template>
 
     <div class="btn__container">  
-        <a class="btn-f">
-        <i class="fab fa-facebook"></i>
-        <span>zdieľať</span>
+        <a class="btn-e">
+        <i class="fas fa-file-excel"></i>
+        <span>uložiť</span>
     </a>
     </div>
     
@@ -14,7 +14,7 @@
 <script>
 
 export default {
-    name: 'shareButton',
+    name: 'saveButton',
     
 }
 
@@ -32,23 +32,23 @@ export default {
 }
  
 
-.btn-f {
+.btn-e {
     min-width: 110px;
     background-color: #fff;
     padding: 1rem 2rem;
     text-decoration: none;
-    color: #286ED6;
+    color:#02723b;
     border-radius: 10px;
     transition: all .2s ease-in-out;
    
     i {
-      color: #286ED6;
+      color: #02723b;
       font-size: 20px;
       padding-right: 10px;
       transition: all .3s ease-in-out;
     }
     span {
-      font-family: "Roboto", sans-serif;
+      font-family: "Roboto", sans-serif;    
       align-self: center;
       transform: translateX(0px);
       transition: all .1s ease-in-out;
@@ -58,11 +58,11 @@ export default {
    &:hover {
     transform: scale(1.1);
     cursor: pointer;
-    background-color: #286ED6;
+    background-color:#02723b;
     box-shadow: 0px 10px 30px rgba(0,0,0,0.10);
       i {
         transform: translateX(45px);
-        padding-right: 2.5rem;
+        padding-right: 3rem;
         color: #FFF;
         align-self: center;
         justify-content: center;
