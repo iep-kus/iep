@@ -20,7 +20,7 @@
                             <div class="otazka">    
                                 <b-row  style="margin-bottom:2.5vh" align-v="center">      
                                     <b-col cols="1" class="text-right">14.</b-col>
-                                    <b-col cols="10" md="5" class="text-left" align-h="start">Ste vegánom?</b-col>
+                                    <b-col cols="10" md="5" class="text-left" align-h="start">Si vegánom?</b-col>
                                     <b-col cols="10" md="5" offset="1" offset-md="0" class="text-left" align-h="start">                        
                                         <b-form-radio-group
                                         class="pt-2"
@@ -36,7 +36,7 @@
                             <div v-if="vegan=='Nie'">
                                 <b-row  style="margin-bottom:2.5vh" align-v="center">      
                                     <b-col cols="1" class="text-right">15.</b-col>
-                                    <b-col cols="10" class="text-left" align-h="start">Koľkokrát týždenne priemerne konzumujete:</b-col>
+                                    <b-col cols="10" class="text-left" align-h="start">Ako často priemerne konzumuješ:</b-col>
                                 </b-row> 
 
                                 <div>
@@ -53,7 +53,7 @@
                                 <div>
                                     <b-row  style="margin-bottom:2vh" align-v="center">    
                                         <b-col cols="1"  md="2" class="text-right"></b-col>
-                                        <b-col cols="10" md="4" class="text-left">Ostatné mäso(kuracie, bravčové...):</b-col>
+                                        <b-col cols="10" md="4" class="text-left">Ostatné mäso (kuracie, bravčové...):</b-col>
                                         <b-col cols="10" md="5" offset="1" offset-md="0" class="text-right" > 
                                             <b-form-select v-model="ostatne" v-on:change="countEmissions()" :options="jedlofrekvencia"></b-form-select>
                                         </b-col>
@@ -97,7 +97,7 @@
                                 <div>
                                     <b-row  style="margin-bottom:2vh" align-v="center">    
                                         <b-col cols="1" md="2" class="text-right"></b-col>
-                                        <b-col cols="10" md="4" class="text-left">Alkohol(pivo, víno, tvrdé):</b-col>
+                                        <b-col cols="10" md="4" class="text-left">Alkohol (pivo, víno, tvrdé):</b-col>
                                         <b-col cols="10" md="5" offset="1" offset-md="0" class="text-right" > 
                                             <b-form-select v-model="alkohol" v-on:change="countEmissions()" :options="pitiefrekvencia"></b-form-select>
                                         </b-col>

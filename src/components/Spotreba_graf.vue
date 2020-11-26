@@ -34,7 +34,7 @@
                             <div class="otazka">
                                 <b-row v-if="details_spotreba==true" style="margin-bottom:2.5vh" align-v="start">      
                                     <b-col cols="1" class="text-right">16.</b-col>
-                                    <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko áut vlastní Vaša domácnosť?</b-col>
+                                    <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko áut vlastníte v domácnosť?</b-col>
                                     <b-col cols="10" xl="5" offset="1" offset-xl="0" class="text-left" align-h="start">
                                         <b-form-spinbutton v-on:change="countEmissions()" id="vlastnenieaut" v-model="vlastnenieaut" min="0" max="20"></b-form-spinbutton>
                                     </b-col>
@@ -73,7 +73,7 @@
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
                                     <b-col cols="1" class="text-right">17.</b-col>
-                                    <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko z týchto elektrospotrebičov vlastníte? (chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia)</b-col>
+                                    <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko z týchto elektrospotrebičov vlastníte v domácnosti? (chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia)</b-col>
                                     <b-col cols="10" xl="5" offset="1" offset-xl="0" class="text-left" align-h="start">
                                         <b-form-spinbutton id="vlastneniebielatechnika" v-model="vlastneniebielatechnika" min="0" max="7" v-on:change="countEmissions()"></b-form-spinbutton>
                                     </b-col>

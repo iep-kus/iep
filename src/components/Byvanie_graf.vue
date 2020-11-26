@@ -112,7 +112,7 @@
                             <div class="otazka">
                                 <b-row  style="margin-bottom: 2vh" align-v="center">      
                                     <b-col md="1" cols="1" class="text-right">7.</b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Vyrábate si energiu z obnoviteľných zdrojov?</b-col>
+                                    <b-col md="5" cols="11" class="text-left" align-h="start">Vyrábate si elektrickú energiu z obnoviteľných zdrojov?</b-col>
                                     <b-col md="5" cols="10" offset-md="0" offset="1" class="text-left" >                         
                                         <b-form-radio-group
                                         class="pt-2"

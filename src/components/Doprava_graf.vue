@@ -40,16 +40,16 @@
                             <div class="otazka" >
                                 <b-row  style="margin-bottom:2vh" align-v="center">      
                                     <b-col md="1" cols="1" class="text-right">8.</b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko áut vlastní Vaša domácnosť?</b-col>
+                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko áut vlastníte v domácnosti?</b-col>
                                     <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                         <b-form-spinbutton v-on:change="Resetauta() && countEmissions_doprava()"  id="pocetauta" v-model="pocetaut" min="0" max="5"></b-form-spinbutton>
                                     </b-col>
                                 </b-row> 
 
-                                <div v-if="details_doprava==false">
+                                <div v-if="details_doprava==false && pocetaut>0">
                                     <b-row  style="margin-bottom:2vh" align-v="center">      
                                         <b-col md="1" cols="1" class="text-right"></b-col>
-                                        <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate vlastné auto? <b-icon-question-circle-fill font-scale="1.2" id="question8"></b-icon-question-circle-fill></b-col>
+                                        <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívaš vlastné auto? <b-icon-question-circle-fill font-scale="1.2" id="question8"></b-icon-question-circle-fill></b-col>
                                         <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                             <b-form-select v-on:change="countEmissions_doprava()" v-model="frekvenciavlastne" :options="frekvenciadoprava"></b-form-select>
                                         </b-col>
@@ -70,7 +70,7 @@
                                                                 <div class="nadpis">Auto 1</div>
                                                             </b-col>
                                                             <b-col class="text-left" >
-                                                                <p>Koľko kilometrov ročne najazdíte?</p>
+                                                                <p>Koľko kilometrov ročne najazdíš?</p>
                                                             </b-col>
                                                             <b-col class="text-left" >
                                                                 <b-form-input v-on:change="countEmissions_doprava()" id="kilometre1" v-model="kilometre1"></b-form-input>
@@ -82,7 +82,7 @@
                                                                 <h4> </h4>
                                                             </b-col>
                                                             <b-col  cols=12 lg="4" class="text-left" >
-                                                                Aká je reálna spotreba Vášho auta?
+                                                                Aká je reálna spotreba tohto auta?
                                                             </b-col>
                                                             <b-col cols=4 lg="1" class="text-left" >
                                                             <b-form-input v-on:change="countEmissions_doprava()"  id="spotreba1" v-model="spotreba1"></b-form-input>
@@ -120,7 +120,7 @@
                                                                     <div class="nadpis">Auto 2</div>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                    <p>Koľko kilometrov ročne najazdíte?</p>
+                                                                    <p>Koľko kilometrov ročne najazdíš?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <b-form-input v-on:change="countEmissions_doprava()" id="kilometre2" v-model="kilometre2"></b-form-input>
@@ -132,7 +132,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col  cols=12 lg="4" class="text-left" >
-                                                                    Aká je reálna spotreba Vášho auta?
+                                                                    Aká je reálna spotreba tohto auta?
                                                                 </b-col>
                                                                 <b-col cols=4 lg="1" class="text-left" >
                                                                 <b-form-input v-on:change="countEmissions_doprava()" id="spotreba2" v-model="spotreba2"></b-form-input>
@@ -170,7 +170,7 @@
                                                                     <div class="nadpis">Auto 3</div>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                    <p>Koľko kilometrov ročne najazdíte?</p>
+                                                                    <p>Koľko kilometrov ročne najazdíš?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <b-form-input v-on:change="countEmissions_doprava()" id="kilometre3" v-model="kilometre3"></b-form-input>
@@ -182,7 +182,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col  cols=12 lg="4" class="text-left" >
-                                                                    Aká je reálna spotreba Vášho auta?
+                                                                    Aká je reálna spotreba tohto auta?
                                                                 </b-col>
                                                                 <b-col cols=4 lg="1" class="text-left" >
                                                                 <b-form-input v-on:change="countEmissions_doprava()" id="spotreba3" v-model="spotreba3"></b-form-input>
@@ -220,7 +220,7 @@
                                                                     <div class="nadpis">Auto 4</div>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                    <p>Koľko kilometrov ročne najazdíte?</p>
+                                                                    <p>Koľko kilometrov ročne najazdíš?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <b-form-input v-on:change="countEmissions_doprava()" id="kilometre4" v-model="kilometre4"></b-form-input>
@@ -232,7 +232,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col  cols=12 lg="4" class="text-left" >
-                                                                    Aká je reálna spotreba Vášho auta?
+                                                                    Aká je reálna spotreba tohto auta?
                                                                 </b-col>
                                                                 <b-col cols=4 lg="1" class="text-left" >
                                                                 <b-form-input v-on:change="countEmissions_doprava()" id="spotreba4" v-model="spotreba4"></b-form-input>
@@ -270,7 +270,7 @@
                                                                     <div class="nadpis">Auto 5</div>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                    <p>Koľko kilometrov ročne najazdíte?</p>
+                                                                    <p>Koľko kilometrov ročne najazdíš?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <b-form-input v-on:change="countEmissions_doprava()" id="kilometre5" v-model="kilometre5"></b-form-input>
@@ -282,7 +282,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col  cols=12 lg="4" class="text-left" >
-                                                                    Aká je reálna spotreba Vášho auta?
+                                                                    Aká je reálna spotreba tohto auta?
                                                                 </b-col>
                                                                 <b-col cols=4 lg="1" class="text-left" >
                                                                 <b-form-input v-on:change="countEmissions_doprava()" id="spotreba5" v-model="spotreba5"></b-form-input>
@@ -315,7 +315,7 @@
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
                                     <b-col md="1" cols="1" class="text-right">8b.</b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko kilometrov ste za posledný rok cestovali cudzími autami?</b-col>
+                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko kilometrov si za posledný rok cestoval cudzími autami?</b-col>
                                     <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                         <b-form-input v-on:change="countEmissions_doprava()" v-model="cudzieauto" placeholder="Vložte údaj"></b-form-input>
                                     </b-col>
@@ -324,7 +324,7 @@
                                 <div v-if="details_doprava==false">
                                     <b-row  style="margin-bottom:2vh" align-v="center">      
                                         <b-col md="1" cols="1" class="text-right">8b.</b-col>
-                                        <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate dopravu cudzím autom za posledný rok (BlaBlaCar, Uber, Taxi, kamarát...)?</b-col>
+                                        <b-col md="5" cols="11" class="text-left" align-h="start">Ako často si využíval dopravu cudzím autom za posledný rok (BlaBlaCar, Uber, Taxi, kamarát...)?</b-col>
                                         <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                             <b-form-select v-model="frekvenciacudzie" v-on:change="countEmissions_doprava()" :options="frekvenciadoprava"></b-form-select>
                                         </b-col>
@@ -339,7 +339,7 @@
                                     <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval autobusmi za posledný/priemerný týždeň?
                                         <b-icon-question-circle-fill font-scale="1.2" id="question9"></b-icon-question-circle-fill>
                                     </b-col>
-                                    <b-tooltip target="question9" title="Medzi tieto autobusy rátame regionálne, medzimestské ale aj diaľkové autobusy"  variant="dark"></b-tooltip>
+                                    <b-tooltip target="question9" title="Medzi tieto autobusy rátame regionálne autobusy"  variant="dark"></b-tooltip>
                                     <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-on:change="countEmissions_doprava()" v-model="autobus" placeholder="Vložte údaj"></b-form-input></b-col>
                                     <b-col md="2" cols="5"  class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="kmhodautobus" :options="['km', 'hod']"></b-form-select></b-col>
                                 </b-row>
@@ -347,7 +347,7 @@
                                 <div v-if="!details_doprava">
                                     <b-row  style="margin-bottom:2vh" align-v="center">      
                                         <b-col md="1" cols="1" class="text-right">9.</b-col>
-                                        <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate hromadnú dopravu za posledný rok? (okrem vlakovej)</b-col>
+                                        <b-col md="5" cols="11" class="text-left" align-h="start">Ako často si využíval hromadnú dopravu za posledný rok? (okrem vlakovej)</b-col>
                                         <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                             <b-form-select v-model="frekvenciamhd" v-on:change="countEmissions_doprava()" :options="frekvenciadoprava"></b-form-select>
                                         </b-col>
@@ -375,7 +375,7 @@
                                 <div v-if="details_doprava==false">
                                     <b-row  style="margin-bottom:2vh" align-v="center">      
                                         <b-col md="1" cols="1" class="text-right">10.</b-col>
-                                        <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívate vlakovú dopravu za posledný rok?</b-col>
+                                        <b-col md="5" cols="11" class="text-left" align-h="start">Ako často si využíval vlakovú dopravu za posledný rok?</b-col>
                                         <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                             <b-form-select v-on:change="countEmissions_doprava()" v-model="frekvenciavlak" :options="frekvenciadoprava"></b-form-select>
                                         </b-col>
@@ -401,10 +401,14 @@
                                 <b-row  style="margin-bottom:2vh" align-v="center" >      
                                     <b-col md="1" cols="1" class="text-right" v-if="details_doprava==true">13.</b-col>
                                     <b-col md="1" cols="1" class="text-right" v-if="details_doprava==false">11.</b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko letov si absolvoval za posledný rok?
-                                        <b-icon-question-circle-fill font-scale="1.2" id="question13"></b-icon-question-circle-fill>
-                                    </b-col>
-                                    <b-tooltip target="question13" title="Za jeden let považujeme či už jednosmerný alebo aj spiatočný let. Zahrnúť len súkromné lety nie služobné.  "  variant="dark"></b-tooltip>
+                                    <b-col v-if="details_doprava==false" md="5" cols="11" class="text-left" align-h="start">Koľko súkromných letov si absolvoval za posledný rok?
+                                <b-icon-question-circle-fill font-scale="1.2" id="question13a"></b-icon-question-circle-fill>
+                            </b-col>
+                            <b-col v-if="details_doprava==true" md="5" cols="11" class="text-left" align-h="start">Koľko súkromných letov si absolvoval za posledný rok?
+                                <b-icon-question-circle-fill font-scale="1.2" id="question13b"></b-icon-question-circle-fill>
+                            </b-col>
+                            <b-tooltip target="question13a" title="Za jeden let považujeme jednosmerný let. Ak ste leteli tam aj späť, započítajte lety 2. Zahrnúť len súkromné lety nie služobné.  "  variant="dark"></b-tooltip>
+                            <b-tooltip target="question13b" title="Za jeden let považujeme či už jednosmerný alebo aj spiatočný let. Zahrnúť len súkromné lety nie služobné.  "  variant="dark"></b-tooltip>
                                     <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                         <b-form-spinbutton v-on:change="Resetlet() && countEmissions_doprava()" id="pocetletov" v-model="pocetletov" min="0" max="20"></b-form-spinbutton>
                                     </b-col>

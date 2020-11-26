@@ -14,7 +14,7 @@
                 <div class="otazka">
                     <b-row  style="margin-bottom:2vh" align-v="center" cols-md="12" cols-sm="12" >      
                         <b-col md="1" cols="1" class="text-right" align-h="start">1.</b-col>
-                        <b-col md="5" cols="10" class="text-left" align-h="start">Aký je okres Vášho bydliska?
+                        <b-col md="5" cols="10" class="text-left" align-h="start">Aký je okres tvojho bydliska?
                             <b-icon-question-circle-fill font-scale="1.2" id="question1"></b-icon-question-circle-fill>
                         </b-col>
                         <b-col md="5" cols="10" class="text-left" offset-md="0" offset="1" > <b-form-select v-model="okres" :options="okresval" label-field="Aký je okres Vášho bydliska?"></b-form-select></b-col>
@@ -25,7 +25,7 @@
                 <div class="otazka">
                     <b-row  style="margin-bottom:2vh" align-v="center">      
                         <b-col md="1" cols="1" class="text-right">2.</b-col>
-                        <b-col md="5" cols="10" class="text-left" align-h="start">Počet členov vo Vašej domácností:</b-col>
+                        <b-col md="5" cols="10" class="text-left" align-h="start">Počet členov v tvojej domácností:</b-col>
                         <b-col md="5" cols="10" class="text-left" offset-md="0" offset="1" >                         
                             <b-form-spinbutton id="clenovia" v-model="clenovia" min="1" max="20"></b-form-spinbutton>
                         </b-col>
@@ -72,7 +72,7 @@
                             :options="['žiadne', 'čiastočné', 'úplné']"
                             ></b-form-radio-group>
                         </b-col>
-                         <b-tooltip target="question5" title="Za úplné považujeme zateplené steny, strechu, okná, dvere. Čiastočné znamená ak je nové/vymenené aspoň niečo z hore uvedeného. Žiadne znamená ak je všeto staré a steny ani strecha nie sú zateplené."  variant="dark"></b-tooltip>
+                         <b-tooltip target="question5" title="Za úplné považujeme zateplené steny, strechu, okná, dvere. Čiastočné znamená, ak je nové/vymenené aspoň niečo z hore uvedeného. Žiadne znamená, ak je všeto staršie a steny ani strecha nie sú zateplené."  variant="dark"></b-tooltip>
                     </b-row>   
                 </div>               
                 
@@ -94,10 +94,10 @@ export default {
       return {
         okresval: [
           { value: null, text: 'Prosím vyberte jednu z možností' },
-          { value: 1, text: 'Bánovce nad Bebravou' },
           { value: 2, text: 'Banská Bystrica' },
           { value: 3, text: 'Banská Štiavnica' },
           { value: 4, text: 'Bardejov' },
+          { value: 1, text: 'Bánovce nad Bebravou' },
           { value: 5, text: 'Bratislava' },
           { value: 6, text: 'Brezno' },
           { value: 7, text: 'Bytča' },
@@ -126,7 +126,7 @@ export default {
           { value: 30, text: 'Myjava' },
           { value: 31, text: 'Námestovo' },
           { value: 32, text: 'Nitra' },
-          { value: 33, text: 'Nové Meto nad Váhom' },
+          { value: 33, text: 'Nové Mesto nad Váhom' },
           { value: 34, text: 'Nové Zámky' },
           { value: 35, text: 'Partizánske' },
           { value: 36, text: 'Pezinok' },

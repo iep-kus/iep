@@ -71,8 +71,11 @@
                                 </div>
 
 
-                                <div class="suggestion">
+                                <div class="suggestion" v-if="stromy>4">
                                     Ak by si každoročne nasadil <strong>{{stromy}}</strong> stromov, tvoja uhlíková stopa by bola nulová :)
+                                </div>
+                                <div class="suggestion" v-if="stromy<4">
+                                    Ak by si každoročne nasadil <strong>{{stromy}}</strong> stromy, tvoja uhlíková stopa by bola nulová :)
                                 </div>
                             </div> 
                         </b-col>
