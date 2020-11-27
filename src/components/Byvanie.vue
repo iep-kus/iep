@@ -211,8 +211,8 @@ export default {
        
         fillData() {
             
-            this.emisie_jedlo = [this.emisie_centralne()*this.centralne/this.clenovia,this.emisie_elektrika()*this.elektrika/this.clenovia,
-                this.emisie_plyn()*this.plyn/this.clenovia,this.emisie_lpg()*this.lpg/this.clenovia,this.emisie_tuhe()*this.tuhe/this.clenovia];
+            this.emisie_jedlo = [Math.round(this.emisie_centralne()*this.centralne/this.clenovia),Math.round(this.emisie_elektrika()*this.elektrika/this.clenovia),
+                Math.round(this.emisie_plyn()*this.plyn/this.clenovia),Math.round(this.emisie_lpg()*this.lpg/this.clenovia),Math.round(this.emisie_tuhe()*this.tuhe/this.clenovia)];
             this.uhlikova_stopa_byvanie = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]);
             
             

@@ -266,9 +266,9 @@ export default {
 
     methods: {
         countEmissions_ziv() {
-            this.emisie_ziv_styl[0] = (1-this.druharukaoblecenie/100)*this.oblecenie_emisie[this.nakupoblecenie];
-            this.emisie_ziv_styl[1] = 10*this.kemp + 19.75*this.hotel + 54*this.luxus;
-            this.emisie_ziv_styl[2] = this.odpady();
+            this.emisie_ziv_styl[0] = Math.round((1-this.druharukaoblecenie/100)*this.oblecenie_emisie[this.nakupoblecenie]);
+            this.emisie_ziv_styl[1] = Math.round(10*this.kemp + 19.75*this.hotel + 54*this.luxus);
+            this.emisie_ziv_styl[2] = Math.round(this.odpady());
             this.chartData.datasets[0].data = this.emisie_ziv_styl;
             this.uhlikova_stopa_ziv_styl = Math.round(this.emisie_ziv_styl[0]+this.emisie_ziv_styl[1]+this.emisie_ziv_styl[2]);
             this.updateChart();     

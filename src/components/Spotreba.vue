@@ -234,20 +234,20 @@ export default {
     methods: {
         countEmissions() {
             if(this.details_spotreba==false) {
-                this.emisie_spotreba[0] = 7764*this.pocetaut*1/(10*this.clenovia);
-                this.emisie_spotreba[1] = 270.925*(1-this.druharuka/100)*this.vlastneniebielatechnika/(15*this.clenovia);
-                this.emisie_spotreba[2] = 196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(10*this.clenovia);
-                this.emisie_spotreba[3] = 257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(5);
-                this.emisie_spotreba[4] = this.nabytok(); 
+                this.emisie_spotreba[0] = Math.round(7764*this.pocetaut*1/(10*this.clenovia));
+                this.emisie_spotreba[1] = Math.round(270.925*(1-this.druharuka/100)*this.vlastneniebielatechnika/(15*this.clenovia));
+                this.emisie_spotreba[2] = Math.round(196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(10*this.clenovia));
+                this.emisie_spotreba[3] = Math.round(257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(5));
+                this.emisie_spotreba[4] = Math.round(this.nabytok()); 
                 
                 this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3] + +this.emisie_spotreba[4]);
                 
             }
             if(this.details_spotreba==true) {
-                this.emisie_spotreba[0] = 7764*this.vlastnenieaut*this.carage()/(this.vekaut*this.clenovia);
-                this.emisie_spotreba[1] = 270.925*(1-this.druharuka/100)*this.vlastneniebielatechnika/(this.vekbielatechnika*this.clenovia);
-                this.emisie_spotreba[2] = 196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(this.vekciernatechnika*this.clenovia);
-                this.emisie_spotreba[3] = 257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(this.vektechnika);
+                this.emisie_spotreba[0] = Math.round(7764*this.vlastnenieaut*this.carage()/(this.vekaut*this.clenovia));
+                this.emisie_spotreba[1] = Math.round(270.925*(1-this.druharuka/100)*this.vlastneniebielatechnika/(this.vekbielatechnika*this.clenovia));
+                this.emisie_spotreba[2] = Math.round(196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(this.vekciernatechnika*this.clenovia));
+                this.emisie_spotreba[3] = Math.round(257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(this.vektechnika));
                 this.emisie_spotreba[4] = this.nabytok(); 
                 
                 this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3]+ +this.emisie_spotreba[4]);

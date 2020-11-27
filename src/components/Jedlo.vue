@@ -172,8 +172,8 @@ export default {
     methods: {
         countEmissions() {
             
-            this.emisie_jedlo = [this.hovadzie_emisie[this.hovadzie],this.ostatne_emisie[this.ostatne],this.mliecne_emisie[this.mliecne],
-                this.syry_emisie[this.syry],this.zelenina_emisie[this.zelenina],this.alkohol_emisie[this.alkohol]
+            this.emisie_jedlo = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),
+                Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol])
             ];
             
             this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]);

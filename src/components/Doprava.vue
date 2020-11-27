@@ -300,7 +300,7 @@
                             <b-col md="1" cols="1" class="text-right">8b.</b-col>
                             <b-col md="5" cols="11" class="text-left" align-h="start">Koľko kilometrov si za posledný rok cestoval cudzími autami?</b-col>
                             <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
-                                <b-form-input v-on:change="countEmissions_doprava()" v-model="cudzieauto" placeholder="Vložte údaj"></b-form-input>
+                                <b-form-input v-on:change="myFunction(1,cudzieauto)" v-model="cudzieauto" placeholder="Vložte údaj"></b-form-input>
                             </b-col>
                             
                         </b-row>
@@ -323,7 +323,7 @@
                                 <b-icon-question-circle-fill font-scale="1.2" id="question9"></b-icon-question-circle-fill>
                             </b-col>
                             <b-tooltip target="question9" title="Medzi tieto autobusy rátame regionálne autobusy"  variant="dark"></b-tooltip>
-                            <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-on:change="countEmissions_doprava()" v-model="autobus" placeholder="Vložte údaj"></b-form-input></b-col>
+                            <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-on:change="myFunction(2,autobus)" v-model="autobus" placeholder="Vložte údaj"></b-form-input></b-col>
                             <b-col md="2" cols="5"  class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="kmhodautobus" :options="['km', 'hod']"></b-form-select></b-col>
                         </b-row>
 
@@ -343,7 +343,7 @@
                         <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
                             <b-col md="1" cols="1" class="text-right">10.</b-col>
                             <b-col md="5" cols="11" class="text-left" align-h="start">Koľko kilometrov si cestoval vlakmi za posledný/priemerný týždeň?</b-col>
-                            <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-on:change="countEmissions_doprava()" v-model="vlak" placeholder="Vložte údaj"></b-form-input></b-col>
+                            <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-on:change="myFunction(3,vlak)" v-model="vlak" placeholder="Vložte údaj"></b-form-input></b-col>
                             <b-col md="2" cols="5" class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="kmhodvlak" :options="['km', 'hod']"></b-form-select></b-col>
                         </b-row>
                     
@@ -372,7 +372,7 @@
                         <b-row  style="margin-bottom:2vh" align-v="center">      
                             <b-col md="1" cols="1" class="text-right">12.</b-col>
                             <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval MHD (električkami, autobusmi, trolejbusmi) za posledný/priemerný týždeň?</b-col>
-                            <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-on:change="countEmissions_doprava()" v-model="mhd" placeholder="Vložte údaj"></b-form-input></b-col>
+                            <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-on:change="myFunction(4,mhd)" v-model="mhd" placeholder="Vložte údaj"></b-form-input></b-col>
                             <b-col md="2" cols="5" class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="kmhodmhd" :options="['km', 'hod']"></b-form-select></b-col>
                         </b-row> 
 
@@ -460,7 +460,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let1" v-model="let1"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(5,let1)" id="let1" v-model="let1"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m1" :options="lietanie"></b-form-select>
@@ -500,7 +500,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let2" v-model="let2"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(6,let2)" id="let2" v-model="let2"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m2" :options="lietanie"></b-form-select>
@@ -540,7 +540,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let1" v-model="let3"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(7,let3)" id="let1" v-model="let3"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m3" :options="lietanie"></b-form-select>
@@ -580,7 +580,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let1" v-model="let4"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(8,let4)" id="let1" v-model="let4"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m4" :options="lietanie"></b-form-select>
@@ -620,7 +620,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let1" v-model="let5"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(9,let5)" id="let1" v-model="let5"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m5" :options="lietanie"></b-form-select>
@@ -660,7 +660,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let6" v-model="let6"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(10,let6)" id="let6" v-model="let6"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m6" :options="lietanie"></b-form-select>
@@ -700,7 +700,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let7" v-model="let7"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(11,let7)" id="let7" v-model="let7"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m7" :options="lietanie"></b-form-select>
@@ -740,7 +740,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let8" v-model="let8"></b-form-input>
+                                                        <b-form-input  v-on:change="myFunction(12,let8)" id="let8" v-model="let8"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m8" :options="lietanie"></b-form-select>
@@ -780,7 +780,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let9" v-model="let9"></b-form-input>
+                                                        <b-form-input  v-on:change="myFunction(13,let9)" id="let9" v-model="let9"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m9" :options="lietanie"></b-form-select>
@@ -820,7 +820,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let10" v-model="let10"></b-form-input>
+                                                        <b-form-input  v-on:change="myFunction(14,let10)" id="let10" v-model="let10"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m10" :options="lietanie"></b-form-select>
@@ -860,7 +860,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let11" v-model="let11"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(15,let11)" id="let11" v-model="let11"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m11" :options="lietanie"></b-form-select>
@@ -900,7 +900,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let1" v-model="let12"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(16,let12)" id="let1" v-model="let12"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m12" :options="lietanie"></b-form-select>
@@ -940,7 +940,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let13" v-model="let13"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(17,let13)" id="let13" v-model="let13"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m13" :options="lietanie"></b-form-select>
@@ -980,7 +980,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let14" v-model="let14"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(18,let14)" id="let14" v-model="let14"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m14" :options="lietanie"></b-form-select>
@@ -1020,7 +1020,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let15" v-model="let15"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(19,let15)" id="let15" v-model="let15"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m15" :options="lietanie"></b-form-select>
@@ -1060,7 +1060,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let16" v-model="let16"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(20,let16)" id="let16" v-model="let16"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m16" :options="lietanie"></b-form-select>
@@ -1100,7 +1100,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let17" v-model="let17"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(21,let17)" id="let17" v-model="let17"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m17" :options="lietanie"></b-form-select>
@@ -1140,7 +1140,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let18" v-model="let18"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(22,let18)" id="let18" v-model="let18"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m18" :options="lietanie"></b-form-select>
@@ -1180,7 +1180,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let19" v-model="let19"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(23,let19)" id="let19" v-model="let19"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m19" :options="lietanie"></b-form-select>
@@ -1220,7 +1220,7 @@
                                                         <p>Aká bola dĺžka daného letu? (jednosmerne)</p>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
-                                                        <b-form-input v-on:change="countEmissions_doprava()" id="let20" v-model="let20"></b-form-input>
+                                                        <b-form-input v-on:change="myFunction(24,let20)" id="let20" v-model="let20"></b-form-input>
                                                     </b-col>
                                                     <b-col lg=2 cols="6" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="m20" :options="lietanie"></b-form-select>
@@ -1381,7 +1381,7 @@ export default {
             this.countEmissions_doprava()
         },
         countEmissions_doprava() {
-            this.emisie_doprava = [this.emisie_auta()+this.emisie_cudzie(), this.emisie_hromadna(), this.emisie_vlakova(), this.emisie_letecka()];
+            this.emisie_doprava = [Math.round(this.emisie_auta()+this.emisie_cudzie()), Math.round(this.emisie_hromadna()), Math.round(this.emisie_vlakova()), Math.round(this.emisie_letecka())];
             
             this.uhlikova_stopa_doprava = Math.round(this.emisie_doprava[0]+this.emisie_doprava[1]+this.emisie_doprava[2]+this.emisie_doprava[3]);
             
@@ -1516,6 +1516,12 @@ export default {
             if(value<=10000 && value>4000) {return 2.21+value*0.000017}
             if(value>10000) {return 2.31 + value*0.000017}
         },
+
+        myFunction: function (index,value) {
+            console.log(value)
+            
+            this.countEmissions_doprava()       
+        }
         
         
         

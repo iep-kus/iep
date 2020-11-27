@@ -1432,7 +1432,7 @@ export default {
             this.countEmissions_doprava()
         },
         countEmissions_doprava() {
-            this.chartData.datasets[0].data = [this.emisie_auta()+this.emisie_cudzie(), this.emisie_hromadna(), this.emisie_vlakova(), this.emisie_letecka()];
+            this.chartData.datasets[0].data = [Math.round(this.emisie_auta()+this.emisie_cudzie()), Math.round(this.emisie_hromadna()), Math.round(this.emisie_vlakova()),Math.round(this.emisie_letecka())];
             this.emisie_doprava = this.chartData.datasets[0].data;
             this.uhlikova_stopa_doprava = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]);
             this.updateChart();

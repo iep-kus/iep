@@ -200,8 +200,8 @@ export default {
     methods: {
         countEmissions() {
             
-            this.chartData.datasets[0].data = [this.hovadzie_emisie[this.hovadzie],this.ostatne_emisie[this.ostatne],this.mliecne_emisie[this.mliecne],
-                this.syry_emisie[this.syry],this.zelenina_emisie[this.zelenina],this.alkohol_emisie[this.alkohol]
+            this.chartData.datasets[0].data = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),
+                Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol])
             ];
             this.emisie_jedlo = this.chartData.datasets[0].data;
             this.uhlikova_stopa_jedlo = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]+this.chartData.datasets[0].data[5]);
