@@ -267,6 +267,9 @@ export default {
     },
 
     
+    mounted() {
+        this.countEmissions();
+    },
 
     methods: {
         countEmissions() {

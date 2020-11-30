@@ -30,6 +30,8 @@ export default {
     name: 'Vypocitat',
     methods: {
         async save_data() {
+            console.log(this.uhlikova_stopa_celkovo,this.uhlikova_stopa_byvanie,this.uhlikova_stopa_doprava,this.uhlikova_stopa_jedlo, this.uhlikova_stopa_spotreba,this.uhlikova_stopa_ziv_styl)
+            
             this.$store.commit('setpath_vypocitat')
             this.uhlikova_stopa_celkovo = this.uhlikova_stopa_byvanie + this.uhlikova_stopa_doprava + this.uhlikova_stopa_jedlo + this.uhlikova_stopa_spotreba + this.uhlikova_stopa_ziv_styl
             try {
@@ -41,6 +43,12 @@ export default {
                 jedlo: this.uhlikova_stopa_jedlo,
                 spotreba: this.uhlikova_stopa_spotreba,
                 zivotny_styl: this.uhlikova_stopa_ziv_styl,
+                emisie_byvanie: this.emisie_byvanie,
+                emisie_doprava: this.emisie_doprava,
+                emisie_jedlo: this.emisie_jedlo,
+                emisie_spotreba: this.emisie_spotreba,
+                emisie_ziv_styl: this.emisie_ziv_styl,
+
                 
             });
             this.$router.push({name:'Kalkulacka_graf',params: {user_key : user_report.key}})
@@ -88,6 +96,31 @@ export default {
             set(value) {
                 this.$store.commit('setuhlikova_stopa_celkovo',value)
             }
+        },
+        emisie_byvanie: {
+            get() {
+                return this.$store.state.emisie_byvanie
+            },
+        },
+        emisie_doprava: {
+            get() {
+                return this.$store.state.emisie_doprava
+            },
+        },
+        emisie_jedlo: {
+            get() {
+                return this.$store.state.emisie_jedlo
+            },
+        },
+        emisie_spotreba: {
+            get() {
+                return this.$store.state.emisie_spotreba
+            },
+        },
+        emisie_ziv_styl: {
+            get() {
+                return this.$store.state.emisie_ziv_styl
+            },
         },
     }
     

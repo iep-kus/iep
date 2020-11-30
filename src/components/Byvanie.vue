@@ -49,7 +49,7 @@
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">Centrálne vykurovanie:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                        <b-form-input v-on:change="fillData()" v-model="centralne" placeholder="Vložte spotrebu"></b-form-input>
+                                        <b-form-input v-model="centralne" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
                                     <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected1" :options="['kWh', '€']"></b-form-select></b-col>
                             
@@ -61,7 +61,7 @@
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">Elektrina:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                        <b-form-input v-model="elektrika" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
+                                        <b-form-input v-model="elektrika" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
                                     <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected2" :options="['kWh', '€']"></b-form-select></b-col>
                         
@@ -73,7 +73,7 @@
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">Zemný plyn:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" >
-                                        <b-form-input v-model="plyn" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
+                                        <b-form-input v-model="plyn" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
                                     <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected3" :options="['kWh', '€']"></b-form-select></b-col>
                         
@@ -85,7 +85,7 @@
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">LPG:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                        <b-form-input v-model="lpg" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
+                                        <b-form-input v-model="lpg" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
                                     <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected4" :options="['litrov', '€']"></b-form-select></b-col>
                         
@@ -97,7 +97,7 @@
                                     <b-col md="2" cols="1" class="text-right"></b-col>
                                     <b-col md="4" cols="11" class="text-left">Tuhé palivo:</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                        <b-form-input v-model="tuhe" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
+                                        <b-form-input v-model="tuhe" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
                                     <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected5" :options="['prm', 'm3' , 't']"></b-form-select></b-col>
                         
@@ -179,9 +179,6 @@ export default {
     data() {
       return {
                                                                                                                                                                                                                                                                                 
-        
-       
-        
         vykurovanie: [
          
           { value: 1, text: 'Centrálne vykurovanie' },
@@ -190,15 +187,8 @@ export default {
           { value: 4, text: 'LPG' },
           { value: 5, text: 'Tuhé palivo' }
         ],
-
-        
+  
         EF_centralne: [0.254524819,0.253483,0.434007,0.519568,0.050929,	0.004886,0.464345,0.095771,	0.096154,0.067771,0.558332,0.434007 ],
-    
-
-        
-
-            
-        
 
     
       }
@@ -211,9 +201,9 @@ export default {
        
         fillData() {
             
-            this.emisie_jedlo = [Math.round(this.emisie_centralne()*this.centralne/this.clenovia),Math.round(this.emisie_elektrika()*this.elektrika/this.clenovia),
+            this.emisie_byvanie = [Math.round(this.emisie_centralne()*this.centralne/this.clenovia),Math.round(this.emisie_elektrika()*this.elektrika/this.clenovia),
                 Math.round(this.emisie_plyn()*this.plyn/this.clenovia),Math.round(this.emisie_lpg()*this.lpg/this.clenovia),Math.round(this.emisie_tuhe()*this.tuhe/this.clenovia)];
-            this.uhlikova_stopa_byvanie = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]);
+            this.uhlikova_stopa_byvanie = Math.round(this.emisie_byvanie[0]+this.emisie_byvanie[1]+this.emisie_byvanie[2]+this.emisie_byvanie[3]+this.emisie_byvanie[4]);
             
             
             
@@ -282,6 +272,8 @@ export default {
           
              
         },
+
+        
 
         
 

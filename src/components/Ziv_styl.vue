@@ -67,7 +67,7 @@
                         <div>
                             <b-row  style="margin-bottom:2vh" align-v="start">    
                                 <b-col md="2" cols="1" class="text-right"></b-col>
-                                <b-col md="4" cols="10" class="text-left">Kemp, Hostel</b-col>
+                                <b-col md="4" cols="10" class="text-left">Kemp, Hostel, Airbnb</b-col>
                                 <b-col md="5" cols="10" offset-md="0" offset="1" class="text-right" > 
                                     <b-form-spinbutton id="kemp" v-on:change="countEmissions_ziv()" v-model="kemp" min="0" max="365"></b-form-spinbutton>
                                 </b-col>

@@ -50,7 +50,7 @@
                                             <b-col md="2" cols="1" class="text-right"></b-col>
                                             <b-col md="4" cols="11" class="text-left">Centrálne vykurovanie:</b-col>
                                             <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                                <b-form-input v-on:change="fillData()" v-model="centralne" placeholder="Vložte spotrebu"></b-form-input>
+                                                <b-form-input v-model="centralne" placeholder="Vložte spotrebu"></b-form-input>
                                             </b-col>
                                             <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected1" :options="['kWh', '€']"></b-form-select></b-col>
                                     
@@ -62,7 +62,7 @@
                                             <b-col md="2" cols="1" class="text-right"></b-col>
                                             <b-col md="4" cols="11" class="text-left">Elektrina:</b-col>
                                             <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                                <b-form-input v-model="elektrika" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
+                                                <b-form-input v-model="elektrika" placeholder="Vložte spotrebu"></b-form-input>
                                             </b-col>
                                             <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected2" :options="['kWh', '€']"></b-form-select></b-col>
                                 
@@ -74,7 +74,7 @@
                                             <b-col md="2" cols="1" class="text-right"></b-col>
                                             <b-col md="4" cols="11" class="text-left">Zemný plyn:</b-col>
                                             <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" >
-                                                <b-form-input v-model="plyn" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
+                                                <b-form-input v-model="plyn" placeholder="Vložte spotrebu"></b-form-input>
                                             </b-col>
                                             <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected3" :options="['kWh', '€']"></b-form-select></b-col>
                                 
@@ -86,7 +86,7 @@
                                             <b-col md="2" cols="1" class="text-right"></b-col>
                                             <b-col md="4" cols="11" class="text-left">LPG:</b-col>
                                             <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                                <b-form-input v-model="lpg" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
+                                                <b-form-input v-model="lpg" placeholder="Vložte spotrebu"></b-form-input>
                                             </b-col>
                                             <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected4" :options="['litrov', '€']"></b-form-select></b-col>
                                 
@@ -98,7 +98,7 @@
                                             <b-col md="2" cols="1" class="text-right"></b-col>
                                             <b-col md="4" cols="11" class="text-left">Tuhé palivo:</b-col>
                                             <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                                <b-form-input v-model="tuhe" v-on:change="fillData()" placeholder="Vložte spotrebu"></b-form-input>
+                                                <b-form-input v-model="tuhe" placeholder="Vložte spotrebu"></b-form-input>
                                             </b-col>
                                             <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected5" :options="['prm', 'm3' , 't']"></b-form-select></b-col>
                                 
@@ -248,6 +248,9 @@ export default {
       }
     },
     
+    mounted() {
+        this.fillData();
+    },
 
     methods: {
         updateChart() {

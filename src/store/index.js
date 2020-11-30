@@ -340,19 +340,44 @@ export default new Vuex.Store({
     },
 
     setcentralne(state, centralne) {
-        state.centralne = centralne;
+        if(centralne.includes(',')){
+            state.centralne= Number(centralne.replace(',','.'))
+        }
+        else {
+            state.centralne = centralne;
+        }
     },
     setelektrika(state, elektrika) {
-        state.elektrika = elektrika;
+        if(elektrika.includes(',')){
+            state.elektrika= Number(elektrika.replace(',','.'))
+        }
+        else {
+            state.elektrika = elektrika;
+        }
     },
     setplyn(state, plyn) {
-        state.plyn = plyn;
+        if(plyn.includes(',')){
+            state.plyn= Number(plyn.replace(',','.'))
+        }
+        else {
+            state.plyn = plyn;
+        }
     },
     setlpg(state, lpg) {
-        state.lpg = lpg;
+        if(lpg.includes(',')){
+            state.lpg= Number(lpg.replace(',','.'))
+        }
+        else {
+            state.lpg = lpg;
+        }
     },
     settuhe(state, tuhe) {
-        state.tuhe = tuhe;
+        if(tuhe.includes(',')){
+            state.tuhe= Number(tuhe.replace(',','.'))
+        }
+        else {
+            state.tuhe = tuhe;
+        }
     }, 
     
     setselected1(state, selected1) {
@@ -540,16 +565,31 @@ export default new Vuex.Store({
     },
     
     setcudzieauto(state, value) {
-        state.cudzieauto = value;
+        if(value.includes(',')){
+            state.cudzieauto= Number(value.replace(',','.'))
+        }
+        else {
+            state.cudzieauto = value;
+        }
     },
     setautobus(state, value) {
-        state.autobus = value;
+        if(value.includes(',')){
+            state.autobus= Number(value.replace(',','.'))
+        }
+        else {
+            state.autobus = value;
+        }
     },
     setkmhodautobus(state, value) {
         state.kmhodautobus = value;
     },
     setvlak(state, value) {
-        state.vlak = value;
+        if(value.includes(',')){
+            state.vlak= Number(value.replace(',','.'))
+        }
+        else {
+            state.vlak = value;
+        }
     },
     setkmhodvlak(state, value) {
         state.kmhodvlak = value;
@@ -557,11 +597,14 @@ export default new Vuex.Store({
     settypvlak(state, value) {
         state.typvlak = value;
     },
-    setpocetletov(state, value) {
-        state.pocetletov = value;
-    },
+    
     setmhd(state, value) {
-        state.mhd = value;
+        if(value.includes(',')){
+            state.mhd= Number(value.replace(',','.'))
+        }
+        else {
+            state.mhd = value;
+        }
     },
     setkmhodmhd(state, value) {
         state.kmhodmhd = value;
@@ -584,7 +627,12 @@ export default new Vuex.Store({
         state.kilometre1 = value;
     },
     setspotreba1(state, value) {
-        state.spotreba1 = value;
+        if(value.includes(',')){
+            state.spotreba1= Number(value.replace(',','.'))
+        }
+        else {
+            state.spotreba1 = value;
+        }
     },
     setosoby1(state, value) {
         state.osoby1 = value;
@@ -597,7 +645,12 @@ export default new Vuex.Store({
         state.kilometre2 = value;
     },
     setspotreba2(state, value) {
-        state.spotreba2 = value;
+        if(value.includes(',')){
+            state.spotreba2= Number(value.replace(',','.'))
+        }
+        else {
+            state.spotreba2 = value;
+        }
     },
     setosoby2(state, value) {
         state.osoby2 = value;
@@ -610,7 +663,12 @@ export default new Vuex.Store({
         state.kilometre3 = value;
     },
     setspotreba3(state, value) {
-        state.spotreba3 = value;
+        if(value.includes(',')){
+            state.spotreba3= Number(value.replace(',','.'))
+        }
+        else {
+            state.spotreba3 = value;
+        }
     },
     setosoby3(state, value) {
         state.osoby3 = value;
@@ -623,7 +681,12 @@ export default new Vuex.Store({
         state.kilometre4 = value;
     },
     setspotreba4(state, value) {
-        state.spotreba4 = value;
+        if(value.includes(',')){
+            state.spotreba4= Number(value.replace(',','.'))
+        }
+        else {
+            state.spotreba4 = value;
+        }
     },
     setosoby4(state, value) {
         state.osoby4 = value;
@@ -636,7 +699,12 @@ export default new Vuex.Store({
         state.kilometre5 = value;
     },
     setspotreba5(state, value) {
-        state.spotreba5 = value;
+        if(value.includes(',')){
+            state.spotreba5= Number(value.replace(',','.'))
+        }
+        else {
+            state.spotreba5 = value;
+        }
     },
     setosoby5(state, value) {
         state.osoby5 = value;
@@ -648,8 +716,43 @@ export default new Vuex.Store({
 
 
 
+
+
+    setpocetletov(state, value) {
+        state.pocetletov = value;
+       
+        if(value<1){state.let1=0}
+        if(value<2){state.let2=0}
+        if(value<3){state.let3=0}
+        if(value<4){state.let4=0}
+        if(value<5){state.let5=0}
+        if(value<6){state.let6=0}
+        if(value<7){state.let7=0}
+        if(value<8){state.let8=0}
+        if(value<9){state.let9=0}
+        if(value<10){state.let10=0}
+        if(value<11){state.let11=0}
+        if(value<12){state.let12=0}
+        if(value<13){state.let13=0}
+        if(value<14){state.let14=0}
+        if(value<15){state.let15=0}
+        if(value<16){state.let16=0}
+        if(value<17){state.let17=0}
+        if(value<18){state.let18=0}
+        if(value<19){state.let19=0}
+        if(value<20){state.let20=0}
+        
+        
+    },
+
+
     setlet1(state, value) {
-        state.let1 = value;
+        if(value.includes(',')){
+            state.let1= Number(value.replace(',','.'))
+        }
+        else {
+            state.let1 = value;
+        }
     },
     setm1(state, value) {
         state.m1 = value;
@@ -661,7 +764,12 @@ export default new Vuex.Store({
 
 
     setlet2(state, value) {
-        state.let2 = value;
+        if(value.includes(',')){
+            state.let2= Number(value.replace(',','.'))
+        }
+        else {
+            state.let2 = value;
+        }
     },
     setm2(state, value) {
         state.m2 = value;
@@ -672,7 +780,12 @@ export default new Vuex.Store({
 
 
     setlet3(state, value) {
-        state.let3 = value;
+        if(value.includes(',')){
+            state.let3= Number(value.replace(',','.'))
+        }
+        else {
+            state.let3 = value;
+        }
     },
     setm3(state, value) {
         state.m3 = value;
@@ -683,7 +796,12 @@ export default new Vuex.Store({
 
 
     setlet4(state, value) {
-        state.let4 = value;
+        if(value.includes(',')){
+            state.let4= Number(value.replace(',','.'))
+        }
+        else {
+            state.let4 = value;
+        }
     },
     setm4(state, value) {
         state.m4 = value;
@@ -693,7 +811,12 @@ export default new Vuex.Store({
     },
 
     setlet5(state, value) {
-        state.let5 = value;
+        if(value.includes(',')){
+            state.let5= Number(value.replace(',','.'))
+        }
+        else {
+            state.let5 = value;
+        }
     },
     setm5(state, value) {
         state.m5 = value;
@@ -703,7 +826,12 @@ export default new Vuex.Store({
     },
 
     setlet6(state, value) {
-        state.let6 = value;
+        if(value.includes(',')){
+            state.let6= Number(value.replace(',','.'))
+        }
+        else {
+            state.let6 = value;
+        }
     },
     setm6(state, value) {
         state.m6 = value;
@@ -713,7 +841,12 @@ export default new Vuex.Store({
     },
 
     setlet7(state, value) {
-        state.let7 = value;
+        if(value.includes(',')){
+            state.let7= Number(value.replace(',','.'))
+        }
+        else {
+            state.let7 = value;
+        }
     },
     setm7(state, value) {
         state.m7 = value;
@@ -723,7 +856,12 @@ export default new Vuex.Store({
     },
 
     setlet8(state, value) {
-        state.let8 = value;
+        if(value.includes(',')){
+            state.let8= Number(value.replace(',','.'))
+        }
+        else {
+            state.let8 = value;
+        }
     },
     setm8(state, value) {
         state.m8 = value;
@@ -733,7 +871,12 @@ export default new Vuex.Store({
     },
 
     setlet9(state, value) {
-        state.let9 = value;
+        if(value.includes(',')){
+            state.let9= Number(value.replace(',','.'))
+        }
+        else {
+            state.let9 = value;
+        }
     },
     setm9(state, value) {
         state.m9 = value;
@@ -743,7 +886,12 @@ export default new Vuex.Store({
     },
 
     setlet10(state, value) {
-        state.let10 = value;
+        if(value.includes(',')){
+            state.let10= Number(value.replace(',','.'))
+        }
+        else {
+            state.let10 = value;
+        }
     },
     setm10(state, value) {
         state.m10 = value;
@@ -753,7 +901,12 @@ export default new Vuex.Store({
     },
 
     setlet11(state, value) {
-        state.let11 = value;
+        if(value.includes(',')){
+            state.let11= Number(value.replace(',','.'))
+        }
+        else {
+            state.let11 = value;
+        }
     },
     setm11(state, value) {
         state.m11 = value;
@@ -763,7 +916,12 @@ export default new Vuex.Store({
     },
 
     setlet12(state, value) {
-        state.let12 = value;
+        if(value.includes(',')){
+            state.let12= Number(value.replace(',','.'))
+        }
+        else {
+            state.let12 = value;
+        }
     },
     setm12(state, value) {
         state.m12 = value;
@@ -773,7 +931,12 @@ export default new Vuex.Store({
     },
 
     setlet13(state, value) {
-        state.let13 = value;
+        if(value.includes(',')){
+            state.let13= Number(value.replace(',','.'))
+        }
+        else {
+            state.let13 = value;
+        }
     },
     setm13(state, value) {
         state.m13 = value;
@@ -783,7 +946,12 @@ export default new Vuex.Store({
     },
 
     setlet14(state, value) {
-        state.let14 = value;
+        if(value.includes(',')){
+            state.let14= Number(value.replace(',','.'))
+        }
+        else {
+            state.let14 = value;
+        }
     },
     setm14(state, value) {
         state.m14 = value;
@@ -793,7 +961,12 @@ export default new Vuex.Store({
     },
 
     setlet15(state, value) {
-        state.let15 = value;
+        if(value.includes(',')){
+            state.let15= Number(value.replace(',','.'))
+        }
+        else {
+            state.let15 = value;
+        }
     },
     setm15(state, value) {
         state.m15 = value;
@@ -803,7 +976,12 @@ export default new Vuex.Store({
     },
 
     setlet16(state, value) {
-        state.let16 = value;
+        if(value.includes(',')){
+            state.let16= Number(value.replace(',','.'))
+        }
+        else {
+            state.let16 = value;
+        }
     },
     setm16(state, value) {
         state.m16 = value;
@@ -813,7 +991,12 @@ export default new Vuex.Store({
     },
 
     setlet17(state, value) {
-        state.let17 = value;
+        if(value.includes(',')){
+            state.let17= Number(value.replace(',','.'))
+        }
+        else {
+            state.let17 = value;
+        }
     },
     setm17(state, value) {
         state.m17 = value;
@@ -823,7 +1006,12 @@ export default new Vuex.Store({
     },
 
     setlet18(state, value) {
-        state.let18 = value;
+        if(value.includes(',')){
+            state.let18= Number(value.replace(',','.'))
+        }
+        else {
+            state.let18 = value;
+        }
     },
     setm18(state, value) {
         state.m18 = value;
@@ -833,7 +1021,12 @@ export default new Vuex.Store({
     },
 
     setlet19(state, value) {
-        state.let19 = value;
+        if(value.includes(',')){
+            state.let19= Number(value.replace(',','.'))
+        }
+        else {
+            state.let19 = value;
+        }
     },
     setm19(state, value) {
         state.m19 = value;
@@ -843,7 +1036,12 @@ export default new Vuex.Store({
     },
 
     setlet20(state, value) {
-        state.let20 = value;
+        if(value.includes(',')){
+            state.let20= Number(value.replace(',','.'))
+        }
+        else {
+            state.let20 = value;
+        }
     },
     setm20(state, value) {
         state.m20 = value;

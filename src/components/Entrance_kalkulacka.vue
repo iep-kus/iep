@@ -146,7 +146,7 @@ h4 {
 }
 
 .scroll {   
-    margin-top: 5%;
+    margin-top: 5rem;
     height: 8rem;
 }
 
