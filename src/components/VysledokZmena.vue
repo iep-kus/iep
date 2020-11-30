@@ -8,49 +8,55 @@
                <b-row class="nadpis-title"> 
                     <b-col class="text-center"><h1>Výsledky</h1></b-col>
                 </b-row>
-               <b-row class="titles"> 
-                    <b-col class="text-center" cols=12 md="6" lg="3" order="1" order-md="1">
-                        <h3>Tvoja pôvodná uhlíková stopa bola {{celkovo}} kg CO2e.</h3>
-                    </b-col>
-                    <b-col  v-if="celk_zmena<0" cols=12 md="12" lg="4" offset-md="1" order="3" order-md="3" order-lg="2" class="text-center">
-                        <h3>Celkovo by si vykonanými zmenami znížil svoju uhlíkovú stopu o {{-celk_zmena}} kg CO2e</h3>
-                    </b-col>
-                    <b-col v-if="celk_zmena==0" cols=12 md="12" lg="4" offset-md="1" order="3" order-md="3" order-lg="2" class="text-center">
-                        <h3>Celkovo by si vykonanými zmenami by sa tvoja uhlíkova stopa nezmenila</h3>
-                    </b-col>
-                    <b-col  v-if="celk_zmena>0" cols=12 md="12" lg="4" offset-md="1" order="3" order-md="3" order-lg="2" class="text-center">
-                        <h3>Celkovo by si vykonanými zmenami zvýšil svoju uhlíkovú stopu o {{celk_zmena}} kg CO2e</h3>
-                    </b-col>
-                    <b-col class="text-center" cols=12 md="6" lg="3" offset-lg="1" order="2" order-md="2" order-lg="3">
-                        <h3>Po vykonaných zmenách by tvoja uhlíkova stopa bola {{uhlikova_stopa_celkovo}} kg CO2e.</h3>
-                    </b-col>
-                </b-row>
+    
                 <div class="graf_celkovo">    
                     <b-row align-h="center" align-v="center">
                 
-                        <b-col cols=12 md="6" lg="3" order="1" order-md="1">
-                            <DoughnutExample
-                                ref="povodne_chart"
-                                :chart-data="povodneDoughnut"
-                                :options="povodneDoughnut_o"                        
-                            > 
-                            </DoughnutExample>
+                        <b-col cols=12 lg="3" order="1" >
+                            <b-row class="titles"  align-h="center" align-v="center">
+                                <h3>Tvoja pôvodná uhlíková stopa bola {{celkovo}} kg CO2e.</h3>
+                            </b-row>
+                            <b-row  align-h="center" align-v="center">
+                                <DoughnutExample
+                                    ref="povodne_chart"
+                                    :chart-data="povodneDoughnut"
+                                    :options="povodneDoughnut_o"                        
+                                > 
+                                </DoughnutExample>
+                            </b-row>
                         </b-col>
-                        <b-col cols=12 md="12" lg="4" offset-md="1" order="3" order-md="3" order-lg="2" class="zmena">
-                            <BarExample
-                                ref="zmena_chart"
-                                :chart-data="zmenaBar"
-                                :options="zmenaBar_o"    
-                            > 
-                            </BarExample>
+                        <b-col cols=12 lg="4" offset-lg="1" order="2" order-lg="2" class="zmena">
+                            <b-row align-h="center" align-v="center" v-if="celk_zmena<0" class="titles">
+                                <h3>Celkovo by si vykonanými zmenami znížil svoju uhlíkovú stopu o {{-celk_zmena}} kg CO2e</h3>
+                            </b-row>
+                            <b-row align-h="center" align-v="center" v-if="celk_zmena==0" class="titles">
+                                <h3>Celkovo by si vykonanými zmenami by sa tvoja uhlíkova stopa nezmenila</h3>
+                            </b-row>
+                            <b-row align-h="center" align-v="center"  v-if="celk_zmena>0" class="titles">
+                                <h3>Celkovo by si vykonanými zmenami zvýšil svoju uhlíkovú stopu o {{celk_zmena}} kg CO2e</h3>
+                            </b-row>
+                            <b-row align-h="center" align-v="center">
+                                <BarExample
+                                    ref="zmena_chart"
+                                    :chart-data="zmenaBar"
+                                    :options="zmenaBar_o"    
+                                > 
+                                </BarExample>
+                            </b-row> 
                         </b-col>
-                        <b-col cols=12 md="6" lg="3" offset-lg="1" order="2" order-md="2" order-lg="3">
-                            <DoughnutExample
-                                ref="nove_chart"
-                                :chart-data="noveDoughnut"
-                                :options="noveDoughnut_o"                        
-                            > 
-                            </DoughnutExample>
+                        <b-col cols=12 lg="3" offset-lg="1" order="2" order-lg="3">
+
+                            <b-row align-h="center" align-v="center" class="titles">
+                                <h3>Po vykonaných zmenách by tvoja uhlíkova stopa bola {{uhlikova_stopa_celkovo}} kg CO2e.</h3>
+                            </b-row>
+                            <b-row align-h="center" align-v="center">
+                                <DoughnutExample
+                                    ref="nove_chart"
+                                    :chart-data="noveDoughnut"
+                                    :options="noveDoughnut_o"                        
+                                > 
+                                </DoughnutExample>
+                            </b-row>
                         </b-col>
                         
                     
