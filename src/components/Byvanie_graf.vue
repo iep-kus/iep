@@ -127,9 +127,9 @@
                                         <b-col md="2" cols="1" class="text-right"></b-col>
                                         <b-col md="4" cols="11" class="text-left">Vlastná spotreba:</b-col>
                                         <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                            <b-form-input v-model="vlastna" placeholder="Vložte spotrebu"></b-form-input>
+                                            <b-form-input v-on:change="fillData()" v-model="vlastna" placeholder="Vložte spotrebu"></b-form-input>
                                         </b-col>
-                                        <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="vlastnakwhe" :options="['kWh', '€']"></b-form-select></b-col>
+                                        <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="vlastnakwhe" :options="['kWh']"></b-form-select></b-col>
                                         
                                         
                                     </b-row>   
@@ -137,9 +137,9 @@
                                         <b-col md="2" cols="1" class="text-right"></b-col>
                                         <b-col md="4" cols="11" class="text-left">Dodávam do siete:</b-col>
                                         <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                            <b-form-input v-model="dodavam"  placeholder="Vložte spotrebu"></b-form-input>
+                                            <b-form-input v-on:change="fillData()" v-model="dodavam"  placeholder="Vložte spotrebu"></b-form-input>
                                         </b-col>
-                                        <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="dodavamkwhe" :options="['kWh', '€']"></b-form-select></b-col>
+                                        <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="dodavamkwhe" :options="['kWh']"></b-form-select></b-col>
                                     </b-row>
                 
                                 </div>
@@ -258,7 +258,7 @@ export default {
         },
         fillData() {
             
-            this.chartData.datasets[0].data = [Math.round(this.emisie_centralne()*this.centralne/this.clenovia),Math.round(this.emisie_elektrika()*this.elektrika/this.clenovia),
+            this.chartData.datasets[0].data = [Math.round(this.emisie_centralne()*this.centralne/this.clenovia),Math.round((this.emisie_elektrika()*this.elektrika/this.clenovia)-this.dodavanie()),
                 Math.round(this.emisie_plyn()*this.plyn/this.clenovia),Math.round(this.emisie_lpg()*this.lpg/this.clenovia),Math.round(this.emisie_tuhe()*this.tuhe/this.clenovia)];
             this.emisie_byvanie = Math.round(this.chartData.datasets[0].data);
             this.uhlikova_stopa_byvanie = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]);
@@ -330,6 +330,10 @@ export default {
             }
           
              
+        },
+
+        dodavanie() {
+            return (Number(this.dodavam)+Number(this.vlastna))*0.169
         },
 
         

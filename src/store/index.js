@@ -1063,6 +1063,8 @@ export default new Vuex.Store({
     },
     setvegan(state, value) {
         state.vegan = value;
+        if(value=='Áno'){state.alkohol=3}
+        if(value=='Nie'){state.alkohol=1}
     },
     sethovadzie(state, value) {
         state.hovadzie = value;

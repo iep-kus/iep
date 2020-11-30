@@ -24,7 +24,6 @@
                                 <b-form-radio-group
                                 class="pt-2"
                                 v-model="vegan"
-                                @change="countEmissionsvegan()"
                                 :options="['Áno', 'Nie']"
                                 ></b-form-radio-group>
                             </b-col>
@@ -32,14 +31,14 @@
                     </div>
 
 
-                    <div v-if="vegan=='Nie'">
+                    <div >
                         <b-row  style="margin-bottom:2.5vh" align-v="center">      
                             <b-col cols="1" class="text-right">15.</b-col>
                             <b-col cols="10" class="text-left" align-h="start">Ako často priemerne konzumuješ:</b-col>
                         </b-row> 
 
                         <div>
-                            <b-row  style="margin-bottom:2vh" align-v="center">    
+                            <b-row v-if="vegan=='Nie'"  style="margin-bottom:2vh" align-v="center">    
                                 <b-col cols="1" md="2" class="text-right"></b-col>
                                 <b-col cols="10" md="4" class="text-left">Hovädzie mäso:</b-col>
                                 <b-col cols="10" md="5" offset="1" offset-md="0" class="text-right" > 
@@ -50,7 +49,7 @@
                         </div>
 
                         <div>
-                            <b-row  style="margin-bottom:2vh" align-v="center">    
+                            <b-row v-if="vegan=='Nie'"  style="margin-bottom:2vh" align-v="center">    
                                 <b-col cols="1"  md="2" class="text-right"></b-col>
                                 <b-col cols="10" md="4" class="text-left">Ostatné mäso (kuracie, bravčové...):</b-col>
                                 <b-col cols="10" md="5" offset="1" offset-md="0" class="text-right" > 
@@ -61,7 +60,7 @@
                         </div>
 
                         <div>
-                            <b-row  style="margin-bottom:2vh" align-v="center">    
+                            <b-row v-if="vegan=='Nie'"  style="margin-bottom:2vh" align-v="center">    
                                 <b-col cols="1" md="2" class="text-right"></b-col>
                                 <b-col cols="10" md="4" class="text-left">Mliečne výrobky:</b-col>
                                 <b-col cols="10" md="5" offset="1" offset-md="0" class="text-right" > 
@@ -72,7 +71,7 @@
                         </div>
 
                         <div>
-                            <b-row  style="margin-bottom:2vh" align-v="center">    
+                            <b-row v-if="vegan=='Nie'"  style="margin-bottom:2vh" align-v="center">    
                                 <b-col cols="1" md="2" class="text-right"></b-col>
                                 <b-col cols="10" md="4" class="text-left">Syry:</b-col>
                                 <b-col cols="10" md="5" offset="1" offset-md="0" class="text-right" > 
@@ -83,7 +82,7 @@
                         </div>
 
                         <div>
-                            <b-row  style="margin-bottom:2vh" align-v="center">    
+                            <b-row v-if="vegan=='Nie'"  style="margin-bottom:2vh" align-v="center">    
                                 <b-col cols="1" md="2" class="text-right"></b-col>
                                 <b-col cols="10" md="4" class="text-left">Zelenina:</b-col>
                                 <b-col cols="10" md="5" offset="1" offset-md="0" class="text-right" > 
@@ -167,30 +166,26 @@ export default {
             this.countEmissions();
     },
     
-
+    watch: {
+        vegan() {
+            this.countEmissions();
+        },
+    },
 
     methods: {
         countEmissions() {
-            
-            this.emisie_jedlo = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),
-                Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol])
-            ];
-            
-            this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]);
-            
-            
-            
-            
-        },
-        countEmissionsvegan() {
-            if(this.vegan=='Nie'){ 
-                this.chartData.datasets[0].data = [0,0,0,0,137.2,8.0590625];
-                this.emisie_jedlo = this.chartData.datasets[0].data;
-                this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[4]+this.emisie_jedlo[5]);
-                
-
+            if(this.vegan=='Nie'){
+                this.chartData.datasets[0].data = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),
+                    Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol])
+                ];
             }
-            if(this.vegan=='Áno'){this.countEmissions()}
+            if(this.vegan=='Áno'){
+                this.chartData.datasets[0].data = [0,0,0,0,1206,Math.round(this.alkohol_emisie[this.alkohol])
+                ];
+            }
+            this.emisie_jedlo = this.chartData.datasets[0].data;
+            this.uhlikova_stopa_jedlo = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]+this.chartData.datasets[0].data[5]);
+            
         },
         
         

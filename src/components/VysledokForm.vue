@@ -6,7 +6,7 @@
         <div class="background-cover"> 
             <div class="celkovo">  
                 <b-row class="nadpis-title"> 
-                    <b-col class="text-center"><h1>Tvoja celková uhlíková stopa je <strong>{{uhlikova_stopa_celkovo}}</strong> kilogramov CO2e ročne.</h1></b-col>
+                    <b-col class="text-center"><h1>Tvoja celková uhlíková stopa je <strong>{{celkovo}}</strong> kilogramov CO2e ročne.</h1></b-col>
                 </b-row>
                 <div class="graf_celkovo">    
                     <b-row align-h="center" align-v="center">
@@ -74,7 +74,7 @@
                                 <div class="suggestion" v-if="stromy>4">
                                     Ak by si každoročne nasadil <strong>{{stromy}}</strong> stromov, tvoja uhlíková stopa by bola nulová :)
                                 </div>
-                                <div class="suggestion" v-if="stromy<4">
+                                <div class="suggestion" v-if="stromy<=4">
                                     Ak by si každoročne nasadil <strong>{{stromy}}</strong> stromy, tvoja uhlíková stopa by bola nulová :)
                                 </div>
                             </div> 
@@ -143,6 +143,7 @@ import DoughnutExample from "./DoughnutExample.vue";
 import BarExample from "./BarExample.vue";
 import shareButton from "./shareButton.vue";
 import saveButton from "./saveButton.vue";
+import database from '../firebase';
 
 export default {
     name: 'VysledokForm',
@@ -298,7 +299,18 @@ export default {
               
         },
     
+        celkovo: 0,
+        byvanie : 0,
+        jedlo : 0,
+        doprava : 0,
+        spotreba : 0,
+        ziv_styl : 0,
 
+        e_byvanie: [0,0,0,0,0],
+        e_doprava: [0,0,0,0],
+        e_jedlo: [0,0,0,0,0,0],
+        e_spotreba: [0,0,0,0,0],
+        e_ziv_styl: [0,0,0],
        
 
       }
@@ -372,99 +384,88 @@ export default {
             },
         },
     },
-    watch: {
-        uhlikova_stopa_byvanie() {
-            this.fillChart()           
+   
+   watch: {
+        celkovo() {
+            this.fillChart();
         },
-        uhlikova_stopa_doprava() {
-            this.fillChart()           
-        },
-        uhlikova_stopa_jedlo() {
-            this.fillChart()            
-        },
-        uhlikova_stopa_spotreba() {
-            this.fillChart()
-            },
-        uhlikova_stopa_ziv_styl() {
-            this.fillChart()    
-        },
-        emisie_byvanie() {
-            this.fillChart()           
-        },
-        emisie_doprava() {
-            this.fillChart()           
-        },
-        emisie_jedlo() {
-            this.fillChart()            
-        },
-        emisie_spotreba() {
-            this.fillChart()
-            },
-        emisie_ziv_styl() {
-            this.fillChart()    
-        },
-    },
-    
-    mounted() {
-        this.fillChart();
-        console.log(this.emisie_byvanie)
     },
 
+    created() {
+        
+        var user_reportId = this.$route.params.user_key;
+        database.ref('report/'+ user_reportId).once("value").then((snapshot)=>{
+            this.celkovo = snapshot.child("celkovo").val();
+            this.byvanie = snapshot.child("byvanie").val();
+            this.doprava = snapshot.child("doprava").val();
+            this.jedlo = snapshot.child("jedlo").val();
+            this.spotreba = snapshot.child("spotreba").val();
+            this.ziv_styl = snapshot.child("zivotny_styl").val();
+            this.e_byvanie = snapshot.child("emisie_byvanie").val();
+            this.e_doprava = snapshot.child("emisie_doprava").val();
+            this.e_jedlo = snapshot.child("emisie_jedlo").val();
+            this.e_spotreba = snapshot.child("emisie_spotreba").val();
+            this.e_ziv_styl = snapshot.child("emisie_ziv_styl").val();
+        })
+        
+        
+    },
+    
     methods: {
         
         fillExcel() {
-            const celkovo = [
+     const celkovo = [
                 {kategoria: " " , hodnota: null},
                 {kategoria: "Bývanie" , hodnota: null},
-                {kategoria: "Centrálne vykurovanie" , hodnota: Math.round(Number(this.emisie_byvanie[0]))},
-                {kategoria: "Elektrina" , hodnota: Math.round(this.emisie_byvanie[1])},
-                {kategoria: "Zemný plyn" , hodnota: Math.round(this.emisie_byvanie[2])},
-                {kategoria: "LPG" , hodnota: Math.round(this.emisie_byvanie[3])},
-                {kategoria: "Tuhé palivo" , hodnota: Math.round(this.emisie_byvanie[4])},
-                {kategoria: "Bývanie-celkovo" , hodnota: this.uhlikova_stopa_byvanie},
+                {kategoria: "Centrálne vykurovanie" , hodnota: Math.round(Number(this.e_byvanie[0]))},
+                {kategoria: "Elektrina" , hodnota: Math.round(this.e_byvanie[1])},
+                {kategoria: "Zemný plyn" , hodnota: Math.round(this.e_byvanie[2])},
+                {kategoria: "LPG" , hodnota: Math.round(this.e_byvanie[3])},
+                {kategoria: "Tuhé palivo" , hodnota: Math.round(this.e_byvanie[4])},
+                {kategoria: "Bývanie-celkovo" , hodnota: this.byvanie},
                 
                 {kategoria: " " , hodnota: null},
 
                 {kategoria: "Doprava" , hodnota: null},
-                {kategoria: "Automobilová doprava" , hodnota: Math.round(this.emisie_doprava[0])},
-                {kategoria: "Hromadná doprava" , hodnota: Math.round(this.emisie_doprava[1])},
-                {kategoria: "Vlaková doprava" , hodnota: Math.round(this.emisie_doprava[2])},
-                {kategoria: "Letecká doprava" , hodnota: Math.round(this.emisie_doprava[3])},
-                {kategoria: "Doprava-celkovo" , hodnota: this.uhlikova_stopa_doprava},
+                {kategoria: "Automobilová doprava" , hodnota: Math.round(this.e_doprava[0])},
+                {kategoria: "Hromadná doprava" , hodnota: Math.round(this.e_doprava[1])},
+                {kategoria: "Vlaková doprava" , hodnota: Math.round(this.e_doprava[2])},
+                {kategoria: "Letecká doprava" , hodnota: Math.round(this.e_doprava[3])},
+                {kategoria: "Doprava-celkovo" , hodnota: this.doprava},
 
                 {kategoria: " " , hodnota: null},
                 
                 {kategoria: "Jedlo" , hodnota: null},
-                {kategoria: "Hovädzie mäso" , hodnota: Math.round(this.emisie_jedlo[0])},
-                {kategoria: "Ostatné mäso" , hodnota: Math.round(this.emisie_jedlo[1])},
-                {kategoria: "Mliečne výrobky a vajcia" , hodnota: Math.round(this.emisie_jedlo[2])},
-                {kategoria: "Syry" , hodnota: Math.round(this.emisie_jedlo[3])},
-                {kategoria: "Zelenina" , hodnota: Math.round(this.emisie_jedlo[4])},
-                {kategoria: "Alkohol" , hodnota: Math.round(this.emisie_jedlo[5])},
+                {kategoria: "Hovädzie mäso" , hodnota: Math.round(this.e_jedlo[0])},
+                {kategoria: "Ostatné mäso" , hodnota: Math.round(this.e_jedlo[1])},
+                {kategoria: "Mliečne výrobky a vajcia" , hodnota: Math.round(this.e_jedlo[2])},
+                {kategoria: "Syry" , hodnota: Math.round(this.e_jedlo[3])},
+                {kategoria: "Zelenina" , hodnota: Math.round(this.e_jedlo[4])},
+                {kategoria: "Alkohol" , hodnota: Math.round(this.e_jedlo[5])},
 
-                {kategoria: "Jedlo-celkovo" , hodnota: this.uhlikova_stopa_jedlo},
+                {kategoria: "Jedlo-celkovo" , hodnota: this.jedlo},
                 
                 {kategoria: " " , hodnota: null},
                 
                 {kategoria: "Spotreba" , hodnota: null},
-                {kategoria: "Autá" , hodnota: Math.round(this.emisie_spotreba[0])},
-                {kategoria: "Biela technika" , hodnota: Math.round(this.emisie_spotreba[1])},
-                {kategoria: "Elektrospotrebiče" , hodnota: Math.round(this.emisie_spotreba[2])},
-                {kategoria: "Osobná elektronika" , hodnota: Math.round(this.emisie_spotreba[3])},
-                {kategoria: "Nábytok" , hodnota: Math.round(this.emisie_spotreba[4])},
-                {kategoria: "Spotreba-celkovo" , hodnota: this.uhlikova_stopa_spotreba},
+                {kategoria: "Autá" , hodnota: Math.round(this.e_spotreba[0])},
+                {kategoria: "Biela technika" , hodnota: Math.round(this.e_spotreba[1])},
+                {kategoria: "Elektrospotrebiče" , hodnota: Math.round(this.e_spotreba[2])},
+                {kategoria: "Osobná elektronika" , hodnota: Math.round(this.e_spotreba[3])},
+                {kategoria: "Nábytok" , hodnota: Math.round(this.e_spotreba[4])},
+                {kategoria: "Spotreba-celkovo" , hodnota: this.spotreba},
 
                 {kategoria: " " , hodnota: null},
 
                 {kategoria: "Životný štýl" , hodnota: null},
-                {kategoria: "Oblečenie" , hodnota: Math.round(this.emisie_ziv_styl[0])},
-                {kategoria: "Dovolenkovanie" , hodnota: Math.round(this.emisie_ziv_styl[1])},
-                {kategoria: "Odpady" , hodnota: Math.round(this.emisie_ziv_styl[2])},
-                {kategoria: "Životný štýl-celkovo" , hodnota: this.uhlikova_stopa_ziv_styl},
+                {kategoria: "Oblečenie" , hodnota: Math.round(this.e_ziv_styl[0])},
+                {kategoria: "Dovolenkovanie" , hodnota: Math.round(this.e_ziv_styl[1])},
+                {kategoria: "Odpady" , hodnota: Math.round(this.e_ziv_styl[2])},
+                {kategoria: "Životný štýl-celkovo" , hodnota: this.ziv_styl},
                 
                 {kategoria: " " , hodnota: null},
 
-                {kategoria: "Celková uhlíková stopa" , hodnota: this.uhlikova_stopa_celkovo},
+                {kategoria: "Celková uhlíková stopa" , hodnota: this.celkovo},
                 
                 {kategoria: " " , hodnota: null},
                 
@@ -478,10 +479,9 @@ export default {
 
 
         fillChart() {
-            this.chartDataDoughnut.datasets[0].data = [this.uhlikova_stopa_byvanie,this.uhlikova_stopa_doprava, this.uhlikova_stopa_jedlo,
-            this.uhlikova_stopa_spotreba, this.uhlikova_stopa_ziv_styl];
-            this.uhlikova_stopa_celkovo = this.uhlikova_stopa_byvanie+this.uhlikova_stopa_doprava + this.uhlikova_stopa_jedlo + this.uhlikova_stopa_spotreba + this.uhlikova_stopa_ziv_styl;
-            this.chartDataBar.datasets[0].data[1] = this.uhlikova_stopa_celkovo
+            this.chartDataDoughnut.datasets[0].data = [this.byvanie,this.doprava, this.jedlo, this.spotreba, this.ziv_styl];
+            this.uhlikova_stopa_celkovo = this.byvanie+this.doprava + this.jedlo + this.spotreba + this.ziv_styl;
+            this.chartDataBar.datasets[0].data[1] = this.celkovo
             this.updateChart()
             this.celkovo_suggestions(this.chartDataDoughnut.datasets[0].data)
             this.updateChartBar()
@@ -498,41 +498,41 @@ export default {
         }, 
        
         celkovo_suggestions(value) {
-            if(this.uhlikova_stopa_celkovo > 5888 && this.uhlikova_stopa_celkovo < 8480 ) {
+            if(this.celkovo > 5888 && this.celkovo < 8480 ) {
                 this.celkovo_sugg_between = true
                 this.celkovo_sugg_under = false
                 this.celkovo_sugg_over = false
-                this.diff_sugg_between1 = this.uhlikova_stopa_celkovo - 5888
-                this.diff_sugg_between2 = 8480 - this.uhlikova_stopa_celkovo 
+                this.diff_sugg_between1 = this.celkovo - 5888
+                this.diff_sugg_between2 = 8480 - this.celkovo 
             }
-            if(this.uhlikova_stopa_celkovo < 5888) {
+            if(this.celkovo < 5888) {
                 this.celkovo_sugg_between = false
                 this.celkovo_sugg_under = true
                 this.celkovo_sugg_over = false
-                this.diff_sugg_under1 = 5888 - this.uhlikova_stopa_celkovo
-                this.diff_sugg_under2 = 8480 - this.uhlikova_stopa_celkovo 
+                this.diff_sugg_under1 = 5888 - this.celkovo
+                this.diff_sugg_under2 = 8480 - this.celkovo 
             }
             if(this.uhlikova_stopa_celkovo > 8480 ) {
                 this.celkovo_sugg_between = false
                 this.celkovo_sugg_under = false
                 this.celkovo_sugg_over = true
-                this.diff_sugg_over1 = this.uhlikova_stopa_celkovo - 5888
-                this.diff_sugg_over2 = this.uhlikova_stopa_celkovo - 8480
+                this.diff_sugg_over1 = this.celkovo - 5888
+                this.diff_sugg_over2 = this.celkovo - 8480
             }
             this.celkovo_sugg_biggest = this.indexOfMax(value)
             this.sugg_biggest_value = value[this.celkovo_sugg_biggest]
-            this.sugg_biggest_ratio = Math.round(100*(this.sugg_biggest_value/this.uhlikova_stopa_celkovo))
+            this.sugg_biggest_ratio = Math.round(100*(this.sugg_biggest_value/this.celkovo))
             
             this.celkovo_sugg_lowest = this.indexOfMin(value)
             this.sugg_lowest_value = value[this.celkovo_sugg_lowest]
-            this.sugg_lowest_ratio = Math.round(100*(this.sugg_lowest_value/this.uhlikova_stopa_celkovo))
+            this.sugg_lowest_ratio = Math.round(100*(this.sugg_lowest_value/this.celkovo))
 
             const section_names = ["bývanie","doprava","jedlo","spotreba","životný štýl"]
             this.sugg_biggest_name = section_names[this.celkovo_sugg_biggest]
             this.sugg_lowest_name = section_names[this.celkovo_sugg_lowest]
             
 
-            this.stromy = Math.round(this.uhlikova_stopa_celkovo/1100);
+            this.stromy = Math.round(this.celkovo/1100);
             
         },
         indexOfMax(arr) {
