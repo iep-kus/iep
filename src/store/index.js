@@ -11,7 +11,7 @@ export default new Vuex.Store({
 
     uhlikova_stopa_byvanie:673,
     uhlikova_stopa_doprava:2651,
-    uhlikova_stopa_jedlo:1657,
+    uhlikova_stopa_jedlo:1561,
     uhlikova_stopa_spotreba:804,
     uhlikova_stopa_ziv_styl:515,
     
@@ -203,7 +203,7 @@ export default new Vuex.Store({
 
 
     
-    emisie_jedlo: [210.6,449.7375,520.35,159.6,137.2,128.945],
+    emisie_jedlo: [210.6,449.7375,520.35,159.6,91,128.945],
     
     vegan: 'Nie',
         
