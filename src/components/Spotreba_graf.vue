@@ -282,6 +282,7 @@ export default {
                 this.chartData.datasets[0].data = this.emisie_spotreba;
                 this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3] + +this.emisie_spotreba[4]);
                 this.updateChart();
+                console.log(this.emisie_spotreba[4])
             }
             if(this.details_spotreba==true) {
                 this.emisie_spotreba[0] = Math.round(7764*this.vlastnenieaut*this.carage()/(this.vekaut*this.clenovia));

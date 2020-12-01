@@ -1107,7 +1107,7 @@ export default new Vuex.Store({
         state.vekaut = value;
     },
 
-    setvlastnenibielatechnika(state, value) {
+    setvlastneniebielatechnika(state, value) {
         state.vlastneniebielatechnika = value;
     },
     setvekbielatechnika(state, value) {

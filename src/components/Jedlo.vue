@@ -162,9 +162,7 @@ export default {
       }
     },
 
-     mounted() {
-            this.countEmissions();
-    },
+    
     
     watch: {
         vegan() {
@@ -175,16 +173,15 @@ export default {
     methods: {
         countEmissions() {
             if(this.vegan=='Nie'){
-                this.chartData.datasets[0].data = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),
+                this.emisie_jedlo = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),
                     Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol])
                 ];
             }
             if(this.vegan=='Áno'){
-                this.chartData.datasets[0].data = [0,0,0,0,1206,Math.round(this.alkohol_emisie[this.alkohol])
+                this.emisie_jedlo = [0,0,0,0,1206,Math.round(this.alkohol_emisie[this.alkohol])
                 ];
             }
-            this.emisie_jedlo = this.chartData.datasets[0].data;
-            this.uhlikova_stopa_jedlo = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]+this.chartData.datasets[0].data[5]);
+            this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]);
             
         },
         

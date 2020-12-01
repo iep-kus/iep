@@ -16,7 +16,7 @@
                             <b-row class="titles"  align-h="center" align-v="center">
                                 <h3>Tvoja pôvodná uhlíková stopa bola {{celkovo}} kg CO2e.</h3>
                             </b-row>
-                            <b-row  align-h="center" align-v="center">
+                            <b-row class="charts"  align-h="center" align-v="center">
                                 <DoughnutExample
                                     ref="povodne_chart"
                                     :chart-data="povodneDoughnut"
@@ -35,7 +35,7 @@
                             <b-row align-h="center" align-v="center"  v-if="celk_zmena>0" class="titles">
                                 <h3>Celkovo by si vykonanými zmenami zvýšil svoju uhlíkovú stopu o {{celk_zmena}} kg CO2e</h3>
                             </b-row>
-                            <b-row align-h="center" align-v="center">
+                            <b-row class="charts" align-h="center" align-v="center">
                                 <BarExample
                                     ref="zmena_chart"
                                     :chart-data="zmenaBar"
@@ -49,7 +49,7 @@
                             <b-row align-h="center" align-v="center" class="titles">
                                 <h3>Po vykonaných zmenách by tvoja uhlíkova stopa bola {{uhlikova_stopa_celkovo}} kg CO2e.</h3>
                             </b-row>
-                            <b-row align-h="center" align-v="center">
+                            <b-row class="charts" align-h="center" align-v="center">
                                 <DoughnutExample
                                     ref="nove_chart"
                                     :chart-data="noveDoughnut"
@@ -372,7 +372,7 @@ export default {
 
 <style scoped>
 .celkovo {
-    padding: 5%;
+    padding: 10%;
 }
 
 .nadpis-2 { 
@@ -381,7 +381,7 @@ export default {
 
 .titles {
     font-family: 'montserrat-bold' ;
-    
+    margin-bottom: 1rem;
     color: white;
 }
 
@@ -396,6 +396,9 @@ export default {
     color: white;
 }
 
+.charts {
+    margin-bottom: 2rem;
+}
 
 
 .obsah {
