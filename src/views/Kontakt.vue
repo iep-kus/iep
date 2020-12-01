@@ -10,9 +10,9 @@
             </div>
 
             <div class="profile-content-wrapper">
-                <p1>MARTIN HALUS</p1>
+                <p>MARTIN HALUS</p>
                 <h1>martin.halus@enviro.gov.sk</h1>
-                <p3>Riaditeľ</p3>
+                <p>Riaditeľ</p>
             </div>   
 
 
@@ -24,9 +24,9 @@
             </div>
 
             <div class="profile-content-wrapper">
-                <p1>RICHARD SOKOL</p1>
+                <p>RICHARD SOKOL</p>
                 <h1>richard.sokol@enviro.gov.sk</h1>
-                <p3>Stážista</p3>
+                <p>Stážista</p>
             </div>
         
 
