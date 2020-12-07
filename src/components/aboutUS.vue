@@ -28,7 +28,7 @@
 
 <script>
 export default {
-    name: 'aboutUs',
+    name: 'AboutUs',
     components: {},
 }
 </script>
