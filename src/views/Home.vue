@@ -18,7 +18,7 @@
 
 <script>
 import EntranceModal from '@/components/EntranceModal.vue'
-import AboutUs from '../components/aboutUs.vue'
+import AboutUs from '../components/Onas.vue'
 import Kariera from '@/components/Kariera.vue'
 import OurWork from '@/components/OurWork.vue'
 

@@ -28,7 +28,7 @@
 
 <script>
 export default {
-    name: 'AboutUs',
+    name: 'Onas',
     components: {},
 }
 </script>
