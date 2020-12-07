@@ -7,6 +7,7 @@
       toggleable="lg"
       :sticky="true"
       class="nav-bar"
+      :class="{ 'nav-bar--hidden': !showNavbar }"
     >
       <b-navbar-brand>
         <router-link to='/'>
@@ -66,7 +67,34 @@ import { BNavbar } from 'bootstrap-vue';
 
 export default {
 
+  data () {
+    return {
+      showNavbar: true,
+      lastScrollPosition: 0
+    }
+  },
 
+  mounted () {
+    window.addEventListener('scroll', this.onScroll)
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.onScroll)
+  },
+
+  methods: {
+  onScroll () {
+    const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+  if (currentScrollPosition < 0) {
+    return
+  }
+  
+  if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
+    return
+  }
+  this.showNavbar = currentScrollPosition < this.lastScrollPosition
+  this.lastScrollPosition = currentScrollPosition
+  }
+}
  
 }
 
@@ -76,7 +104,7 @@ export default {
 
 
 
-  .nav-bar {
+.nav-bar {
     
     background-color: white;
     padding: 1.5%;
@@ -86,7 +114,16 @@ export default {
     box-sizing: border-box;
     box-shadow: 0px 30px 30px rgba(0, 0, 0, 0.25);
     z-index: 100;
+    transform: translate3d(0, 0, 0);
+    transition: 0.1s all ease-out;
+}
+
+@media only screen and (max-width: 768px){
+  .nav-bar.nav-bar--hidden {
+    box-shadow: none;
+    transform: translate3d(0, -100%, 0);
   }
+}
 
 
  

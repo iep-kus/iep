@@ -9,7 +9,7 @@
                             <b-col><h2>Kariéra</h2></b-col>    
                         </b-row>
                     </div> 
-                    <div data-aos="slide-up" data-aos-duration="1000" class="text-wrapper">
+                    <div data-aos="slide-up" data-aos-duration="800" class="text-wrapper">
                         <b-row align-v="center">
                             <b-col><p>Miznú nám lesy? Ako na nízkouhlíkové Slovensko? O koľko žijú ľudia kratšie kvôli zlej kvalite životného prostredia a aké to má ekonomické dôsledky? Ako by malo fungovať zálohovanie PET fliaš a plechoviek? Oplatí sa elektromobil?</p></b-col>    
                         </b-row>

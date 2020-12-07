@@ -13,41 +13,43 @@
             <h4>Každý z nás svojou aktivitou produkuje uhlíkovú stopu. Jej veľkosť závisí od toho čo robíš, ako žiješ a ako veľa cestuješ. Táto kalkulačka ju dokáže na základe tvojich odpovedí vypočítať. Tak poďme nato!</h4> 
         </div>
 
-        <div class="details" v-if="details_kalkulacka">
+        <transition name="fade">
+            <div class="details" v-if="details_kalkulacka">
             
-            <div class="otazka-1">
-                <h4>Čo je to uhlíková stopa?</h4>
-            </div>
-            <div class="odpoved">
-                <p> Uhlíková stopa je množstvo emisií takých plynov uvoľnených do atmosféry, ktoré majú dopad na podnebie Zeme,
-                pričom tieto emisie sú spôsobené činnosťou človeka. Tieto plyny produkujeme pri väčšine našich aktivít, napríklad
-                pri spotrebe fosílnych palív v doprave alebo spotrebe tepla vyrobeného z uhlia či elektriny.</p>
-            </div>
+                <div class="otazka-1">
+                    <h4>Čo je to uhlíková stopa?</h4>
+                </div>
+                <div class="odpoved">
+                    <p> Uhlíková stopa je množstvo emisií takých plynov uvoľnených do atmosféry, ktoré majú dopad na podnebie Zeme,
+                    pričom tieto emisie sú spôsobené činnosťou človeka. Tieto plyny produkujeme pri väčšine našich aktivít, napríklad
+                    pri spotrebe fosílnych palív v doprave alebo spotrebe tepla vyrobeného z uhlia či elektriny.</p>
+                </div>
 
-            <div class="otazka">
-                <h4>Ako sa počíta uhlíková stopa?</h4>
-            </div>
-            <div class="odpoved">
-                <p> Prvým krokom k výpočtu uhlíkovej stopy je stanovenie využitia zdrojov pri výrobe a spotrebe jednotky produktu či
-                služby. Následne sa k týmto zdrojom priradí zodpovedajúci emisný faktor, ktorý spája množstvo uvoľnenej
-                znečisťujúcej látky s aktivitou spojenou s jej vypúšťaním (napr. 0,2 g metánu na kilogram spotrebovanej nafty).
-                Výsledné emisie tak získame prenásobením emisného faktora mierou aktivity:
-                𝐸𝑚𝑖𝑠𝑖𝑒𝑥 = 𝐸𝐹𝑥 × 𝑄 × 𝐺𝑊𝑃𝑥, 
-                kde 𝐸𝑚𝑖𝑠𝑖𝑒𝑥 sú emisie znečisťujúcej látky x, 𝐸𝐹𝑥 je emisný faktor znečisťujúcej látky x, 𝑄 je miera aktivity,
-                spotreby alebo produkcie a 𝐺𝑊𝑃𝑥 je potenciál globálneho otepľovania danej látky.</p>
-            </div>
+                <div class="otazka">
+                    <h4>Ako sa počíta uhlíková stopa?</h4>
+                </div>
+                <div class="odpoved">
+                    <p> Prvým krokom k výpočtu uhlíkovej stopy je stanovenie využitia zdrojov pri výrobe a spotrebe jednotky produktu či
+                    služby. Následne sa k týmto zdrojom priradí zodpovedajúci emisný faktor, ktorý spája množstvo uvoľnenej
+                    znečisťujúcej látky s aktivitou spojenou s jej vypúšťaním (napr. 0,2 g metánu na kilogram spotrebovanej nafty).
+                    Výsledné emisie tak získame prenásobením emisného faktora mierou aktivity:
+                    𝐸𝑚𝑖𝑠𝑖𝑒𝑥 = 𝐸𝐹𝑥 × 𝑄 × 𝐺𝑊𝑃𝑥, 
+                    kde 𝐸𝑚𝑖𝑠𝑖𝑒𝑥 sú emisie znečisťujúcej látky x, 𝐸𝐹𝑥 je emisný faktor znečisťujúcej látky x, 𝑄 je miera aktivity,
+                    spotreby alebo produkcie a 𝐺𝑊𝑃𝑥 je potenciál globálneho otepľovania danej látky.</p>
+                </div>
 
-            <div class="otazka">
-                <h4>V akých jednotkách sa meria uhlíková stopa?</h4>
+                <div class="otazka">
+                    <h4>V akých jednotkách sa meria uhlíková stopa?</h4>
+                </div>
+                <div class="odpoved">
+                    <p> Keďže medzi skleníkové plyny
+                    patrí viacero látok (oxid uhličitý, metán a iné), emisie týchto látok sa prevádzajú do ekvivalentov emisií oxidu
+                    uhličitého (CO2e) prenásobením s potenciálom pre globálne otepľovanie (Global Warming Potential – GWP).
+                    Emisie skleníkových plynov, ktoré škodia v rôznych pomeroch, tak môžeme pomocou CO2e vzájomne porovnávať.</p>
+                </div>
             </div>
-            <div class="odpoved">
-                <p> Keďže medzi skleníkové plyny
-                patrí viacero látok (oxid uhličitý, metán a iné), emisie týchto látok sa prevádzajú do ekvivalentov emisií oxidu
-                uhličitého (CO2e) prenásobením s potenciálom pre globálne otepľovanie (Global Warming Potential – GWP).
-                Emisie skleníkových plynov, ktoré škodia v rôznych pomeroch, tak môžeme pomocou CO2e vzájomne porovnávať.</p>
-            </div>
-
-        </div>
+        </transition>
+        
 
         
         <div >
@@ -73,7 +75,9 @@ export default {
     },
     methods: {
         toStart() {
-            window.scrollTo(0, 0);
+            if(this.details_kalkulacka==true){  
+                window.scrollTo(0, 0);
+            }
         }
     },
 }
@@ -97,6 +101,14 @@ h4 {
     background: rgba(85, 85, 85, 0.65);
     border-radius: 10px;
     
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s, height .1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  height: 0;
 }
 
 .otazka {

@@ -1,6 +1,6 @@
 <template>
     
-    <div>   
+    <div class="obsah">   
     
         <EntranceModal></EntranceModal>
 
@@ -31,7 +31,9 @@ export default {
 </script>
 
 <style scoped>
-
+.obsah {
+    scroll-behavior: smooth;
+}
 
 
 </style>
