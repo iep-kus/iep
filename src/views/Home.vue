@@ -18,7 +18,7 @@
 
 <script>
 import EntranceModal from '@/components/EntranceModal'
-import AboutUs from '@/components/aboutUs'
+import AboutUs from '../components/aboutUs'
 import Kariera from '@/components/Kariera'
 import OurWork from '@/components/OurWork'
 
