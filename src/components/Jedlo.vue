@@ -12,7 +12,7 @@
                 
                 
                 <div class="wrapper">    
-                    <b-row md="4" style="height: 20vh" align-h="start" align-v="center" cols="1" cols-sm="1" cols-md="1" cols-lg="1" class="text-left">   
+                    <b-row md="4" style="height: 15vh" align-h="start" align-v="center" cols="1" cols-sm="1" cols-md="1" cols-lg="1" class="text-left">   
                         <b-col offset-md="0.5" cols="4" align-h="start"><h1>Jedlo</h1></b-col>
                     </b-row>  
 
@@ -284,7 +284,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .graf {
     height: auto;

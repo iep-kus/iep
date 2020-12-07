@@ -5,7 +5,7 @@
         
         <div class="background-cover"> 
             <div class="celkovo">  
-               <b-row class="nadpis-title"> 
+                <b-row class="nadpis-title"> 
                     <b-col class="text-center"><h1>Výsledky</h1></b-col>
                 </b-row>
     
@@ -16,13 +16,15 @@
                             <b-row class="titles"  align-h="center" align-v="center">
                                 <h3>Tvoja pôvodná uhlíková stopa bola {{celkovo}} kg CO2e.</h3>
                             </b-row>
-                            <b-row class="charts"  align-h="center" align-v="center">
-                                <DoughnutExample
-                                    ref="povodne_chart"
-                                    :chart-data="povodneDoughnut"
-                                    :options="povodneDoughnut_o"                        
-                                > 
-                                </DoughnutExample>
+                            <b-row   align-h="center" align-v="center">
+                                <div class="chart">  
+                                    <DoughnutExample
+                                        ref="povodne_chart"
+                                        :chart-data="povodneDoughnut"
+                                        :options="povodneDoughnut_o"                        
+                                    > 
+                                    </DoughnutExample>
+                                </div>
                             </b-row>
                         </b-col>
                         <b-col cols=12 lg="4" offset-lg="1" order="2" order-lg="2" class="zmena">
@@ -36,12 +38,14 @@
                                 <h3>Celkovo by si vykonanými zmenami zvýšil svoju uhlíkovú stopu o {{celk_zmena}} kg CO2e</h3>
                             </b-row>
                             <b-row class="charts" align-h="center" align-v="center">
-                                <BarExample
-                                    ref="zmena_chart"
-                                    :chart-data="zmenaBar"
-                                    :options="zmenaBar_o"    
-                                > 
-                                </BarExample>
+                                <div class="chart">     
+                                    <BarExample
+                                        ref="zmena_chart"
+                                        :chart-data="zmenaBar"
+                                        :options="zmenaBar_o"    
+                                    > 
+                                    </BarExample>
+                                </div>
                             </b-row> 
                         </b-col>
                         <b-col cols=12 lg="3" offset-lg="1" order="2" order-lg="3">
@@ -50,12 +54,14 @@
                                 <h3>Po vykonaných zmenách by tvoja uhlíkova stopa bola {{uhlikova_stopa_celkovo}} kg CO2e.</h3>
                             </b-row>
                             <b-row class="charts" align-h="center" align-v="center">
-                                <DoughnutExample
-                                    ref="nove_chart"
-                                    :chart-data="noveDoughnut"
-                                    :options="noveDoughnut_o"                        
-                                > 
-                                </DoughnutExample>
+                                <div class="chart">     
+                                    <DoughnutExample
+                                        ref="nove_chart"
+                                        :chart-data="noveDoughnut"
+                                        :options="noveDoughnut_o"                        
+                                    > 
+                                    </DoughnutExample>
+                                </div> 
                             </b-row>
                         </b-col>
                         
@@ -372,11 +378,13 @@ export default {
 
 <style scoped>
 .celkovo {
-    padding: 10%;
+    padding: 5%;
 }
 
+
+
 .nadpis-2 { 
-   margin-top: 5%;
+   margin-top: 3%;
 }
 
 .titles {
@@ -387,7 +395,7 @@ export default {
 
 .nadpis-title {
     font-family: 'montserrat-bold' ;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
     color: white;
 }
 
@@ -396,8 +404,9 @@ export default {
     color: white;
 }
 
-.charts {
-    margin-bottom: 2rem;
+.chart {
+    margin-bottom: 1rem;
+    width: 90%;
 }
 
 

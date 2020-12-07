@@ -2,9 +2,9 @@
 
     <div class="btn__container">  
         <a class="btn-e">
-        <i class="fas fa-file-excel"></i>
-        <span>uložiť</span>
-    </a>
+          <i class="fas fa-file-excel"></i>
+          <span>uložiť</span>
+        </a>
     </div>
     
     
@@ -52,6 +52,7 @@ export default {
       align-self: center;
       transform: translateX(0px);
       transition: all .1s ease-in-out;
+      text-decoration: none;
       opacity: 1;
      }
    
@@ -70,6 +71,7 @@ export default {
       }
       span {
         transform: translateX(45px);
+        text-decoration: none;
         opacity: 0;
       }
     }

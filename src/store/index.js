@@ -37,7 +37,7 @@ export default new Vuex.Store({
     selected2:'kWh',
     selected3:'kWh',
     selected4:'litrov',
-    selected5:'prm',
+    selected5:'priestorový meter',
 
     obnovitelnezdroje: 'Nie',
     vlastna: '',
@@ -720,28 +720,67 @@ export default new Vuex.Store({
 
     setpocetletov(state, value) {
         state.pocetletov = value;
-       
-        if(value<1){state.let1=0}
-        if(value<2){state.let2=0}
-        if(value<3){state.let3=0}
-        if(value<4){state.let4=0}
-        if(value<5){state.let5=0}
-        if(value<6){state.let6=0}
-        if(value<7){state.let7=0}
-        if(value<8){state.let8=0}
-        if(value<9){state.let9=0}
-        if(value<10){state.let10=0}
-        if(value<11){state.let11=0}
-        if(value<12){state.let12=0}
-        if(value<13){state.let13=0}
-        if(value<14){state.let14=0}
-        if(value<15){state.let15=0}
-        if(value<16){state.let16=0}
-        if(value<17){state.let17=0}
-        if(value<18){state.let18=0}
-        if(value<19){state.let19=0}
-        if(value<20){state.let20=0}
         
+        if(value==0){state.let1=0}
+        if(value==1){
+            state.let2=0
+            state.m1 = 2
+            state.let1=1366}
+        if(value==2){state.let3=0
+            state.m2 = 2
+            state.let2=1366}
+        if(value==3){state.let4=0
+            state.m3 = 2
+            state.let3=1366}
+        if(value==4){state.let5=0
+            state.m4 = 2
+            state.let4=1366}
+        if(value==5){state.let6=0
+            state.m5 = 2
+            state.let5=1366}
+        if(value==6){state.let7=0
+            state.m6 = 2
+            state.let6=1366}
+        if(value==7){state.let8=0
+            state.m7 = 2
+            state.let7=1366}
+        if(value==8){state.let9=0
+            state.m8 = 2
+            state.let8=1366}
+        if(value==9){state.let10=0
+            state.m9 = 2
+            state.let9=1366}
+        if(value==10){state.let11=0
+            state.m10 = 2
+            state.let10=1366}
+        if(value==11){state.let12=0
+            state.m11 = 2
+            state.let11=1366}
+        if(value==12){state.let13=0
+            state.m12 = 2
+            state.let12=1366}
+        if(value==13){state.let14=0
+            state.m13 = 2
+            state.let13=1366}
+        if(value==14){state.let15=0
+            state.m14 = 2
+            state.let14=1366}
+        if(value==15){state.let16=0
+            state.m15 = 2
+            state.let15=1366}
+        if(value==16){state.let17=0
+            state.m16 = 2
+            state.let16=1366}
+        if(value==17){state.let18=0
+            state.m17 = 2
+            state.let17=1366}
+        if(value==18){state.let19=0
+            state.m18 = 2
+            state.let18=1366}
+        if(value==19){state.let20=0
+            state.m19 = 2
+            state.let19=1366}
+
         
     },
 

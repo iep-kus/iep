@@ -7,8 +7,8 @@
                 
             <div class="ziv_styl">
                 <div class="wrapper-right">    
-                    <b-row md="4" style="height: 20vh" align-h="start" align-v="center" cols="1" cols-sm="1" cols-md="1" cols-lg="1" class="text-left">   
-                        <b-col offset-md="0.5" cols="4" align-h="start"><h1>Životný štýl</h1></b-col>
+                    <b-row style="height: 15vh" align-h="start" align-v="center" class="text-left">   
+                        <b-col offset-md="0.5" cols="12" align-h="start"><h1>Životný štýl</h1></b-col>
                         
                     </b-row>   
                     
@@ -52,7 +52,7 @@
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
                                     <b-col md="1" cols="1" class="text-right">23.</b-col>
                                     <b-col md="10" cols="10" class="text-left" align-h="start">Koľko nocí ročne stráviš v: <b-icon-question-circle-fill font-scale="1.2" id="question23"></b-icon-question-circle-fill></b-col>
-                                        <b-tooltip target="question23" title="Prosím nezapočítavajte služobné cesty"  variant="dark"></b-tooltip>
+                                        <b-tooltip target="question23" title="Prosím nezapočítavaj služobné cesty"  variant="dark"></b-tooltip>
                                 </b-row> 
 
                                 <div>
@@ -179,7 +179,10 @@
                             <b-row align-h="center">
                                 <b-col align-v="center">
                                     <div >
-                                        <b-button class="zacat"  :pressed.sync="details_ziv_styl">podrobnejšie</b-button>
+                                        <b-button class="zacat"  :pressed.sync="details_ziv_styl">
+                                            <div v-if="details_ziv_styl==false">podrobnejšie</div>
+                                            <div v-if="details_ziv_styl==true">menej podrobne</div>
+                                        </b-button>
                                     </div>
                                 </b-col>
                             </b-row>
@@ -292,8 +295,7 @@ export default {
             sklo = -21.12*Math.pow(((Number(this.sklorange))/100),2) + 31.72*Number(this.sklorange)/100 +2.5;
             papier = -10.4*Math.pow(((Number(this.papierrange))/100),2) + 16.2*(Number(this.papierrange))/100 +1;
             bio = -22.6*Math.pow(((Number(this.bioodpadrange))/100),2) + 49.7*(Number(this.bioodpadrange))/100 +0.2;
-            console.log(priemer);
-            console.log(zko);
+    
             return 0.9*zko -1.024*plast - 0.314*sklo + -0.495*papier + 0.06* bio
               
             
@@ -472,7 +474,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .graf {
     height: auto;
@@ -525,19 +527,41 @@ export default {
 
 .zacat {
     position: relative;
-  text-align: center;
-  top: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
-  vertical-align: center;
-
-  width: 10rem;
-   height: 3rem;  
-   background: #FF6600;
-    border-radius: 20px; 
+    text-align: center;
+    top: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    padding: .75rem;
+    width: 12rem;
+    height:auto;  
+    background: #FF6600;
+    border-radius: 10px; 
     border: 0px solid #000000;
     color: white;
+    transition: all .3s ease-in-out;
 
+    
+    span {
+      font-family: "Roboto", sans-serif;    
+      align-self: center;
+      transform: translateX(0px);
+      transition: all .1s ease-in-out;
+      opacity: 1;
+     }
+
+    &:hover {
+        background-color: rgba(172, 69, 0, 1); /* Green */
+        color: white;
+        transform: scale(1.1);
+        
+        span {
+            font-family: "Roboto", sans-serif;    
+            transform: translateX(-20px);
+            transition: all .1s ease-in-out;
+            opacity: 1;
+        }
+    }
    
 }
 

@@ -10,7 +10,7 @@
         </div>
             
         <div class="undertitle">
-            <h4> Každý z nás svojou aktivitou produkuje uhlíkovú stopu. Jej veľkosť závisí od toho čo robíš, ako žiješ a ako veľa cestuješ. Táto kalkulačka ju dokáže na základe tvojich odpovedí vypočítať. Tak poďme nato!</h4> 
+            <h4>Každý z nás svojou aktivitou produkuje uhlíkovú stopu. Jej veľkosť závisí od toho čo robíš, ako žiješ a ako veľa cestuješ. Táto kalkulačka ju dokáže na základe tvojich odpovedí vypočítať. Tak poďme nato!</h4> 
         </div>
 
         <div class="details" v-if="details_kalkulacka">
@@ -29,7 +29,7 @@
             </div>
             <div class="odpoved">
                 <p> Prvým krokom k výpočtu uhlíkovej stopy je stanovenie využitia zdrojov pri výrobe a spotrebe jednotky produktu či
-                služby. Následne sa daným k týmto zdrojom priradí zodpovedajúci emisný faktor, ktorý spája množstvo uvoľnenej
+                služby. Následne sa k týmto zdrojom priradí zodpovedajúci emisný faktor, ktorý spája množstvo uvoľnenej
                 znečisťujúcej látky s aktivitou spojenou s jej vypúšťaním (napr. 0,2 g metánu na kilogram spotrebovanej nafty).
                 Výsledné emisie tak získame prenásobením emisného faktora mierou aktivity:
                 𝐸𝑚𝑖𝑠𝑖𝑒𝑥 = 𝐸𝐹𝑥 × 𝑄 × 𝐺𝑊𝑃𝑥, 
@@ -79,7 +79,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 p {
     color:white
@@ -95,7 +95,7 @@ h4 {
     margin-right: 5%;
     overflow: auto;
     background: rgba(85, 85, 85, 0.65);
-     border-radius: 10px;
+    border-radius: 10px;
     
 }
 
@@ -161,20 +161,33 @@ h4 {
     width: 223px;
     height: 52px;  
     background: #FF6600;
-    border-radius: 20px; 
+    border-radius: 10px; 
     border: 0px solid #000000;
     color: white;
+    transition: all .3s ease-in-out;
 
+    
+    span {
+      font-family: "Roboto", sans-serif;    
+      align-self: center;
+      transform: translateX(0px);
+      transition: all .1s ease-in-out;
+      opacity: 1;
+     }
+
+    &:hover {
+        background-color: rgba(172, 69, 0, 1); /* Green */
+        color: white;
+        transform: scale(1.1);
+        
+        span {
+            font-family: "Roboto", sans-serif;    
+            transform: translateX(-20px);
+            transition: all .1s ease-in-out;
+            opacity: 1;
+        }
+    }
    
-}
-
-.zacat {
-  transition-duration: 0.4s;
-}
-
-.zacat:hover {
-  background-color: rgba(172, 69, 0, 1); /* Green */
-  color: white;
 }
 
 

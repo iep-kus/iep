@@ -30,7 +30,7 @@ export default {
     name: 'Vypocitat',
     methods: {
         async save_data() {
-            console.log(this.uhlikova_stopa_celkovo,this.uhlikova_stopa_byvanie,this.uhlikova_stopa_doprava,this.uhlikova_stopa_jedlo, this.uhlikova_stopa_spotreba,this.uhlikova_stopa_ziv_styl)
+            
             
             this.$store.commit('setpath_vypocitat')
             this.uhlikova_stopa_celkovo = this.uhlikova_stopa_byvanie + this.uhlikova_stopa_doprava + this.uhlikova_stopa_jedlo + this.uhlikova_stopa_spotreba + this.uhlikova_stopa_ziv_styl
@@ -54,7 +54,7 @@ export default {
             this.$router.push({name:'Kalkulacka_graf',params: {user_key : user_report.key}})
             
             // this will be the unique hash
-            console.log(user_report.key);
+            
             } catch (err) {
             console.log(err);
             }
@@ -145,7 +145,7 @@ h1 {
     
 }
 .undertitle {
-    margin-top: 5%;
+    margin-top: 3%;
     color: white;
     text-align: center;
 }
@@ -172,24 +172,23 @@ h1 {
 .zacat {
     position: relative;
     text-align: center;
-    top: 5vh;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5%;
     vertical-align: middle;
     padding: 1rem;
-    width: 20rem;
+    width: 15rem;
     height: 6rem; 
     background-color: #FF6600;
     border-radius: 20px; 
     border: 3px solid white;
     color: white;
-    font-size: 2.5rem;
-    font-weight: 1000;
+    font-size: 2rem;
+    font-weight: 900;
     transition: color 0.5s;
     z-index: 1;
-    margin-bottom: 10%;
-    
+    margin-bottom: 2rem;
+    transition: all .2s ease-in-out;
 
 
    
@@ -209,7 +208,8 @@ h1 {
 
 .zacat:hover {
   background-color:white; /* Green */
-  color: #FF6600;;
+  color: #FF6600;
+  transform: scale(1.1);
 }
 
 

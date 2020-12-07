@@ -7,7 +7,7 @@
         <div class="item">   
             <div class="byvanie">
                 <div class="wrapper">    
-                    <b-row md="4" style="height: 20vh" align-h="start" align-v="center" cols="1" cols-sm="1" cols-md="1" cols-lg="1" class="text-left">   
+                    <b-row md="4" style="height: 15vh" align-h="start" align-v="center" cols="1" cols-sm="1" cols-md="1" cols-lg="1" class="text-left">   
                         <b-col offset-md="0.5" cols="4" align-h="start"><h1>Bývanie</h1></b-col>
                             
                     </b-row>    
@@ -17,7 +17,10 @@
                         <div> 
                             <b-row style="margin-bottom: 2vh"  align-v="center">      
                                 <b-col cols="1" class="text-right">6.</b-col>
-                                <b-col cols="11" class="text-left" align-h="start">Aký zdroj energie alebo palivo primárne používate v domácnosti na vykurovanie a ohrev vody?</b-col>
+                                <b-col cols="11" class="text-left" align-h="start">Aký zdroj energie alebo palivo primárne používate v domácnosti na vykurovanie a ohrev vody?
+                                    <b-icon-question-circle-fill font-scale="1.2" id="question6"></b-icon-question-circle-fill>
+                                    <b-tooltip target="question6" title="V prípade ak využívate rozdielne alebo viacero zdrojov energie na ohrev vody a vykurovanie, uveď konrétnu spotrebu po zakliknutí tlačidla podrobnejšie."  variant="dark"></b-tooltip>
+                                </b-col>
                             </b-row> 
                         </div> 
                         <div>   
@@ -99,7 +102,7 @@
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
                                         <b-form-input v-model="tuhe" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
-                                    <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected5" :options="['prm', 'm3' , 't']"></b-form-select></b-col>
+                                    <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected5" :options="['priestorový meter', 'm3' , 't']"></b-form-select></b-col>
                         
                                 </b-row>
                             </div>
@@ -150,7 +153,10 @@
                     <b-row align-h="center">
                         <b-col align-v="center">
                             <div >
-                                <b-button class="zacat" :pressed.sync="details_byvanie">podrobnejšie</b-button>
+                                <b-button class="zacat" :pressed.sync="details_byvanie">
+                                    <div v-if="details_byvanie==false">podrobnejšie</div>
+                                    <div v-if="details_byvanie==true">menej podrobne</div>
+                                </b-button>
                             </div>
                         </b-col>
                     </b-row>
@@ -260,7 +266,7 @@ export default {
         },
             
          emisie_tuhe() {      
-            if (this.selected5=='prm') {
+            if (this.selected5=='priestorový meter') {
                 return 1212.96;
             }
             if (this.selected5=='m3') {
@@ -514,7 +520,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 
 
@@ -563,6 +569,7 @@ export default {
 .wrapper{
     width: 100%;
     padding: 5%;
+    margin-bottom: 3rem;
 }
 
 .otazka {
@@ -572,20 +579,41 @@ export default {
 
 .zacat {
     position: relative;
-  text-align: center;
-  top: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
-  vertical-align: center;
-
-  width: 10rem;
-   height: 3rem;  
-   background: #FF6600;
-    border-radius: 20px; 
+    text-align: center;
+    top: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    padding: .75rem;
+    width: 12rem;
+    height:auto;  
+    background: #FF6600;
+    border-radius: 10px; 
     border: 0px solid #000000;
     color: white;
-    margin-bottom: 10vh;
+    transition: all .3s ease-in-out;
 
+    
+    span {
+      font-family: "Roboto", sans-serif;    
+      align-self: center;
+      transform: translateX(0px);
+      transition: all .1s ease-in-out;
+      opacity: 1;
+     }
+
+    &:hover {
+        background-color: rgba(172, 69, 0, 1); /* Green */
+        color: white;
+        transform: scale(1.1);
+        
+        span {
+            font-family: "Roboto", sans-serif;    
+            transform: translateX(-20px);
+            transition: all .1s ease-in-out;
+            opacity: 1;
+        }
+    }
    
 }
 

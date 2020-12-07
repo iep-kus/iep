@@ -27,12 +27,12 @@
                                     To je až o <strong>{{diff_sugg_over1}}</strong> kg CO2e viac ako priemerný Slovák a takisto aj o <strong>{{diff_sugg_over2}}</strong> kg CO2e viac ako priemerný Európan
                                 </div>
                                 <div class="suggestion" v-if="celkovo_sugg_under">
-                                    To je o <strong>{{diff_sugg_under1}}</strong> kg CO2e menej ako priemerný Slovák no dokonca až o <strong>{{diff_sugg_under2}}</strong> kg CO2e menej ako priemerný Európan. Avšak to ešte neznamená, že sa nemôžeš ďalej zlepšovať.
+                                    To je o <strong>{{diff_sugg_under1}}</strong> kg CO2e menej ako priemerný Slovák no dokonca až o <strong>{{diff_sugg_under2}}</strong> kg CO2e menej ako priemerný Európan. To však ešte neznamená, že sa nemôžeš ďalej zlepšovať. Nižšie sú uvedené návrhy ako svoju uhlíkovú stopu znížiť ešte viac!
                                 </div>
 
 
                                 <div class="suggestion" v-if="byv_zat">
-                                    Vyzerá to, že uhlíková stopa tvojho bývania je výrazne vyššia ako stopa bývania bežného Slováka. Skúste zvážiť investíciu do zníženia energetickej náročnosti Vášho bývania.
+                                    Vyzerá to, že uhlíková stopa tvojho bývania je výrazne vyššia ako stopa bývania bežného Slováka. Skús zvážiť investíciu do zníženia energetickej náročnosti Vášho bývania.
                                 </div>
                                 <div class="suggestion" v-if="byv">
                                     Vyzerá to, že uhlíková stopa tvojho bývania je výrazne vyššia ako stopa bežného Slováka. Jednou z možností na jej zníženie by mohla byť zmena typu kúrenia. 
@@ -54,7 +54,7 @@
                                     Chov hovädzieho dobytka a následná výroba mliečnych výrobkov je emisne celkom náročná. Skús zvážiť obmedzenie spotreby týchto výrobkov.
                                 </div>
                                 <div class="suggestion" v-if="jed_syr">
-                                    Syry podobne ako mliečne výrobky sú emisné celkom náročné.
+                                    Syry podobne ako mliečne výrobky sú emisne celkom náročné.
                                 </div>
                                 <div class="suggestion" v-if="spo">
                                     Zdá sa, že kategória spotreba u teba tvorí relatívne výraznu uhlíkovú stopu. Pri výrobe týchto elektronických zariadení a ich následnom dovoze na Slovensko vzniká relatívne vysoká uhlíková stopa. Obmedzením nákupov týchto zariadení môžeš svoju uhlíkovú stopu výrazne znížiť.
@@ -63,7 +63,7 @@
                                     Vyzerá to, že nakupovanie oblečenia je jednou z tvojich obľúbených činností. Avšak pri výrobe oblečenia a pri jeho transporte vzniká veľmi veľká uhlíková stopa. Porozmýšlaj o častejšom nákupe oblečenia z druhej ruky. Ušetríš aj v peňaženke, no takisto aj znížiš svoju uhlíkovú stopu.
                                 </div>
                                 <div class="suggestion" v-if="ziv_dov">
-                                    Nie tvoje aktivity doma ale aj dovolenkovanie mimo domu môže výrazne zvýšiť tvoju uhlíkovú stopu. Čím vyššia kvalita služieb, tým vyššia uhlíková stopa. 
+                                    Nie len tvoje aktivity doma ale aj dovolenkovanie mimo domu môže výrazne zvýšiť tvoju uhlíkovú stopu. Čím vyššia kvalita služieb, tým vyššia uhlíková stopa. 
                                 </div>
                                 <div class="suggestion" v-if="ziv_odp">
                                     Zdá sa, že uhlíková stopa tvojho odpadu je vyššia ako u priemerného Slováka. Skús viac triediť! Pomôže to planéte, tvojmu mestu no takisto aj tebe. 

@@ -12,8 +12,8 @@
                     
                     
                     <b-row  style="margin-bottom:2vh" align-h="start" align-v="center"  class="text-left">   
-                        <b-col offset-md="0.5" align-h="start"><h1>Doprava</h1><b-icon-question-circle-fill font-scale="2" id="doprava-title"></b-icon-question-circle-fill></b-col>
-                        <b-tooltip target="doprava-title" title="Vrámci celej tejto kategórie prosím nezapočítavajte služobné cesty."  variant="dark"></b-tooltip>
+                        <b-col offset-md="0.5" align-h="start"><h1>Doprava <b-icon-question-circle-fill font-scale="1" id="doprava-title"></b-icon-question-circle-fill></h1></b-col>
+                        <b-tooltip target="doprava-title" title="Vrámci celej tejto kategórie prosím nezapočítavaj služobné cesty."  variant="dark"></b-tooltip>
                     </b-row> 
                     
                     
@@ -407,7 +407,7 @@
                             <b-col v-if="details_doprava==true" md="5" cols="11" class="text-left" align-h="start">Koľko súkromných letov si absolvoval za posledný rok?
                                 <b-icon-question-circle-fill font-scale="1.2" id="question13b"></b-icon-question-circle-fill>
                             </b-col>
-                            <b-tooltip target="question13a" title="Za jeden let považujeme jednosmerný let. Ak ste leteli tam aj späť, započítajte lety 2. Zahrnúť len súkromné lety nie služobné.  "  variant="dark"></b-tooltip>
+                            <b-tooltip target="question13a" title="Za jeden let považujeme jednosmerný let. Ak si letel tam aj späť, započítaj lety 2. Zahrnúť len súkromné lety nie služobné.  "  variant="dark"></b-tooltip>
                             <b-tooltip target="question13b" title="Za jeden let považujeme či už jednosmerný alebo aj spiatočný let. Zahrnúť len súkromné lety nie služobné.  "  variant="dark"></b-tooltip>
                                     <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                         <b-form-spinbutton id="pocetletov" v-model="pocetletov" min="0" max="20"></b-form-spinbutton>
@@ -1271,7 +1271,10 @@
                             <b-row align-h="center">
                                 <b-col align-v="center">
                                     <div >
-                                        <b-button class="zacat" :pressed.sync="details_doprava">podrobnejšie</b-button>
+                                        <b-button class="zacat" :pressed.sync="details_doprava">
+                                            <div v-if="details_doprava==false">podrobnejšie</div>
+                                            <div v-if="details_doprava==true">menej podrobne</div>
+                                        </b-button>
                                     </div>
                                 </b-col>
                             </b-row>
@@ -1415,8 +1418,7 @@ export default {
             this.emisie_doprava = this.chartData.datasets[0].data;
             this.uhlikova_stopa_doprava = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]);
             this.updateChart();
-            console.log(this.emisie_doprava)
-            console.log(this.frekvenciavlastne)
+            
         },
 
         emisie_auta() {
@@ -2251,7 +2253,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 
 .nadpis{
@@ -2347,19 +2349,41 @@ export default {
 
 .zacat {
     position: relative;
-  text-align: center;
-  top: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
-  vertical-align: center;
-
-  width: 10rem;
-   height: 3rem;  
-   background: #FF6600;
-    border-radius: 20px; 
+    text-align: center;
+    top: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    padding: .75rem;
+    width: 12rem;
+    height:auto;  
+    background: #FF6600;
+    border-radius: 10px; 
     border: 0px solid #000000;
     color: white;
+    transition: all .3s ease-in-out;
 
+    
+    span {
+      font-family: "Roboto", sans-serif;    
+      align-self: center;
+      transform: translateX(0px);
+      transition: all .1s ease-in-out;
+      opacity: 1;
+     }
+
+    &:hover {
+        background-color: rgba(172, 69, 0, 1); /* Green */
+        color: white;
+        transform: scale(1.1);
+        
+        span {
+            font-family: "Roboto", sans-serif;    
+            transform: translateX(-20px);
+            transition: all .1s ease-in-out;
+            opacity: 1;
+        }
+    }
    
 }
 

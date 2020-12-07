@@ -132,8 +132,13 @@ export default {
     transition: color 0.5s;
   }
 .nav-link-wrapper:hover {
-    border-bottom: 1px solid black;
-    color: black;
+    border-bottom: 1px solid rgba(71, 71, 71, 1);
+  }
+
+.nav-link-wrapper a:hover {
+    color: rgba(71, 71, 71, 1);
+    text-decoration: none;
+    transition: color 0.5s;
   }
 
 

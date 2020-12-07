@@ -7,9 +7,9 @@
                 
             <div class="spotreba">
                 <div class="wrapper-right">    
-                    <b-row md="4" style="height: 20vh" align-h="start" align-v="center" cols="1" cols-sm="1" cols-md="1" cols-lg="1" class="text-left">   
-                        <b-col offset-md="0.5" align-h="start"><h1>Spotreba</h1><b-icon-question-circle-fill font-scale="2" id="spotreba-title"></b-icon-question-circle-fill></b-col>
-                        <b-tooltip target="spotreba-title" title="Vrámci celej tejto kategórie prosím nezapočítavajte služobné zariadenia."  variant="dark"></b-tooltip>
+                    <b-row md="4" style="height: 15vh" align-h="start" align-v="center" cols="1" cols-sm="1" cols-md="1" cols-lg="1" class="text-left">   
+                        <b-col offset-md="0.5" align-h="start"><h1>Spotreba <b-icon-question-circle-fill font-scale="1" id="spotreba-title"></b-icon-question-circle-fill></h1></b-col>
+                        <b-tooltip target="spotreba-title" title="Vrámci celej tejto kategórie prosím nezapočítavaj služobné zariadenia."  variant="dark"></b-tooltip>
                         
                     </b-row>   
                     
@@ -57,7 +57,7 @@
                     <div class="otazka">
                         <b-row  style="margin-bottom:2.5vh" align-v="start">      
                             <b-col cols="1" class="text-right">17.</b-col>
-                            <b-col cols="10" lg="5" class="text-left" align-h="start">Koľko z týchto elektrospotrebičov vlastníte v domácnosti? (chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia)</b-col>
+                            <b-col cols="10" lg="5" class="text-left" align-h="start">Koľko z týchto spotrebičov vlastníte v domácnosti: chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia?</b-col>
                             <b-col cols="10" lg="5" offset="1" offset-lg="0" class="text-left" align-h="start">
                                 <b-form-spinbutton id="vlastneniebielatechnika" v-model="vlastneniebielatechnika" min="0" max="7" v-on:change="countEmissions()"></b-form-spinbutton>
                             </b-col>
@@ -67,7 +67,7 @@
                                 <b-col cols="1" lg="2" class="text-right"></b-col>
                                 <b-col cols="10" lg="4"  class="text-left">Priemerne ako často ich meníte?
                                     <b-icon-question-circle-fill font-scale="1.2" id="question17"></b-icon-question-circle-fill>
-                                    <b-tooltip target="question17" title="Príklad: Z uvedených spotrebičov vlastním 3: Chladničku , práčku a sporák. Chladničku zvyknem meniť po 8-ich rokoch. Práčku mením raz za 12 rokov. Sporák mením po 16-tich rokoch. Do odpoveďe preto uvediem číslo 12, teda priemer týchto čísel. (8+12+16)/3=12 Tento princíp použite aj pri otázkach 18,19"  variant="dark"></b-tooltip>
+                                    <b-tooltip target="question17" title="Príklad: Z uvedených spotrebičov vlastním 3: Chladničku , práčku a sporák. Chladničku zvyknem meniť po 8-ich rokoch. Práčku mením raz za 12 rokov. Sporák mením po 16-tich rokoch. Do odpoveďe preto uvediem číslo 12, teda priemer týchto čísel. (8+12+16)/3=12 Tento princíp použite aj pri otázkach 18,19. V prípade, ak môj byt je nový a spotrebiče som ešte nikdy nemenil, zadám buď očakávanú alebo nechám prednastavenú hodnotu."  variant="dark"></b-tooltip>
                                 </b-col>
                                 <b-col lg="2" cols="3" offset="1" offset-lg="0" class="text-right">Raz za</b-col>
                                 <b-col lg="2" cols="5" class="text-right" >
@@ -179,7 +179,10 @@
                     <b-row align-h="center">
                         <b-col align-v="center">
                             <div >
-                                <b-button class="zacat" :pressed.sync="details_spotreba">podrobnejšie</b-button>
+                                <b-button class="zacat" :pressed.sync="details_spotreba">
+                                    <div v-if="details_spotreba==false">podrobnejšie</div>
+                                    <div v-if="details_spotreba==true">menej podrobne</div>
+                                </b-button>
                             </div>
                         </b-col>
                     </b-row>
@@ -416,7 +419,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .graf {
     height: auto;
@@ -433,7 +436,7 @@ export default {
 
 
 .item{
-    min-height: 100vh;
+    min-height: 85vh;
     background-color: #F2F2F2;
     overflow: auto;
 }
@@ -458,6 +461,7 @@ export default {
     position: relative;
     width: 100%;
     padding: 5%;
+    margin-bottom: 3rem;
 }
 
 .otazka {
@@ -468,19 +472,40 @@ export default {
 .zacat {
     position: relative;
     text-align: center;
-    top: 1.5rem;
+    top: 5vh;
     margin-left: auto;
     margin-right: auto;
-    vertical-align: center;
-
-    width: 10rem;
-    height: 3rem;  
+    vertical-align: middle;
+    padding: .75rem;
+    width: 12rem;
+    height:auto;  
     background: #FF6600;
-    border-radius: 20px; 
+    border-radius: 10px; 
     border: 0px solid #000000;
     color: white;
-    margin-bottom:3rem;
+    transition: all .3s ease-in-out;
 
+    
+    span {
+      font-family: "Roboto", sans-serif;    
+      align-self: center;
+      transform: translateX(0px);
+      transition: all .1s ease-in-out;
+      opacity: 1;
+     }
+
+    &:hover {
+        background-color: rgba(172, 69, 0, 1); /* Green */
+        color: white;
+        transform: scale(1.1);
+        
+        span {
+            font-family: "Roboto", sans-serif;    
+            transform: translateX(-20px);
+            transition: all .1s ease-in-out;
+            opacity: 1;
+        }
+    }
    
 }
 
