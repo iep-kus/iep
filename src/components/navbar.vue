@@ -25,23 +25,23 @@
         
         <b-navbar-nav id="nav-collapse" class="ml-auto">
           <div class="nav-link-wrapper">
-            <router-link to="/">
+            <router-link to="/Domov">
                 domov
             </router-link>
           </div>
           <div class="nav-link-wrapper">
-            <router-link to="/Kalkulacka">
-                kalkulačka
+            <router-link to="/Domov#publikacie">
+                publikácie
             </router-link>
           </div>
           <div class="nav-link-wrapper">
-           <router-link to="/Metodologia">
-                dokumenty
+           <router-link to="/Domov#kariera">
+                kariéra
             </router-link>
           </div>
           <div class="nav-link-wrapper">
-            <router-link to="/Kontakt">
-                kontakt
+            <router-link to="/Domov#onas">
+                o nás
             </router-link>
           </div>
           
@@ -50,6 +50,18 @@
         </b-navbar-nav>
       
       </b-collapse>
+      
+      <div class="nav-link-wrapper_2">
+        <a href="https://www.facebook.com/iep.mzp">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+      </div>
+
+      <div class="nav-link-wrapper_2">
+        <a href="https://www.instagram.com/iep_sk/?hl=sk">
+            <i class="fab fa-instagram"></i>
+        </a>
+      </div>
       
     </b-navbar>
 
@@ -141,7 +153,7 @@ export default {
   margin-left: 0.5rem;
 }
 .nav-bar__logo {
-  height: 1rem;
+  height: 1.2rem;
 }
 /* TODO: size? */
 @media (max-width: 996px) {
@@ -155,6 +167,9 @@ export default {
   .nav-bar__button-right {
     display: none;
   }
+  .nav-bar__logo {
+  height: 0.9rem;
+}
 }
 
 .nav-link-wrapper {
@@ -174,6 +189,29 @@ export default {
 
 .nav-link-wrapper a:hover {
     color: rgba(71, 71, 71, 1);
+    text-decoration: none;
+    transition: color 0.5s;
+  }
+
+
+.nav-link-wrapper_2 {
+    height: 1.5rem;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s;
+    margin-right: 2vh;
+    margin-left: 2vh;
+    font-size: 1rem;
+    
+  }
+.nav-link-wrapper_2 a {
+    color: #8a8a8a;
+    text-decoration: none;
+    transition: color 0.5s;
+  }
+
+
+.nav-link-wrapper_2 a:hover {
+    color:rgba(71, 71, 71, 1);
     text-decoration: none;
     transition: color 0.5s;
   }

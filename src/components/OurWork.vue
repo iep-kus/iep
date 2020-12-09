@@ -44,7 +44,7 @@
                             <a href="https://www.minzp.sk/iep/strategicke-materialy/envirostrategia-2030/" style="text-decoration: none;">    
                                 <div class="wrapper-publication">
                                     <b-row align-h="center">
-                                        <div class="icon"><i class="fas fa-calculator"></i></div>
+                                        <div class="icon"><i class="fas fa-tasks"></i></div>
                                     </b-row>
                                     <b-row align-h="center">
                                     <span><h4>Strategické materiály</h4></span>
@@ -57,10 +57,10 @@
                             <a href="https://www.minzp.sk/iep/publikacie/prezentacie-seminare/" style="text-decoration: none;">    
                                 <div class="wrapper-publication">
                                     <b-row align-h="center">
-                                        <div class="icon"><i class="fas fa-tasks"></i></div>
+                                        <div class="icon"><i class="fas fa-calculator"></i></div>
                                     </b-row>
                                     <b-row align-h="center">
-                                    <span><h4>Prezentácie</h4></span>
+                                    <span><h4>Kalkulačky</h4></span>
                                     </b-row>
                                 </div>
                             </a>

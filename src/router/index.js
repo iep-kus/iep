@@ -13,6 +13,13 @@ const routes = [
     name: 'Home',
     component: Home,
   },
+
+  {
+    path: '/Domov',
+    name: 'Home',
+    component: Home,
+  },
+
   {
     path: '/Kalkulacka',
     name: 'Kalkulacka',
@@ -42,7 +49,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
   scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0 };
+    if (to.hash) {
+      return {
+        selector: to.hash,
+        behavior: 'smooth',
+        offset: { x: 0, y: 50 }
+      };
+    }
+    else {
+      return { x: 0, y: 0 , behavior: 'smooth', };
+    }
   }
 });
 export default router;

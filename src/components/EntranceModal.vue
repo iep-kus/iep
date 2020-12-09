@@ -1,12 +1,13 @@
-<template slot="img">
+<template>
     
+        
     <div class="coverphoto">
         <div class="logo">
-          <img :src='require(`@/assets/iep_logo_transp_stvorec.png`)' />
+        <img :src='require(`@/assets/carbon-dioxide.png`)' />
         </div>
             
         <div class="title">
-           Kalkulačka uhlíkovej stopy
+            <h1> Kalkulačka uhlíkovej stopy</h1>
         </div>
             
         <div class="undertitle">
@@ -20,9 +21,11 @@
             </router-link>
         </div>
     </div>
+        
 </template>
 
 <script>
+
 export default {
     name: 'EntranceModal',
 }
@@ -36,12 +39,13 @@ export default {
     height: 35rem;
 }
 
+
+
 .title {
     text-align: center;
     padding: 1vh;
     color: white;
-    font-size: 3rem;
-    font-weight: 1000;
+    font-family: 'montserrat-bold';
 }
 
 .undertitle {
@@ -55,21 +59,16 @@ export default {
 
   display: block;
   position: relative;
-  top: 5%;
+  top: 9%;
   margin-left: auto;
   margin-right: auto;
-  text-align: center; 
-  height: 20vh; 
+  text-align: center;  
+  margin-bottom: 4rem;
   
     
 }
-.logo img {
-    max-width:100%;
-    max-height:100%;
-    margin-left: auto;
-    margin-right: auto;
-    
-}
+
+
 
 .zacat {
     position: relative;
@@ -110,7 +109,6 @@ export default {
     }
    
 }
-
 
 
 
