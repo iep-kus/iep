@@ -73,7 +73,7 @@ export default {
 
   display: block;
   position: relative;
-  top: 5%;
+  margin-top: 2%;
   margin-left: auto;
   margin-right: auto;
   text-align: center; 

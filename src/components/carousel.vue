@@ -28,7 +28,10 @@ export default {
     data () {
     return {
         myOptions: {
+            autoplay: true,
+            autoplaySpeed: 5000,
             navButtons: true,
+            infinite: true,
             
             responsive: [
                 {
@@ -43,7 +46,7 @@ export default {
                     settings: {
                         navButtons: true,
                         dots: true,
-                        infinite: false
+                        infinite: true,
                     }
                 }
             ]
@@ -116,7 +119,7 @@ export default {
   .slide {
     display: block;
     object-fit: cover;
-    height: 700px;
+    height: 650px;
     width: 100%;
   }
 }
