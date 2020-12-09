@@ -32,16 +32,12 @@ export default {
 
 <style lang="scss" scoped>
 
-.coverphoto {
-    background: linear-gradient(180deg, rgba(206, 206, 206, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%),url('../assets/background-photo.jpg') 50% 50%;
-    background-size: cover;
-    height: 35rem;
-}
+
 
 .coverphoto_2 {
     background: linear-gradient(180deg, rgba(206, 206, 206, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%),url('../assets/background-auto-kalkulacka.jpg') 50% 50%;
     background-size: cover;
-    height: 35rem;
+    overflow: auto;
 }
 
 .title {
@@ -77,7 +73,6 @@ export default {
 
   display: block;
   position: relative;
-  top: 5%;
   margin-left: auto;
   margin-right: auto;
   text-align: center; 
@@ -103,6 +98,7 @@ export default {
     border: 0px solid #000000;
     color: white;
     transition: all .3s ease-in-out;
+    margin-bottom: 15rem;
 
     
     span {

@@ -2,11 +2,11 @@
     
     <div class="coverphoto">
         <div class="logo">
-          <img :src='require(`@/assets/iep_logo_transp_stvorec.png`)' />
+          <img :src='require(`@/assets/carbon-dioxide.png`)' />
         </div>
             
         <div class="title">
-            Kalkulačka uhlíkovej stopy
+           <h1>Kalkulačka uhlíkovej stopy</h1>
         </div>
             
         <div class="undertitle">
@@ -115,7 +115,7 @@ h4 {
     margin-top: 5%;
 }
 .coverphoto {
-    background: linear-gradient(180deg, rgba(206, 206, 206, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%),url('../assets/background-photo.jpg') 50% 50%;
+    background: linear-gradient(180deg, rgba(206, 206, 206, 0.54) 15.41%, rgba(1, 1, 1, 0.1) 100%),url('../assets/background-photo.jpg') 50% 50%;
     background-size: cover;
     overflow:auto;
 }
@@ -124,10 +124,8 @@ h4 {
     text-align: center;
     padding: 1vh;
     color: white;
-    font-size: 3rem;
-    font-weight: 1000;
+    font-family: 'montserrat-bold';
 }
-
 .undertitle {
     text-align: center;
     padding: 1vh;
@@ -138,24 +136,15 @@ h4 {
 }
 
 .logo {
-
   display: block;
   position: relative;
-  top: 5%;
+  margin-top: 4%;
   margin-left: auto;
   margin-right: auto;
-  text-align: center; 
-  height: 20vh; 
-  
-    
+  text-align: center;  
+  margin-bottom: 1rem;
 }
-.logo img {
-    max-width:100%;
-    max-height:100%;
-    margin-left: auto;
-    margin-right: auto;
-    
-}
+
 
 .scroll {   
     margin-top: 5rem;

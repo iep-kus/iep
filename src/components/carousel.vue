@@ -116,7 +116,7 @@ export default {
   .slide {
     display: block;
     object-fit: cover;
-    height: 750px;
+    height: 700px;
     width: 100%;
   }
 }
