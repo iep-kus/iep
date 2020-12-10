@@ -17,9 +17,9 @@
                         <div> 
                             <b-row style="margin-bottom: 2vh"  align-v="center">      
                                 <b-col cols="1" class="text-right">6.</b-col>
-                                <b-col cols="11" class="text-left" align-h="start">Aký zdroj energie alebo palivo primárne používate v domácnosti na vykurovanie a ohrev vody?
+                                <b-col cols="11" class="text-left" align-h="start">Aký zdroj energie alebo palivo primárne používa tvoja domácnosť na vykurovanie a ohrev vody?
                                     <b-icon-question-circle-fill font-scale="1.2" id="question6"></b-icon-question-circle-fill>
-                                    <b-tooltip target="question6" title="V prípade ak využívate rozdielne alebo viacero zdrojov energie na ohrev vody a vykurovanie, uveď konrétnu spotrebu po zakliknutí tlačidla podrobnejšie."  variant="dark"></b-tooltip>
+                                    <b-tooltip target="question6" title="V prípade ak využívaš rozdielne alebo viacero zdrojov energie na ohrev vody a vykurovanie, uveď konrétnu spotrebu po zakliknutí tlačidla podrobnejšie."  variant="dark"></b-tooltip>
                                 </b-col>
                             </b-row> 
                         </div> 
@@ -114,8 +114,8 @@
                     <div class="otazka">
                         <b-row  style="margin-bottom: 2vh" align-v="center">      
                             <b-col md="1" cols="1" class="text-right">7.</b-col>
-                            <b-col md="5" cols="11" class="text-left" align-h="start">Vyrábate si elektrickú energiu z obnoviteľných zdrojov? <b-icon-question-circle-fill font-scale="1.2" id="question7"></b-icon-question-circle-fill></b-col>
-                                <b-tooltip target="question7" title="Napríklad vyrábate energiu pomocou solárnych panelov"  variant="dark"></b-tooltip>
+                            <b-col md="5" cols="11" class="text-left" align-h="start">Vyrába si tvoja domácnosť elektrickú energiu z obnoviteľných zdrojov? <b-icon-question-circle-fill font-scale="1.2" id="question7"></b-icon-question-circle-fill></b-col>
+                                <b-tooltip target="question7" title="Napríklad vyrábaš energiu pomocou solárnych panelov"  variant="dark"></b-tooltip>
                             <b-col md="5" cols="10" offset-md="0" offset="1" class="text-left" >                         
                                 <b-form-radio-group
                                 class="pt-2"

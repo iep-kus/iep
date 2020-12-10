@@ -41,26 +41,26 @@
                         
                         
                         <b-col cols="12" lg="3">
-                            <a href="https://www.minzp.sk/iep/strategicke-materialy/envirostrategia-2030/" style="text-decoration: none;">    
-                                <div class="wrapper-publication">
-                                    <b-row align-h="center">
-                                        <div class="icon"><i class="fas fa-tasks"></i></div>
-                                    </b-row>
-                                    <b-row align-h="center">
-                                    <span><h4>Strategické materiály</h4></span>
-                                    </b-row>
-                                </div>
-                            </a>
-                        </b-col>
-
-                        <b-col cols="12" lg="3">
-                            <a href="https://www.minzp.sk/iep/publikacie/prezentacie-seminare/" style="text-decoration: none;">    
+                            <a href="https://www.minzp.sk/iep/publikacie/kalkulacky/" style="text-decoration: none;">    
                                 <div class="wrapper-publication">
                                     <b-row align-h="center">
                                         <div class="icon"><i class="fas fa-calculator"></i></div>
                                     </b-row>
                                     <b-row align-h="center">
                                     <span><h4>Kalkulačky</h4></span>
+                                    </b-row>
+                                </div>
+                            </a>
+                        </b-col>
+
+                        <b-col cols="12" lg="3">
+                            <a href="https://www.minzp.sk/iep/publikacie/manualy/" style="text-decoration: none;">    
+                                <div class="wrapper-publication">
+                                    <b-row align-h="center">
+                                        <div class="icon"><i class="fas fa-tools"></i></div>
+                                    </b-row>
+                                    <b-row align-h="center">
+                                    <span><h4>Manuály</h4></span>
                                     </b-row>
                                 </div>
                             </a>

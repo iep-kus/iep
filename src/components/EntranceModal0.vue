@@ -1,23 +1,24 @@
 <template>
-
-    <div class="coverphoto_2">
-        <div class="logo_2">
-            <i class="fas fa-charging-station"></i>
+    
+        
+    <div class="coverphoto">
+        <div class="logo">
+            <img :src='require(`@/assets/iep_logo_transp_stvorec.png`)' />
         </div>
             
         <div class="title">
-            <h1> Porovnanie áut na alternatívny a konvenčný pohon</h1>
+            <h1> Inštitút enviromentálnej politiky</h1>
         </div>
             
         <div class="undertitle">
-            <h4>Porovnaj si investičné a prevádzkové náklady áut na alternatívny a konvenčný pohon</h4>
+            <h4>Našim poslaním je poskytovať kvalitné a spoľahlivé analýzy a prognózy v oblasti životného prostredia pre slovenskú vládu a verejnosť</h4>
         </div>
         <div >
-            <a href="https://minzp-iep.shinyapps.io/auta/">
+            <router-link to="/Domov#onas">
                 <b-button class="zacat" >
-                    <span>Začať</span>
+                    <span>O nás</span>
                 </b-button>
-            </a>
+            </router-link>
         </div>
     </div>
         
@@ -26,38 +27,26 @@
 <script>
 
 export default {
-    name: 'EntranceModal2',
+    name: 'EntranceModal0',
 }
 </script>
 
 <style lang="scss" scoped>
 
-
-
-.coverphoto_2 {
-    background: linear-gradient(180deg, rgba(206, 206, 206, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%),url('../assets/background-auto-kalkulacka.jpg') 50% 50%;
+.coverphoto {
+    background: linear-gradient(180deg, rgba(56, 56, 56, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%), url('../assets/iep.jpg');
+    background-position: center 40%;
     background-size: cover;
     overflow: auto;
 }
 
+
+
 .title {
     text-align: center;
-    margin-left: 20%;
-    margin-right: 20%;
     padding: 1vh;
     color: white;
     font-family: 'montserrat-bold';
-}
-
-@media only screen and (max-width: 968px){
-  .title {
-    text-align: center;
-    margin-left: 0%;
-    margin-right: 0%;
-    padding: 1vh;
-    color: white;
-    font-family: 'montserrat-bold';
-    }
 }
 
 .undertitle {
@@ -65,26 +54,36 @@ export default {
     padding: 1vh;
     color: white;
     font-size: 2rem;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
+@media only screen and (max-width: 968px){
+  .undertitle {
+    text-align: center;
+    padding: 1vh;
+    color: white;
+    font-size: 2rem;
+    margin-left: 5%;
+    margin-right: 5%;
+    }   
+}
 
-
-.logo_2 {
+.logo {
 
   display: block;
   position: relative;
-  margin-top: 2%;
   margin-left: auto;
   margin-right: auto;
-  text-align: center; 
-  font-size: 6rem; 
-  color: #ff6600 ;
-  
+  text-align: center;  
+  margin-bottom: 7rem;
+  height: 2vh;
+  margin-top: 3%;
   
     
 }
+
+
 
 .zacat {
     position: relative;
@@ -101,7 +100,7 @@ export default {
     border: 0px solid #000000;
     color: white;
     transition: all .3s ease-in-out;
-    margin-bottom: 15rem;
+    margin-bottom: 20rem;
 
     
     span {

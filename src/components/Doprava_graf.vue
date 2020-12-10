@@ -40,7 +40,8 @@
                             <div class="otazka" >
                                 <b-row  style="margin-bottom:2vh" align-v="center">      
                                     <b-col md="1" cols="1" class="text-right">8.</b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko áut vlastníte v domácnosti?</b-col>
+                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko áut vlastní tvoja domácnosť?<b-icon-question-circle-fill font-scale="1" id="question8"></b-icon-question-circle-fill></b-col>
+                                    <b-tooltip target="question8" title="Zadaj len autá, ktoré využívaš aj ty." triggers="hover"  variant="dark"></b-tooltip>
                                     <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                         <b-form-spinbutton v-on:change="Resetauta() && countEmissions_doprava()"  id="pocetauta" v-model="pocetaut" min="0" max="5"></b-form-spinbutton>
                                     </b-col>

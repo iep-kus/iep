@@ -1,6 +1,9 @@
 <template>
     <agile :options="myOptions">
         <div class="slide">   
+            <EntranceModal0></EntranceModal0>
+        </div> 
+        <div class="slide">   
             <EntranceModal></EntranceModal>
         </div> 
 
@@ -19,12 +22,13 @@
 <script>
 import { VueAgile } from 'vue-agile'
 import EntranceModal from '@/components/EntranceModal.vue'
+import EntranceModal0 from '@/components/EntranceModal0.vue'
 import EntranceModal2 from '@/components/EntranceModal2.vue'
 import EntranceModal3 from '@/components/EntranceModal3.vue'
 
 export default {
     name: 'Carousel',
-    components: {agile: VueAgile,EntranceModal,EntranceModal2,EntranceModal3},
+    components: {agile: VueAgile,EntranceModal,EntranceModal0,EntranceModal2,EntranceModal3},
     data () {
     return {
         myOptions: {
@@ -71,10 +75,13 @@ export default {
   transition-duration: 0.3s;
   width: 80px;
 }
+
 .agile__nav-button:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
   opacity: 1;
 }
+
+
 .agile__nav-button--prev {
   left: 0;
 }

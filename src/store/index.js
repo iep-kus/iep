@@ -505,14 +505,14 @@ export default new Vuex.Store({
 
         
         if (state.vykurovanievybrate==5){
-            if (state.selected5=='prm'){
-                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*24*180/(3.2*1000*1212.96)))
+            if (state.selected5=='priestorový meter'){
+                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*8*120/(3.2*1000*1212.96)))
             }
             if (state.selected5=='t'){
-                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*24*180/(3.2*1000*1000)))
+                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*8*120/(3.2*1000*1000)))
             }
             if (state.selected5=='m3'){
-                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*24*180/(3.2*1000*910)))
+                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*8*120/(3.2*1000*910)))
             }
         }
         if (state.vykurovanievybrate!=5) { state.tuhe = '0'}

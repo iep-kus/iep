@@ -65,6 +65,8 @@ export default {
     padding: 1vh;
     color: white;
     font-size: 2rem;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 

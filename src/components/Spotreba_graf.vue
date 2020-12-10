@@ -34,7 +34,7 @@
                             <div class="otazka">
                                 <b-row v-if="details_spotreba==true" style="margin-bottom:2.5vh" align-v="start">      
                                     <b-col cols="1" class="text-right">16.</b-col>
-                                    <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko áut vlastníte v domácnosť?</b-col>
+                                    <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko áut vlastní tvoja domácnosť?</b-col>
                                     <b-col cols="10" xl="5" offset="1" offset-xl="0" class="text-left" align-h="start">
                                         <b-form-spinbutton v-on:change="countEmissions()" id="vlastnenieaut" v-model="vlastnenieaut" min="0" max="20"></b-form-spinbutton>
                                     </b-col>
@@ -42,7 +42,7 @@
                                 <div v-if="details_spotreba==true">
                                     <b-row  style="margin-bottom:2vh" align-v="start">    
                                         <b-col cols="1" xl="2" class="text-right"></b-col>
-                                        <b-col cols="10" xl="4" class="text-left">Priemerne po koľkých rokoch vymeníte auto za nové?
+                                        <b-col cols="10" xl="4" class="text-left">Priemerne po koľkých rokoch vymeníš auto za nové?
                                             <b-icon-question-circle-fill font-scale="1.2" id="question16"></b-icon-question-circle-fill>
                                             <b-tooltip target="question16" title="Príklad: Vlastním 2 autá. Jedno auto vymením po 14-tich rokoch a druhé vymením po 10-tich rokoch. To znamená, že priemerne mením autá po 12-tich rokoch. Do odpoveďe preto zadám číslo 12."  variant="dark"></b-tooltip>
                                         </b-col>
@@ -54,7 +54,7 @@
 
                                     <b-row  style="margin-bottom:2vh" align-v="start">    
                                         <b-col cols="1" xl="2" class="text-right"></b-col>
-                                        <b-col cols="10" xl="4" class="text-left">Prevažne kupujete autá:</b-col>
+                                        <b-col cols="10" xl="4" class="text-left">Prevažne kupuješ autá:</b-col>
                                         <b-col cols="10" xl="5" offset="1" offset-xl="0" class="text-right" > 
                                             <b-form-select v-on:change="countEmissions()" v-model="nakupauta" :options="nakupaut"></b-form-select>
                                         </b-col>
@@ -73,7 +73,7 @@
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
                                     <b-col cols="1" class="text-right">17.</b-col>
-                                    <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko z týchto spotrebičov vlastníte v domácnosti: chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia?</b-col>
+                                    <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko z týchto spotrebičov vlastní tvoja domácnosť: chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia?</b-col>
                                     <b-col cols="10" xl="5" offset="1" offset-xl="0" class="text-left" align-h="start">
                                         <b-form-spinbutton id="vlastneniebielatechnika" v-model="vlastneniebielatechnika" min="0" max="7" v-on:change="countEmissions()"></b-form-spinbutton>
                                     </b-col>
