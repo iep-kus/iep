@@ -111,7 +111,7 @@
                 <div class="share_button_item_facebook">
                     <ShareNetwork
                         network="facebook"
-                        :url="'https://iep-stranka.vercel.app'+$route.fullPath"
+                        :url="'https://iep.sk'+$route.fullPath"
                         title="Kalkulačka uhlíkovej stopy"
                         description="Každý z nás svojou aktivitou produkuje uhlíkovú stopu. Jej veľkosť závisí od toho čo robíš, ako žiješ a ako veľa cestuješ. Táto kalkulačka ju dokáže na základe tvojich odpovedí vypočítať. Tak poďme nato!"
                         :quote="'Moja uhlíková stopa je '+uhlikova_stopa_celkovo+' kg CO2e, z čoho až '+sugg_biggest_ratio+'% tvorí '+sugg_biggest_name+'! Vypočítaj si aj ty tvoju uhlíkovú stopu tu: https://iep-stranka.vercel.app/Kalkulacka  ' "
