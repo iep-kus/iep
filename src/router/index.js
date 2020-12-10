@@ -17,7 +17,7 @@ const routes = [
   {
     path: '/Domov',
     name: 'Home',
-    component: Home,
+    component: () => import('../views/Home.vue'),
   },
 
   {
