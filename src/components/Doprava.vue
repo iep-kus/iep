@@ -1293,13 +1293,12 @@ export default {
           { value: 4, text: 'Niekoľkokrát mesačne' },
           { value: 5, text: 'Niekoľkokrát ročne' },
           { value: 6, text: 'Vôbec' },
-          { value: 7, text: 'Raz za 2 týždne východ-západ a späť' }
         ], 
 
 
-        kilometre_cudzie_doprava: [15000,11888,8000,4000,1000,0,23400],
-        kilometre_hromadna_doprava: [3750,2972,2000,1000,250,0,23400],
-        kilometre_vlakova_doprava: [15000,11888,8000,4000,1000,0,23400],
+        kilometre_cudzie_doprava: [23776,17832,11888,2972,594,0],
+        kilometre_hromadna_doprava: [5944,4458,2972,743,149,0],
+        kilometre_vlakova_doprava: [11888,8916,5944,1486,297,0],
 
 
 
