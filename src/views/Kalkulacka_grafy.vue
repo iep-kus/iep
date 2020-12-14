@@ -10,6 +10,8 @@
         <div v-if="path_vypocitat" class="section"><CalculationForm_graf></CalculationForm_graf></div>
 
         <div v-if="path_vypocitat" class="section"><VysledokZmena></VysledokZmena></div>
+
+        <div v-if="path_vypocitat" class="section"><calcFooter></calcFooter></div>
         
 
     </div>
@@ -21,11 +23,12 @@ import VysledokForm from '@/components/VysledokForm'
 import CalculationForm_graf from '@/components/CalculationForm_graf'
 import VysledokFromLink from '@/components/VysledokFromLink'
 import VysledokZmena from '@/components/VysledokZmena'
+import calcFooter from '@/components/calcFooter'
 
 
 export default {
     name: 'Kalkulacka_grafy',
-    components: {CalculationForm_graf,VysledokForm,VysledokFromLink,VysledokZmena},
+    components: {CalculationForm_graf,VysledokForm,VysledokFromLink,VysledokZmena,calcFooter},
     
     computed: {
         path_vypocitat: {

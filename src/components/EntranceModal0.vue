@@ -3,7 +3,7 @@
         
     <div class="coverphoto">
         <div class="logo">
-            <img :src='require(`@/assets/iep_logo_transp_stvorec.png`)' />
+            <img :src='require(`@/assets/iep_logo_transp_stvorec2.png`)' />
         </div>
             
         <div class="title">
@@ -34,8 +34,8 @@ export default {
 <style lang="scss" scoped>
 
 .coverphoto {
-    background: linear-gradient(180deg, rgba(56, 56, 56, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%), url('../assets/iep.jpg');
-    background-position: center 40%;
+    background: linear-gradient(180deg, rgba(56, 56, 56, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%), url('../assets/iep_cover.jpg');
+    background-position: center center;
     background-size: cover;
     overflow: auto;
 }
@@ -76,9 +76,10 @@ export default {
   margin-left: auto;
   margin-right: auto;
   text-align: center;  
-  margin-bottom: 7rem;
+  margin-bottom: 6rem;
   height: 2vh;
   margin-top: 3%;
+  opacity: 0.85;
   
     
 }

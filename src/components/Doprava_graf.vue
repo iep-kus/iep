@@ -40,8 +40,8 @@
                             <div class="otazka" >
                                 <b-row  style="margin-bottom:2vh" align-v="center">      
                                     <b-col md="1" cols="1" class="text-right">8.</b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko áut vlastní tvoja domácnosť?<b-icon-question-circle-fill font-scale="1" id="question8"></b-icon-question-circle-fill></b-col>
-                                    <b-tooltip target="question8" title="Zadaj len autá, ktoré využívaš aj ty." triggers="hover"  variant="dark"></b-tooltip>
+                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko áut vlastní tvoja domácnosť?<b-icon-question-circle-fill font-scale="1" id="question8a"></b-icon-question-circle-fill></b-col>
+                                    <b-tooltip target="question8a" title="Zadaj len autá, ktoré využívaš aj ty." triggers="hover"  variant="dark"></b-tooltip>
                                     <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                         <b-form-spinbutton v-on:change="Resetauta() && countEmissions_doprava()"  id="pocetauta" v-model="pocetaut" min="0" max="5"></b-form-spinbutton>
                                     </b-col>
@@ -50,11 +50,11 @@
                                 <div v-if="details_doprava==false && pocetaut>0">
                                     <b-row  style="margin-bottom:2vh" align-v="center">      
                                         <b-col md="1" cols="1" class="text-right"></b-col>
-                                        <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívaš vlastné auto? <b-icon-question-circle-fill font-scale="1.2" id="question8"></b-icon-question-circle-fill></b-col>
+                                        <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívaš vlastné auto? <b-icon-question-circle-fill font-scale="1.2" id="question8b"></b-icon-question-circle-fill></b-col>
                                         <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                             <b-form-select v-on:change="countEmissions_doprava()" v-model="frekvenciavlastne" :options="frekvenciadoprava"></b-form-select>
                                         </b-col>
-                                        <b-tooltip target="question8" title="Cieľom je zistiť objem CO2e z automobilovej dopravy za posledný rok. Treba zahrnúť všetky cesty autom, cestovanie do práce ale aj cesty v roli spolujazdca. Nezapočítavajte služobné cesty."  variant="dark"></b-tooltip>
+                                        <b-tooltip target="question8b" title="Cieľom je zistiť objem CO2e z automobilovej dopravy za posledný rok. Treba zahrnúť všetky cesty autom, cestovanie do práce ale aj cesty v roli spolujazdca. Nezapočítavajte služobné cesty."  variant="dark"></b-tooltip>
                                     </b-row> 
                                 </div>
 

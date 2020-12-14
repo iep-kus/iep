@@ -32,7 +32,7 @@
                                 <h3>Celkovo by si vykonanými zmenami znížil svoju uhlíkovú stopu o {{-celk_zmena}} kg CO2e</h3>
                             </b-row>
                             <b-row align-h="center" align-v="center" v-if="celk_zmena==0" class="titles">
-                                <h3>Celkovo by sa vykonanými zmenami tvoja uhlíkova stopa nezmenila</h3>
+                                <h3>Sprav s tým niečo! Tvoja uhlíková stopa sa vôbec nezmenila.</h3>
                             </b-row>
                             <b-row align-h="center" align-v="center"  v-if="celk_zmena>0" class="titles">
                                 <h3>Celkovo by si vykonanými zmenami zvýšil svoju uhlíkovú stopu o {{celk_zmena}} kg CO2e</h3>

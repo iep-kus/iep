@@ -35,7 +35,8 @@ export default {
 
 
 .coverphoto {
-    background: linear-gradient(180deg, rgba(206, 206, 206, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%),url('../assets/background-odpady.jpg') 50% 50%;
+    background: linear-gradient(180deg, rgba(206, 206, 206, 0.54) 5.41%, rgba(1, 1, 1, 0) 100%),url('../assets/background-odpady.jpg');
+    background-position: 45% 50%;
     background-size: cover;
     overflow: auto;
 }

@@ -5,7 +5,7 @@
         <div class="background-cover"> 
             <div class="celkovo">  
                 <b-row class="nadpis-title"> 
-                    <b-col class="text-center"><h1>Moja celková uhlíková stopa je <strong>{{celkovo}}</strong> kilogramov CO2e ročne.</h1></b-col>
+                    <b-col class="text-center"><h1>Moja celková osobná uhlíková stopa je <strong>{{celkovo}}</strong> kilogramov CO2e ročne.</h1></b-col>
                 </b-row>
                 <div class="graf_celkovo">    
                     <b-row align-h="center" align-v="center">

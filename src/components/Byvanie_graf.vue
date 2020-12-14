@@ -20,7 +20,7 @@
                                         <b-col cols="1" class="text-right">6.</b-col>
                                         <b-col cols="11" class="text-left" align-h="start">Aké zdroje energie alebo palivo primárne používa tvoja domácnosť na vykurovanie a ohrev vody?
                                             <b-icon-question-circle-fill font-scale="1.2" id="question6"></b-icon-question-circle-fill>
-                                    <b-tooltip target="question6" title="V prípade ak využíva rozdielne alebo viacero zdrojov energie na ohrev vody a vykurovanie, uveď konrétnu spotrebu po zakliknutí tlačidla podrobnejšie."  variant="dark"></b-tooltip>
+                                    <b-tooltip target="question6" title="V prípade ak využívaš rozdielne alebo viacero zdrojov energie na ohrev vody a vykurovanie, uveď konrétnu spotrebu po zakliknutí tlačidla podrobnejšie."  variant="dark"></b-tooltip>
                                         </b-col>
                                     </b-row> 
                                 </div> 
