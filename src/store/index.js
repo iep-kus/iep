@@ -87,7 +87,7 @@ export default new Vuex.Store({
     
     frekvenciavlastne: 3,
     frekvenciacudzie: 5,
-    frekvenciamhd: 2,
+    frekvenciamhd: 4,
     frekvenciavlak: 5,
 
     kilometre1:11888,

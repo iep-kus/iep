@@ -7,6 +7,7 @@ import VueSocialSharing from 'vue-social-sharing'
 import JsonExcel from "vue-json-excel";
 import AOS from "aos";
 import "aos/dist/aos.css"
+import {BIconQuestionCircleFill} from 'bootstrap-vue'
  
 Vue.component("downloadExcel", JsonExcel);
 
@@ -21,7 +22,7 @@ import store from "./store";
 
 
 Vue.use(BootstrapVue)
-
+Vue.component('BIconQuestionCircleFill', BIconQuestionCircleFill)
 
 Vue.config.productionTip = false
 
