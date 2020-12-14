@@ -10,7 +10,7 @@
                         <b-col><p>V prípade akýchkoľvek nápadov na zlepšenie kalkulačky alebo pri nájdení nejakých chýb, neváhaj a kontaktuj nás na <a href = "mailto:kristina.mojzesova@enviro.gov.sk">kristina.mojzesova@enviro.gov.sk</a>.</p></b-col>    
                     </b-row>
                     <b-row align-v="center">
-                        <b-col><p>Výpočty majú len informatívny charakter a nie sú právne záväzné. Pre zhliadnutie metodiky ku kalkulačke kliknite <a href = "https://www.minzp.sk/iep/publikacie/manualy/">tu.</a></p></b-col>    
+                        <b-col><p>Výpočty majú len informatívny charakter a nie sú právne záväzné. Pre zhliadnutie metodiky ku kalkulačke kliknite <a  href="/metodika.pdf" download="Kalkulacka_uhlikovej_stopy_metodika">tu.</a></p></b-col>    
                     </b-row>
                    
                 </div>    
