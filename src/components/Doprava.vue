@@ -1454,29 +1454,24 @@ export default {
         },
 
         emisie_letecka() {
-            if(this.details_doprava==false) {
-                return this.pocetletov*394.31/2
-            }
-            
             let letectvo = [this.let1,this.let2,this.let3,this.let4,this.let5,this.let6,this.let7,this.let8,this.let9,this.let10,this.let11,this.let12,this.let13,this.let14,this.let15,this.let16,this.let17,this.let18,this.let19,this.let20]
             let m = [this.m1,this.m2,this.m3,this.m4,this.m5,this.m6,this.m7,this.m8,this.m9,this.m10,this.m11,this.m12,this.m13,this.m14,this.m15,this.m16,this.m17,this.m18,this.m19,this.m20]
             let s = [this.s1,this.s2,this.s3,this.s4,this.s5,this.s6,this.s7,this.s8,this.s9,this.s10,this.s11,this.s12,this.s13,this.s14,this.s15,this.s16,this.s17,this.s18,this.s19,this.s20]
             let e = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             let i=0
-            if(this.details_doprava==true) {
-                for(i = 0; i<= 19; i++)
-                {
-                    if(m[i]==2) {
-                       e[i] = s[i]*letectvo[i]*this.ef_letectvo(letectvo[i])
-                    }
-                    if(m[i]==1) {
-                        if(letectvo[i]!=0){
-                            e[i] = s[i]*(letectvo[i]*846.27 - 386.48)*this.ef_letectvo(letectvo[i]*846.27 - 386.48)
-                        }
+           
+            for(i = 0; i<= 19; i++)
+            {
+                if(m[i]==2) {
+                    e[i] = s[i]*letectvo[i]*this.ef_letectvo(letectvo[i])
+                }
+                if(m[i]==1) {
+                    if(letectvo[i]!=0){
+                        e[i] = s[i]*(letectvo[i]*846.27 - 386.48)*this.ef_letectvo(letectvo[i]*846.27 - 386.48)
                     }
                 }
-                return e[0]+ e[1]+ e[2]+ e[3]+ e[4]+ e[5]+ e[6]+ e[7]+ e[8]+e[9]+ e[10]+ e[11]+ e[12]+ e[13]+ e[14]+ e[15]+ e[16]+ e[17]+ e[18]+ e[19]
             }
+            return e[0]+ e[1]+ e[2]+ e[3]+ e[4]+ e[5]+ e[6]+ e[7]+ e[8]+e[9]+ e[10]+ e[11]+ e[12]+ e[13]+ e[14]+ e[15]+ e[16]+ e[17]+ e[18]+ e[19]
         },
 
         ef_letectvo(value) {

@@ -120,83 +120,83 @@ export default new Vuex.Store({
 
     let1:2,
     m1: 1,
-    s1: 2,
+    s1: 1,
 
-    let2:0,
+    let2:2,
     m2: 1,
-    s2: 2,
+    s2: 1,
 
     let3:0,
     m3: 1,
-    s3: 2,
+    s3: 1,
 
     let4:0,
     m4: 1,
-    s4: 2,
+    s4: 1,
 
     let5:0,
     m5: 1,
-    s5: 2,
+    s5: 1,
 
     let6:0,
     m6: 1,
-    s6: 2,
+    s6: 1,
 
     let7:0,
     m7: 1,
-    s7: 2,
+    s7: 1,
 
     let8:0,
     m8: 1,
-    s8: 2,
+    s8: 1,
 
     let9:0,
     m9: 1,
-    s9: 2,
+    s9: 1,
 
     let10:0,
     m10: 1,
-    s10: 2,
+    s10: 1,
 
     let11:0,
     m11: 1,
-    s11: 2,
+    s11: 1,
 
     let12:0,
     m12: 1,
-    s12: 2,
+    s12: 1,
 
     let13:0,
     m13: 1,
-    s13: 2,
+    s13: 1,
 
     let14:0,
     m14: 1,
-    s14: 2,
+    s14: 1,
 
     let15:0,
     m15: 1,
-    s15: 2,
+    s15: 1,
 
     let16:0,
     m16: 1,
-    s16: 2,
+    s16: 1,
 
     let17:0,
     m17: 1,
-    s17:2,
+    s17: 1,
 
     let18:0,
     m18: 1,
-    s18: 2,
+    s18: 1,
 
     let19:0,
     m19: 1,
-    s19: 2,
+    s19: 1,
 
     let20:0,
     m20: 1,
-    s20: 2,
+    s20: 1,
 
 
 
@@ -724,62 +724,62 @@ export default new Vuex.Store({
         if(value==0){state.let1=0}
         if(value==1){
             state.let2=0
-            state.m1 = 2
-            state.let1=1366}
+            state.m1 = 1
+            state.let1=2}
         if(value==2){state.let3=0
-            state.m2 = 2
-            state.let2=1366}
+            state.m2 = 1
+            state.let2=2}
         if(value==3){state.let4=0
-            state.m3 = 2
-            state.let3=1366}
+            state.m3 = 1
+            state.let3=2}
         if(value==4){state.let5=0
-            state.m4 = 2
-            state.let4=1366}
+            state.m4 = 1
+            state.let4=2}
         if(value==5){state.let6=0
-            state.m5 = 2
-            state.let5=1366}
+            state.m5 = 1
+            state.let5=2}
         if(value==6){state.let7=0
-            state.m6 = 2
-            state.let6=1366}
+            state.m6 = 1
+            state.let6=2}
         if(value==7){state.let8=0
-            state.m7 = 2
-            state.let7=1366}
+            state.m7 = 1
+            state.let7=2}
         if(value==8){state.let9=0
-            state.m8 = 2
-            state.let8=1366}
+            state.m8 = 1
+            state.let8=2}
         if(value==9){state.let10=0
-            state.m9 = 2
-            state.let9=1366}
+            state.m9 = 1
+            state.let9=2}
         if(value==10){state.let11=0
-            state.m10 = 2
-            state.let10=1366}
+            state.m10 = 1
+            state.let10=2}
         if(value==11){state.let12=0
-            state.m11 = 2
-            state.let11=1366}
+            state.m11 = 1
+            state.let11=2}
         if(value==12){state.let13=0
-            state.m12 = 2
-            state.let12=1366}
+            state.m12 = 1
+            state.let12=2}
         if(value==13){state.let14=0
-            state.m13 = 2
-            state.let13=1366}
+            state.m13 = 1
+            state.let13=2}
         if(value==14){state.let15=0
-            state.m14 = 2
-            state.let14=1366}
+            state.m14 = 1
+            state.let14=2}
         if(value==15){state.let16=0
-            state.m15 = 2
-            state.let15=1366}
+            state.m15 = 1
+            state.let15=2}
         if(value==16){state.let17=0
-            state.m16 = 2
-            state.let16=1366}
+            state.m16 = 1
+            state.let16=2}
         if(value==17){state.let18=0
-            state.m17 = 2
-            state.let17=1366}
+            state.m17 = 1
+            state.let17=2}
         if(value==18){state.let19=0
-            state.m18 = 2
-            state.let18=1366}
+            state.m18 = 1
+            state.let18=2}
         if(value==19){state.let20=0
-            state.m19 = 2
-            state.let19=1366}
+            state.m19 = 1
+            state.let19=2}
 
         
     },
