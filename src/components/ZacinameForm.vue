@@ -51,13 +51,14 @@
                 <div class="otazka">
                     <b-row  style="margin-bottom:2vh" align-v="center">      
                         <b-col md="1" cols="1" class="text-right">4.</b-col>
-                        <b-col v-if="typ=='bytovom dome'" md="5" cols="10" class="text-left" align-h="start">Obytná podlahová plocha môjho bytu:</b-col>
-                        <b-col v-if="typ=='rodinnom dome'" md="5" cols="10" class="text-left" align-h="start">Obytná podlahová plocha môjho domu:</b-col>
+                        <b-col v-if="typ=='bytovom dome'" md="5" cols="10" class="text-left" align-h="start">Obytná podlahová plocha môjho bytu: <b-icon-question-circle-fill font-scale="1" id="question4"></b-icon-question-circle-fill></b-col>
+                        <b-col v-if="typ=='rodinnom dome'" md="5" cols="10" class="text-left" align-h="start">Obytná podlahová plocha môjho domu: <b-icon-question-circle-fill font-scale="1" id="question4"></b-icon-question-circle-fill></b-col>
                         <b-col md="5" cols="10" offset-md="0" offset="1" class="text-left" > 
                             <b-form-group>
                                 <b-form-input id="rozloha" v-model="rozloha"></b-form-input>
                             </b-form-group>
                         </b-col>
+                        <b-tooltip target="question4" title="V prípade ak chceš zadať desatinné číslo použi namiesto čiarky bodku. Rovnako to používaj v rámci celej kalkulačky. "  variant="dark"></b-tooltip>
                     </b-row>
                 </div>
 

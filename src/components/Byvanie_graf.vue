@@ -639,6 +639,7 @@ export default {
     top: 5vh;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 5rem;
     vertical-align: middle;
     padding: .75rem;
     width: 12rem;

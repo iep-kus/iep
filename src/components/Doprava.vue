@@ -49,7 +49,7 @@
                                     <b-col cols="10">
                                         <div class="carcard">
                                             <div class="carcardtext">
-                                                <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
+                                                <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                     <b-col class="text-left" >
                                                         <div class="nadpis">Auto 1</div>
                                                     </b-col>
@@ -61,22 +61,22 @@
                                                     </b-col>
                                                 </b-row>
                                                 
-                                                <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
-                                                    <b-col  cols=12 lg="4" class="text-center" >
+                                                <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
+                                                    <b-col  cols=12 xl="4" class="text-center" >
                                                         <h4> </h4>
                                                     </b-col>
-                                                    <b-col  cols=12 lg="4" class="text-left" >
+                                                    <b-col  cols=12 xl="4" class="text-left" >
                                                         Aká je reálna spotreba tohto auta?
                                                     </b-col>
-                                                    <b-col cols=4 lg="1" class="text-left" >
+                                                    <b-col cols=4 xl="1" class="text-left" >
                                                     <b-form-input  id="spotreba1" v-model="spotreba1"></b-form-input>
                                                     </b-col>
-                                                    <b-col  cols=8 lg="3" class="text-left" >
+                                                    <b-col  cols=8 xl="3" class="text-left" >
                                                     <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo1" :options="palivo"></b-form-select>
                                                     </b-col>
                                                 </b-row>
                                                 
-                                                <b-row align-v="center" cols="1" cols-lg="3">
+                                                <b-row align-v="center" cols="1" cols-xl="3">
                                                     <b-col class="text-left" >
                                                     
                                                     </b-col>
@@ -99,7 +99,7 @@
                                         <b-col cols="10">
                                             <div class="carcard">
                                                 <div class="carcardtext">
-                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
+                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                         <b-col class="text-left" >
                                                             <div class="nadpis">Auto 2</div>
                                                         </b-col>
@@ -111,22 +111,22 @@
                                                         </b-col>
                                                     </b-row>
                                                     
-                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
-                                                        <b-col  cols=12 lg="4" class="text-center" >
+                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
+                                                        <b-col  cols=12 xl="4" class="text-center" >
                                                             <h4> </h4>
                                                         </b-col>
-                                                        <b-col  cols=12 lg="4" class="text-left" >
+                                                        <b-col  cols=12 xl="4" class="text-left" >
                                                             Aká je reálna spotreba tohto auta?
                                                         </b-col>
-                                                        <b-col cols=4 lg="1" class="text-left" >
+                                                        <b-col cols=4 xl="1" class="text-left" >
                                                         <b-form-input id="spotreba2" v-model="spotreba2"></b-form-input>
                                                         </b-col>
-                                                        <b-col  cols=8 lg="3" class="text-left" >
+                                                        <b-col  cols=8 xl="3" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo2" :options="palivo"></b-form-select>
                                                         </b-col>
                                                     </b-row>
                                                     
-                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
+                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                         <b-col class="text-center" >
                                                             <h4> </h4>
                                                         </b-col>
@@ -149,7 +149,7 @@
                                         <b-col cols="10">
                                             <div class="carcard">
                                                 <div class="carcardtext">
-                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
+                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                         <b-col class="text-left" >
                                                             <div class="nadpis">Auto 3</div>
                                                         </b-col>
@@ -161,22 +161,22 @@
                                                         </b-col>
                                                     </b-row>
                                                     
-                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
-                                                        <b-col  cols=12 lg="4" class="text-center" >
+                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
+                                                        <b-col  cols=12 xl="4" class="text-center" >
                                                             <h4> </h4>
                                                         </b-col>
-                                                        <b-col  cols=12 lg="4" class="text-left" >
+                                                        <b-col  cols=12 xl="4" class="text-left" >
                                                             Aká je reálna spotreba tohto auta?
                                                         </b-col>
-                                                        <b-col cols=4 lg="1" class="text-left" >
+                                                        <b-col cols=4 xl="1" class="text-left" >
                                                         <b-form-input id="spotreba3" v-model="spotreba3"></b-form-input>
                                                         </b-col>
-                                                        <b-col  cols=8 lg="3" class="text-left" >
+                                                        <b-col  cols=8 xl="3" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo3" :options="palivo"></b-form-select>
                                                         </b-col>
                                                     </b-row>
                                                     
-                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
+                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                         <b-col class="text-center" >
                                                             <h4> </h4>
                                                         </b-col>
@@ -199,7 +199,7 @@
                                         <b-col cols="10">
                                             <div class="carcard">
                                                 <div class="carcardtext">
-                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
+                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                         <b-col class="text-left" >
                                                             <div class="nadpis">Auto 4</div>
                                                         </b-col>
@@ -211,22 +211,22 @@
                                                         </b-col>
                                                     </b-row>
                                                     
-                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
-                                                        <b-col  cols=12 lg="4" class="text-center" >
+                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
+                                                        <b-col  cols=12 xl="4" class="text-center" >
                                                             <h4> </h4>
                                                         </b-col>
-                                                        <b-col  cols=12 lg="4" class="text-left" >
+                                                        <b-col  cols=12 xl="4" class="text-left" >
                                                             Aká je reálna spotreba tohto auta?
                                                         </b-col>
-                                                        <b-col cols=4 lg="1" class="text-left" >
+                                                        <b-col cols=4 xl="1" class="text-left" >
                                                         <b-form-input id="spotreba4" v-model="spotreba4"></b-form-input>
                                                         </b-col>
-                                                        <b-col  cols=8 lg="3" class="text-left" >
+                                                        <b-col  cols=8 xl="3" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo4" :options="palivo"></b-form-select>
                                                         </b-col>
                                                     </b-row>
                                                     
-                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-lg="3">
+                                                    <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                         <b-col class="text-center" >
                                                             <h4> </h4>
                                                         </b-col>
@@ -249,7 +249,7 @@
                                         <b-col cols="10">
                                             <div class="carcard">
                                                 <div class="carcardtext">
-                                                    <b-row align-v="center" cols="1" cols-lg="3">
+                                                    <b-row align-v="center" cols="1" cols-xl="3">
                                                         <b-col class="text-left" >
                                                             <div class="nadpis">Auto 5</div>
                                                         </b-col>
@@ -261,22 +261,22 @@
                                                         </b-col>
                                                     </b-row>
                                                     
-                                                    <b-row align-v="center" cols="1" cols-lg="3">
-                                                        <b-col  cols=12 lg="4" class="text-center" >
+                                                    <b-row align-v="center" cols="1" cols-xl="3">
+                                                        <b-col  cols=12 xl="4" class="text-center" >
                                                             <h4> </h4>
                                                         </b-col>
-                                                        <b-col  cols=12 lg="4" class="text-left" >
+                                                        <b-col  cols=12 xl="4" class="text-left" >
                                                             Aká je reálna spotreba tohto auta?
                                                         </b-col>
-                                                        <b-col cols=4 lg="1" class="text-left" >
+                                                        <b-col cols=4 xl="1" class="text-left" >
                                                         <b-form-input id="spotreba5" v-model="spotreba5"></b-form-input>
                                                         </b-col>
-                                                        <b-col  cols=8 lg="3" class="text-left" >
+                                                        <b-col  cols=8 xl="3" class="text-left" >
                                                         <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo5" :options="palivo"></b-form-select>
                                                         </b-col>
                                                     </b-row>
                                                     
-                                                    <b-row align-v="center" cols="1" cols-lg="3">
+                                                    <b-row align-v="center" cols="1" cols-xl="3">
                                                         <b-col class="text-center" >
                                                             <h4> </h4>
                                                         </b-col>

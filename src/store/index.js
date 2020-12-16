@@ -562,6 +562,29 @@ export default new Vuex.Store({
     
     setdetails_doprava(state, value) {
         state.details_doprava = value;
+        if(state.details_doprava== false){
+            state.s1 = 1;
+            state.s2 = 1;
+            state.s3 = 1;
+            state.s4 = 1;
+            state.s5 = 1;
+            state.s6 = 1;
+            state.s7 = 1;
+            state.s8 = 1;
+            state.s9 = 1;
+            state.s10 = 1;
+            state.s11 = 1;
+            state.s12 = 1;
+            state.s13 = 1;
+            state.s14 = 1;
+            state.s15 = 1;
+            state.s16 = 1;
+            state.s17 = 1;
+            state.s18 = 1;
+            state.s19 = 1;
+            state.s20 = 1;
+
+        }
     },
     
     setcudzieauto(state, value) {

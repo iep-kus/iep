@@ -79,7 +79,7 @@ export default {
   margin-bottom: 6rem;
   height: 2vh;
   margin-top: 3%;
-  opacity: 0.85;
+  opacity: 1;
   
     
 }
