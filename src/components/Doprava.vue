@@ -298,7 +298,7 @@
 
                     <div class="otazka">
                         <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
-                            <b-col md="1" cols="1" class="text-right">8b.</b-col>
+                            <b-col md="1" cols="1" class="text-right"></b-col>
                             <b-col md="5" cols="11" class="text-left" align-h="start">Koľko kilometrov si za posledný rok cestoval cudzími autami?</b-col>
                             <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                 <b-form-input v-model="cudzieauto" placeholder="Vložte údaj"></b-form-input>
@@ -307,7 +307,7 @@
                         </b-row>
                         <div v-if="details_doprava==false">
                             <b-row  style="margin-bottom:2vh" align-v="center">      
-                                <b-col md="1" cols="1" class="text-right">8b.</b-col>
+                                <b-col md="1" cols="1" class="text-right"></b-col>
                                 <b-col md="5" cols="11" class="text-left" align-h="start">Ako často si využíval dopravu cudzím autom za posledný rok (BlaBlaCar, Uber, Taxi, kamarát...)?</b-col>
                                 <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                     <b-form-select v-model="frekvenciacudzie" v-on:change="countEmissions_doprava()" :options="frekvenciadoprava"></b-form-select>
@@ -1429,7 +1429,7 @@ export default {
                 for(i = 1; i<= 7; i++)
                 {
                     if(this.frekvenciamhd==i) {
-                       return this.kilometre_hromadna_doprava[i-1] * (0.39592801+0.02991)/2
+                       return this.kilometre_hromadna_doprava[i-1] * (0.039592801+0.02991)/2
                     }
                 }
             }

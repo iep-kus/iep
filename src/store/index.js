@@ -7,10 +7,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
  state: {
     
-    uhlikova_stopa_celkovo:5614,
+    uhlikova_stopa_celkovo:5559,
 
     uhlikova_stopa_byvanie:673,
-    uhlikova_stopa_doprava:1472,
+    uhlikova_stopa_doprava:1417,
     uhlikova_stopa_jedlo:2215,
     uhlikova_stopa_spotreba:804,
     uhlikova_stopa_ziv_styl:451,
@@ -75,44 +75,44 @@ export default new Vuex.Store({
 
     details_doprava: false,
          
-    cudzieauto:0,
-    autobus:100,
+    cudzieauto:594,
+    autobus:28.6,
     kmhodautobus: 'km',
-    vlak:100,
+    vlak:28.6,
     kmhodvlak:'km',
     typvlak: 'elektrický',
     pocetletov:2,
-    mhd:2,
-    kmhodmhd:'hod',
+    mhd:28.6,
+    kmhodmhd:'km',
     
     frekvenciavlastne: 3,
     frekvenciacudzie: 5,
-    frekvenciamhd: 4,
+    frekvenciamhd: 3,
     frekvenciavlak: 5,
 
     kilometre1:11888,
-    spotreba1:6,
-    osoby1:3,
+    spotreba1:5.8,
+    osoby1:2,
     palivo1:1,
 
 
     kilometre2:0,
-    spotreba2:6,
+    spotreba2:5.6,
     osoby2:2,
     palivo2:1,
 
     kilometre3:0,
-    spotreba3:6,
+    spotreba3:5.6,
     osoby3:2,
     palivo3:1,
 
     kilometre4:0,
-    spotreba4:6,
+    spotreba4:5.6,
     osoby4:2,
     palivo4:1,
 
     kilometre5:0,
-    spotreba5:6,
+    spotreba5:5.6,
     osoby5:2,
     palivo5:1,
 
