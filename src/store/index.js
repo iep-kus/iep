@@ -7,13 +7,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
  state: {
     
-    uhlikova_stopa_celkovo:6300,
+    uhlikova_stopa_celkovo:5614,
 
     uhlikova_stopa_byvanie:673,
-    uhlikova_stopa_doprava:2651,
+    uhlikova_stopa_doprava:1472,
     uhlikova_stopa_jedlo:2215,
     uhlikova_stopa_spotreba:804,
-    uhlikova_stopa_ziv_styl:515,
+    uhlikova_stopa_ziv_styl:451,
     
     
     
@@ -71,7 +71,7 @@ export default new Vuex.Store({
 
     emisie_byvanie: [210.6,449.7375,520.35,159.6,137.2],
 
-    emisie_doprava: [1199,633,31,788],
+    emisie_doprava: [871,158,9,434],
 
     details_doprava: false,
          
