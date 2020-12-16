@@ -11,7 +11,7 @@ export default new Vuex.Store({
 
     uhlikova_stopa_byvanie:673,
     uhlikova_stopa_doprava:2651,
-    uhlikova_stopa_jedlo:1561,
+    uhlikova_stopa_jedlo:2215,
     uhlikova_stopa_spotreba:804,
     uhlikova_stopa_ziv_styl:515,
     
@@ -52,8 +52,8 @@ export default new Vuex.Store({
     zateplenie_konverzia: 1, 
     byt_ziadne: 1.27388535,
     byt_uplne: 0.72611465,
-    dom_ziadne: 1.53846154,
-    dom_uplne: 0.46153846,
+    dom_ziadne: 1.27388535,
+    dom_uplne: 0.72611465,
 
     centralne_jednotky: 0.092307,
     elektrika_jednotky: 0.1577,
@@ -92,7 +92,7 @@ export default new Vuex.Store({
 
     kilometre1:11888,
     spotreba1:6,
-    osoby1:2,
+    osoby1:3,
     palivo1:1,
 
 
@@ -203,7 +203,7 @@ export default new Vuex.Store({
 
 
     
-    emisie_jedlo: [210.6,449.7375,520.35,159.6,91,128.945],
+    emisie_jedlo: [210.6,449.7375,520.35,159.6,91,128.945, 608],
     
     vegan: 'Nie',
         
@@ -211,7 +211,7 @@ export default new Vuex.Store({
     ostatne: 1,
     mliecne: 1,
     syry: 2,
-    zelenina: 1,
+    zelenina: 0,
     alkohol: 1,
 
 

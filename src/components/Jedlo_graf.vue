@@ -35,7 +35,8 @@
                             <div>
                                 <b-row  style="margin-bottom:2.5vh" align-v="center">      
                                     <b-col cols="1" class="text-right">15.</b-col>
-                                    <b-col cols="10" class="text-left" align-h="start">Ako často priemerne konzumuješ:</b-col>
+                                    <b-col cols="10" class="text-left" align-h="start">Ako často priemerne konzumuješ: <b-icon-question-circle-fill font-scale="1.2" id="question15"></b-icon-question-circle-fill></b-col>
+                                    <b-tooltip target="question15" title="Do kategórié ostatné (vidíš na grafe) zaradzujeme napríklad čokoládu, kávu, cukor, oleje atď." variant="dark"></b-tooltip>
                                 </b-row> 
 
                                 <div>
@@ -179,11 +180,11 @@ export default {
 
         chartData :{
         
-            labels: ["Hovädzie mäso","Ostatné mäso","mliečne výrobky a vajcia","Syry","Zelenina","Alkohol"],
+            labels: ["Hovädzie mäso","Ostatné mäso","mliečne výrobky a vajcia","Syry","Zelenina","Alkohol","Ostatné"],
             datasets: [
             {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE','#AD4B41'],
-                data: [210.6,449.7375,520.35,159.6,137.2,128.945],
+                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#8CAE98','#AD4B41','#BEBEBE'],
+                data: [210.6,449.7375,520.35,159.6,137.2,128.945,608],
             }
             ],
         },
@@ -202,15 +203,15 @@ export default {
         countEmissions() {
             if(this.vegan=='Nie'){
                 this.chartData.datasets[0].data = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),
-                    Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol])
+                    Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol]),608
                 ];
             }
             if(this.vegan=='Áno'){
-                this.chartData.datasets[0].data = [0,0,0,0,1206,Math.round(this.alkohol_emisie[this.alkohol])
+                this.chartData.datasets[0].data = [0,0,0,0,598,Math.round(this.alkohol_emisie[this.alkohol]),608
                 ];
             }
             this.emisie_jedlo = this.chartData.datasets[0].data;
-            this.uhlikova_stopa_jedlo = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]+this.chartData.datasets[0].data[5]);
+            this.uhlikova_stopa_jedlo = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]+this.chartData.datasets[0].data[5]+this.chartData.datasets[0].data[6]);
             this.updateChart();
             
             

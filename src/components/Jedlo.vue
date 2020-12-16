@@ -174,14 +174,14 @@ export default {
         countEmissions() {
             if(this.vegan=='Nie'){
                 this.emisie_jedlo = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),
-                    Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol])
+                    Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol]),608
                 ];
             }
             if(this.vegan=='Áno'){
-                this.emisie_jedlo = [0,0,0,0,1206,Math.round(this.alkohol_emisie[this.alkohol])
+                this.emisie_jedlo = [0,0,0,0,598,Math.round(this.alkohol_emisie[this.alkohol]), 608
                 ];
             }
-            this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]);
+            this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]+this.emisie_jedlo[6]);
             
         },
         

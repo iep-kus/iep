@@ -40,7 +40,7 @@
                             <div class="otazka" >
                                 <b-row  style="margin-bottom:2vh" align-v="center">      
                                     <b-col md="1" cols="1" class="text-right">8.</b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko áut vlastní tvoja domácnosť?<b-icon-question-circle-fill font-scale="1" id="question8a"></b-icon-question-circle-fill></b-col>
+                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko áut vlastní tvoja domácnosť? <b-icon-question-circle-fill font-scale="1.2" id="question8a"></b-icon-question-circle-fill></b-col>
                                     <b-tooltip target="question8a" title="Zadaj len autá, ktoré využívaš aj ty." triggers="hover"  variant="dark"></b-tooltip>
                                     <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                         <b-form-spinbutton v-on:change="Resetauta() && countEmissions_doprava()"  id="pocetauta" v-model="pocetaut" min="0" max="5"></b-form-spinbutton>
@@ -1356,6 +1356,7 @@ export default {
         kilometre_hromadna_doprava: [5944,4458,2972,743,149,0],
         kilometre_vlakova_doprava: [11888,8916,5944,1486,297,0],
 
+
         palivo: [
          
           { value: 1, text: 'litrov benzínu na 100 km' },
@@ -1434,7 +1435,7 @@ export default {
             if(this.details_doprava==false){
                 for(k = 0; k<= 6; k++){
                     if(this.frekvenciavlastne==k+1) {
-                       return this.kilometre_cudzie_doprava[k] * this.ef_cudzie * this.pocetaut
+                       return this.kilometre_cudzie_doprava[k] * this.ef_cudzie * this.pocetaut/2
                     }
                 }}
             if(this.details_doprava==true) {

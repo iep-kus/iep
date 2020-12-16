@@ -99,12 +99,12 @@
                                     <div>
                                         <b-row  style="margin-bottom: 2vh" align-v="center">    
                                             <b-col md="2" cols="1" class="text-right"></b-col>
-                                            <b-col md="4" cols="11" class="text-left">Tuhé palivo:</b-col>
+                                            <b-col md="4" cols="11" class="text-left">Tuhé palivo: <b-icon-question-circle-fill font-scale="1.2" id="question6tuhe"></b-icon-question-circle-fill></b-col>
                                             <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
                                                 <b-form-input v-model="tuhe" placeholder="Vložte spotrebu"></b-form-input>
                                             </b-col>
                                             <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected5" :options="['priestorový meter', 'm3' , 't']"></b-form-select></b-col>
-                                
+                                            <b-tooltip target="question6tuhe" title="Pri tuhom palive predpokladáme kúrenie drevom, ktoré z pohľadu individuálnej spotreby má podľa oficiálnych štatistík nenulový emisný faktor. Zároveň z pohľadu národnej bilancie je tento zdroj emisne neutrálny. "  variant="dark"></b-tooltip>
                                         </b-row>
                                     </div>
                                 </div>
