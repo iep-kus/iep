@@ -97,22 +97,22 @@ export default new Vuex.Store({
 
 
     kilometre2:0,
-    spotreba2:5.6,
+    spotreba2:5.8,
     osoby2:2,
     palivo2:1,
 
     kilometre3:0,
-    spotreba3:5.6,
+    spotreba3:5.8,
     osoby3:2,
     palivo3:1,
 
     kilometre4:0,
-    spotreba4:5.6,
+    spotreba4:5.8,
     osoby4:2,
     palivo4:1,
 
     kilometre5:0,
-    spotreba5:5.6,
+    spotreba5:5.8,
     osoby5:2,
     palivo5:1,
 
