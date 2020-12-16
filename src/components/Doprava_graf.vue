@@ -493,7 +493,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col lg="2" class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s1" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group class="pt-2" v-model="s1" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -533,7 +533,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s2" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group class="pt-2" v-model="s2" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -573,7 +573,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s3" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group class="pt-2" v-model="s3" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -613,7 +613,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s4" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group class="pt-2" v-model="s4" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -653,7 +653,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s5" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group class="pt-2" v-model="s5" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -693,7 +693,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s6" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s6" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -733,7 +733,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s7" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s7" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -773,7 +773,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s8" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s8" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -813,7 +813,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s9" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s9" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -853,7 +853,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s10" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s10" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -893,7 +893,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s11" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s11" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -933,7 +933,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s12" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s12" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -973,7 +973,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s13" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s13" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -1013,7 +1013,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s14" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s14" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -1053,7 +1053,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s15" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s15" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -1093,7 +1093,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s16" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s16" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -1133,7 +1133,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s17" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s17" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -1173,7 +1173,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s18" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group class="pt-2" v-model="s18" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -1213,7 +1213,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s19" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s19" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -1241,7 +1241,7 @@
                                                             <b-form-input id="let20" v-model="let20"></b-form-input>
                                                         </b-col>
                                                         <b-col lg=2 cols="6" class="text-left" >
-                                                            <b-form-select v-on:change="countEmissions_doprava()" v-model="m20" :options="lietanie"></b-form-select>
+                                                            <b-form-select  v-model="m20" :options="lietanie"></b-form-select>
                                                         </b-col>
                                                     </b-row>
                                                     
@@ -1253,7 +1253,7 @@
                                                         Bol daný let spiatočný?
                                                         </b-col>
                                                         <b-col class="text-left" >
-                                                            <b-form-radio-group v-on:change="countEmissions_doprava()" class="pt-2" v-model="s20" :options="spiatocnost"></b-form-radio-group>
+                                                            <b-form-radio-group  class="pt-2" v-model="s20" :options="spiatocnost"></b-form-radio-group>
                                                         </b-col>
                                                         <b-col></b-col>
                                                     </b-row>
@@ -2242,6 +2242,68 @@ export default {
             this.countEmissions_doprava()           
         },
         spotreba5() {
+            this.countEmissions_doprava()           
+        },
+
+        s1() {
+            this.countEmissions_doprava()           
+        },
+        s2() {
+            this.countEmissions_doprava()           
+        },
+        s3() {
+            this.countEmissions_doprava()           
+        },
+        s4() {
+            this.countEmissions_doprava()           
+        },
+        s5() {
+            this.countEmissions_doprava()           
+        },
+        s6() {
+            this.countEmissions_doprava()           
+        },
+        s7() {
+            this.countEmissions_doprava()           
+        },
+        s8() {
+            this.countEmissions_doprava()           
+        },
+        s9() {
+            this.countEmissions_doprava()           
+        },
+
+        s10() {
+            this.countEmissions_doprava()           
+        },
+        s11() {
+            this.countEmissions_doprava()           
+        },
+        s12() {
+            this.countEmissions_doprava()           
+        },
+        s13() {
+            this.countEmissions_doprava()           
+        },
+        s14() {
+            this.countEmissions_doprava()           
+        },
+        s15() {
+            this.countEmissions_doprava()           
+        },
+        s16() {
+            this.countEmissions_doprava()           
+        },
+        s17() {
+            this.countEmissions_doprava()           
+        },
+        s18() {
+            this.countEmissions_doprava()           
+        },
+        s19() {
+            this.countEmissions_doprava()           
+        },
+        s20() {
             this.countEmissions_doprava()           
         },
     },
