@@ -7,7 +7,7 @@
         </div>
             
         <div class="title">
-            <h1> Inštitút enviromentálnej politiky</h1>
+            <h1> Inštitút environmentálnej politiky</h1>
         </div>
             
         <div class="undertitle">
