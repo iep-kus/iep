@@ -50,7 +50,7 @@
                             <div>
                                 <b-row  style="margin-bottom: 2vh" align-v="center" v-if="vykurovanievybrate=='1'" >    
                                     <b-col md="2" cols="1" class="text-right"></b-col>
-                                    <b-col md="4" cols="11" class="text-left">Centrálne vykurovanie:</b-col>
+                                    <b-col md="4" cols="11" class="text-left">Centrálne vykurovanie(tepláreň):</b-col>
                                     <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
                                         <b-form-input v-model="centralne" placeholder="Vložte spotrebu"></b-form-input>
                                     </b-col>
@@ -193,7 +193,7 @@ export default {
                                                                                                                                                                                                                                                                                 
         vykurovanie: [
          
-          { value: 1, text: 'Centrálne vykurovanie' },
+          { value: 1, text: 'Centrálne vykurovanie (tepláreň)' },
           { value: 2, text: 'Elektrina' },          
           { value: 3, text: 'Zemný plyn' },
           { value: 4, text: 'LPG' },

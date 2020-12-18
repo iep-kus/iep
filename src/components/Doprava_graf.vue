@@ -13,7 +13,7 @@
                     
                     <b-row  style="margin-bottom:2vh" align-h="start" align-v="center"  class="text-left">   
                         <b-col offset-md="0.5" align-h="start"><h1>Doprava <b-icon-question-circle-fill font-scale="1" id="doprava-title"></b-icon-question-circle-fill></h1></b-col>
-                        <b-tooltip target="doprava-title" title="Vrámci celej tejto kategórie prosím nezapočítavaj služobné cesty."  variant="dark"></b-tooltip>
+                        <b-tooltip target="doprava-title" title="Vrámci celej tejto kategórie prosím nezapočítavaj služobné cesty. Pokiaľ chodíš pešo/bicyklom (bezemisné formy dopravy), frekvencia a najazdené kilometre v ostatných formách dopravy budú nižšie a teda tvoja uhlíková stopa z dopravy bude nižšia."  variant="dark"></b-tooltip>
                     </b-row> 
                     
                     
@@ -40,8 +40,8 @@
                             <div class="otazka" >
                                 <b-row  style="margin-bottom:2vh" align-v="center">      
                                     <b-col md="1" cols="1" class="text-right">8.</b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko áut vlastní tvoja domácnosť? <b-icon-question-circle-fill font-scale="1.2" id="question8a"></b-icon-question-circle-fill></b-col>
-                                    <b-tooltip target="question8a" title="Zadaj len autá, ktoré využívaš aj ty." triggers="hover"  variant="dark"></b-tooltip>
+                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko áut/motocyklov vlastní tvoja domácnosť? <b-icon-question-circle-fill font-scale="1.2" id="question8a"></b-icon-question-circle-fill></b-col>
+                                    <b-tooltip target="question8a" title="Zadaj len autá/motocykle, ktoré využívaš aj ty. Ak máš jedno auto a jeden motocykel zadaj ich súčet, teda číslo 2." triggers="hover"  variant="dark"></b-tooltip>
                                     <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                         <b-form-spinbutton v-on:change="Resetauta() && countEmissions_doprava()"  id="pocetauta" v-model="pocetaut" min="0" max="5"></b-form-spinbutton>
                                     </b-col>
@@ -68,7 +68,7 @@
                                                     <div class="carcardtext">
                                                         <b-row align-v="center" style="margin-bottom:2vh" cols="1" >
                                                             <b-col class="text-left" >
-                                                                <div class="nadpis">Auto 1</div>
+                                                                <div class="nadpis">Auto/motocykel 1</div>
                                                             </b-col>
                                                             <b-col class="text-left" >
                                                                 <p>Koľko kilometrov ročne najazdíš?</p>
@@ -83,7 +83,7 @@
                                                                 <h4> </h4>
                                                             </b-col>
                                                             <b-col  cols=12  class="text-left" >
-                                                                Aká je reálna spotreba tohto auta?
+                                                                Aká je jeho reálna spotreba?
                                                             </b-col>
                                                             <b-col cols=4 class="text-left" >
                                                             <b-form-input   id="spotreba1" v-model="spotreba1"></b-form-input>
@@ -98,7 +98,7 @@
                                                             
                                                             </b-col>
                                                             <b-col class="text-left" >
-                                                                <p>Aký je priemerný počet osôb v aute?</p>
+                                                                <p>Aký je priemerný počet osôb v aute/motocykli?</p>
                                                             </b-col>
                                                             <b-col class="text-left" >
                                                             <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby1" v-model="osoby1" min="0" max="9"></b-form-spinbutton>
@@ -118,7 +118,7 @@
                                                         <div class="carcardtext">
                                                             <b-row align-v="center" style="margin-bottom:2vh" cols="1">
                                                                 <b-col class="text-left" >
-                                                                    <div class="nadpis">Auto 2</div>
+                                                                    <div class="nadpis">Auto/motocykel 2</div>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <p>Koľko kilometrov ročne najazdíš?</p>
@@ -133,7 +133,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col  cols=12 class="text-left" >
-                                                                    Aká je reálna spotreba tohto auta?
+                                                                    Aká je jeho reálna spotreba?
                                                                 </b-col>
                                                                 <b-col cols=4 class="text-left" >
                                                                 <b-form-input  id="spotreba2" v-model="spotreba2"></b-form-input>
@@ -148,7 +148,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                    <p>Aký je priemerný počet osôb v aute?</p>
+                                                                    <p>Aký je priemerný počet osôb v aute/motocykli?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                 <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby2" v-model="osoby2" min="0" max="9"></b-form-spinbutton>
@@ -168,7 +168,7 @@
                                                         <div class="carcardtext">
                                                             <b-row align-v="center" style="margin-bottom:2vh" cols="1">
                                                                 <b-col class="text-left" >
-                                                                    <div class="nadpis">Auto 3</div>
+                                                                    <div class="nadpis">Auto/motocykel 3</div>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <p>Koľko kilometrov ročne najazdíš?</p>
@@ -183,7 +183,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col  cols=12  class="text-left" >
-                                                                    Aká je reálna spotreba tohto auta?
+                                                                   Aká je jeho reálna spotreba?
                                                                 </b-col>
                                                                 <b-col cols=4 class="text-left" >
                                                                 <b-form-input  id="spotreba3" v-model="spotreba3"></b-form-input>
@@ -198,7 +198,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                    <p>Aký je priemerný počet osôb v aute?</p>
+                                                                    <p>Aký je priemerný počet osôb v aute/motocykli?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                 <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby3" v-model="osoby3" min="0" max="9"></b-form-spinbutton>
@@ -218,7 +218,7 @@
                                                         <div class="carcardtext">
                                                             <b-row align-v="center" style="margin-bottom:2vh" cols="1" >
                                                                 <b-col class="text-left" >
-                                                                    <div class="nadpis">Auto 4</div>
+                                                                    <div class="nadpis">Auto/motocykel 4</div>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <p>Koľko kilometrov ročne najazdíš?</p>
@@ -233,7 +233,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col  cols=12  class="text-left" >
-                                                                    Aká je reálna spotreba tohto auta?
+                                                                    Aká je jeho reálna spotreba?
                                                                 </b-col>
                                                                 <b-col cols=4 class="text-left" >
                                                                 <b-form-input  id="spotreba4" v-model="spotreba4"></b-form-input>
@@ -248,7 +248,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                    <p>Aký je priemerný počet osôb v aute?</p>
+                                                                    <p>Aký je priemerný počet osôb v aute/motocykli?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                 <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby4" v-model="osoby4" min="0" max="9"></b-form-spinbutton>
@@ -268,7 +268,7 @@
                                                         <div class="carcardtext">
                                                             <b-row align-v="center" cols="1" >
                                                                 <b-col class="text-left" >
-                                                                    <div class="nadpis">Auto 5</div>
+                                                                    <div class="nadpis">Auto/motocykel 5</div>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <p>Koľko kilometrov ročne najazdíš?</p>
@@ -283,7 +283,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col  cols=12 class="text-left" >
-                                                                    Aká je reálna spotreba tohto auta?
+                                                                    Aká je jeho reálna spotreba?
                                                                 </b-col>
                                                                 <b-col cols=4 class="text-left" >
                                                                 <b-form-input  id="spotreba5" v-model="spotreba5"></b-form-input>
@@ -298,7 +298,7 @@
                                                                     <h4> </h4>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                    <p>Aký je priemerný počet osôb v aute?</p>
+                                                                    <p>Aký je priemerný počet osôb v aute/motocykli?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                 <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby5" v-model="osoby5" min="0" max="9"></b-form-spinbutton>
@@ -316,7 +316,7 @@
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
                                     <b-col md="1" cols="1" class="text-right"></b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko kilometrov si za posledný rok cestoval cudzími autami?</b-col>
+                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko kilometrov si za posledný rok cestoval cudzími autami (BlaBlaCar, Uber, Taxi, kamarát...)?</b-col>
                                     <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                         <b-form-input v-model="cudzieauto" placeholder="Vložte údaj"></b-form-input>
                                     </b-col>

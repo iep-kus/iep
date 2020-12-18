@@ -142,7 +142,7 @@
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
                                     <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==true">19.</b-col>
                                     <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==false">18.</b-col>
-                                    <b-col xl="5" cols="10" class="text-left" align-h="start">Koľko zariadení z osobnej elektroniky vlastníš? (mobil, notebook, tablet, smart hodinky, power banka, čítačka kníh ...)</b-col>
+                                    <b-col xl="5" cols="10" class="text-left" align-h="start">Koľko zariadení z osobnej elektroniky vlastníš? (mobil, notebook, tablet, smart hodinky, elektrobežka, power banka, čítačka kníh ...)</b-col>
                                     <b-col xl="5" cols="10" offset="1" offset-xl="0" class="text-left" align-h="start">
                                         <b-form-spinbutton id="vlastnenietechnika" v-model="vlastnenietechnika" min="0" max="20" v-on:change="countEmissions()">
                                     </b-form-spinbutton></b-col>
