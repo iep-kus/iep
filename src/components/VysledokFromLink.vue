@@ -32,7 +32,7 @@
 
 
                                 <div class="suggestion" v-if="byv_zat">
-                                    Vyzerá to, že uhlíková stopa tvojho bývania je výrazne vyššia ako stopa bývania bežného Slováka. Skús zvážiť investíciu do zníženia energetickej náročnosti Vášho bývania.
+                                    Vyzerá to, že uhlíková stopa tvojho bývania je výrazne vyššia ako stopa bývania bežného Slováka. Skús zvážiť investíciu do zníženia energetickej náročnosti tvojho bývania.
                                 </div>
                                 <div class="suggestion" v-if="byv">
                                     Vyzerá to, že uhlíková stopa tvojho bývania je výrazne vyššia ako stopa bežného Slováka. Jednou z možností na jej zníženie by mohla byť zmena typu kúrenia. 
@@ -66,7 +66,7 @@
                                     Nie len tvoje aktivity doma ale aj dovolenkovanie mimo domu môže výrazne zvýšiť tvoju uhlíkovú stopu. Čím vyššia kvalita služieb, tým vyššia uhlíková stopa. 
                                 </div>
                                 <div class="suggestion" v-if="ziv_odp">
-                                    Zdá sa, že uhlíková stopa tvojho odpadu je vyššia ako u priemerného Slováka. Skús viac triediť! Pomôže to planéte, tvojmu mestu no takisto aj tebe. 
+                                   Skús viac triediť! Pomôže to planéte, tvojmu mestu no takisto aj tebe. 
                                 </div>
 
 
@@ -371,9 +371,9 @@ export default {
         update_suggestions() {
             let diff = [0,0,0,0,0,0,0,0,0,0,0];
             let emissions = [this.uhlikova_stopa_byvanie,this.emisie_doprava[0],this.emisie_doprava[3],this.emisie_jedlo[0],this.emisie_jedlo[1],this.emisie_jedlo[2],this.emisie_jedlo[3],this.uhlikova_stopa_spotreba,this.emisie_ziv_styl[0],this.emisie_ziv_styl[1],this.emisie_ziv_styl[2]]
-            const average_slovak = [2084,1199,789,250,470,530,120,815, 200 , 195 , 115]
+            const average_slovak = [2084,1199,789,250,470,530,120,815, 200 ,250 , 200]
             for (var i = 0; i < average_slovak.length; i++) {
-                diff[i] = emissions[i]-average_slovak[i]; 
+                diff[i] = emissions[i]/average_slovak[i]; 
             }
             const maxIndex = this.indexOfMax(diff);
             

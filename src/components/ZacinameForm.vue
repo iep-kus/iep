@@ -109,6 +109,7 @@ export default {
           { value: 12, text: 'Galanta' },
           { value: 13, text: 'Gelnica' },
           { value: 14, text: 'Hlohovec' },
+          { value: 72, text: 'Humenné' },
           { value: 15, text: 'Ilava' },
           { value: 16, text: 'Kežmarok' },
           { value: 17, text: 'Komárno' },
