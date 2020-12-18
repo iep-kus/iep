@@ -20,7 +20,7 @@
                                         <b-col cols="1" class="text-right">6.</b-col>
                                         <b-col cols="11" class="text-left" align-h="start">Aké zdroje energie alebo palivo primárne používa tvoja domácnosť na vykurovanie a ohrev vody?
                                             <b-icon-question-circle-fill font-scale="1.2" id="question6"></b-icon-question-circle-fill>
-                                    <b-tooltip target="question6" title="V prípade ak využívaš rozdielne alebo viacero zdrojov energie na ohrev vody a vykurovanie, uveď konrétnu spotrebu po zakliknutí tlačidla podrobnejšie."  variant="dark"></b-tooltip>
+                                    <b-tooltip target="question6" title="V prípade ak využívaš rozdielne alebo viacero zdrojov energie na ohrev vody a vykurovanie, uveď konrétnu spotrebu po zakliknutí tlačidla podrobnejšie. V prípade ak používaš tepelné čerpadlo, zaklikni elektrinu a následne po zakliknutí tlačidla podrobnejšie uprav jej spotrebu podľa skutočnosti."  variant="dark"></b-tooltip>
                                         </b-col>
                                     </b-row> 
                                 </div> 
@@ -70,6 +70,19 @@
                                             <b-col md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="selected2" :options="['kWh', '€']"></b-form-select></b-col>
                                 
                                         </b-row>
+                                        <b-row  style="margin-bottom: 2vh" align-v="center">    
+                                            <b-col md="2" cols="1" class="text-right"></b-col>
+                                            <b-col md="4" cols="11" class="text-left">Odoberáš elektrinu z OZE? <b-icon-question-circle-fill font-scale="1.2" id="question6oze"></b-icon-question-circle-fill></b-col>
+                                            <b-col md="5" cols="10" offset-md="0" offset="1" class="text-left" >                         
+                                                <b-form-radio-group
+                                                class="pt-2"
+                                                v-model="Oze"
+                                                :options="['Áno', 'Nie']"
+                                                ></b-form-radio-group>
+                                            </b-col>
+                                             <b-tooltip target="question6oze" title="Dodávateľ elektriny garantuje pôvod elektriny zo 100 % obnoviteľných zdrojov."  variant="dark"></b-tooltip>
+                                        </b-row>
+
                                     </div>
 
                                     <div>
@@ -115,7 +128,7 @@
                             <div class="otazka">
                                 <b-row  style="margin-bottom: 2vh" align-v="center">      
                                     <b-col md="1" cols="1" class="text-right">7.</b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Vyrába si tvoja domácnosť elektrickú energiu z obnoviteľných zdrojov?</b-col>
+                                    <b-col md="5" cols="11" class="text-left" align-h="start">Vyrába tvoja domácnosť elektrickú energiu z obnoviteľných zdrojov?</b-col>
                                     <b-col md="5" cols="10" offset-md="0" offset="1" class="text-left" >                         
                                         <b-form-radio-group
                                         class="pt-2"
@@ -125,10 +138,10 @@
                                     </b-col>
                                 </b-row>    
                                 
-                                <div v-if="obnovitelnezdroje=='Áno' && details_byvanie==true">
+                                <div v-if="obnovitelnezdroje=='Áno'">
                                     <b-row  style="margin-bottom: 2vh" align-v="center">      
                                         <b-col md="2" cols="1" class="text-right"></b-col>
-                                        <b-col md="4" cols="11" class="text-left">Vlastná spotreba:</b-col>
+                                        <b-col md="4" cols="11" class="text-left">Vyrábam:</b-col>
                                         <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
                                             <b-form-input v-on:change="fillData()" v-model="vlastna" placeholder="Vložte spotrebu"></b-form-input>
                                         </b-col>
@@ -136,14 +149,7 @@
                                         
                                         
                                     </b-row>   
-                                    <b-row  style="margin-bottom: 2vh" align-v="center"> 
-                                        <b-col md="2" cols="1" class="text-right"></b-col>
-                                        <b-col md="4" cols="11" class="text-left">Dodávam do siete:</b-col>
-                                        <b-col md="3" cols="6" offset="1" offset-md="0" class="text-right" > 
-                                            <b-form-input v-on:change="fillData()" v-model="dodavam"  placeholder="Vložte spotrebu"></b-form-input>
-                                        </b-col>
-                                        <b-col  md="2" cols="5" class="text-left"><b-form-select v-on:change="fillData()" v-model="dodavamkwhe" :options="['kWh']"></b-form-select></b-col>
-                                    </b-row>
+                                    
                 
                                 </div>
 
@@ -294,12 +300,18 @@ export default {
             
         emisie_elektrika() {
             
-            if (this.selected2=='kWh') {
-                return 0.169;
+            if(this.Oze=='Nie'){
+                if (this.selected2=='kWh') {
+                    return 0.169;
+                }
+                else {
+                    return 0.169/0.1577;
+                }
             }
             else {
-                return 0.169/0.1577;
+                return 0;
             }
+
         },
             
         emisie_plyn() {
@@ -337,7 +349,7 @@ export default {
         },
 
         dodavanie() {
-            return (Number(this.dodavam)+Number(this.vlastna))*0.169
+            return (Number(this.vlastna))*0.169
         },
 
         
@@ -367,6 +379,10 @@ export default {
         tuhe() {
             this.fillData();
         },
+        Oze() {
+            this.fillData();
+        },
+        
         
     },
     
@@ -563,6 +579,15 @@ export default {
             },
             set(value) {
                 this.$store.commit('setdetails_byvanie',value)
+            }
+        },
+
+        Oze: {
+            get() {
+                return this.$store.state.Oze
+            },
+            set(value) {
+                this.$store.commit('setOze',value)
             }
         },
 

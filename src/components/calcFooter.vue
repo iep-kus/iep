@@ -12,6 +12,9 @@
                     <b-row align-v="center">
                         <b-col><p>Výpočty majú len informatívny charakter a nie sú právne záväzné. Pre zhliadnutie metodiky ku kalkulačke kliknite <a  href="https://www.minzp.sk/files/iep/metodika_uhlikova_stopa.pdf">tu.</a></p></b-col>    
                     </b-row>
+                    <b-row align-v="center">
+                        <b-col><p>Upozornenie: kalkulačka má obmezenia funkčnosti v niektorých prehliadačoch a ich režimoch (Explorer, Vivaldi, Inkognito na Firefoxe). Odporúčame použiť Chrome, Operu, Edge alebo Safari.</p></b-col>    
+                    </b-row>
                    
                 </div>    
             </div>

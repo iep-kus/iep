@@ -33,6 +33,8 @@ export default new Vuex.Store({
     lpg: '0',
     tuhe: '0',
 
+    Oze: 'Nie',
+
     selected1:'kWh',
     selected2:'kWh',
     selected3:'kWh',
@@ -417,7 +419,9 @@ export default new Vuex.Store({
         state.details_byvanie = value;
     },
 
-
+    setOze(state, value) {
+        state.Oze = value;
+    },
 
 
     

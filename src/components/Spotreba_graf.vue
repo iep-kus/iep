@@ -39,7 +39,7 @@
                                         <b-form-spinbutton v-on:change="countEmissions()" id="vlastnenieaut" v-model="vlastnenieaut" min="0" max="20"></b-form-spinbutton>
                                     </b-col>
                                 </b-row>
-                                <div v-if="details_spotreba==true">
+                                <div v-if="details_spotreba==true && vlastnenieaut!=0">
                                     <b-row  style="margin-bottom:2vh" align-v="start">    
                                         <b-col cols="1" xl="2" class="text-right"></b-col>
                                         <b-col cols="10" xl="4" class="text-left">Priemerne po koľkých rokoch vymeníš auto za nové?
@@ -78,7 +78,7 @@
                                         <b-form-spinbutton id="vlastneniebielatechnika" v-model="vlastneniebielatechnika" min="0" max="7" v-on:change="countEmissions()"></b-form-spinbutton>
                                     </b-col>
                                 </b-row>
-                                <div v-if="details_spotreba==true && pocetaut!=0">
+                                <div v-if="details_spotreba==true">
                                     <b-row  style="margin-bottom:2vh" align-v="start">    
                                         <b-col cols="1" xl="2" class="text-right"></b-col>
                                         <b-col cols="10" xl="4"  class="text-left">Priemerne ako často ich meníte?

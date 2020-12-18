@@ -23,7 +23,7 @@
                                 <b-form-spinbutton v-on:change="countEmissions()" id="vlastnenieaut" v-model="vlastnenieaut" min="0" max="20"></b-form-spinbutton>
                             </b-col>
                         </b-row>
-                        <div v-if="details_spotreba==true && pocetaut!=0">
+                        <div v-if="details_spotreba==true && vlastnenieaut!=0">
                             <b-row  style="margin-bottom:2vh" align-v="start">    
                                 <b-col cols="1" lg="2" class="text-right"></b-col>
                                 <b-col cols="10" lg="4" class="text-left">Priemerne po koľkých rokoch vymeníš auto za nové?
