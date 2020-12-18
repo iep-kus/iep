@@ -210,8 +210,14 @@ export default {
                 this.chartData.datasets[0].data = [0,0,0,0,598,Math.round(this.alkohol_emisie[this.alkohol]),608
                 ];
             }
-            this.emisie_jedlo = this.chartData.datasets[0].data;
+            
+            
             this.uhlikova_stopa_jedlo = Math.round(this.chartData.datasets[0].data[0]+this.chartData.datasets[0].data[1]+this.chartData.datasets[0].data[2]+this.chartData.datasets[0].data[3]+this.chartData.datasets[0].data[4]+this.chartData.datasets[0].data[5]+this.chartData.datasets[0].data[6]);
+            
+            if(this.uhlikova_stopa_jedlo<1214){this.chartData.datasets[0].data[4]=this.chartData.datasets[0].data[4]+(1214-this.uhlikova_stopa_jedlo)
+            this.uhlikova_stopa_jedlo=1214}
+            
+            this.emisie_jedlo = this.chartData.datasets[0].data;
             this.updateChart();
             
             

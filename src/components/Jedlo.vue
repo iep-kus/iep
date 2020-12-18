@@ -183,6 +183,9 @@ export default {
             }
             this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]+this.emisie_jedlo[6]);
             
+            
+            if(this.uhlikova_stopa_jedlo<1214){this.emisie_jedlo[4]=this.emisie_jedlo[4]+(1214-this.uhlikova_stopa_jedlo)
+            this.uhlikova_stopa_jedlo=1214}
         },
         
         
