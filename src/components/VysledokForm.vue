@@ -72,12 +72,7 @@
 
                             
 
-
-
-                                <div class="suggestion" v-if="stromy>4">
-                                    Ak by si každoročne nasadil <strong>{{stromy}}</strong> stromov, tvoja uhlíková stopa by bola nulová :)
-                                </div>
-                                <div class="suggestion" v-if="stromy<=4">
+                                <div class="suggestion" v-if="stromy<4">
                                     Ak by si každoročne nasadil <strong>{{stromy}}</strong> stromy, tvoja uhlíková stopa by bola nulová :)
                                 </div>
                             </div> 
@@ -478,7 +473,7 @@ export default {
                 
                 
                 ];
-            console.log(celkovo)
+            
             return celkovo
         },
 
@@ -536,9 +531,12 @@ export default {
             this.sugg_biggest_name = section_names[this.celkovo_sugg_biggest]
             this.sugg_lowest_name = section_names[this.celkovo_sugg_lowest]
             
-
-            this.stromy = Math.round(this.celkovo/1100);
-            
+            if(this.celkovo<=3500){
+                this.stromy = Math.round(this.celkovo/1100);
+            }
+            else {
+                this.stromy = 4;
+            }
         },
         indexOfMax(arr) {
             if (arr.length === 0) {

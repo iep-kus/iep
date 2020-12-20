@@ -70,9 +70,7 @@
                                 </div>
 
 
-                                <div class="suggestion" v-if="stromy>4">
-                                    Ak by si každoročne nasadil <strong>{{stromy}}</strong> stromov, tvoja uhlíková stopa by bola nulová :)
-                                </div>
+                                
                                 <div class="suggestion" v-if="stromy<4">
                                     Ak by si každoročne nasadil <strong>{{stromy}}</strong> stromy, tvoja uhlíková stopa by bola nulová :)
                                 </div>
@@ -300,7 +298,6 @@ export default {
             this.update_suggestions()
             this.updateChart()
 
-            console.log(this.emisie_byvanie)
         },
         updateChart() {
             this.$refs.celkovo_porovnanie_chart.update();    
@@ -331,7 +328,12 @@ export default {
             }
             
 
-            this.stromy = Math.round(this.celkovo/1100);
+            if(this.celkovo<=3500){
+                this.stromy = Math.round(this.celkovo/1100);
+            }
+            else {
+                this.stromy = 4;
+            }
             
         },
         indexOfMax(arr) {
@@ -413,7 +415,7 @@ export default {
             if(maxIndex!=9 && maxIndex2!=9){this.ziv_dov=false}
             if(maxIndex!=10 && maxIndex2!=10){this.ziv_odp=false}
 
-            console.log(diff,maxIndex,maxIndex2,this.byv,this.ziv_obl)
+            
 
         },
     }
