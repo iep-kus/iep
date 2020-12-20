@@ -73,7 +73,7 @@
                             
 
                                 <div class="suggestion" v-if="stromy<4">
-                                    Ak by si každoročne nasadil <strong>{{stromy}}</strong> stromy, tvoja uhlíková stopa by bola nulová :)
+                                    Na to, aby si dosiahol uhlíkovo neutrálny život, by si musel ročne vysadiť <strong>{{stromy}}</strong> stromy (najlepšie na vlastnej záhrade, v meste, aleji, remízkach). :)
                                 </div>
                             </div> 
                         </b-col>
