@@ -14,7 +14,7 @@
                             <b-col><p>Miznú nám lesy? Ako na nízkouhlíkové Slovensko? O koľko žijú ľudia kratšie kvôli zlej kvalite životného prostredia a aké to má ekonomické dôsledky? Ako by malo fungovať zálohovanie PET fliaš a plechoviek? Oplatí sa elektromobil?</p></b-col>    
                         </b-row>
                         <b-row align-v="center">
-                            <b-col><p>Momentálne nemáme voľné žiadne pozície ale ak ťa naša práca zaujala, pošli svoje CV (motivačný list dobrovoľný) na <a href = "mailto:martin.halus@enviro.gov.sk">martin.halus@enviro.gov.sk</a> a pri vhodnej príležitosti ťa budeme kontaktovať.</p></b-col>    
+                            <b-col><p>Momentálne nemáme voľné žiadne pozície ale ak ťa naša práca zaujala, pošli svoje CV (motivačný list dobrovoľný) na  <a href = "mailto:martin.halus@enviro.gov.sk">martin.halus@enviro.gov.sk</a> a pri vhodnej príležitosti ťa budeme kontaktovať.</p></b-col>    
                         </b-row>
 
                         <b-row align-v="center">
