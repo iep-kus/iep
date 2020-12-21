@@ -373,7 +373,7 @@ export default {
         update_suggestions() {
             let diff = [0,0,0,0,0,0,0,0,0,0,0];
             let emissions = [this.uhlikova_stopa_byvanie,this.emisie_doprava[0],this.emisie_doprava[3],this.emisie_jedlo[0],this.emisie_jedlo[1],this.emisie_jedlo[2],this.emisie_jedlo[3],this.uhlikova_stopa_spotreba,this.emisie_ziv_styl[0],this.emisie_ziv_styl[1],this.emisie_ziv_styl[2]]
-            const average_slovak = [2084,1199,789,250,470,530,120,815, 200 ,250 , 200]
+            const average_slovak = [2084,1199,789,220,400,530,120,815, 200 ,250 , 200]
             for (var i = 0; i < average_slovak.length; i++) {
                 diff[i] = emissions[i]/average_slovak[i]; 
             }
