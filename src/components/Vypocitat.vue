@@ -31,7 +31,7 @@ export default {
     methods: {
         async save_data() {
             
-            console.log(this.emisie_byvanie,this.emisie_doprava,this.emisie_jedlo,this.emisie_spotreba,this.emisie_ziv_styl)
+            
             this.$store.commit('setpath_vypocitat')
             this.uhlikova_stopa_celkovo = this.uhlikova_stopa_byvanie + this.uhlikova_stopa_doprava + this.uhlikova_stopa_jedlo + this.uhlikova_stopa_spotreba + this.uhlikova_stopa_ziv_styl
             try {
