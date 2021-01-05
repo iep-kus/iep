@@ -1341,7 +1341,11 @@ export default {
         ef_bioetanol: 0.00837,
         ef_elektrika: 0.169,
         
-        
+        ef_hromadna: [0.039592801, 0.02991],
+        ef_vlak: [0.0149058, 0.0781968, 0.03072855],
+        pocet_tyzdnov: 52,
+        ef_letecka: [0.0754, 0.1184],
+
       }
     },
 
@@ -1418,18 +1422,18 @@ export default {
             let emisie_autobus = 0
             let emisie_mhd = 0
             if(this.details_doprava==true){ 
-                if(this.kmhodautobus=='km') {emisie_autobus = 0.039592801*this.autobus}
-                if(this.kmhodautobus=='hod'){ emisie_autobus = 40.2*0.039592801*this.autobus}
-                if(this.kmhodmhd == 'km') {emisie_mhd = 0.02991*this.mhd}
-                if(this.kmhodmhd == 'hod') {emisie_mhd = 16.89*0.02991*this.mhd}
-                return 52*emisie_mhd + 52*emisie_autobus
+                if(this.kmhodautobus=='km') {emisie_autobus = this.ef_hromadna[0]*this.autobus}
+                if(this.kmhodautobus=='hod'){ emisie_autobus = 40.2*this.ef_hromadna[0]*this.autobus}
+                if(this.kmhodmhd == 'km') {emisie_mhd = this.ef_hromadna[1]*this.mhd}
+                if(this.kmhodmhd == 'hod') {emisie_mhd = 16.89*this.ef_hromadna[1]*this.mhd}
+                return this.pocet_tyzdnov*emisie_mhd + this.pocet_tyzdnov*emisie_autobus
             }
             let i=1
             if(this.details_doprava==false) {
                 for(i = 1; i<= 7; i++)
                 {
                     if(this.frekvenciamhd==i) {
-                       return this.kilometre_hromadna_doprava[i-1] * (0.039592801+0.02991)/2
+                       return this.kilometre_hromadna_doprava[i-1] * (this.ef_hromadna[0]+this.ef_hromadna[1])/2
                     }
                 }
             }
@@ -1438,16 +1442,16 @@ export default {
         emisie_vlakova() {
             
             if(this.details_doprava==true){ 
-                if(this.typvlak=='elektrický') {return 52*0.0149058*this.vlak}
-                if(this.typvlak=='naftový'){return 52*0.0781968*this.vlak}
-                if(this.typvlak=='oba' || this.typvlak=='neviem' ){return 52*0.03072855*this.vlak}
+                if(this.typvlak=='elektrický') {return 52*this.ef_vlak[0]*this.vlak}
+                if(this.typvlak=='naftový'){return 52*this.ef_vlak[1]*this.vlak}
+                if(this.typvlak=='oba' || this.typvlak=='neviem' ){return 52*this.ef_vlak[2]*this.vlak}
             }
             let i=1
             if(this.details_doprava==false) {
                 for(i = 1; i<= 7; i++)
                 {
                     if(this.frekvenciavlak==i) {
-                       return this.kilometre_vlakova_doprava[i-1] * 0.03072855
+                       return this.kilometre_vlakova_doprava[i-1] * this.ef_vlak[2]
                     }
                 }
             }
@@ -1476,10 +1480,10 @@ export default {
 
         ef_letectvo(value) {
             if(value<1366){
-                return this.EWP(value)*(0.1184-(value-500)*0.00004965)
+                return this.EWP(value)*(this.ef_letecka[1]-(value-500)*0.00004965)
             }
             else {
-                return this.EWP(value)*(0.0754+(value-1366)*0.00000313)
+                return this.EWP(value)*(this.ef_letecka[0]+(value-1366)*0.00000313)
             }
         },
 

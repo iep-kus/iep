@@ -229,7 +229,8 @@ export default {
         ],
 
         oblecenie_emisie : [605.9766072,353.4863542, 201.9922024, 134.6614683, 100.9961012, 33.66536707, 16.83268353],
-        
+        ef_dovolenky : [10,19.75,54],
+        ef_odpady : [0.9, -1.024, -0.314, -0.495, 0.06],
       }
     },
     
@@ -239,7 +240,7 @@ export default {
     methods: {
         countEmissions_ziv() {
             this.emisie_ziv_styl[0] = Math.round((1-this.druharukaoblecenie/100)*this.oblecenie_emisie[this.nakupoblecenie]);
-            this.emisie_ziv_styl[1] = Math.round(10*this.kemp + 19.75*this.hotel + 54*this.luxus);
+            this.emisie_ziv_styl[1] = Math.round(this.ef_dovolenky[0]*this.kemp + this.ef_dovolenky[1]*this.hotel + this.ef_dovolenky[2]*this.luxus);
             this.emisie_ziv_styl[2] = Math.round(this.odpady());
            
             this.uhlikova_stopa_ziv_styl = Math.round(this.emisie_ziv_styl[0]+this.emisie_ziv_styl[1]+this.emisie_ziv_styl[2]);
@@ -260,7 +261,7 @@ export default {
             sklo = -21.12*Math.pow(((Number(this.sklorange))/100),2) + 31.72*Number(this.sklorange)/100 +2.5;
             papier = -10.4*Math.pow(((Number(this.papierrange))/100),2) + 16.2*(Number(this.papierrange))/100 +1;
             bio = -22.6*Math.pow(((Number(this.bioodpadrange))/100),2) + 49.7*(Number(this.bioodpadrange))/100 +0.2;
-            return 0.9*zko -1.024*plast - 0.314*sklo + -0.495*papier + 0.06* bio
+            return this.ef_odpady[0]*zko + this.ef_odpady[1]*plast + this.ef_odpady[2]*sklo + this.ef_odpady[3]*papier + this.ef_odpady[4]* bio
                 
             
         },

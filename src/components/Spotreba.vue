@@ -227,7 +227,13 @@ export default {
         ],
 
         
+        ef_auto: 7764,
+        ef_bielatechnika: 270.925,
+        ef_ciernatechnika: 196.42,
+        ef_technika: 257.785,
+        ef_nabytok: [39.5,31,27,84,42,26,90,25],
 
+        coef_car_age: [1, 0.68, 0.38, 0.16]
         
       }
     },
@@ -238,20 +244,20 @@ export default {
     methods: {
         countEmissions() {
             if(this.details_spotreba==false) {
-                this.emisie_spotreba[0] = Math.round(7764*this.pocetaut*1/(10*this.clenovia));
-                this.emisie_spotreba[1] = Math.round(270.925*(1-this.druharuka/100)*this.vlastneniebielatechnika/(15*this.clenovia));
-                this.emisie_spotreba[2] = Math.round(196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(10*this.clenovia));
-                this.emisie_spotreba[3] = Math.round(257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(5));
+                this.emisie_spotreba[0] = Math.round(this.ef_auto*this.pocetaut*1/(10*this.clenovia));
+                this.emisie_spotreba[1] = Math.round(this.ef_bielatechnika*(1-this.druharuka/100)*this.vlastneniebielatechnika/(15*this.clenovia));
+                this.emisie_spotreba[2] = Math.round(this.ef_ciernatechnika*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(10*this.clenovia));
+                this.emisie_spotreba[3] = Math.round(this.ef_technika*(1-this.druharuka/100)*this.vlastnenietechnika/(5));
                 this.emisie_spotreba[4] = Math.round(this.nabytok()); 
                 
                 this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3] + +this.emisie_spotreba[4]);
                 
             }
             if(this.details_spotreba==true) {
-                this.emisie_spotreba[0] = Math.round(7764*this.vlastnenieaut*this.carage()/(this.vekaut*this.clenovia));
-                this.emisie_spotreba[1] = Math.round(270.925*(1-this.druharuka/100)*this.vlastneniebielatechnika/(this.vekbielatechnika*this.clenovia));
-                this.emisie_spotreba[2] = Math.round(196.42*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(this.vekciernatechnika*this.clenovia));
-                this.emisie_spotreba[3] = Math.round(257.785*(1-this.druharuka/100)*this.vlastnenietechnika/(this.vektechnika));
+                this.emisie_spotreba[0] = Math.round(this.ef_auto*this.vlastnenieaut*this.carage()/(this.vekaut*this.clenovia));
+                this.emisie_spotreba[1] = Math.round(this.ef_bielatechnika*(1-this.druharuka/100)*this.vlastneniebielatechnika/(this.vekbielatechnika*this.clenovia));
+                this.emisie_spotreba[2] = Math.round(this.ef_ciernatechnika*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(this.vekciernatechnika*this.clenovia));
+                this.emisie_spotreba[3] = Math.round(this.ef_technika*(1-this.druharuka/100)*this.vlastnenietechnika/(this.vektechnika));
                 this.emisie_spotreba[4] = this.nabytok(); 
                 
                 this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3]+ +this.emisie_spotreba[4]);
@@ -260,14 +266,15 @@ export default {
             
         },
         carage() {
-            if(this.nakupauta==1){return 1}
-            if(this.nakupauta==2){return 0.68}
-            if(this.nakupauta==3){return 0.38}
-            if(this.nakupauta==4){return 0.16}
+            if(this.nakupauta==1){return this.coef_car_age[0]}
+            if(this.nakupauta==2){return this.coef_car_age[1]}
+            if(this.nakupauta==3){return this.coef_car_age[2]}
+            if(this.nakupauta==4){return this.coef_car_age[3]}
         },
         
-        nabytok() {
-            return Math.round(((39.5 + 31 + 27)*this.clenovia + 84 + (this.rozloha/50)*(42 + 26) + 90 + 25)/15*this.clenovia)
+       nabytok() {
+            return Math.round(((this.ef_nabytok[0] + this.ef_nabytok[1] + this.ef_nabytok[2])*this.clenovia + this.ef_nabytok[3] + 
+            (this.rozloha/50)*(this.ef_nabytok[4] + this.ef_nabytok[5]) + this.ef_nabytok[6] + this.ef_nabytok[7])/15*this.clenovia)
         }
         
     },

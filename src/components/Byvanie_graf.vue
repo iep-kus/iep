@@ -251,7 +251,16 @@ export default {
         
         EF_centralne: [0.254524819,0.253483,0.434007,0.519568,0.050929,	0.004886,0.464345,0.095771,	0.096154,0.067771,0.558332,0.434007 ],
     
-
+        ef_elektrika: 0.169,
+        ef_plyn: 0.2003,
+        ef_lpg: 1.655,
+        ef_tuhe_prm: 1212.96 ,
+        ef_tuhe_m3: 910 ,
+        centralne_eurkwh: 0.092307,
+        elektrika_eurkwh: 0.1577,
+        plyn_eurkwh: 0.0533,
+        lpg_eurl: 0.59,
+        tuhe_m3t:0.865,
         
 
             
@@ -294,7 +303,7 @@ export default {
                 return ef;
             }
             else {
-                return ef/0.092307;
+                return ef/this.centralne_eurkwh;
             }
         },
             
@@ -302,10 +311,10 @@ export default {
             
             if(this.Oze=='Nie'){
                 if (this.selected2=='kWh') {
-                    return 0.169;
+                    return this.ef_elektrika;
                 }
                 else {
-                    return 0.169/0.1577;
+                    return this.ef_elektrika/this.elektrika_eurkwh;
                 }
             }
             else {
@@ -317,39 +326,39 @@ export default {
         emisie_plyn() {
             
             if (this.selected3=='kWh') {
-                return 0.2003;
+                return this.ef_plyn;
             }
             else {
-                return 0.2003/0.0533;
+                return this.ef_plyn/this.plyn_eurkwh;
             }
         },
             
         emisie_lpg() {
             
             if (this.selected4=='litrov') {
-                return 1.655;
+                return this.ef_lpg;
             }
             else {
-                return 1.655/0.59;
+                return this.ef_lpg/this.lpg_eurl;
             }
         },
             
          emisie_tuhe() {      
             if (this.selected5=='priestorový meter') {
-                return 1212.96;
+                return this.ef_tuhe_prm;
             }
             if (this.selected5=='m3') {
-                return 910;
+                return this.ef_tuhe_m3;
             }
             if (this.selected5=='t') {
-                return 910/0.865;
+                return this.ef_tuhe_m3/this.tuhe_m3t;
             }
           
              
         },
 
         dodavanie() {
-            return (Number(this.vlastna))*0.169
+            return (Number(this.vlastna))*this.ef_elektrika
         },
 
         
