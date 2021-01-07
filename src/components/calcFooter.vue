@@ -7,13 +7,13 @@
 
                 <div class="text-wrapper">
                     <b-row align-v="center">
-                        <b-col><p>V prípade akýchkoľvek nápadov na zlepšenie kalkulačky alebo pri nájdení nejakých chýb, neváhaj a kontaktuj nás na <a href = "mailto:kristina.mojzesova@enviro.gov.sk">kristina.mojzesova@enviro.gov.sk</a>.</p></b-col>    
+                        <b-col><p>V prípade akýchkoľvek nápadov na zlepšenie kalkulačky alebo pri nájdení nejakých chýb, neváhaj a kontaktuj nás na <a href = "mailto:iep@enviro.gov.sk">iep@enviro.gov.sk</a>.</p></b-col>    
                     </b-row>
                     <b-row align-v="center">
                         <b-col><p>Výpočty majú len informatívny charakter a nie sú právne záväzné. Pre zhliadnutie metodiky ku kalkulačke kliknite <a  href="https://www.minzp.sk/files/iep/metodika_uhlikova_stopa.pdf">tu.</a></p></b-col>    
                     </b-row>
                     <b-row align-v="center">
-                        <b-col><p>Upozornenie: kalkulačka má obmezenia funkčnosti v niektorých prehliadačoch a ich režimoch (Explorer, Vivaldi, Inkognito na Firefoxe). Odporúčame použiť Chrome, Operu, Edge alebo Safari.</p></b-col>    
+                        <b-col><p>Upozornenie: kalkulačka má obmezenia funkčnosti v niektorých prehliadačoch a ich režimoch (Explorer, Firefox (súkromné okno), Vivaldi a Ecosia). Odporúčame použiť Chrome, Operu, Edge alebo Safari.</p></b-col>    
                     </b-row>
                    
                 </div>    
