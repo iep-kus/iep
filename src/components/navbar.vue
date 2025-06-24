@@ -13,7 +13,7 @@
         <router-link to='/'>
           <img
               class="nav-bar__logo"
-              :src='require(`@/assets/iep-logo_var2.png`)'
+              :src='require(`@/assets/iep3_sk_or.png`)'
           />
         </router-link>
       </b-navbar-brand>
