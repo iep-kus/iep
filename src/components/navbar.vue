@@ -14,6 +14,7 @@
           <img
               class="nav-bar__logo"
               :src='require(`@/assets/iep3_sk_or.png`)'
+              style="width: 300px; height: auto;"
           />
         </router-link>
       </b-navbar-brand>
