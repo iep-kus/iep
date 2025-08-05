@@ -224,7 +224,7 @@ export default {
             labels: ["Bývanie","Doprava","Jedlo","Spotreba","Životný štýl"],
             datasets: [
             {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
+                backgroundColor: ['#FB8622','#FFC08A','#28758C','#8FBECD','#99362B'],
                 data: [673,2651,1657,804,515],
                 borderWidth: 0
             }
@@ -236,7 +236,7 @@ export default {
             labels: ["Slovák","Ty","Európan"],
             datasets: [
             {
-                backgroundColor: ['#6F6F6F','#FF6600','#6F6F6F'],
+                backgroundColor: ['#99362B','#FB8622','#99362B'],
                 data: [5888,5888,8608],
             }
             ],

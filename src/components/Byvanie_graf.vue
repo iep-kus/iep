@@ -226,7 +226,7 @@ export default {
             labels: ["Centrálne vykurovanie","Elektrina","Zemný plyn","LPG","Tuhé palivo"],
             datasets: [
             {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
+                backgroundColor: ['#FB8622','#FFC08A','#28758C','#8FBECD','#99362B'],
                 data: [413,260,0,0,0],
             }
             ],
@@ -678,7 +678,7 @@ export default {
     padding: .75rem;
     width: 12rem;
     height:auto;  
-    background: #FF6600;
+    background: #FB8622;
     border-radius: 10px; 
     border: 0px solid #000000;
     color: white;

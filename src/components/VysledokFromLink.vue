@@ -125,7 +125,7 @@ export default {
                 text: 'Moja uhlíková stopa podľa kategórií (v kg CO2e)',
                 fontColor: "#FFFFFF",
                 fontSize: 15,
-                fontFamily: "montserrat",
+                fontFamily: "chivo",
             },
             maintainAspectRatio: false,
             animation: {
@@ -144,7 +144,7 @@ export default {
                 text: 'Porovnanie s priemerným Slovákom a Európanom (v kg CO2e)',
                 fontColor: "#FFFFFF",
                 fontSize: 15,
-                fontFamily: "montserrat",
+                fontFamily: "chivo",
             },
             maintainAspectRatio: false,
             animation: {
@@ -442,7 +442,7 @@ export default {
 
 
 .nadpis-title {
-    font-family: 'montserrat-bold' ;
+    font-family: 'chivo-bold' ;
     margin-bottom: 3%;
     color: white;
 }
@@ -513,7 +513,7 @@ export default {
     border-radius: 20px; 
     border-color:white;
     color: white;
-    font-family: 'montserrat-bold';
+    font-family: 'chivo-bold';
     transition: color 0.5s;
     z-index: 1;
    
@@ -542,7 +542,7 @@ export default {
     padding: 5%;
     margin-left: 5%;
     margin-right: 5%;
-    font-family: 'montserrat-bold';
+    font-family: 'chivo-bold';
 }
 
 </style>

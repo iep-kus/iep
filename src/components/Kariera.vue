@@ -53,7 +53,7 @@ export default {
 
 .title {
     color: white;
-    font-family: 'montserrat-bold';
+    font-family: 'chivo-bold';
     margin-bottom: 3%;
 }
 

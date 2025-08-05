@@ -13,7 +13,7 @@
         <router-link to='/'>
           <img
               class="nav-bar__logo"
-              :src='require(`@/assets/iep3_sk_or.png`)'
+              :src='require(`@/assets/iep3_sk_or2x.png`)'
               style="width: 300px; height: auto;"
           />
         </router-link>

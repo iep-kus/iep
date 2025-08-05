@@ -183,7 +183,7 @@ export default {
             labels: ["Hovädzie mäso","Ostatné mäso","mliečne výrobky a vajcia","Syry","Zelenina","Alkohol","Ostatné"],
             datasets: [
             {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#8CAE98','#AD4B41','#BEBEBE'],
+                backgroundColor: ['#FB8622','#FFC08A','#28758C','#8FBECD','#99362B','#DC9790','#F2B116'],
                 data: [210.6,449.7375,520.35,159.6,137.2,128.945,608],
             }
             ],

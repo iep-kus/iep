@@ -244,7 +244,7 @@ export default {
             labels: ["Oblečenie","Dovolenkovanie","Odpady"],
             datasets: [
             {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5'],
+                backgroundColor: ['#FB8622','#FFC08A','#28758C'],
                 data: [201.99,197.5,115.53],
             }
             ],
@@ -537,7 +537,7 @@ export default {
     padding: .75rem;
     width: 12rem;
     height:auto;  
-    background: #FF6600;
+    background: #FB8622;
     border-radius: 10px; 
     border: 0px solid #000000;
     color: white;

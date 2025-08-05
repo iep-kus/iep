@@ -1,4 +1,5 @@
 <template>
+  <!--<Kalkulacka/> -->
   <div id="app">
     <div class="navigationbar">
       <navbar></navbar>
@@ -14,33 +15,34 @@
 <script>
 import navbar from './components/navbar'
 import AppFooter from './components/AppFooter'
-
+import Kalkulacka from './views/Kalkulacka.vue';
 export default {
   name: 'App',
   components: {
+    //Kalkulacka, 
     navbar,AppFooter
   },
   
 }
 
 </script>
-
+<!--Tuto sa definuju fonty a farby pre celu aplikaciu. Farba sa zoberie zo suboru "custom" v priecinku "styles" -->
 <style lang="scss">
 @import "./styles/custom.scss";
   
 @font-face {
-  font-family: 'montserrat';
-  src: url('./assets/fonts/Montserrat/Montserrat-Regular.ttf');
+  font-family: 'chivo';
+  src: url('./assets/fonts/Chivo/Chivo-Regular.ttf');
 }
 
 @font-face {
-  font-family: 'montserrat-light';
-  src: url('./assets/fonts/Montserrat/Montserrat-Light.ttf');
+  font-family: 'chivo-light';
+  src: url('./assets/fonts/Chivo/Chivo-Light.ttf');
 }
  
  @font-face {
-  font-family: 'montserrat-bold';
-  src: url('./assets/fonts/Montserrat/Montserrat-Bold.ttf');
+  font-family: 'chivo-bold';
+  src: url('./assets/fonts/Chivo/Chivo-Bold.ttf');
 }
  
  @font-face {
@@ -49,7 +51,7 @@ export default {
 }
  
 #app {
-  font-family: 'montserrat';
+  font-family: 'chivo';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -11,6 +11,7 @@
                     
                 </b-row>    
                 
+                <!--Nasledujuce odseky tvoria vizual prvych piatich otazok-->
                 <div class="otazka">
                     <b-row  style="margin-bottom:2vh" align-v="center" cols-md="12" cols-sm="12" >      
                         <b-col md="1" cols="1" class="text-right" align-h="start">1.</b-col>
@@ -25,7 +26,7 @@
                 <div class="otazka">
                     <b-row  style="margin-bottom:2vh" align-v="center">      
                         <b-col md="1" cols="1" class="text-right">2.</b-col>
-                        <b-col md="5" cols="10" class="text-left" align-h="start">Počet členov v tvojej domácností:</b-col>
+                        <b-col md="5" cols="10" class="text-left" align-h="start">Počet členov v tvojej domácnosti:</b-col>
                         <b-col md="5" cols="10" class="text-left" offset-md="0" offset="1" >                         
                             <b-form-spinbutton id="clenovia" v-model="clenovia" min="1" max="20"></b-form-spinbutton>
                         </b-col>
@@ -95,10 +96,10 @@ export default {
       return {
         okresval: [
           { value: null, text: 'Prosím vyberte jednu z možností' },
+          { value: 1, text: 'Bánovce nad Bebravou' },
           { value: 2, text: 'Banská Bystrica' },
           { value: 3, text: 'Banská Štiavnica' },
           { value: 4, text: 'Bardejov' },
-          { value: 1, text: 'Bánovce nad Bebravou' },
           { value: 5, text: 'Bratislava' },
           { value: 6, text: 'Brezno' },
           { value: 7, text: 'Bytča' },
@@ -176,7 +177,8 @@ export default {
 
       }
     },
-    
+
+// Tato cast obsahuje hodnoty roznych premennych z komponentu "ZacinameForm" a je napojena na globalnym stavom aplikacie "store" 
     computed: {
         okres: {
             get() {

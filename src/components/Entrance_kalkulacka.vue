@@ -2,7 +2,8 @@
     
     <div class="coverphoto">
         <div class="logo">
-          <img :src='require(`@/assets/carbon-dioxide.png`)' />
+          <img :src='require(`@/assets/co2.png`)'
+          style="width: 150px; height: auto;" />
         </div>
             
         <div class="title">
@@ -124,7 +125,7 @@ h4 {
     text-align: center;
     padding: 1vh;
     color: white;
-    font-family: 'montserrat-bold';
+    font-family: 'chivo-bold';
 }
 .undertitle {
     text-align: center;
@@ -161,7 +162,7 @@ h4 {
     padding: 1rem;
     width: 223px;
     height: 52px;  
-    background: #FF6600;
+    background: #FB8622;
     border-radius: 10px; 
     border: 0px solid #000000;
     color: white;

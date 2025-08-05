@@ -135,7 +135,7 @@ h3 {
 
 h1 {
     color: white;
-    font-family: 'montserrat-bold' ;
+    font-family: 'chivo-bold' ;
     font-size: 3rem;
 }
 
@@ -161,7 +161,7 @@ h1 {
 
 .vypocitat {
     overflow: auto;
-    background-color: #FF6600;
+    background-color: #FB8622;
 }
 
 .obsah{
@@ -179,7 +179,7 @@ h1 {
     padding: 1rem;
     width: 15rem;
     height: 6rem; 
-    background-color: #FF6600;
+    background-color: #FB8622;
     border-radius: 20px; 
     border: 3px solid white;
     color: white;
@@ -195,7 +195,7 @@ h1 {
 }
 
 .button_vysledky {
-    color: #FF6600;
+    color: #FB8622;
     text-align: center;
     position: center;
     margin-left: 2.5rem;
@@ -208,7 +208,7 @@ h1 {
 
 .zacat:hover {
   background-color:white; /* Green */
-  color: #FF6600;
+  color: #FB8622;
   transform: scale(1.1);
 }
 

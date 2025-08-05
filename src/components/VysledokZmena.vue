@@ -107,7 +107,7 @@ export default {
                 text: 'Tvoja uhlíková stopa podľa kategórií (v kg CO2e)',
                 fontColor: "#FFFFFF",
                 fontSize: 15,
-                fontFamily: "montserrat",
+                fontFamily: "chivo",
             },
             maintainAspectRatio: false,
             animation: {
@@ -126,7 +126,7 @@ export default {
                 text: 'Porovnanie s priemerným Slovákom a Európanom (v kg CO2e)',
                 fontColor: "#FFFFFF",
                 fontSize: 15,
-                fontFamily: "montserrat",
+                fontFamily: "chivo",
             },
             maintainAspectRatio: false,
             animation: {
@@ -168,7 +168,7 @@ export default {
                 text: 'Tvoja uhlíková stopa podľa kategórií (v kg CO2e)',
                 fontColor: "#FFFFFF",
                 fontSize: 15,
-                fontFamily: "montserrat",
+                fontFamily: "chivo",
             },
             maintainAspectRatio: false,
             animation: {
@@ -182,7 +182,7 @@ export default {
             labels: ["Bývanie","Doprava","Jedlo","Spotreba","Životný štýl"],
             datasets: [
             {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
+                backgroundColor: ['#FB8622','#FFC08A','#28758C','#8FBECD','#99362B'],
                 data: [0,0,0,0,0],
                 borderWidth: 0
             }
@@ -205,7 +205,7 @@ export default {
             labels: ["Bývanie","Doprava","Jedlo","Spotreba","Životný štýl"],
             datasets: [
             {
-                backgroundColor: ['#FF6600','#6F6F6F','#FFDAC5','#C69C94','#BEBEBE'],
+                backgroundColor: ['#FB8622','#FFC08A','#28758C','#8FBECD','#99362B'],
                 data: [0,0,0,0,0],
                 borderWidth: 0
             }
@@ -340,10 +340,10 @@ export default {
             for(i = 0; i<= 4; i++)
             {
                     if(this.zmenaBar.datasets[0].data[i]>=0) {
-                       this.zmenaBar.datasets[0].backgroundColor[i]= '#FC5E5E';
+                       this.zmenaBar.datasets[0].backgroundColor[i]= '#99362B';
                     }
                     else{
-                        this.zmenaBar.datasets[0].backgroundColor[i]= '#92D050';
+                        this.zmenaBar.datasets[0].backgroundColor[i]= '#8FBECD';
                     }
             }
             this.celk_zmena = this.uhlikova_stopa_celkovo- this.celkovo
@@ -388,13 +388,13 @@ export default {
 }
 
 .titles {
-    font-family: 'montserrat-bold' ;
+    font-family: 'chivo-bold' ;
     margin-bottom: 1rem;
     color: white;
 }
 
 .nadpis-title {
-    font-family: 'montserrat-bold' ;
+    font-family: 'chivo-bold' ;
     margin-bottom: 3%;
     color: white;
 }

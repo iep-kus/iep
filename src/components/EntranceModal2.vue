@@ -46,7 +46,7 @@ export default {
     margin-right: 20%;
     padding: 1vh;
     color: white;
-    font-family: 'montserrat-bold';
+    font-family: 'chivo-bold';
 }
 
 @media only screen and (max-width: 968px){
@@ -56,7 +56,7 @@ export default {
     margin-right: 0%;
     padding: 1vh;
     color: white;
-    font-family: 'montserrat-bold';
+    font-family: 'chivo-bold';
     }
 }
 
@@ -80,7 +80,7 @@ export default {
   margin-right: auto;
   text-align: center; 
   font-size: 6rem; 
-  color: #ff6600 ;
+  color: #FB8622 ;
   
   
     
@@ -96,7 +96,7 @@ export default {
     padding: 1rem;
     width: 223px;
     height: 52px;  
-    background: #FF6600;
+    background: #FB8622;
     border-radius: 10px; 
     border: 0px solid #000000;
     color: white;

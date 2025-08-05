@@ -41,7 +41,7 @@
                         
                         
                         <b-col cols="12" lg="3">
-                            <a href="https://www.minzp.sk/iep/publikacie/kalkulacky/" style="text-decoration: none;">    
+                            <a href="https://www.minzp.sk/iep/publikacie/kalkulacky/" style="text-decoration: none;">
                                 <div class="wrapper-publication">
                                     <b-row align-h="center">
                                         <div class="icon"><i class="fas fa-calculator"></i></div>
@@ -131,7 +131,7 @@ export default {
    &:hover {
     transform: scale(1.1);
     cursor: pointer;
-    background-color:#C69C94;
+    background-color:#DC9790;
     box-shadow: 0px 10px 30px rgba(0,0,0,0.10);
       i {
         transform: scale(1.1);
@@ -152,7 +152,7 @@ export default {
 }
 
 .title {
-    font-family: 'montserrat-bold';
+    font-family: 'chivo-bold';
     margin-bottom: 4%;
 }
 

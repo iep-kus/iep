@@ -3,7 +3,8 @@
         
     <div class="coverphoto">
         <div class="logo">
-            <img :src='require(`@/assets/iep_logo_transp_stvorec2.png`)' />
+            <img :src='require(`@/assets/iep_sk_or.png`)'
+            style="width: 210px; height: auto;" />
         </div>
             
         <div class="title">
@@ -46,7 +47,7 @@ export default {
     text-align: center;
     padding: 1vh;
     color: white;
-    font-family: 'montserrat-bold';
+    font-family: 'chivo-bold';
 }
 
 .undertitle {
@@ -96,7 +97,7 @@ export default {
     padding: 1rem;
     width: 223px;
     height: 52px;  
-    background: #FF6600;
+    background: #FB8622;
     border-radius: 10px; 
     border: 0px solid #000000;
     color: white;
