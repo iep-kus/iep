@@ -200,19 +200,21 @@ export default {
           { value: 5, text: 'Tuhé palivo' }
         ],
         
-  
-        EF_centralne: [0.254524819,0.253483,0.434007,0.519568,0.050929,	0.004886,0.464345,0.095771,	0.096154,0.067771,0.558332,0.434007 ],
-        ef_elektrika: 0.169,
-        ef_plyn: 0.2003,
-        ef_lpg: 1.655,
+        // nastavenie emisnych faktorov pre kurenie a koeficientov na premenu jednotiek - akutualizacia 2025
+        // centralne kurenie: [priemer, BA, KE, ZA, Veolia, TT, MT, PO, BB, NT, ZV, ?]
+        
+        EF_centralne: [0.2867, 0.3930, 0.4330, 0.6780, 0.1753, 0, 0.3315, 0.3026, 0.1644, 0.3550, 0.0346,  0.434007], //to posledne cislo neviem co je, ale asi sa ani nepouziva. nebudem ho radsej mazat
+        ef_elektrika: 0.0317, // pre rok 2024, rucne vypocitane, podla slovenskeho energetickeho mixu
+        ef_plyn: 0.202,
+        ef_lpg: 1.667,
         ef_tuhe_prm: 1212.96 ,
-        ef_tuhe_m3: 910 ,
-        centralne_eurkwh: 0.092307,
-        elektrika_eurkwh: 0.1577,
-        plyn_eurkwh: 0.0533,
-        lpg_eurl: 0.59,
-        tuhe_m3t:0.865,
+        ef_tuhe_m3: 96.9105 , // v pripade platnosti smernice o obnovitelnom dreve
 
+        centralne_eurkwh: 0.1383, // ceny 2024
+        elektrika_eurkwh: 0.1918,
+        plyn_eurkwh: 0.0493,
+        lpg_eurl: 0.723,
+        tuhe_m3t:0.865, 
       }
     },
     mounted() {
@@ -222,7 +224,7 @@ export default {
     methods: {
        
         fillData() {
-            
+            // uhlikova stopa byvania = centralne + elektrina + plyn + lpg + tuhe - vlatna dodavka  
             this.emisie_byvanie = [Math.round(this.emisie_centralne()*this.centralne/this.clenovia),Math.round(this.emisie_elektrika()*this.elektrika/this.clenovia)-Math.round(this.dodavanie()),
                 Math.round(this.emisie_plyn()*this.plyn/this.clenovia),Math.round(this.emisie_lpg()*this.lpg/this.clenovia),Math.round(this.emisie_tuhe()*this.tuhe/this.clenovia)];
             this.uhlikova_stopa_byvanie = Math.round(this.emisie_byvanie[0]+this.emisie_byvanie[1]+this.emisie_byvanie[2]+this.emisie_byvanie[3]+this.emisie_byvanie[4]);
@@ -231,18 +233,18 @@ export default {
             
         },
         
+        // priradenie okresov k ef ich elektrarne. Veolia nie je priradena nikam
         emisie_centralne() {
             let ef = this.EF_centralne[0];
             if (this.okres==5){ef = this.EF_centralne[1]}
             if (this.okres==18 || this.okres==19 ){ef = this.EF_centralne[2]}
             if (this.okres==71){ef = this.EF_centralne[3]}
-            
             if (this.okres==62){ef = this.EF_centralne[5]}
             if (this.okres==27){ef = this.EF_centralne[6]}
             if (this.okres==41){ef = this.EF_centralne[7]}
             if (this.okres==2){ef = this.EF_centralne[8]}
             if (this.okres==32){ef = this.EF_centralne[9]}
-            if (this.okres==68){ef = this.EF_centralne[9]}
+            if (this.okres==68){ef = this.EF_centralne[10]} //opraveny index
             if (this.selected1=='kWh') {
                 return ef;
             }
@@ -298,7 +300,7 @@ export default {
           
              
         },
-
+        //mnozstvo vlastnej vyrobenej elektrickej energie sa odrata od spotreby s ef slovenskej elektriny
         dodavanie() {
             return (Number(this.vlastna))*this.ef_elektrika
         },

@@ -78,20 +78,38 @@
                                                             </b-col>
                                                         </b-row>
                                                         
-                                                        <b-row align-v="center" style="margin-bottom:2vh" cols="1">
-                                                            <b-col  cols=12  class="text-center" >
+                                                        <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
+                                                            <b-col class="text-left" >
+                                                                <p>Je to hybrid?</p>
+                                                            </b-col>
+                                                            <b-col class="text-left" >
+                                                                <b-form-radio-group
+                                                                    v-model="hybrid1"
+                                                                    :options="['Áno', 'Nie']"
+                                                                    v-on:change="countEmissions_doprava()"
+                                                                ></b-form-radio-group>
+                                                            </b-col>
+                                                            <b-col class="text-left" >
                                                                 <h4> </h4>
                                                             </b-col>
-                                                            <b-col  cols=12  class="text-left" >
-                                                                Aká je jeho reálna spotreba?
-                                                            </b-col>
-                                                            <b-col cols=4 class="text-left" >
-                                                            <b-form-input   id="spotreba1" v-model="spotreba1"></b-form-input>
-                                                            </b-col>
-                                                            <b-col  cols=8 class="text-left" >
-                                                            <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo1" :options="palivo"></b-form-select>
-                                                            </b-col>
                                                         </b-row>
+                                                        
+                                                        <div v-if="hybrid1 == 'Nie'">
+                                                            <b-row align-v="center" style="margin-bottom:2vh" cols="1">
+                                                                <b-col cols=12 class="text-center" >
+                                                                    <h4> </h4>
+                                                                </b-col>
+                                                                <b-col cols=12 class="text-left" >
+                                                                    Aká je jeho reálna spotreba?
+                                                                </b-col>
+                                                                <b-col cols=4 class="text-left" >
+                                                                    <b-form-input id="spotreba1" v-model="spotreba1"></b-form-input>
+                                                                </b-col>
+                                                                <b-col cols=8 class="text-left" >
+                                                                    <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo1" :options="palivo"></b-form-select>
+                                                                </b-col>
+                                                            </b-row>
+                                                        </div>
                                                         
                                                         <b-row align-v="center" cols="1">
                                                             <b-col class="text-left" >
@@ -101,7 +119,7 @@
                                                                 <p>Aký je priemerný počet osôb v aute/motocykli?</p>
                                                             </b-col>
                                                             <b-col class="text-left" >
-                                                            <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby1" v-model="osoby1" min="0" max="9"></b-form-spinbutton>
+                                                            <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby1" v-model="osoby1" min="1" max="9"></b-form-spinbutton>
                                                             </b-col>
                                                         </b-row>
                                                     </div>
@@ -128,20 +146,38 @@
                                                                 </b-col>
                                                             </b-row>
                                                             
-                                                            <b-row align-v="center" style="margin-bottom:2vh" cols="1">
-                                                                <b-col  cols=12 class="text-center" >
+                                                            <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
+                                                                <b-col class="text-left" >
+                                                                    <p>Je to hybrid?</p>
+                                                                </b-col>
+                                                                <b-col class="text-left" >
+                                                                    <b-form-radio-group
+                                                                        v-model="hybrid2"
+                                                                        :options="['Áno', 'Nie']"
+                                                                        v-on:change="countEmissions_doprava()"
+                                                                    ></b-form-radio-group>
+                                                                </b-col>
+                                                                <b-col class="text-left" >
                                                                     <h4> </h4>
                                                                 </b-col>
-                                                                <b-col  cols=12 class="text-left" >
-                                                                    Aká je jeho reálna spotreba?
-                                                                </b-col>
-                                                                <b-col cols=4 class="text-left" >
-                                                                <b-form-input  id="spotreba2" v-model="spotreba2"></b-form-input>
-                                                                </b-col>
-                                                                <b-col  cols=8 class="text-left" >
-                                                                <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo2" :options="palivo"></b-form-select>
-                                                                </b-col>
                                                             </b-row>
+                                                            
+                                                            <div v-if="hybrid2 == 'Nie'">
+                                                                <b-row align-v="center" style="margin-bottom:2vh" cols="1">
+                                                                    <b-col cols=12 class="text-center" >
+                                                                        <h4> </h4>
+                                                                    </b-col>
+                                                                    <b-col cols=12 class="text-left" >
+                                                                        Aká je jeho reálna spotreba?
+                                                                    </b-col>
+                                                                    <b-col cols=4 class="text-left" >
+                                                                        <b-form-input id="spotreba2" v-model="spotreba2"></b-form-input>
+                                                                    </b-col>
+                                                                    <b-col cols=8 class="text-left" >
+                                                                        <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo2" :options="palivo"></b-form-select>
+                                                                    </b-col>
+                                                                </b-row>
+                                                            </div>
                                                             
                                                             <b-row align-v="center" style="margin-bottom:2vh" cols="1">
                                                                 <b-col class="text-center" >
@@ -151,7 +187,7 @@
                                                                     <p>Aký je priemerný počet osôb v aute/motocykli?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby2" v-model="osoby2" min="0" max="9"></b-form-spinbutton>
+                                                                <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby2" v-model="osoby2" min="1" max="9"></b-form-spinbutton>
                                                                 </b-col>
                                                             </b-row>
                                                         </div>
@@ -178,20 +214,38 @@
                                                                 </b-col>
                                                             </b-row>
                                                             
-                                                            <b-row align-v="center" style="margin-bottom:2vh" cols="1">
-                                                                <b-col  cols=12  class="text-center" >
+                                                            <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
+                                                                <b-col class="text-left" >
+                                                                    <p>Je to hybrid?</p>
+                                                                </b-col>
+                                                                <b-col class="text-left" >
+                                                                    <b-form-radio-group
+                                                                        v-model="hybrid3"
+                                                                        :options="['Áno', 'Nie']"
+                                                                        v-on:change="countEmissions_doprava()"
+                                                                    ></b-form-radio-group>
+                                                                </b-col>
+                                                                <b-col class="text-left" >
                                                                     <h4> </h4>
                                                                 </b-col>
-                                                                <b-col  cols=12  class="text-left" >
-                                                                   Aká je jeho reálna spotreba?
-                                                                </b-col>
-                                                                <b-col cols=4 class="text-left" >
-                                                                <b-form-input  id="spotreba3" v-model="spotreba3"></b-form-input>
-                                                                </b-col>
-                                                                <b-col  cols=8 class="text-left" >
-                                                                <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo3" :options="palivo"></b-form-select>
-                                                                </b-col>
                                                             </b-row>
+                                                            
+                                                            <div v-if="hybrid3 == 'Nie'">
+                                                                <b-row align-v="center" style="margin-bottom:2vh" cols="1">
+                                                                    <b-col cols=12 class="text-center" >
+                                                                        <h4> </h4>
+                                                                    </b-col>
+                                                                    <b-col cols=12 class="text-left" >
+                                                                        Aká je jeho reálna spotreba?
+                                                                    </b-col>
+                                                                    <b-col cols=4 class="text-left" >
+                                                                        <b-form-input id="spotreba3" v-model="spotreba3"></b-form-input>
+                                                                    </b-col>
+                                                                    <b-col cols=8 class="text-left" >
+                                                                        <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo3" :options="palivo"></b-form-select>
+                                                                    </b-col>
+                                                                </b-row>
+                                                            </div>
                                                             
                                                             <b-row align-v="center" style="margin-bottom:2vh" cols="1" >
                                                                 <b-col class="text-center" >
@@ -201,7 +255,7 @@
                                                                     <p>Aký je priemerný počet osôb v aute/motocykli?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby3" v-model="osoby3" min="0" max="9"></b-form-spinbutton>
+                                                                <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby3" v-model="osoby3" min="1" max="9"></b-form-spinbutton>
                                                                 </b-col>
                                                             </b-row>
                                                         </div>
@@ -228,20 +282,38 @@
                                                                 </b-col>
                                                             </b-row>
                                                             
-                                                            <b-row align-v="center" style="margin-bottom:2vh" cols="1">
-                                                                <b-col  cols=12  class="text-center" >
+                                                            <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
+                                                                <b-col class="text-left" >
+                                                                    <p>Je to hybrid?</p>
+                                                                </b-col>
+                                                                <b-col class="text-left" >
+                                                                    <b-form-radio-group
+                                                                        v-model="hybrid4"
+                                                                        :options="['Áno', 'Nie']"
+                                                                        v-on:change="countEmissions_doprava()"
+                                                                    ></b-form-radio-group>
+                                                                </b-col>
+                                                                <b-col class="text-left" >
                                                                     <h4> </h4>
                                                                 </b-col>
-                                                                <b-col  cols=12  class="text-left" >
-                                                                    Aká je jeho reálna spotreba?
-                                                                </b-col>
-                                                                <b-col cols=4 class="text-left" >
-                                                                <b-form-input  id="spotreba4" v-model="spotreba4"></b-form-input>
-                                                                </b-col>
-                                                                <b-col  cols=8 class="text-left" >
-                                                                <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo4" :options="palivo"></b-form-select>
-                                                                </b-col>
                                                             </b-row>
+                                                            
+                                                            <div v-if="hybrid4 == 'Nie'">
+                                                                <b-row align-v="center" style="margin-bottom:2vh" cols="1">
+                                                                    <b-col cols=12 class="text-center" >
+                                                                        <h4> </h4>
+                                                                    </b-col>
+                                                                    <b-col cols=12 class="text-left" >
+                                                                        Aká je jeho reálna spotreba?
+                                                                    </b-col>
+                                                                    <b-col cols=4 class="text-left" >
+                                                                        <b-form-input id="spotreba4" v-model="spotreba4"></b-form-input>
+                                                                    </b-col>
+                                                                    <b-col cols=8 class="text-left" >
+                                                                        <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo4" :options="palivo"></b-form-select>
+                                                                    </b-col>
+                                                                </b-row>
+                                                            </div>
                                                             
                                                             <b-row align-v="center" style="margin-bottom:2vh" cols="1">
                                                                 <b-col class="text-center" >
@@ -251,7 +323,7 @@
                                                                     <p>Aký je priemerný počet osôb v aute/motocykli?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby4" v-model="osoby4" min="0" max="9"></b-form-spinbutton>
+                                                                <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby4" v-model="osoby4" min="1" max="9"></b-form-spinbutton>
                                                                 </b-col>
                                                             </b-row>
                                                         </div>
@@ -278,20 +350,38 @@
                                                                 </b-col>
                                                             </b-row>
                                                             
-                                                            <b-row align-v="center" cols="1" >
-                                                                <b-col  cols=12 class="text-center" >
+                                                            <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
+                                                                <b-col class="text-left" >
+                                                                    <p>Je to hybrid?</p>
+                                                                </b-col>
+                                                                <b-col class="text-left" >
+                                                                    <b-form-radio-group
+                                                                        v-model="hybrid5"
+                                                                        :options="['Áno', 'Nie']"
+                                                                        v-on:change="countEmissions_doprava()"
+                                                                    ></b-form-radio-group>
+                                                                </b-col>
+                                                                <b-col class="text-left" >
                                                                     <h4> </h4>
                                                                 </b-col>
-                                                                <b-col  cols=12 class="text-left" >
-                                                                    Aká je jeho reálna spotreba?
-                                                                </b-col>
-                                                                <b-col cols=4 class="text-left" >
-                                                                <b-form-input  id="spotreba5" v-model="spotreba5"></b-form-input>
-                                                                </b-col>
-                                                                <b-col  cols=8 class="text-left" >
-                                                                <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo5" :options="palivo"></b-form-select>
-                                                                </b-col>
                                                             </b-row>
+                                                            
+                                                            <div v-if="hybrid5 == 'Nie'">
+                                                                <b-row align-v="center" style="margin-bottom:2vh" cols="1">
+                                                                    <b-col cols=12 class="text-center" >
+                                                                        <h4> </h4>
+                                                                    </b-col>
+                                                                    <b-col cols=12 class="text-left" >
+                                                                        Aká je jeho reálna spotreba?
+                                                                    </b-col>
+                                                                    <b-col cols=4 class="text-left" >
+                                                                        <b-form-input id="spotreba5" v-model="spotreba5"></b-form-input>
+                                                                    </b-col>
+                                                                    <b-col cols=8 class="text-left" >
+                                                                        <b-form-select v-on:change="countEmissions_doprava()" v-model="palivo5" :options="palivo"></b-form-select>
+                                                                    </b-col>
+                                                                </b-row>
+                                                            </div>
                                                             
                                                             <b-row align-v="center" cols="1">
                                                                 <b-col class="text-center" >
@@ -301,7 +391,7 @@
                                                                     <p>Aký je priemerný počet osôb v aute/motocykli?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
-                                                                <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby5" v-model="osoby5" min="0" max="9"></b-form-spinbutton>
+                                                                <b-form-spinbutton v-on:change="countEmissions_doprava()" id="osoby5" v-model="osoby5" min="1" max="9"></b-form-spinbutton>
                                                                 </b-col>
                                                             </b-row>
                                                         </div>
@@ -360,18 +450,18 @@
                             <div class="otazka" >
                                 <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
                                     <b-col md="1" cols="1" class="text-right">10.</b-col>
-                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko kilometrov si cestoval vlakmi za posledný/priemerný týždeň?</b-col>
+                                    <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval vlakmi za posledný/priemerný týždeň?</b-col>
                                     <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-model="vlak" placeholder="Vložte údaj"></b-form-input></b-col>
                                     <b-col md="2" cols="5" class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="kmhodvlak" :options="['km', 'hod']"></b-form-select></b-col>
                                 </b-row>
                             
-                                <div>
+                                <!--<div>
                                     <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
                                         <b-col md="1" cols="1" class="text-right"></b-col>
                                         <b-col md="5" cols="11" class="text-left" align-h="start">Akým typom vlaku prevažne cestuješ?</b-col>
                                         <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="typvlak" :options="['elektrický', 'naftový' , 'neviem' , 'oba']"></b-form-select></b-col>
                                     </b-row>
-                                </div>
+                                </div>-->
 
                                 <div v-if="details_doprava==false">
                                     <b-row  style="margin-bottom:2vh" align-v="center">      
@@ -1279,25 +1369,9 @@
                                     </div>
                                 </b-col>
                             </b-row>
-
-                        </b-col>
-                        
-
-
-
-
-
-
-
-                    </b-row>
-                    
-                    
-
-
-
-                </div>
-                
-                
+                        </b-col> 
+                    </b-row>                                      
+                </div>                              
             </div> 
         </div>
     </b-container>
@@ -1363,9 +1437,7 @@ export default {
           { value: 2, text: 'litrov nafty na 100 km' },
           { value: 3, text: 'litrov LPG na 100 km' },
           { value: 4, text: 'kg CNG na 100 km' },
-          { value: 5, text: 'litrov biodieselu na 100 km' },
-          { value: 6, text: 'litrov bioetanolu na 100 km' },
-          { value: 7, text: 'kWh elektriky na 100 km' },
+          { value: 5, text: 'kWh elektriky na 100 km' },
           
         ], 
 
@@ -1382,21 +1454,23 @@ export default {
           { value: 1, text: 'Nie' }
         ], 
 
+        //hybrid1: 'Nie',
+        //hybrid2: 'Nie',
+        //hybrid3: 'Nie',
+        //hybrid4: 'Nie',
+        //hybrid5: 'Nie',
 
 
+        ef_cudzie: 0.1404,
+        ef_benzin: 2.2187,
+        ef_nafta: 2.6087,
+        ef_lpg: 1.6367,
+        ef_cng: 2.7349,
+        ef_hybrid: 0.1,
+        ef_elektrika: 0.0317,
 
-        ef_cudzie: 0.1332,
-        ef_benzin: 2.392,
-        ef_nafta: 2.64,
-        ef_lpg: 1.665,
-        ef_cng: 2.666,
-        ef_biodiesel: 0.1658,
-        ef_bioetanol: 0.00837,
-        ef_elektrika: 0.169,
-
-        ef_hromadna: [0.039592801, 0.02991],
-        ef_vlak: [0.0149058, 0.0781968, 0.03072855],
-        pocet_tyzdnov: 52,
+        ef_hromadna: [0.04, 0.0187],
+        ef_vlak: 0.0406,
         ef_letecka: [0.0754, 0.1184],
         
         
@@ -1428,14 +1502,18 @@ export default {
         },
 
         emisie_auta() {
-            let spotreba = [0,0,0,0,0,0,0]
+            let spotreba = [0,0,0,0,0,0]
             let paliva = [this.palivo1,this.palivo2,this.palivo3,this.palivo4,this.palivo5]
             let kilometre = [this.kilometre1,this.kilometre2,this.kilometre3,this.kilometre4,this.kilometre5]
             let spotreba_doprava = [this.spotreba1,this.spotreba2,this.spotreba3,this.spotreba4,this.spotreba5]
             let osoby = [this.osoby1,this.osoby2,this.osoby3,this.osoby4,this.osoby5]
+            let hybrid = [this.hybrid1, this.hybrid2, this.hybrid3, this.hybrid4, this.hybrid5]
             let i=0
             let j=0
             let k=0
+
+            console.log('Hodnota hybrid1 je: ', this.hybrid1);
+            console.log('Pole hybrid je: ', hybrid);
             
             if(this.details_doprava==false){
                 for(k = 0; k<= 6; k++){
@@ -1443,16 +1521,21 @@ export default {
                        return this.kilometre_cudzie_doprava[k] * this.ef_cudzie * this.pocetaut/2
                     }
                 }}
-            if(this.details_doprava==true) {
-               for(i = 0; i <= 4; i++){
-                    for(j=1; j <=7; j++){
-                        if(paliva[i]==j) {
-                            spotreba[j-1] = spotreba[j-1]+ kilometre[i]*spotreba_doprava[i]/(osoby[i]*100)
+            if(this.details_doprava == true) {
+                for(i = 0; i <= 4; i++){
+                    if(hybrid[i] === 'Áno') {
+                        spotreba[5] += kilometre[i] / osoby[i];
+                    } else {
+                        for(let j = 1; j <= 5; j++){
+                            if(paliva[i] === j) {
+                                spotreba[j - 1] += (kilometre[i] * spotreba_doprava[i]) / (osoby[i] * 100);
+                                break; 
+                            }
                         }
                     }
                 }
                 return spotreba[0]*this.ef_benzin + spotreba[1]*this.ef_nafta + spotreba[2]* this.ef_lpg + spotreba[3]*this.ef_cng +
-                    spotreba[4]*this.ef_biodiesel + spotreba[5]*this.ef_bioetanol + spotreba[6]* this.ef_elektrika
+                    spotreba[4]* this.ef_elektrika + spotreba[5]*this.ef_hybrid
                 
                 
             }
@@ -1494,18 +1577,21 @@ export default {
         },
 
         emisie_vlakova() {
-            
+            // napraveny vyber km/hod
             if(this.details_doprava==true){ 
-                if(this.typvlak=='elektrický') {return this.pocet_tyzdnov*this.ef_vlak[0]*this.vlak}
-                if(this.typvlak=='naftový'){return this.pocet_tyzdnov*this.ef_vlak[1]*this.vlak}
-                if(this.typvlak=='oba' || this.typvlak=='neviem' ){return this.pocet_tyzdnov*this.ef_vlak[2]*this.vlak}
+                if(this.kmhodvlak=='km'){return 52*this.ef_vlak*this.vlak}
+                if(this.kmhodvlak=='hod'){return 68.39*52*this.ef_vlak*this.vlak}
+                
+                //if(this.typvlak=='elektrický') {return 52*this.ef_vlak[0]*this.vlak}
+                //if(this.typvlak=='naftový'){return 52*this.ef_vlak[1]*this.vlak}
+                //if(this.typvlak=='oba' || this.typvlak=='neviem' ){return 52*this.ef_vlak[2]*this.vlak}
             }
             let i=1
             if(this.details_doprava==false) {
                 for(i = 1; i<= 7; i++)
                 {
                     if(this.frekvenciavlak==i) {
-                       return this.kilometre_vlakova_doprava[i-1] * this.ef_vlak[2]
+                       return this.kilometre_vlakova_doprava[i-1] * this.ef_vlak
                     }
                 }
             }
@@ -1897,6 +1983,46 @@ export default {
             set(value) {
                 this.$store.commit('setosoby5',value)
                 
+            }
+        },
+        hybrid1: {
+            get() {
+                return this.$store.state.hybrid1
+            },
+            set(value) {
+                this.$store.commit('sethybrid1',value)   
+            }
+        },
+        hybrid2: {
+            get() {
+                return this.$store.state.hybrid2
+            },
+            set(value) {
+                this.$store.commit('sethybrid2',value)   
+            }
+        },
+        hybrid3: {
+            get() {
+                return this.$store.state.hybrid3
+            },
+            set(value) {
+                this.$store.commit('sethybrid3',value)   
+            }
+        },
+        hybrid4: {
+            get() {
+                return this.$store.state.hybrid4
+            },
+            set(value) {
+                this.$store.commit('sethybrid4',value)   
+            }
+        },
+        hybrid5: {
+            get() {
+                return this.$store.state.hybrid5
+            },
+            set(value) {
+                this.$store.commit('sethybrid5',value)   
             }
         },
 
@@ -2309,6 +2435,21 @@ export default {
             this.countEmissions_doprava()           
         },
         s20() {
+            this.countEmissions_doprava()           
+        },
+        hybrid1() {
+            this.countEmissions_doprava()           
+        },
+        hybrid2() {
+            this.countEmissions_doprava()           
+        },
+        hybrid3() {
+            this.countEmissions_doprava()           
+        },
+        hybrid4() {
+            this.countEmissions_doprava()           
+        },
+        hybrid5() {
             this.countEmissions_doprava()           
         },
     },

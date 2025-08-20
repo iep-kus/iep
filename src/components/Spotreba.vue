@@ -231,6 +231,7 @@ export default {
         ef_bielatechnika: 270.925,
         ef_ciernatechnika: 196.42,
         ef_technika: 257.785,
+        // nabytok = [single postel, skrina, stolicka, ?, kuchynska skrinka, pracovna doska, gauc, stol]
         ef_nabytok: [39.5,31,27,84,42,26,90,25],
 
         coef_car_age: [1, 0.68, 0.38, 0.16]

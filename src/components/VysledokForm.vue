@@ -159,7 +159,7 @@ export default {
             text: 'Tvoja uhlíková stopa podľa kategórií',
             fontColor: "#FFFFFF",
             fontSize: 15,
-            fontFamily: "montserrat-bold",
+            fontFamily: "chivo-bold",
         },
         maintainAspectRatio: false,
         animation: {
@@ -178,7 +178,7 @@ export default {
                 text: 'Porovnanie s priemerným Slovákom a Európanom',
                 fontColor: "#FFFFFF",
                 fontSize: 15,
-                fontFamily: "montserrat-bold",
+                fontFamily: "chivo-bold",
             },
             maintainAspectRatio: false,
             animation: {
@@ -659,7 +659,7 @@ export default {
 
 
 .nadpis-title {
-    font-family: 'montserrat-bold' ;
+    font-family: 'chivo-bold' ;
     margin-bottom: 5%;
     color: white;
 }
@@ -725,7 +725,7 @@ export default {
     padding: 5%;
     margin-left: 5%;
     margin-right: 5%;
-    font-family: 'montserrat-bold';
+    font-family: 'chivo-bold';
 }
 
 </style>

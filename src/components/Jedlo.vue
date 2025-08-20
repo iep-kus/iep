@@ -146,19 +146,14 @@ export default {
           { value: 4, text: 'Vôbec' }
         ],
 
-        
-        hovadzie_emisie:[2211.3,1474.2,842.4,210.6,52.65,0],
-        ostatne_emisie:[674.60625,449.7375,256.9928571,64.24821429,16.06205357,0],
-        mliecne_emisie:[780.525,520.35,297.3428571,74.33571429,17.10739726,0],
-        syry_emisie:[418.95,279.3,159.6,45.6,11.4,0],
-        zelenina_emisie:[137.2,91.46666667,52.26666667,13.06666667,3.266666667,0],
-        alkohol_emisie:[225.65375,128.945,32.23625,8.0590625,0],
+        // akutalizovane emisie z jedla 2025
+        hovadzie_emisie:[2313.80, 1156.40, 660.80, 165.20, 41.30,0],
+        ostatne_emisie:[375.38, 187.69, 107.25, 26.81, 6.70, 0],
+        mliecne_emisie:[379.38, 189.69, 108.39, 27.10, 6.24, 0],
+        syry_emisie:[324.63, 162.31, 92.75, 26.50, 6.63, 0],
+        zelenina_emisie:[50.80, 25.40, 14.51, 3.63, 0.91, 0],
+        alkohol_emisie:[174.68, 99.82, 24.95, 6.24, 0],
 
-        
-
-        
-
-        
       }
     },
 
@@ -174,18 +169,18 @@ export default {
         countEmissions() {
             if(this.vegan=='Nie'){
                 this.emisie_jedlo = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),
-                    Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol]),608
+                    Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol]),398.83
                 ];
             }
-            if(this.vegan=='Áno'){
-                this.emisie_jedlo = [0,0,0,0,598,Math.round(this.alkohol_emisie[this.alkohol]), 608
+            if(this.vegan=='Áno'){             //zvyseny prijem zeleniny pre veganov
+                this.emisie_jedlo = [0, 0, 0, 0, 242.06, Math.round(this.alkohol_emisie[this.alkohol]), 398.83
                 ];
             }
             this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]+this.emisie_jedlo[6]);
             
             
-            if(this.uhlikova_stopa_jedlo<1214){this.emisie_jedlo[4]=this.emisie_jedlo[4]+(1214-this.uhlikova_stopa_jedlo)
-            this.uhlikova_stopa_jedlo=1214}
+            if(this.uhlikova_stopa_jedlo<740.11){this.emisie_jedlo[4]=this.emisie_jedlo[4]+(740.11-this.uhlikova_stopa_jedlo)
+            this.uhlikova_stopa_jedlo=740.11}
         },
         
         

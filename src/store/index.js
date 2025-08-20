@@ -96,27 +96,31 @@ export default new Vuex.Store({
     spotreba1:5.8,
     osoby1:2,
     palivo1:1,
-
+    hybrid1: 'Nie',
 
     kilometre2:0,
     spotreba2:5.8,
     osoby2:2,
     palivo2:1,
+    hybrid2: 'Nie',
 
     kilometre3:0,
     spotreba3:5.8,
     osoby3:2,
     palivo3:1,
+    hybrid3: 'Nie',
 
     kilometre4:0,
     spotreba4:5.8,
     osoby4:2,
     palivo4:1,
+    hybrid4: 'Nie',
 
     kilometre5:0,
     spotreba5:5.8,
     osoby5:2,
     palivo5:1,
+    hybrid5: 'Nie',
 
 
 
@@ -249,7 +253,7 @@ export default new Vuex.Store({
 
     details_ziv_styl:false,
 
-    druharukaoblecenie:20,
+    druharukaoblecenie:10,
 
     stan:0,
     kemp:0,
@@ -268,7 +272,7 @@ export default new Vuex.Store({
 
     separovanie: ['','','',''],
 
-    nakupoblecenie: 2,
+    nakupoblecenie: 15,
 
 
 
@@ -740,7 +744,21 @@ export default new Vuex.Store({
         state.palivo5 = value;
     },
 
-
+    sethybrid1(state, value) {
+        state.hybrid1 = value;
+    },
+    sethybrid2(state, value) {
+        state.hybrid2 = value;
+    },
+    sethybrid3(state, value) {
+        state.hybrid3 = value;
+    },
+    sethybrid4(state, value) {
+        state.hybrid4 = value;
+    },
+    sethybrid5(state, value) {
+        state.hybrid5 = value;
+    },
 
 
 

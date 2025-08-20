@@ -298,7 +298,7 @@ export default {
             if (this.okres==41){ef = this.EF_centralne[7]}
             if (this.okres==2){ef = this.EF_centralne[8]}
             if (this.okres==32){ef = this.EF_centralne[9]}
-            if (this.okres==68){ef = this.EF_centralne[9]}
+            if (this.okres==68){ef = this.EF_centralne[10]} //opraveny index
             if (this.selected1=='kWh') {
                 return ef;
             }
@@ -713,7 +713,7 @@ export default {
     
     overflow: auto;
     background-color:whitesmoke;
-    font-family: 'montserrat-bold';
+    font-family: 'chivo-bold';
 }
 
 

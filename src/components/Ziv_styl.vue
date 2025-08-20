@@ -21,10 +21,15 @@
                     <div class="otazka">
                         <b-row  style="margin-bottom:2.5vh" align-v="start">      
                             <b-col lg="1" cols="1" class="text-right">22.</b-col>
-                            <b-col lg="5" cols="10" class="text-left" align-h="start">Ako často priemerne nakupuješ oblečenie?</b-col>
-                            <b-col lg="5" cols="10" offset-lg="0" offset="1" class="text-left" align-h="start">
+                            <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko kusov oblečenia si za rok približne kúpiš?</b-col>
+                            <!--<b-col lg="5" cols="10" offset-lg="0" offset="1" class="text-left" align-h="start">
                                 <b-form-select v-model="nakupoblecenie" v-on:change="countEmissions_ziv()" :options="oblecenie"></b-form-select>
+                            </b-col>-->
+
+                            <b-col md="5" cols="10" offset-md="0" offset="1" class="text-right" > 
+                                <b-form-spinbutton id="nakupoblecenie" v-on:change="countEmissions_ziv()" v-model="nakupoblecenie" min="0" max="365"></b-form-spinbutton>
                             </b-col>
+
                         </b-row>
                         <div v-if="details_ziv_styl==true">
                             <b-row  style="margin-bottom:2vh" align-v="start">    
@@ -228,8 +233,8 @@ export default {
           { value: 6, text: 'Vôbec' }
         ],
 
-        oblecenie_emisie : [605.9766072,353.4863542, 201.9922024, 134.6614683, 100.9961012, 33.66536707, 16.83268353],
-        ef_dovolenky : [10,19.75,54],
+        oblecenie_emisie : 19.94, // akualizacia EF oblecenia 2025
+        ef_dovolenky : [7.63, 13.96, 27.48], // aktualizovane hodnoty pre dovolenky 2025
         ef_odpady : [0.9, -1.024, -0.314, -0.495, 0.06],
       }
     },
@@ -239,7 +244,7 @@ export default {
     },
     methods: {
         countEmissions_ziv() {
-            this.emisie_ziv_styl[0] = Math.round((1-this.druharukaoblecenie/100)*this.oblecenie_emisie[this.nakupoblecenie]);
+            this.emisie_ziv_styl[0] = Math.round((1-this.druharukaoblecenie/100)*this.oblecenie_emisie*this.nakupoblecenie); // zjednodusenie vypoctu emisii z oblecenia
             this.emisie_ziv_styl[1] = Math.round(this.ef_dovolenky[0]*this.kemp + this.ef_dovolenky[1]*this.hotel + this.ef_dovolenky[2]*this.luxus);
             this.emisie_ziv_styl[2] = Math.round(this.odpady());
            
