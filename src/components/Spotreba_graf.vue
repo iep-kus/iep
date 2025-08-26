@@ -31,7 +31,7 @@
 
                         <b-col cols="12" lg="8" order="1" order-lg="2">
                 
-                            <div class="otazka">
+                            <!--<div class="otazka">
                                 <b-row v-if="details_spotreba==true" style="margin-bottom:2.5vh" align-v="start">      
                                     <b-col cols="1" class="text-right">16.</b-col>
                                     <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko áut vlastní tvoja domácnosť?</b-col>
@@ -61,7 +61,7 @@
                             
                                     </b-row>
                                 </div>
-                            </div>
+                            </div>-->
                             
 
 
@@ -72,7 +72,7 @@
                             
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
-                                    <b-col cols="1" class="text-right">17.</b-col>
+                                    <b-col cols="1" class="text-right">16.</b-col>
                                     <b-col cols="10" xl="5" class="text-left" align-h="start">Koľko z týchto spotrebičov vlastní tvoja domácnosť: chladnička, práčka, sušička, umývačka riadu, sporák, rúra, klimatizácia?</b-col>
                                     <b-col cols="10" xl="5" offset="1" offset-xl="0" class="text-left" align-h="start">
                                         <b-form-spinbutton id="vlastneniebielatechnika" v-model="vlastneniebielatechnika" min="0" max="7" v-on:change="countEmissions()"></b-form-spinbutton>
@@ -82,8 +82,8 @@
                                     <b-row  style="margin-bottom:2vh" align-v="start">    
                                         <b-col cols="1" xl="2" class="text-right"></b-col>
                                         <b-col cols="10" xl="4"  class="text-left">Priemerne ako často ich meníte?
-                                            <b-icon-question-circle-fill font-scale="1.2" id="question17"></b-icon-question-circle-fill>
-                                            <b-tooltip target="question17" title="Príklad: Z uvedených spotrebičov vlastním 3: Chladničku , práčku a sporák. Chladničku zvyknem meniť po 8-ich rokoch. Práčku mením raz za 12 rokov. Sporák mením po 16-tich rokoch. Do odpoveďe preto uvediem číslo 12, teda priemer týchto čísel. (8+12+16)/3=12 Tento princíp použite aj pri otázkach 18,19. V prípade, ak môj byt je nový a spotrebiče som ešte nikdy nemenil, zadám buď očakávanú alebo nechám prednastavenú hodnotu."  variant="dark"></b-tooltip>
+                                            <b-icon-question-circle-fill font-scale="1.2" id="question16"></b-icon-question-circle-fill>
+                                            <b-tooltip target="question16" title="Príklad: Z uvedených spotrebičov vlastním 3: Chladničku , práčku a sporák. Chladničku zvyknem meniť po 8-ich rokoch. Práčku mením raz za 12 rokov. Sporák mením po 16-tich rokoch. Do odpoveďe preto uvediem číslo 12, teda priemer týchto čísel. (8+12+16)/3=12 Tento princíp použite aj pri otázkach 17,18. V prípade, ak môj byt je nový a spotrebiče som ešte nikdy nemenil, zadám buď očakávanú alebo nechám prednastavenú hodnotu."  variant="dark"></b-tooltip>
                                         </b-col>
                                         <b-col xl="1" cols="3" offset="1" offset-xl="0" class="text-right">Raz za</b-col>
                                         <b-col xl="3" cols="5" class="text-right" >
@@ -106,7 +106,7 @@
 
                             <div class="otazka" v-if="details_spotreba==true">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
-                                    <b-col xl="1" cols="1" class="text-right">18.</b-col>
+                                    <b-col xl="1" cols="1" class="text-right">17.</b-col>
                                     <b-col xl="5" cols="10" class="text-left" align-h="start">Koľko ďalších elektronických zariadení, ktoré používa viacero členov domácností, máte? (televízor, repráky, herná konzola, vysávač, kuchynské roboty, kávovar, rýchlovarná kanvica, mikrovlnka, odšťavovač, žehlička, ohrievač... )</b-col>
                                     <b-col xl="5" cols="10" offset-xl="0" offset="1" class="text-left" align-h="start">
                                         <b-form-spinbutton id="vlastnenieciernatechnika" v-model="vlastnenieciernatechnika" min="0" max="20" v-on:change="countEmissions()"></b-form-spinbutton>
@@ -140,8 +140,8 @@
 
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
-                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==true">19.</b-col>
-                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==false">18.</b-col>
+                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==true">18.</b-col>
+                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==false">17.</b-col>
                                     <b-col xl="5" cols="10" class="text-left" align-h="start">Koľko zariadení z osobnej elektroniky vlastníš? (mobil, notebook, tablet, smart hodinky, elektrobežka, power banka, čítačka kníh ...)</b-col>
                                     <b-col xl="5" cols="10" offset="1" offset-xl="0" class="text-left" align-h="start">
                                         <b-form-spinbutton id="vlastnenietechnika" v-model="vlastnenietechnika" min="0" max="20" v-on:change="countEmissions()">
@@ -174,8 +174,8 @@
 
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
-                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==true">20.</b-col>
-                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==false">19.</b-col>
+                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==true">19.</b-col>
+                                    <b-col xl="1" cols="1" class="text-right" v-if="details_spotreba==false">18.</b-col>
                                     <b-col xl="5" cols="10" class="text-left" align-h="start">Koľko percent tvojich všetkých nákupov (biela technika a iné elektrospotrebiče, osobná elektronika alebo nábytok) tvoria nákupy z druhej ruky?</b-col>
                                     <b-col xl="4" cols="8" offset="1" offset-xl="0" class="text-left" align-h="start" >
                                         <b-form-input type="range" id="druharuka" v-model="druharuka" min="0" max="100" v-on:change="countEmissions()"></b-form-input>
@@ -265,11 +265,13 @@ export default {
 
         
         
-        ef_auto: 7764,
-        ef_bielatechnika: 270.925,
-        ef_ciernatechnika: 196.42,
-        ef_technika: 257.785,
-        ef_nabytok: [39.5,31,27,84,42,26,90,25],
+        ef_auto: 9040,
+        zivotnost_auto: 21.7,
+        ef_bielatechnika: 264.96,
+        ef_ciernatechnika: 132.35,
+        ef_technika: 136.43,
+        // nabytok = [postel, skrina, stolicka, polica/skrinka, kniznica, gauc, stol]
+        ef_nabytok: [100, 90, 30, 37.5, 30, 37.5, 82.5],
 
         coef_car_age: [1, 0.68, 0.38, 0.16]
         
@@ -285,22 +287,24 @@ export default {
 
     methods: {
         countEmissions() {
-            if(this.details_spotreba==false) {
-                this.emisie_spotreba[0] = Math.round(this.ef_auto*this.pocetaut*1/(10*this.clenovia));
+            console.log('Emisie zo spotreby su: ', this.emisie_spotreba); // kontrola
+
+            if(this.details_spotreba==false) {  // zmeneny vypocet emisii zo zivotneho cyklu auta
+                this.emisie_spotreba[0] = Math.round(this.ef_auto*this.pocetaut/(this.zivotnost_auto*this.clenovia));
                 this.emisie_spotreba[1] = Math.round(this.ef_bielatechnika*(1-this.druharuka/100)*this.vlastneniebielatechnika/(15*this.clenovia));
                 this.emisie_spotreba[2] = Math.round(this.ef_ciernatechnika*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(10*this.clenovia));
                 this.emisie_spotreba[3] = Math.round(this.ef_technika*(1-this.druharuka/100)*this.vlastnenietechnika/(5));
-                this.emisie_spotreba[4] = Math.round(this.nabytok()); 
+                this.emisie_spotreba[4] = Math.round((1-this.druharuka/100)*this.nabytok()); 
                 this.chartData.datasets[0].data = this.emisie_spotreba;
                 this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3] + +this.emisie_spotreba[4]);
                 this.updateChart();
             }
             if(this.details_spotreba==true) {
-                this.emisie_spotreba[0] = Math.round(this.ef_auto*this.vlastnenieaut*this.carage()/(this.vekaut*this.clenovia));
+                this.emisie_spotreba[0] = Math.round(this.ef_auto*this.pocetaut/(this.zivotnost_auto*this.clenovia));
                 this.emisie_spotreba[1] = Math.round(this.ef_bielatechnika*(1-this.druharuka/100)*this.vlastneniebielatechnika/(this.vekbielatechnika*this.clenovia));
                 this.emisie_spotreba[2] = Math.round(this.ef_ciernatechnika*(1-this.druharuka/100)*this.vlastnenieciernatechnika/(this.vekciernatechnika*this.clenovia));
                 this.emisie_spotreba[3] = Math.round(this.ef_technika*(1-this.druharuka/100)*this.vlastnenietechnika/(this.vektechnika));
-                this.emisie_spotreba[4] = Math.round(this.nabytok()); 
+                this.emisie_spotreba[4] = Math.round((1-this.druharuka/100)*this.nabytok()); 
                 this.chartData.datasets[0].data = this.emisie_spotreba;
                 this.uhlikova_stopa_spotreba = Math.round(this.emisie_spotreba[0]+this.emisie_spotreba[1]+this.emisie_spotreba[2]+this.emisie_spotreba[3]+ +this.emisie_spotreba[4]);
                 this.updateChart();
@@ -315,10 +319,11 @@ export default {
         updateChart() {
          this.$refs.spotreba_chart.update();
         },
-        nabytok() {
-            return Math.round(((this.ef_nabytok[0] + this.ef_nabytok[1] + this.ef_nabytok[2])*this.clenovia + this.ef_nabytok[3] + 
-            (this.rozloha/50)*(this.ef_nabytok[4] + this.ef_nabytok[5]) + this.ef_nabytok[6] + this.ef_nabytok[7])/15*this.clenovia)
-        }
+
+        nabytok() {             // osobny nabytok, ktory ma kazdy clen domacnosti
+            return Math.round(((this.ef_nabytok[0] + this.ef_nabytok[1] + 2*this.ef_nabytok[2])*this.clenovia +  
+            (this.rozloha/30)*this.ef_nabytok[3] + this.ef_nabytok[4] + this.ef_nabytok[5] + this.ef_nabytok[6])/(15*this.clenovia))
+        }          // nabytok, co zavisi od rozlohy      // nabytok, ktory je v domacnosti cca po jednom 
         
     },
     

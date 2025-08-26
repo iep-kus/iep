@@ -1426,9 +1426,10 @@ export default {
 
         
 
-        kilometre_cudzie_doprava: [23776,17832,11888,2972,594,0],
-        kilometre_hromadna_doprava: [5944,4458,2972,743,149,0],
-        kilometre_vlakova_doprava: [11888,8916,5944,1486,297,0],
+        // zmenene priemerne kilometre aktualizacia 2025 (odhady)
+        kilometre_cudzie_doprava: [42460, 31845, 21230, 5307.5, 1061.5, 0],
+        kilometre_hromadna_doprava: [8320, 6240, 4160, 1040, 208, 0],
+        kilometre_vlakova_doprava: [16640, 12480, 8320, 2080, 416, 0],
 
 
         palivo: [
@@ -1454,24 +1455,19 @@ export default {
           { value: 1, text: 'Nie' }
         ], 
 
-        //hybrid1: 'Nie',
-        //hybrid2: 'Nie',
-        //hybrid3: 'Nie',
-        //hybrid4: 'Nie',
-        //hybrid5: 'Nie',
-
-
+        // aktualizovane EF 2025
         ef_cudzie: 0.1404,
         ef_benzin: 2.2187,
         ef_nafta: 2.6087,
         ef_lpg: 1.6367,
         ef_cng: 2.7349,
         ef_hybrid: 0.1,
-        ef_elektrika: 0.0317,
+        ef_elektrika: 0.0317, // energeticky mix 2025
 
         ef_hromadna: [0.04, 0.0187],
         ef_vlak: 0.0406,
-        ef_letecka: [0.0754, 0.1184],
+        //ef_letecka: [0.0754, 0.1184],
+        ef_letecka: [0.2726, 0.1859, 0.2613],
         
         
       }
@@ -1512,8 +1508,7 @@ export default {
             let j=0
             let k=0
 
-            console.log('Hodnota hybrid1 je: ', this.hybrid1);
-            console.log('Pole hybrid je: ', hybrid);
+            console.log('emisie z auta', this.kilometre_cudzie_doprava[2]); // kontrola
             
             if(this.details_doprava==false){
                 for(k = 0; k<= 6; k++){
@@ -1613,7 +1608,7 @@ export default {
                 }
                 if(m[i]==1) {
                     if(letectvo[i]!=0){
-                        e[i] = s[i]*(letectvo[i]*846.27 - 386.48)*this.ef_letectvo(letectvo[i]*846.27 - 386.48)
+                        e[i] = s[i]*(letectvo[i]*790.04 - 473.7)*this.ef_letectvo(letectvo[i]*790.04 - 473.7)
                     }
                 }
             }
@@ -1622,14 +1617,20 @@ export default {
         },
 
         ef_letectvo(value) {
+            /*
             if(value<1366){
                 return this.EWP(value)*(this.ef_letecka[1]-(value-500)*0.00004965)
             }
             else {
                 return this.EWP(value)*(this.ef_letecka[0]+(value-1366)*0.00000313)
             }
+            */
+            if(value <= 500) {return this.ef_letecka[0]} // kratke lety
+            if(value > 500 && value <= 3700) {return this.ef_letecka[1]} // stredne dlhe lety
+            else {return this.ef_letecka[2]} // dlhe lety
         },
 
+        /*
         EWP(value) {
             if(value<=500){return 1}
             if(value<=750 && value>500) {return 1+value*0.00228}
@@ -1639,6 +1640,7 @@ export default {
             if(value<=10000 && value>4000) {return 2.21+value*0.000017}
             if(value>10000) {return 2.31 + value*0.000017}
         },
+        */
         
         updateChart() {
          this.$refs.doprava_chart.update();

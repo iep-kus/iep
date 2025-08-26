@@ -11,8 +11,8 @@ export default new Vuex.Store({
 
     uhlikova_stopa_byvanie:673,
     uhlikova_stopa_doprava:1417,
-    uhlikova_stopa_jedlo:2215,
-    uhlikova_stopa_spotreba:804,
+    uhlikova_stopa_jedlo:1186,// aktualizacia 2025
+    uhlikova_stopa_spotreba:361, // aktualizacia 2025
     uhlikova_stopa_ziv_styl:451,
     
     
@@ -20,15 +20,15 @@ export default new Vuex.Store({
     
     
     okres: 2,
-    clenovia: 2,
+    clenovia: 3, // priemerny pocet osob na domacnost je 3.11 v roku 2024
     typ: 'bytovom dome',
-    rozloha: 72,
+    rozloha: 70, // 
     zateplenie: 'čiastočné',
     
     vykurovanievybrate: 1,
 
-    centralne: '8600',
-    elektrika: '3075',
+    centralne: '8365', // aktualizacia 2025
+    elektrika: '2200', // aktualizacia 2025
     plyn: '0',
     lpg: '0',
     tuhe: '0',
@@ -72,19 +72,19 @@ export default new Vuex.Store({
 
 
     emisie_byvanie: [210.6,449.7375,520.35,159.6,137.2],
-
-    emisie_doprava: [871,158,9,434],
+    // doprava = [automobilova, hromadna (bus + mhd), vlakova, letecka]
+    emisie_doprava: [1639.38, 122.10, 16.89, 411.40],
 
     details_doprava: false,
          
-    cudzieauto:594,
-    autobus:28.6,
+    cudzieauto:1061.5, //
+    autobus:80, //
     kmhodautobus: 'km',
-    vlak:28.6,
+    vlak:8, //
     kmhodvlak:'km',
     typvlak: 'elektrický',
     pocetletov:2,
-    mhd:28.6,
+    mhd:80, //
     kmhodmhd:'km',
     
     frekvenciavlastne: 3,
@@ -92,7 +92,7 @@ export default new Vuex.Store({
     frekvenciamhd: 3,
     frekvenciavlak: 5,
 
-    kilometre1:11888,
+    kilometre1:21230, //
     spotreba1:5.8,
     osoby1:2,
     palivo1:1,
@@ -208,8 +208,8 @@ export default new Vuex.Store({
 
 
 
-    
-    emisie_jedlo: [210.6,449.7375,520.35,159.6,91,128.945, 608],
+    // jedlo = [hovadzie, ostatne maso, mlieko, syry, zelenia, alkohol, ostatne] - aktualizacia 2025
+    emisie_jedlo: [165.2, 187.69, 189.69, 92.75, 50.8, 99.82, 398.23], 
     
     vegan: 'Nie',
         
@@ -222,8 +222,8 @@ export default new Vuex.Store({
 
 
 
-
-    emisie_spotreba: [388.20,45.15,98.21,206.23,66],
+    // spotreba = [auta, biela technika, cierna technika, elektronika, nabytok] - aktualizacia 2025
+    emisie_spotreba: [138.86, 29.44, 44.12, 109.14, 21.94], 
     details_spotreba:false,
 
     vlastnenieaut: 1,
@@ -248,8 +248,8 @@ export default new Vuex.Store({
 
 
 
-
-    emisie_ziv_styl: [201.99,197.5,115.53],
+    // zivotny styl = [oblecenie, dovolenky, odpad] - aktualizacia 2025
+    emisie_ziv_styl: [129.69, 139.6, 255.14],
 
     details_ziv_styl:false,
 
@@ -264,15 +264,17 @@ export default new Vuex.Store({
     sklo:'Áno',
     papier: 'Áno',
     bioodpad: 'Nie',
+    kovy: 'Nie',
 
     plastyrange:75,
     sklorange:75,
     papierrange: 75,
-    bioodpadrange: 25,
+    bioodpadrange: 0,
+    kovyrange: 0,
 
     separovanie: ['','','',''],
 
-    nakupoblecenie: 15,
+    nakupoblecenie: 7,
 
 
 
@@ -1263,22 +1265,27 @@ export default new Vuex.Store({
     setpapier(state, value) {
         state.papier = value;
         if(value=='Áno'){state.papierrange=75}
-        if(value=='Nie'){state.papierrange=25}
+        if(value=='Nie'){state.papierrange=0}
     },
     setsklo(state, value) {
         state.sklo = value;
         if(value=='Áno'){state.sklorange=75}
-        if(value=='Nie'){state.sklorange=25}
+        if(value=='Nie'){state.sklorange=0}
     },
     setplasty(state, value) {
         state.plasty = value;
         if(value=='Áno'){state.plastyrange=75}
-        if(value=='Nie'){state.plastyrange=25}
+        if(value=='Nie'){state.plastyrange=0}
     },
     setbioodpad(state, value) {
         state.bioodpad = value; 
         if(value=='Áno'){state.bioodpadrange=75}
-        if(value=='Nie'){state.bioodpadrange=25}
+        if(value=='Nie'){state.bioodpadrange=0}
+    },
+    setkovy(state, value) {
+        state.kovy = value; 
+        if(value=='Áno'){state.kovyrange=75}
+        if(value=='Nie'){state.kovyrange=0}
     },
 
     setpapierrange(state, value) {
@@ -1300,6 +1307,11 @@ export default new Vuex.Store({
         state.bioodpadrange = value;
         if(value>=50){state.bioodpad='Áno'}
         if(value<50){state.bioodpad='Nie'}
+    },
+    setkovyrange(state, value) {
+        state.kovyrange = value;
+        if(value>=50){state.kovy='Áno'}
+        if(value<50){state.kovy='Nie'}
     },
 
     setseparovanie(state, value) {

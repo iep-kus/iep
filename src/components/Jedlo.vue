@@ -163,10 +163,31 @@ export default {
         vegan() {
             this.countEmissions();
         },
+        hovadzie() {
+            this.countEmissions();
+        },
+        ostatne() {
+            this.countEmissions();
+        },
+        mliecne() {
+            this.countEmissions();
+        },
+        syry() {
+            this.countEmissions();
+        },
+        zelenina() {
+            this.countEmissions();
+        },
+        alkohol() {
+            this.countEmissions();
+        },
     },
 
     methods: {
         countEmissions() {
+
+            console.log('Emisie z jedla su: ', this.emisie_jedlo); // kontrola
+
             if(this.vegan=='Nie'){
                 this.emisie_jedlo = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),
                     Math.round(this.syry_emisie[this.syry]),Math.round(this.zelenina_emisie[this.zelenina]),Math.round(this.alkohol_emisie[this.alkohol]),398.83

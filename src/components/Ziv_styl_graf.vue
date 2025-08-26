@@ -23,7 +23,7 @@
 
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
-                                    <b-col lg="1" cols="1" class="text-right">22.</b-col>
+                                    <b-col lg="1" cols="1" class="text-right">20.</b-col>
                                     <b-col lg="5" cols="10" class="text-left" align-h="start">Koľko kusov oblečenia si za rok približne kúpiš?</b-col>
                                     <!--<b-col lg="5" cols="10" offset-lg="0" offset="1" class="text-left" align-h="start">
                                         <b-form-select v-model="nakupoblecenie" v-on:change="countEmissions_ziv()" :options="oblecenie"></b-form-select>
@@ -55,9 +55,9 @@
 
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
-                                    <b-col md="1" cols="1" class="text-right">23.</b-col>
-                                    <b-col md="10" cols="10" class="text-left" align-h="start">Koľko nocí ročne stráviš v: <b-icon-question-circle-fill font-scale="1.2" id="question23"></b-icon-question-circle-fill></b-col>
-                                        <b-tooltip target="question23" title="Prosím nezapočítavaj služobné cesty"  variant="dark"></b-tooltip>
+                                    <b-col md="1" cols="1" class="text-right">21.</b-col>
+                                    <b-col md="10" cols="10" class="text-left" align-h="start">Koľko nocí ročne stráviš v: <b-icon-question-circle-fill font-scale="1.2" id="question21"></b-icon-question-circle-fill></b-col>
+                                        <b-tooltip target="question21" title="Prosím nezapočítavaj služobné cesty"  variant="dark"></b-tooltip>
                                 </b-row> 
 
                                 <div>
@@ -114,7 +114,7 @@
                             
                             <div class="otazka">
                                 <b-row  style="margin-bottom:2.5vh" align-v="start">      
-                                    <b-col md="1" cols="1" class="text-right">24.</b-col>
+                                    <b-col md="1" cols="1" class="text-right">22.</b-col>
                                     <b-col v-if="details_ziv_styl==false" md="10" cols="10" class="text-left" align-h="start">Ktoré z nasledujúcich odpadov triediš?</b-col>
                                     <b-col v-if="details_ziv_styl==true" md="10" cols="10" class="text-left" align-h="start">Na koľko percent triediš nasledujúce odpady?</b-col>
                                 </b-row> 
@@ -176,6 +176,20 @@
                                         </b-col>
                                         <b-col v-if="details_ziv_styl==true" lg="1" cols="2" class="text-right">{{bioodpadrange}}%</b-col>
                             
+                                    </b-row>
+                                </div>
+
+                                <div>
+                                    <b-row  style="margin-bottom:2vh" align-v="start">    
+                                        <b-col md="2" cols="1" class="text-right"></b-col>
+                                        <b-col md="4" cols="10" class="text-left">Kovy</b-col>
+                                        <b-col v-if="details_ziv_styl==false" md="5" cols="10" offset-md="0" offset="1" class="text-left" > 
+                                            <b-form-radio-group class="pt-2"  v-model="kovy" :options="['Áno', 'Nie']"></b-form-radio-group>
+                                        </b-col>
+                                        <b-col v-if="details_ziv_styl==true" lg="4" cols="8" offset="1" offset-lg="0" class="text-left" align-h="start">
+                                            <b-form-input type="range" id="kovyrange" v-model="kovyrange" min="0" max="100"></b-form-input>
+                                        </b-col>
+                                        <b-col v-if="details_ziv_styl==true" lg="1" cols="2" class="text-right">{{kovyrange}}%</b-col>
                                     </b-row>
                                 </div>
 
@@ -268,8 +282,9 @@ export default {
 
         oblecenie_emisie : 19.94, // aktualizacia EF oblecenia
         ef_dovolenky : [7.63, 13.96, 27.48], // aktualizovane hodnoty pre dovolenky 2025
-        ef_odpady : [0.9, -1.024, -0.314, -0.495, 0.06],
-
+        ef_odpady : [0.88, -1.13, -0.23, -0.06, -0.09, -5.4],// aktualizacia 2025
+        mnozstvo_odpadu: [185.8, 17.18, 15.62, 14.94, 50.89, 54.94],
+        miera_recyklacie: 0.88,
       }
     },
 
@@ -279,32 +294,44 @@ export default {
 
     methods: {
         countEmissions_ziv() {
+            const celkove_odpady = this.odpady();
+            
             this.emisie_ziv_styl[0] = Math.round((1-this.druharukaoblecenie/100)*this.oblecenie_emisie*this.nakupoblecenie);
             this.emisie_ziv_styl[1] = Math.round(this.ef_dovolenky[0]*this.kemp + this.ef_dovolenky[1]*this.hotel + this.ef_dovolenky[2]*this.luxus);
-            this.emisie_ziv_styl[2] = Math.round(this.odpady());
-            this.chartData.datasets[0].data = this.emisie_ziv_styl;
+            this.emisie_ziv_styl[2] = Math.round(celkove_odpady);
+            this.emisie_ziv_styl[3] = (celkove_odpady < 0) ? 0 : Math.round(celkove_odpady);
+            this.chartData.datasets[0].data = [this.emisie_ziv_styl[0], this.emisie_ziv_styl[1], this.emisie_ziv_styl[3]];
             this.uhlikova_stopa_ziv_styl = Math.round(this.emisie_ziv_styl[0]+this.emisie_ziv_styl[1]+this.emisie_ziv_styl[2]);
             this.updateChart();     
         },
         odpady() {
+
             let plast=0;
             let sklo=0;
             let papier=0;
             let bio=0;
             let zko=0;
+            let kov=0;
             let priemer=0;
             
-
+            zko = this.mnozstvo_odpadu[0]*this.ef_odpady[0];
+            plast = this.miera_recyklacie*this.mnozstvo_odpadu[1]*this.ef_odpady[1]*this.plastyrange/100 + (1-this.miera_recyklacie*this.plastyrange/100)*this.mnozstvo_odpadu[1]*this.ef_odpady[0]
+            sklo = this.miera_recyklacie*this.mnozstvo_odpadu[2]*this.ef_odpady[2]*this.sklorange/100 + (1-this.miera_recyklacie*this.sklorange/100)*this.mnozstvo_odpadu[2]*this.ef_odpady[0]
+            papier = this.miera_recyklacie*this.mnozstvo_odpadu[3]*this.ef_odpady[3]*this.papierrange/100 + (1-this.miera_recyklacie*this.papierrange/100)*this.mnozstvo_odpadu[3]*this.ef_odpady[0]
+            bio = this.miera_recyklacie*this.mnozstvo_odpadu[4]*this.ef_odpady[4]*this.bioodpadrange/100 + (1-this.miera_recyklacie*this.bioodpadrange/100)*this.mnozstvo_odpadu[4]*this.ef_odpady[0]
+            kov = this.miera_recyklacie*this.mnozstvo_odpadu[5]*this.ef_odpady[5]*this.kovyrange/100 + (1-this.miera_recyklacie*this. kovyrange/100)*this.mnozstvo_odpadu[5]*this.ef_odpady[0]
+            return zko + plast + sklo + papier + bio + kov
+            //return [zko, plast, sklo, papier, bio, kov]
             
+            /*
             priemer = (Number(this.plastyrange)+Number(this.sklorange)+Number(this.papierrange)+Number(this.bioodpadrange))/400;
             zko = -202.72*Math.pow(priemer,2) + 22.72*priemer + 188.6;
             plast = -15.88*Math.pow((Number(this.plastyrange)/100),2) + 24.58*Number(this.plastyrange)/100 +2.7;
             sklo = -21.12*Math.pow(((Number(this.sklorange))/100),2) + 31.72*Number(this.sklorange)/100 +2.5;
             papier = -10.4*Math.pow(((Number(this.papierrange))/100),2) + 16.2*(Number(this.papierrange))/100 +1;
             bio = -22.6*Math.pow(((Number(this.bioodpadrange))/100),2) + 49.7*(Number(this.bioodpadrange))/100 +0.2;
-    
             return this.ef_odpady[0]*zko + this.ef_odpady[1]*plast + this.ef_odpady[2]*sklo + this.ef_odpady[3]*papier + this.ef_odpady[4]* bio
-              
+            */  
             
         },
         updateChart() {
@@ -423,6 +450,14 @@ export default {
                 this.$store.commit('setbioodpad',value)    
             }
         },
+        kovy: {
+            get() {
+                return this.$store.state.kovy
+            },
+            set(value) {
+                this.$store.commit('setkovy',value)    
+            }
+        },
 
         plastyrange: {
             get() {
@@ -456,6 +491,14 @@ export default {
                 this.$store.commit('setbioodpadrange',value)    
             }
         },
+        kovyrange: {
+            get() {
+                return this.$store.state.kovyrange
+            },
+            set(value) {
+                this.$store.commit('setkovyrange',value)    
+            }
+        },
 
     
     },
@@ -471,6 +514,9 @@ export default {
             this.countEmissions_ziv();           
         },
         bioodpadrange() {
+            this.countEmissions_ziv();           
+        },
+        kovyrange() {
             this.countEmissions_ziv();           
         },
     },

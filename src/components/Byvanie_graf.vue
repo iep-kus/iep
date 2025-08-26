@@ -248,19 +248,19 @@ export default {
           { value: 5, text: 'Tuhé palivo' }
         ],
 
-        
-        EF_centralne: [0.254524819,0.253483,0.434007,0.519568,0.050929,	0.004886,0.464345,0.095771,	0.096154,0.067771,0.558332,0.434007 ],
-    
-        ef_elektrika: 0.169,
-        ef_plyn: 0.2003,
-        ef_lpg: 1.655,
+        // centralne kurenie: [priemer, BA, KE, ZA, Veolia, TT, MT, PO, BB, NT, ZV, ?]
+        EF_centralne: [0.2867, 0.3930, 0.4330, 0.6780, 0.1753, 0, 0.3315, 0.3026, 0.1644, 0.3550, 0.0346,  0.434007],
+        ef_elektrika: 0.0317, // pre rok 2024, rucne vypocitane, podla slovenskeho energetickeho mixu
+        ef_plyn: 0.202,
+        ef_lpg: 1.667,
         ef_tuhe_prm: 1212.96 ,
-        ef_tuhe_m3: 910 ,
-        centralne_eurkwh: 0.092307,
-        elektrika_eurkwh: 0.1577,
-        plyn_eurkwh: 0.0533,
-        lpg_eurl: 0.59,
-        tuhe_m3t:0.865,
+        ef_tuhe_m3: 96.9105 , // v pripade platnosti smernice o obnovitelnom dreve
+
+        centralne_eurkwh: 0.1383, // ceny 2024
+        elektrika_eurkwh: 0.1918,
+        plyn_eurkwh: 0.0493,
+        lpg_eurl: 0.723,
+        tuhe_m3t:0.865, 
         
 
             
