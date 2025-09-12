@@ -211,10 +211,11 @@ export default {
         ef_tuhe_m3: 96.9105 , // v pripade platnosti smernice o obnovitelnom dreve
 
         centralne_eurkwh: 0.1383, // ceny 2024
-        elektrika_eurkwh: 0.1918,
-        plyn_eurkwh: 0.0493,
-        lpg_eurl: 0.723,
-        tuhe_m3t:0.865, 
+        elektrika_eurkwh: 0.1770,
+        plyn_eurkwh: 0.0500,
+        lpg_eurl: 0.711,
+        tuhe_tm3:0.865, 
+        tuhe_tprm: 0.585,
       }
     },
     mounted() {
@@ -224,16 +225,21 @@ export default {
     methods: {
        
         fillData() {
+            
             // uhlikova stopa byvania = centralne + elektrina + plyn + lpg + tuhe - vlatna dodavka  
-            this.emisie_byvanie = [Math.round(this.emisie_centralne()*this.centralne/this.clenovia),Math.round(this.emisie_elektrika()*this.elektrika/this.clenovia)-Math.round(this.dodavanie()),
-                Math.round(this.emisie_plyn()*this.plyn/this.clenovia),Math.round(this.emisie_lpg()*this.lpg/this.clenovia),Math.round(this.emisie_tuhe()*this.tuhe/this.clenovia)];
+            this.emisie_byvanie[0] = Math.round(this.emisie_centralne()*this.centralne/this.clenovia);
+            this.emisie_byvanie[1] = Math.round(this.emisie_elektrika()*this.elektrika/this.clenovia)-Math.round(this.dodavanie());
+            this.emisie_byvanie[2] = Math.round(this.emisie_plyn()*this.plyn/this.clenovia);
+            this.emisie_byvanie[3] = Math.round(this.emisie_lpg()*this.lpg/this.clenovia);
+            this.emisie_byvanie[4] = Math.round(this.emisie_tuhe()*this.tuhe/this.clenovia);
+            
             this.uhlikova_stopa_byvanie = Math.round(this.emisie_byvanie[0]+this.emisie_byvanie[1]+this.emisie_byvanie[2]+this.emisie_byvanie[3]+this.emisie_byvanie[4]);
             
             
             
         },
         
-        // priradenie okresov k ef ich elektrarne. Veolia nie je priradena nikam
+        // priradenie okresov k ef ich elektrarne. Veolia nie je priradena nikam, lebo nema konkretny hlavny okres kde prevadzkuje
         emisie_centralne() {
             let ef = this.EF_centralne[0];
             if (this.okres==5){ef = this.EF_centralne[1]}
@@ -244,7 +250,7 @@ export default {
             if (this.okres==41){ef = this.EF_centralne[7]}
             if (this.okres==2){ef = this.EF_centralne[8]}
             if (this.okres==32){ef = this.EF_centralne[9]}
-            if (this.okres==68){ef = this.EF_centralne[10]} //opraveny index
+            if (this.okres==68){ef = this.EF_centralne[10]}
             if (this.selected1=='kWh') {
                 return ef;
             }
@@ -287,15 +293,15 @@ export default {
             }
         },
             
-         emisie_tuhe() {      
+        emisie_tuhe() {      
             if (this.selected5=='priestorový meter') {
-                return this.ef_tuhe_prm;
+                return this.ef_tuhe_m3/this.tuhe_tm3*this.tuhe_tprm;
             }
             if (this.selected5=='m3') {
                 return this.ef_tuhe_m3;
             }
             if (this.selected5=='t') {
-                return this.ef_tuhe_m3/this.tuhe_m3t;
+                return this.ef_tuhe_m3/this.tuhe_tm3;
             }
           
              

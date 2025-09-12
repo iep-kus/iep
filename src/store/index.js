@@ -7,19 +7,19 @@ Vue.use(Vuex);
 export default new Vuex.Store({
  state: {
     
-    uhlikova_stopa_celkovo:5559,
+    uhlikova_stopa_celkovo: 5064,
 
-    uhlikova_stopa_byvanie:673,
-    uhlikova_stopa_doprava:1417,
-    uhlikova_stopa_jedlo:1186,// aktualizacia 2025
-    uhlikova_stopa_spotreba:361, // aktualizacia 2025
-    uhlikova_stopa_ziv_styl:451,
+    uhlikova_stopa_byvanie: 822,
+    uhlikova_stopa_doprava: 2190,
+    uhlikova_stopa_jedlo: 1186,// aktualizacia 2025
+    uhlikova_stopa_spotreba: 344, // aktualizacia 2025
+    uhlikova_stopa_ziv_styl: 524,
     
     
     
     
     
-    okres: 2,
+    okres: 1,
     clenovia: 3, // priemerny pocet osob na domacnost je 3.11 v roku 2024
     typ: 'bytovom dome',
     rozloha: 70, // 
@@ -49,19 +49,25 @@ export default new Vuex.Store({
 
     details_byvanie: false,
 
-    dom_vykurovanie_priemer: 188.84,
-    byt_vykurovanie_priemer: 119.44,
+    //dom_vykurovanie_priemer: 188.84,
+    //byt_vykurovanie_priemer: 119.44,
     zateplenie_konverzia: 1, 
-    byt_ziadne: 1.27388535,
-    byt_uplne: 0.72611465,
-    dom_ziadne: 1.27388535,
-    dom_uplne: 0.72611465,
+    byt_ziadne: 198.5,
+    byt_ciastocne: 119.5,
+    byt_uplne: 59.5,
+    dom_ziadne: 276,
+    dom_ciastocne: 166,
+    dom_uplne: 82.5,
 
-    centralne_jednotky: 0.092307,
-    elektrika_jednotky: 0.1577,
-    plyn_jednotky: 0.0533,
-    lpg_jednotky: 0.59,
-    tuhe_jednotky: 0.865,
+    centralne_jednotky: 0.1383, // ceny eur/kWh 2024
+    elektrika_jednotky: 0.1770, 
+    plyn_jednotky: 0.0500,
+    lpg_jednotky: 0.711, // cena eur/l 2024
+    vyhrevnost_lpg: 7.2, // kWh/l
+    tuhe_jednotky: 0.865, // prepocet jednotiek kg na m3
+    ucinnost_krbu: 0.75,
+    vyhrevnost_dreva: 3.3, // kWh/kg
+
 
     path_vypocitat: false,
     
@@ -70,8 +76,9 @@ export default new Vuex.Store({
 
 
 
-
-    emisie_byvanie: [210.6,449.7375,520.35,159.6,137.2],
+    // byvanie = [centralne, elektrina, plyn, lpg, tuhe palivo]
+    emisie_byvanie: [799.44, 23.27, 0, 0, 0],
+    
     // doprava = [automobilova, hromadna (bus + mhd), vlakova, letecka]
     emisie_doprava: [1639.38, 122.10, 16.89, 411.40],
 
@@ -299,7 +306,7 @@ export default new Vuex.Store({
     settyp(state,typ) {
         state.typ = typ;
         if (state.typ=='bytovom dome') {
-            state.rozloha = 72
+            state.rozloha = 70
         }
         else {
             state.rozloha = 150
@@ -312,39 +319,14 @@ export default new Vuex.Store({
         state.zateplenie = zateplenie;
     },
 
-
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
     setemisie_byvanie(state,value) {
         state.emisie_byvanie = value;
     },
     setuhlikova_stopa_byvanie(state,value) {
         state.uhlikova_stopa_byvanie = value;
     },
-
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
     setvykurovanievybrate(state, vykurovanievybrate) {
         state.vykurovanievybrate = vykurovanievybrate;
-
     },
 
     setcentralne(state, centralne) {
@@ -434,24 +416,26 @@ export default new Vuex.Store({
     
     
 
-
+    // podla vybratych moznosti sa uzivatelovi priradi spravna spotreba energie na m2 na rok
     prepocetzateplenie(state) {
-            if (state.zateplenie=='úplné'){
-                if (state.typ == 'bytovom dome') {state.zateplenie_konverzia= state.byt_vykurovanie_priemer*state.byt_uplne}
-                else {state.zateplenie_konverzia= state.dom_vykurovanie_priemer*state.dom_uplne}
-            }
-            if (state.zateplenie=='čiastočné') {
-                if (state.typ == 'bytovom dome') {state.zateplenie_konverzia= state.byt_vykurovanie_priemer}
-                else {state.zateplenie_konverzia= state.dom_vykurovanie_priemer}
-            }
-            if (state.zateplenie=='žiadne') {
-                if (state.typ == 'bytovom dome') {state.zateplenie_konverzia= state.byt_vykurovanie_priemer*state.byt_ziadne}
-                else {state.zateplenie_konverzia= state.dom_vykurovanie_priemer*state.dom_ziadne}
-            }
+        
+        if (state.zateplenie=='úplné'){
+            if (state.typ == 'bytovom dome') {state.zateplenie_konverzia = state.byt_uplne}
+            else {state.zateplenie_konverzia= state.dom_uplne}
+        }
+        if (state.zateplenie=='čiastočné') {
+            if (state.typ == 'bytovom dome') {state.zateplenie_konverzia = state.byt_ciastocne}
+            else {state.zateplenie_konverzia= state.dom_ciastocne}
+        }
+        if (state.zateplenie=='žiadne') {
+            if (state.typ == 'bytovom dome') {state.zateplenie_konverzia = state.byt_ziadne}
+            else {state.zateplenie_konverzia= state.dom_ziadne}
+        }
     },
-
+    // podla vybraneho typu vykurovania, rozlohy a spotreby energie na m2 sa vypocita celkova spotreba
     prepocetenergie(state) {
         
+        // centralne kurenie
         if (state.vykurovanievybrate==1){
             if (state.selected1=='kWh'){
                 state.centralne = String(Math.round(state.rozloha*state.zateplenie_konverzia))
@@ -464,31 +448,31 @@ export default new Vuex.Store({
 
 
 
-
+        // elektrina, docasne zjednoduseny vypocet
         if (state.vykurovanievybrate==2){
             if (state.selected2=='kWh'){
-                if(state.typ=='bytovom dome'){state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia + (365.51 + 59.76*state.clenovia)/state.elektrika_jednotky))}
-                else{state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia + (635.69 + 29.781*state.clenovia)/state.elektrika_jednotky))}
+                if(state.typ=='bytovom dome'){state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia + 2200))} //(365.51 + 59.76*state.clenovia)/state.elektrika_jednotky))}
+                else{state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia + 3500))} //(635.69 + 29.781*state.clenovia)/state.elektrika_jednotky))}
             }
             else {
-                if(state.typ=='bytovom dome'){state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.elektrika_jednotky + 365.51 + 59.76*state.clenovia))}
-                else{state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.elektrika_jednotky + 635.69 + 29.781*state.clenovia))}
+                if(state.typ=='bytovom dome'){state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.elektrika_jednotky + 2200*state.elektrika_jednotky))}//365.51 + 59.76*state.clenovia))}
+                else{state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.elektrika_jednotky + 3500*state.elektrika_jednotky))}//635.69 + 29.781*state.clenovia))}
             }
         }
         if (state.vykurovanievybrate!=2) { 
             if (state.selected2=='kWh'){
-                if(state.typ=='bytovom dome'){state.elektrika = String(Math.round((365.51 + 59.76*state.clenovia)/state.elektrika_jednotky))}
-                else{state.elektrika = String(Math.round((635.69 + 29.781*state.clenovia)/state.elektrika_jednotky))}
+                if(state.typ=='bytovom dome'){state.elektrika = String(2200)} //String(Math.round((365.51 + 59.76*state.clenovia)/state.elektrika_jednotky))}
+                else{state.elektrika = String(3500)}//String(Math.round((635.69 + 29.781*state.clenovia)/state.elektrika_jednotky))}
             }
             else {
-                if(state.typ=='bytovom dome'){state.elektrika = String(Math.round(365.51 + 59.76*state.clenovia))}
-                else{state.elektrika = String(Math.round(635.69 + 29.781*state.clenovia))}
+                if(state.typ=='bytovom dome'){state.elektrika = String(Math.round(2200*state.elektrika_jednotky))} //String(Math.round(365.51 + 59.76*state.clenovia))}
+                else{state.elektrika = String(Math.round(3500*state.elektrika_jednotky))} //String(Math.round(635.69 + 29.781*state.clenovia))}
             }
         }
 
         
 
-
+        // Zemny plyn
         if (state.vykurovanievybrate==3){
             if (state.selected3=='kWh'){
                 state.plyn = String(Math.round(state.rozloha*state.zateplenie_konverzia))
@@ -501,28 +485,28 @@ export default new Vuex.Store({
             state.plyn = String(0)
         }
 
+        // LPG 
         if (state.vykurovanievybrate==4){
-            if (state.selected4=='litrov'){
-                if(state.typ=='bytovom dome'){state.lpg = String(885)}
-                if(state.typ=='rodinnom dome'){state.lpg = String(777) }
+            
+            if (state.selected4 == 'litrov'){
+                state.lpg = String(Math.round(state.rozloha*state.zateplenie_konverzia/state.vyhrevnost_lpg))
             }
-            else {
-                if(state.typ=='bytovom dome'){state.lpg = String(885*0.59)}
-                if(state.typ=='rodinnom dome'){state.lpg = String(777*0.59) }
+            else{
+                state.lpg = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.lpg_jednotky/state.vyhrevnost_lpg))
             }
         }
         if (state.vykurovanievybrate!=4) { state.lpg= '0'}
 
-        
+        // tuhe palivo (drevo)
         if (state.vykurovanievybrate==5){
             if (state.selected5=='priestorový meter'){
-                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*8*120/(3.2*1000*1212.96)))
+                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia/(state.ucinnost_krbu*state.vyhrevnost_dreva*585)))
             }
             if (state.selected5=='t'){
-                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*8*120/(3.2*1000*1000)))
+                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia/(state.ucinnost_krbu*state.vyhrevnost_dreva*1000)))
             }
             if (state.selected5=='m3'){
-                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia*8*120/(3.2*1000*910)))
+                state.tuhe = String(Math.round(state.rozloha*state.zateplenie_konverzia/(state.ucinnost_krbu*state.vyhrevnost_dreva*865)))
             }
         }
         if (state.vykurovanievybrate!=5) { state.tuhe = '0'}

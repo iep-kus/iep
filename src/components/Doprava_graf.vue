@@ -80,7 +80,7 @@
                                                         
                                                         <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                             <b-col class="text-left" >
-                                                                <p>Je to hybrid?</p>
+                                                                <p>Je to plug-in hybrid?</p>
                                                             </b-col>
                                                             <b-col class="text-left" >
                                                                 <b-form-radio-group
@@ -148,7 +148,7 @@
                                                             
                                                             <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                                 <b-col class="text-left" >
-                                                                    <p>Je to hybrid?</p>
+                                                                    <p>Je to plug-in hybrid?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <b-form-radio-group
@@ -216,7 +216,7 @@
                                                             
                                                             <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                                 <b-col class="text-left" >
-                                                                    <p>Je to hybrid?</p>
+                                                                    <p>Je to plug-in hybrid?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <b-form-radio-group
@@ -284,7 +284,7 @@
                                                             
                                                             <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                                 <b-col class="text-left" >
-                                                                    <p>Je to hybrid?</p>
+                                                                    <p>Je to plug-in hybrid?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <b-form-radio-group
@@ -352,7 +352,7 @@
                                                             
                                                             <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                                 <b-col class="text-left" >
-                                                                    <p>Je to hybrid?</p>
+                                                                    <p>Je to plug-in hybrid?</p>
                                                                 </b-col>
                                                                 <b-col class="text-left" >
                                                                     <b-form-radio-group
@@ -1461,12 +1461,11 @@ export default {
         ef_nafta: 2.6087,
         ef_lpg: 1.6367,
         ef_cng: 2.7349,
-        ef_hybrid: 0.1,
+        ef_hybrid: 0.0396,
         ef_elektrika: 0.0317, // energeticky mix 2025
 
         ef_hromadna: [0.04, 0.0187],
         ef_vlak: 0.0406,
-        //ef_letecka: [0.0754, 0.1184],
         ef_letecka: [0.2726, 0.1859, 0.2613],
         
         
@@ -1507,8 +1506,6 @@ export default {
             let i=0
             let j=0
             let k=0
-
-            console.log('emisie z auta', this.kilometre_cudzie_doprava[2]); // kontrola
             
             if(this.details_doprava==false){
                 for(k = 0; k<= 6; k++){

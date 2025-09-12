@@ -200,8 +200,8 @@ export default {
             this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]+this.emisie_jedlo[6]);
             
             
-            if(this.uhlikova_stopa_jedlo<740.11){this.emisie_jedlo[4]=this.emisie_jedlo[4]+(740.11-this.uhlikova_stopa_jedlo)
-            this.uhlikova_stopa_jedlo=740.11}
+            if(this.uhlikova_stopa_jedlo<740){this.emisie_jedlo[4]=this.emisie_jedlo[4]+(740-this.uhlikova_stopa_jedlo)
+            this.uhlikova_stopa_jedlo=740}
         },
         
         

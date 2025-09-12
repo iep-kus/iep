@@ -194,7 +194,7 @@ export default {
             datasets: [
             {
                 backgroundColor: ['#99362B','#FB8622','#99362B'],
-                data: [5888,0,8608],
+                data: [4997,0,7670],
             }
             ],
         },
@@ -305,26 +305,26 @@ export default {
         },
 
         celkovo_suggestions() {
-            if(this.celkovo > 5888 && this.celkovo < 8480 ) {
+            if(this.celkovo > 4997 && this.celkovo < 7670 ) {
                 this.celkovo_sugg_between = true
                 this.celkovo_sugg_under = false
                 this.celkovo_sugg_over = false
-                this.diff_sugg_between1 = this.celkovo - 5888
-                this.diff_sugg_between2 = 8480 - this.celkovo 
+                this.diff_sugg_between1 = this.celkovo - 4997
+                this.diff_sugg_between2 = 7670 - this.celkovo 
             }
-            if(this.celkovo < 5888) {
+            if(this.celkovo < 4997) {
                 this.celkovo_sugg_between = false
                 this.celkovo_sugg_under = true
                 this.celkovo_sugg_over = false
-                this.diff_sugg_under1 = 5888 - this.celkovo
-                this.diff_sugg_under2 = 8480 - this.celkovo 
+                this.diff_sugg_under1 = 4997 - this.celkovo
+                this.diff_sugg_under2 = 7670 - this.celkovo 
             }
-            if(this.celkovo > 8480 ) {
+            if(this.celkovo > 7670 ) {
                 this.celkovo_sugg_between = false
                 this.celkovo_sugg_under = false
                 this.celkovo_sugg_over = true
-                this.diff_sugg_over1 = this.celkovo - 5888
-                this.diff_sugg_over2 = this.celkovo - 8480
+                this.diff_sugg_over1 = this.celkovo - 4997
+                this.diff_sugg_over2 = this.celkovo - 7670
             }
             
 
@@ -373,7 +373,8 @@ export default {
         update_suggestions() {
             let diff = [0,0,0,0,0,0,0,0,0,0,0];
             let emissions = [this.uhlikova_stopa_byvanie,this.emisie_doprava[0],this.emisie_doprava[3],this.emisie_jedlo[0],this.emisie_jedlo[1],this.emisie_jedlo[2],this.emisie_jedlo[3],this.uhlikova_stopa_spotreba,this.emisie_ziv_styl[0],this.emisie_ziv_styl[1],this.emisie_ziv_styl[2]]
-            const average_slovak = [2084,1199,789,220,400,530,120,815, 200 ,250 , 200]
+            // priemerny slovak = [byvanie, auto doprava, letecka doprava, hovadzie, ostatne maso, mlieko, syry, spotreba, oblecenie, dovolenky, odpady] - aktualizacia 2025
+            const average_slovak = [1460, 844.3, 346, 165, 188, 190, 93, 399, 130, 140, 355]
             for (var i = 0; i < average_slovak.length; i++) {
                 diff[i] = emissions[i]/average_slovak[i]; 
             }

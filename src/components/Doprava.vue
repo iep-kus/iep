@@ -41,7 +41,7 @@
                             </b-row> 
                         </div>
 
-                        <!--pridala som k autam moznost hybrid, ktory ma EF 0.1 kg CO2/km, preto nepotrebujeme vediet spotrebu-->
+                        <!--nova moznost plug-in hybrid, ktory ma EF 0.0396 kg CO2/km, preto nepotrebujeme vediet spotrebu-->
 
                         <div v-if="details_doprava==true">
                             <div class="auto" v-if="pocetaut!==0">
@@ -65,7 +65,7 @@
                                                 <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                     <b-col class="text-left"></b-col>
                                                     <b-col class="text-left">
-                                                        <p>Je to hybrid?</p>
+                                                        <p>Je to plug-in hybrid?</p>
                                                     </b-col>
                                                     <b-col class="text-left">
                                                         <b-form-radio-group
@@ -133,7 +133,7 @@
                                                     <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                         <b-col class="text-left"></b-col>
                                                         <b-col class="text-left">
-                                                            <p>Je to hybrid?</p>
+                                                            <p>Je to plug-in hybrid?</p>
                                                         </b-col>
                                                         <b-col class="text-left">
                                                             <b-form-radio-group
@@ -200,7 +200,7 @@
                                                     <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                         <b-col class="text-left"></b-col>
                                                         <b-col class="text-left">
-                                                            <p>Je to hybrid?</p>
+                                                            <p>Je to plug-in hybrid?</p>
                                                         </b-col>
                                                         <b-col class="text-left">
                                                             <b-form-radio-group
@@ -267,7 +267,7 @@
                                                     <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                         <b-col class="text-left"></b-col>
                                                         <b-col class="text-left">
-                                                            <p>Je to hybrid?</p>
+                                                            <p>Je to plug-in hybrid?</p>
                                                         </b-col>
                                                         <b-col class="text-left">
                                                             <b-form-radio-group
@@ -334,7 +334,7 @@
                                                     <b-row align-v="center" style="margin-bottom:2vh" cols="1" cols-xl="3">
                                                         <b-col class="text-left"></b-col>
                                                         <b-col class="text-left">
-                                                            <p>Je to hybrid?</p>
+                                                            <p>Je to plug-in hybrid?</p>
                                                         </b-col>
                                                         <b-col class="text-left">
                                                             <b-form-radio-group
@@ -1370,7 +1370,7 @@ export default {
         ef_nafta: 2.6087,
         ef_lpg: 1.6367,
         ef_cng: 2.7349,
-        ef_hybrid: 0.1,
+        ef_hybrid: 0.0396,
         ef_elektrika: 0.0317, // energeticky mix Slovensko 2025
         
         //hromadna doprava = [autobus, MHD]
@@ -1408,7 +1408,7 @@ export default {
         },
 
         emisie_auta() {
-            // pocita spotrebu vsetkych 6tich paliv za rok: benzin, nafta, LPG, CNG, elektrina, hybrid
+            // pocita spotrebu vsetkych 6tich paliv za rok: benzin, nafta, LPG, CNG, elektrina, plug-in hybrid
             let spotreba = [0,0,0,0,0,0]
             let paliva = [this.palivo1,this.palivo2,this.palivo3,this.palivo4,this.palivo5]
             let kilometre = [this.kilometre1,this.kilometre2,this.kilometre3,this.kilometre4,this.kilometre5]
@@ -1425,7 +1425,6 @@ export default {
                        return this.kilometre_cudzie_doprava[k] * this.ef_cudzie * this.pocetaut/2
                     }
                 }}
-            // pridany hybrid
             if(this.details_doprava == true) {
                 for(i = 0; i <= 4; i++){
                     if(hybrid[i] === 'Áno') {
