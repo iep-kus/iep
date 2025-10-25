@@ -64,9 +64,9 @@
                                 <div>
                                     <b-row v-if="vegan=='Nie'" style="margin-bottom:2vh" align-v="center">    
                                         <b-col cols="1" md="2" class="text-right"></b-col>
-                                        <b-col cols="10" md="4" class="text-left">Mliečne výrobky:</b-col>
+                                        <b-col cols="10" md="4" class="text-left">Syry:</b-col>
                                         <b-col cols="10" md="5" offset="1" offset-md="0" class="text-right" > 
-                                            <b-form-select v-model="mliecne" v-on:change="countEmissions()" :options="jedlofrekvencia"></b-form-select>
+                                            <b-form-select v-model="syry" v-on:change="countEmissions()" :options="jedlofrekvencia"></b-form-select>
                                         </b-col>
                             
                                     </b-row>
@@ -75,9 +75,9 @@
                                 <div>
                                     <b-row v-if="vegan=='Nie'" style="margin-bottom:2vh" align-v="center">    
                                         <b-col cols="1" md="2" class="text-right"></b-col>
-                                        <b-col cols="10" md="4" class="text-left">Syry:</b-col>
+                                        <b-col cols="10" md="4" class="text-left">Ostatné mliečne výrobky:</b-col>
                                         <b-col cols="10" md="5" offset="1" offset-md="0" class="text-right" > 
-                                            <b-form-select v-model="syry" v-on:change="countEmissions()" :options="jedlofrekvencia"></b-form-select>
+                                            <b-form-select v-model="mliecne" v-on:change="countEmissions()" :options="jedlofrekvencia"></b-form-select>
                                         </b-col>
                             
                                     </b-row>
