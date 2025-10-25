@@ -33,7 +33,7 @@
                         <div v-if="details_doprava==false && pocetaut>0">
                             <b-row  style="margin-bottom:2vh" align-v="center">      
                                 <b-col md="1" cols="1" class="text-right"></b-col>
-                                <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívaš vlastné auto? <b-icon-question-circle-fill font-scale="1.2" id="question8b"></b-icon-question-circle-fill></b-col>
+                                <b-col md="5" cols="11" class="text-left" align-h="start">Ako často využívaš vlastné auto/motocykel? <b-icon-question-circle-fill font-scale="1.2" id="question8b"></b-icon-question-circle-fill></b-col>
                                 <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                     <b-form-select v-on:change="countEmissions_doprava()" v-model="frekvenciavlastne" :options="frekvenciadoprava"></b-form-select>
                                 </b-col>
@@ -385,7 +385,7 @@
 
                     <div class="otazka">
                         <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
-                            <b-col md="1" cols="1" class="text-right"></b-col>
+                            <b-col md="1" cols="1" class="text-right">9.</b-col>
                             <b-col md="5" cols="11" class="text-left" align-h="start">Koľko kilometrov si za posledný rok cestoval cudzími autami (BlaBlaCar, Uber, Taxi, kamarát...)?</b-col>
                             <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                 <b-form-input v-model="cudzieauto" placeholder="Vložte údaj"></b-form-input>
@@ -394,7 +394,7 @@
                         </b-row>
                         <div v-if="details_doprava==false">
                             <b-row  style="margin-bottom:2vh" align-v="center">      
-                                <b-col md="1" cols="1" class="text-right"></b-col>
+                                <b-col md="1" cols="1" class="text-right">9.</b-col>
                                 <b-col md="5" cols="11" class="text-left" align-h="start">Ako často si využíval dopravu cudzím autom za posledný rok (BlaBlaCar, Uber, Taxi, kamarát...)?</b-col>
                                 <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                     <b-form-select v-model="frekvenciacudzie" v-on:change="countEmissions_doprava()" :options="frekvenciadoprava"></b-form-select>
@@ -406,7 +406,7 @@
                     
                     <div class="otazka" >
                         <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
-                            <b-col md="1" cols="1" class="text-right">9.</b-col>
+                            <b-col md="1" cols="1" class="text-right">10.</b-col>
                             <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval autobusmi za posledný/priemerný týždeň?
                                 <b-icon-question-circle-fill font-scale="1.2" id="question9"></b-icon-question-circle-fill>
                             </b-col>
@@ -417,7 +417,7 @@
 
                         <div v-if="details_doprava==false">
                             <b-row  style="margin-bottom:2vh" align-v="center">      
-                                <b-col md="1" cols="1" class="text-right">9.</b-col>
+                                <b-col md="1" cols="1" class="text-right">10.</b-col>
                                 <b-col md="5" cols="11" class="text-left" align-h="start">Ako často si využíval hromadnú dopravu za posledný rok? (okrem vlakovej)</b-col>
                                 <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                     <b-form-select v-model="frekvenciamhd" v-on:change="countEmissions_doprava()" :options="frekvenciadoprava"></b-form-select>
@@ -429,7 +429,7 @@
 
                     <div class="otazka" >
                         <b-row  style="margin-bottom:2vh" align-v="center" v-if="details_doprava==true">      
-                            <b-col md="1" cols="1" class="text-right">10.</b-col>     <!--doplnenie moznosti zadat udaj v hodinach-->
+                            <b-col md="1" cols="1" class="text-right">11.</b-col>     <!--doplnenie moznosti zadat udaj v hodinach-->
                             <b-col md="5" cols="11" class="text-left" align-h="start">Koľko hodín/kilometrov si cestoval vlakmi za posledný/priemerný týždeň?</b-col>
                             <b-col md="3" cols="6" offset-md="0" offset="1" class="text-left" align-h="start"><b-form-input v-model="vlak" placeholder="Vložte údaj"></b-form-input></b-col>
                             <b-col md="2" cols="5" class="text-left" align-h="start"><b-form-select v-on:change="countEmissions_doprava()" v-model="kmhodvlak" :options="['km', 'hod']"></b-form-select></b-col>
@@ -445,7 +445,7 @@
 
                         <div v-if="details_doprava==false">
                             <b-row  style="margin-bottom:2vh" align-v="center">      
-                                <b-col md="1" cols="1" class="text-right">10.</b-col>
+                                <b-col md="1" cols="1" class="text-right">11.</b-col>
                                 <b-col md="5" cols="11" class="text-left" align-h="start">Ako často si využíval vlakovú dopravu za posledný rok?</b-col>
                                 <b-col md="5" cols="11" offset-md="0" offset="1" class="text-left" align-h="start">
                                     <b-form-select v-on:change="countEmissions_doprava()" v-model="frekvenciavlak" :options="frekvenciadoprava"></b-form-select>
@@ -471,7 +471,7 @@
                     <div class="otazka">
                         <b-row  style="margin-bottom:2vh" align-v="center" >      
                             <b-col md="1" cols="1" class="text-right" v-if="details_doprava==true">13.</b-col>
-                            <b-col md="1" cols="1" class="text-right" v-if="details_doprava==false">11.</b-col>
+                            <b-col md="1" cols="1" class="text-right" v-if="details_doprava==false">12.</b-col>
                             <b-col v-if="details_doprava==false" md="5" cols="11" class="text-left" align-h="start">Koľko súkromných letov si absolvoval za posledný rok?
                                 <b-icon-question-circle-fill font-scale="1.2" id="question13a"></b-icon-question-circle-fill>
                             </b-col>
