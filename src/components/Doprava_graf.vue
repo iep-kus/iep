@@ -1462,9 +1462,9 @@ export default {
         ef_lpg: 1.6367,
         ef_cng: 2.7349,
         ef_hybrid: 0.0396,
-        ef_elektrika: 0.0317, // energeticky mix 2025
+        ef_elektrika: 0.083, // energeticky mix Slovensko 2023
 
-        ef_hromadna: [0.04, 0.0187],
+        ef_hromadna: [0.04, 0.0211],
         ef_vlak: 0.0406,
         ef_letecka: [0.2726, 0.1859, 0.2613],
         

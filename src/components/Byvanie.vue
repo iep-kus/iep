@@ -204,7 +204,7 @@ export default {
         // centralne kurenie: [priemer, BA, KE, ZA, Veolia, TT, MT, PO, BB, NT, ZV, ?]
         
         EF_centralne: [0.2867, 0.3930, 0.4330, 0.6780, 0.1753, 0, 0.3315, 0.3026, 0.1644, 0.3550, 0.0346,  0.434007],
-        ef_elektrika: 0.0317, // pre rok 2024, rucne vypocitane, podla slovenskeho energetickeho mixu
+        ef_elektrika: 0.083, // pre rok 2023
         ef_plyn: 0.202,
         ef_lpg: 1.667,
         ef_tuhe_prm: 1212.96 ,
