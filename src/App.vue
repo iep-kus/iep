@@ -67,7 +67,23 @@ export default {
   width: 100%;
 }
 
+.info.legend {
+  background: white;
+  padding: 10px;
+  line-height: 1.5;
+  font-family: 'chivo';
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  color: #595959;
+}
 
+.info.legend h4 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-family: 'chivo';
+  font-weight: bold;
+}
 
 
 </style>

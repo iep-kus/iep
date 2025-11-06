@@ -43,6 +43,11 @@ const routes = [
     name: 'Kontakt',
     component: () => import('../views/Kontakt.vue'),
   },
+  {
+    path: '/Mapy',
+    name: 'Mapy',
+    component: () => import('../views/Mapy.vue'),
+  },
 ];
 const router = new VueRouter({
   mode: 'history',
