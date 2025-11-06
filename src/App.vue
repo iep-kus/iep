@@ -1,5 +1,4 @@
 <template>
-  <!--<Kalkulacka/> -->
   <div id="app">
     <div class="navigationbar">
       <navbar></navbar>
@@ -15,18 +14,16 @@
 <script>
 import navbar from './components/navbar'
 import AppFooter from './components/AppFooter'
-import Kalkulacka from './views/Kalkulacka.vue';
 export default {
   name: 'App',
   components: {
-    //Kalkulacka, 
     navbar,AppFooter
   },
   
 }
 
 </script>
-<!--Tuto sa definuju fonty a farby pre celu aplikaciu. Farba sa zoberie zo suboru "custom" v priecinku "styles" -->
+
 <style lang="scss">
 @import "./styles/custom.scss";
   

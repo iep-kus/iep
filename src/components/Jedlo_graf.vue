@@ -202,8 +202,6 @@ export default {
 
     methods: {
         countEmissions() {
-            
-            console.log('Emisie z jedla su: ', this.emisie_jedlo); // kontrola
 
             if(this.vegan=='Nie'){
                 this.chartData.datasets[0].data = [Math.round(this.hovadzie_emisie[this.hovadzie]),Math.round(this.ostatne_emisie[this.ostatne]),Math.round(this.mliecne_emisie[this.mliecne]),

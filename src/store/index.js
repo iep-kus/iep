@@ -9,10 +9,10 @@ export default new Vuex.Store({
     
     uhlikova_stopa_celkovo: 5064,
 
-    uhlikova_stopa_byvanie: 822,
+    uhlikova_stopa_byvanie: 860,
     uhlikova_stopa_doprava: 2190,
-    uhlikova_stopa_jedlo: 1186,// aktualizacia 2025
-    uhlikova_stopa_spotreba: 344, // aktualizacia 2025
+    uhlikova_stopa_jedlo: 1186,
+    uhlikova_stopa_spotreba: 344,
     uhlikova_stopa_ziv_styl: 524,
     
     
@@ -27,8 +27,8 @@ export default new Vuex.Store({
     
     vykurovanievybrate: 1,
 
-    centralne: '8365', // aktualizacia 2025
-    elektrika: '2200', // aktualizacia 2025
+    centralne: '8365', 
+    elektrika: '2200',
     plyn: '0',
     lpg: '0',
     tuhe: '0',
@@ -77,21 +77,21 @@ export default new Vuex.Store({
 
 
     // byvanie = [centralne, elektrina, plyn, lpg, tuhe palivo]
-    emisie_byvanie: [799.44, 23.27, 0, 0, 0],
+    emisie_byvanie: [799.44, 60.87, 0, 0, 0],
     
     // doprava = [automobilova, hromadna (bus + mhd), vlakova, letecka]
     emisie_doprava: [1639.38, 122.10, 16.89, 411.40],
 
     details_doprava: false,
          
-    cudzieauto:1061.5, //
-    autobus:80, //
+    cudzieauto:1061.5,
+    autobus:80,
     kmhodautobus: 'km',
-    vlak:8, //
+    vlak:8,
     kmhodvlak:'km',
     typvlak: 'elektrický',
     pocetletov:2,
-    mhd:80, //
+    mhd:80,
     kmhodmhd:'km',
     
     frekvenciavlastne: 3,
@@ -99,7 +99,7 @@ export default new Vuex.Store({
     frekvenciamhd: 3,
     frekvenciavlak: 5,
 
-    kilometre1:21230, //
+    kilometre1:21230,
     spotreba1:5.8,
     osoby1:2,
     palivo1:1,
@@ -456,13 +456,13 @@ export default new Vuex.Store({
             }
             else {
                 if(state.typ=='bytovom dome'){state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.elektrika_jednotky + 2200*state.elektrika_jednotky))}//365.51 + 59.76*state.clenovia))}
-                else{state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.elektrika_jednotky + 3500*state.elektrika_jednotky))}//635.69 + 29.781*state.clenovia))}
+                else{state.elektrika = String(Math.round(state.rozloha*state.zateplenie_konverzia*state.elektrika_jednotky + 3500*state.elektrika_jednotky))} //635.69 + 29.781*state.clenovia))}
             }
         }
         if (state.vykurovanievybrate!=2) { 
             if (state.selected2=='kWh'){
                 if(state.typ=='bytovom dome'){state.elektrika = String(2200)} //String(Math.round((365.51 + 59.76*state.clenovia)/state.elektrika_jednotky))}
-                else{state.elektrika = String(3500)}//String(Math.round((635.69 + 29.781*state.clenovia)/state.elektrika_jednotky))}
+                else{state.elektrika = String(3500)}  //String(Math.round((635.69 + 29.781*state.clenovia)/state.elektrika_jednotky))}
             }
             else {
                 if(state.typ=='bytovom dome'){state.elektrika = String(Math.round(2200*state.elektrika_jednotky))} //String(Math.round(365.51 + 59.76*state.clenovia))}

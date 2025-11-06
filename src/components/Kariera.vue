@@ -14,7 +14,10 @@
                             <b-col><p>Miznú nám lesy? Ako na nízkouhlíkové Slovensko? O koľko žijú ľudia kratšie kvôli zlej kvalite životného prostredia a aké to má ekonomické dôsledky? Ako by malo fungovať zálohovanie PET fliaš a plechoviek? Oplatí sa elektromobil?</p></b-col>    
                         </b-row>
                         <b-row align-v="center">
-                            <b-col><p>O všetkých aktuálnych pozíciách sa dozvieš <a href="https://www.minzp.sk/iep/kariera/">tu</a>.</p></b-col>    
+                            <b-col>
+                                <p>O všetkých aktuálnych pozíciách sa dozvieš 
+                                <a href="https://www.minzp.sk/iep/kariera/">tu</a>.</p>
+                            </b-col>    
                         </b-row>
 
                         <b-row align-v="center">

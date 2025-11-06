@@ -53,8 +53,8 @@
       </b-collapse>
       
       <div class="nav-link-wrapper_2">
-        <a href="https://www.facebook.com/iep.mzp">
-            <i class="fab fa-facebook-f"></i>
+        <a href="https://sk.linkedin.com/company/iep-sk">
+            <i class="fab fa-linkedin"></i>
         </a>
       </div>
 

@@ -25,10 +25,10 @@
                                 
                             <b-col class="text-center">    
                                 <div class="share_button">    
-                                    <div class="share_button_facebook">   
-                                        <div class="btn-a">
-                                            <a href="https://www.facebook.com/iep.mzp">
-                                                <i class="fab fa-facebook-f"></i>
+                                    <div class="share_button_linkedin">   
+                                        <div class="btn-l">
+                                            <a href="https://sk.linkedin.com/company/iep-sk">
+                                                <i class="fab fa-linkedin"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@ export default {
    }
 }
 
-.btn-a {
+.btn-l {
     min-width: 90px;
     background-color:transparent;
     padding: 1rem 1rem;
@@ -143,7 +143,7 @@ export default {
    &:hover {
     transform: scale(1.1);
     cursor: pointer;
-    background-color:#3b5998;
+    background-color:#0077B5;
     box-shadow: 0px 10px 30px rgba(0,0,0,0.10);
       i {
         
@@ -172,6 +172,9 @@ export default {
     margin-left: 1rem;
 }
 .share_button_facebook {
+    margin-right: 1rem;
+}
+.share_button_linkedin {
     margin-right: 1rem;
 }
 

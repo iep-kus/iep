@@ -199,7 +199,7 @@ export default {
             }
             this.uhlikova_stopa_jedlo = Math.round(this.emisie_jedlo[0]+this.emisie_jedlo[1]+this.emisie_jedlo[2]+this.emisie_jedlo[3]+this.emisie_jedlo[4]+this.emisie_jedlo[5]+this.emisie_jedlo[6]);
             
-            
+            // ak ma niekto prilis nizke emisie, je to pravdepodobne preto ze ma velmi nizku/ziadnu spotrebu masa - priradia sa mu emisie vegana a chybajuce emisie sa doplnia k zelenine
             if(this.uhlikova_stopa_jedlo<740){this.emisie_jedlo[4]=this.emisie_jedlo[4]+(740-this.uhlikova_stopa_jedlo)
             this.uhlikova_stopa_jedlo=740}
         },
