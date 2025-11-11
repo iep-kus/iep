@@ -57,6 +57,16 @@ export default {
             
             } catch (err) {
             console.log(err);
+            const isOffline = typeof navigator !== 'undefined' && navigator.onLine === false;
+                const tip =
+                    isOffline
+                    ? 'Zdá sa, že ste offline. Skontrolujte prosím pripojenie k internetu.'
+                    : 'Zdá sa, že je problém s pripojením na server. Skúste vypnúť VPN/proxy, obnoviť stránku alebo to skúsiť o chvíľu znova.';
+
+                alert(
+                    `Chyba: ${(err && err.message) || 'neznáma chyba'}\n\n` +
+                    `Odporúčanie: ${tip}`
+                );
             }
 
             
