@@ -71,7 +71,8 @@ export default {
             else return '#FA7502';
         }
         
-        fetch('/mapy/obce_vysledky.geojson')
+        // Vrstvy su usporiadane podla toho, ktoru chceme mat navrchu a ktoru naspodu. Prva ide spodna vrstva, posledna ide vrchna.
+        fetch('/mapy/obce_vysledky_small.geojson')
             .then(res => res.json())
             .then(data => {
                 const vysledkyLayer = L.geoJSON(data, {
@@ -86,7 +87,9 @@ export default {
                     },
                     onEachFeature: (feature, layer) => {
                         const props = feature.properties;
-                        const popupContent = `
+                        // Vyberieme ktore atributy z GEOjson suboru chceme mat vo "vyskakovacom" okne, po kliknuti na konkretnu cast mapy.
+                        // Mozeme menit styl textu v okne. Kedze ide o vizualny aspekt stranky, tato cast kodu je pisana v HTML.
+                        const popupContent = `        
                             <div style="font-family: 'chivo';">
                                 <strong>Obec:</strong> ${props.NM2}<br>
                                 <strong>Okres:</strong> ${props.NM3}<br>
@@ -107,11 +110,11 @@ export default {
                         color: '#595959',
                         weight: 0.7,
                     },
-                    interactive: false
+                    interactive: false // na tuto vrstvu sa neda kliknut, aby sa zobrazili jej atributy, je "zmrazena". Je to preto, aby sa dalo kliknut na najspodnejsiu vrstvu.
                 }).addTo(map)
             })
         
-        fetch('/mapy/hranice_okresy.geojson')
+        fetch('/mapy/hranice_okresy_small.geojson')
             .then(res => res.json())
             .then(data => {
                 const okresyLayer = L.geoJSON(data, {
@@ -120,7 +123,7 @@ export default {
                         weight: 0.7,
                         fillOpacity: 0
                     },
-                    interactive: false
+                    interactive: false 
                 }).addTo(map)
             })
 
@@ -135,6 +138,7 @@ export default {
                     },
                     interactive: false
                 }).addTo(map)
+                map.fitBounds(SVKLayer.getBounds()); // Prisposobime priblizenie mapy tak, aby sa zobrazovalo cele Slovensko bez ohladu na velkost obrazovky zariadenia pouzivatela. 
             })
         
         const legend = L.control({ position: 'bottomright' });
@@ -212,7 +216,7 @@ export default {
 
 @media only screen and (max-width: 768px){
   .text-wrapper {
-    color: white;
+    color: #595959;
     margin-left: 0%;
     margin-right: 0%;
   }

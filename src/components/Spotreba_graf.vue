@@ -271,7 +271,6 @@ export default {
 
     methods: {
         countEmissions() {
-            console.log('Emisie zo spotreby su: ', this.emisie_spotreba); // kontrola
 
             if(this.details_spotreba==false) {  // zmeneny vypocet emisii zo zivotneho cyklu auta
                 this.emisie_spotreba[0] = Math.round(this.ef_auto*this.pocetaut/(this.zivotnost_auto*this.clenovia));
