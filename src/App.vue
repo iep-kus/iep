@@ -53,7 +53,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   font-size: 16px;
-  color: rgba(71, 71, 71, 1);
+  color: #595959;
   position: relative;
 }
 

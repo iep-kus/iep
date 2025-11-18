@@ -51,7 +51,8 @@ export default {
 
 .title {
     margin-bottom: 5%;
-    border-bottom: 1px solid gray;
+    border-bottom: 3px solid #BFBFBF;
+    font-family: "Chivo";
 }
 
 .container-fluid { 
@@ -72,14 +73,14 @@ export default {
     transition: all .2s ease-in-out;
    
     i {
-      color:rgba(71, 71, 71, 1);
+      color:#595959;
       font-size: 32px;
       padding-right: 10px;
       transition: all .3s ease-in-out;
       margin-bottom:1rem;
     }
     span {
-      font-family: "Roboto", sans-serif;    
+      font-family: "Chivo";    
       align-self: center;
       transform: translateX(0px);
       transition: all .3s ease-in-out;
@@ -93,7 +94,7 @@ export default {
     box-shadow: 0px 10px 30px rgba(0,0,0,0.10);
       i {
         transform: scale(1.1);
-        color:#FF6600;
+        color:#FB8622;
         align-self: center;
         justify-content: center;
 
@@ -101,7 +102,7 @@ export default {
       span {
         transform: translateX(45px);
         opacity: 1;
-        color:#FF6600;
+        color:#FB8622;
       }
     }
    &:active {

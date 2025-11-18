@@ -175,7 +175,7 @@ export default {
 
 .nav-link-wrapper {
     height: 1.5rem;
-    border-bottom: 1px solid transparent;
+    border-bottom: 2px solid transparent;
     transition: border-bottom 0.5s;
     margin-right: 2vh;
   }
@@ -185,11 +185,11 @@ export default {
     transition: color 0.5s;
   }
 .nav-link-wrapper:hover {
-    border-bottom: 1px solid rgba(71, 71, 71, 1);
+    border-bottom: 2px solid currentColor;
   }
 
 .nav-link-wrapper a:hover {
-    color: rgba(71, 71, 71, 1);
+    color: #595959;
     text-decoration: none;
     transition: color 0.5s;
   }
@@ -197,7 +197,7 @@ export default {
 
 .nav-link-wrapper_2 {
     height: 1.5rem;
-    border-bottom: 1px solid transparent;
+    border-bottom: 2px solid transparent;
     transition: border-bottom 0.5s;
     margin-right: 2vh;
     margin-left: 2vh;
@@ -212,7 +212,7 @@ export default {
 
 
 .nav-link-wrapper_2 a:hover {
-    color:rgba(71, 71, 71, 1);
+    color:#595959;
     text-decoration: none;
     transition: color 0.5s;
   }
