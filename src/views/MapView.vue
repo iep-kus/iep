@@ -14,13 +14,13 @@
                                 <b-col>{{ map.description }}</b-col>    
                             </b-row>
                         </div>
-                        
-                        <MapComponent
-                            :layers="map.layers"
-                            :view="map.view"
-                            :legend="map.legend"
-                        />
-
+                        <div class="map-container">
+                            <MapComponent
+                                :layers="map.layers"
+                                :view="map.view"
+                                :legend="map.legend"
+                            />
+                        </div>
                     </div> 
                 
                     <div v-else>
@@ -68,8 +68,8 @@ p {
     color: #595959;
     margin-left: 0;
     margin-right: 0;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
     text-align: justify;
 }
 
@@ -84,6 +84,12 @@ p {
 .obsah {
     padding: 5%;
 }
+
+.map-container {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
 
 @media only screen and (max-width: 768px){
   .text-wrapper {

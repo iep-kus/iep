@@ -1,19 +1,13 @@
 <template>    
-    <b-container fluid >
-        <div class="background">  
-            <vue-aos animation-class="fadeIn threshold: 1">
-                <div class="obsah">
-                    <div data-aos="slide-up" data-aos-duration="800">                        
-                        <b-row align-v="center">
-                            <b-col>
-                               <div id="map" style="height: 600px; margin-top: 40px;"></div>
-                            </b-col>    
-                        </b-row>
-                    </div>    
-                </div>
-            </vue-aos>
-        </div>
-    </b-container>
+    <vue-aos animation-class="fadeIn threshold: 1">
+        <div data-aos="slide-up" data-aos-duration="800">                        
+            <b-row align-v="center">
+                <b-col>
+                    <div id="map" style="height: 600px; margin-top: 40px;" ></div>
+                </b-col>    
+            </b-row>
+        </div>    
+    </vue-aos>
 </template>
 
 <script>
@@ -93,19 +87,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-.container-fluid { 
-    width: 100%; padding-right: 0; padding-left: 0; margin-right: auto; margin-left: auto; 
-}
-
-.background {
-    background-color:white;
-}
-
-.obsah {
-    padding: 5%;
-}
-
-</style>

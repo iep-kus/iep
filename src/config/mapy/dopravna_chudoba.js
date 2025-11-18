@@ -71,7 +71,7 @@ export default {
                     fillPattern: stripePattern,
                     color: '#595959',
                     weight: 0.7,
-                    fillOpacity: 0.3
+                    fillOpacity: 0.4
                 }
             },
             interactive: false

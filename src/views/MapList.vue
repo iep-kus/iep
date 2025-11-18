@@ -59,7 +59,7 @@ export default {
 
 .title {
     margin-bottom: 5%;
-    font-family: "Chivo";
+    font-family: "chivo-bold";
 }
 
 .container-fluid {
