@@ -61,7 +61,8 @@ export default {
                     <strong>Obec:</strong> ${feature.properties.NM2}<br>
                     <strong>Okres:</strong> ${feature.properties.NM3}<br>
                     <strong>Stupeň ohrozenia:</strong> ${feature.properties.vysledky_CI_DCH_percentile ?? 'neuplatňuje sa'}
-                </div>`
+                </div>`,
+            alwaysOnBottom: true
         },
         {
             path: '/mapy/vojenske_obvody.geojson',
@@ -77,7 +78,7 @@ export default {
             interactive: false
         },
         {
-            path: '/mapy/hranice_okresy_small.geojson',
+            path: '/mapy/hranice_SVK.geojson',
             style: {
                 color: '#595959',
                 weight: 0.7,
@@ -86,14 +87,15 @@ export default {
             interactive: false
         },
         {
-            path: '/mapy/hranice_SVK.geojson',
+            path: '/mapy/hranice_okresy_small.geojson',
             style: {
                 color: '#595959',
                 weight: 0.7,
                 fillOpacity: 0
             },
-            interactive: false
-        }
+            interactive: false,
+            alwaysOnTop: true
+        }  
     ],
 
     // legend definition

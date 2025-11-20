@@ -43,7 +43,7 @@ export default {
             fetch(layerConfig.path)
                 .then(res => res.json())
                 .then(data => {
-                    L.geoJSON(data, {
+                    const geoJsonLayer = L.geoJSON(data, {
                         style: feature => {
                             if (layerConfig.styleFactory) {
                                 return layerConfig.styleFactory(stripePattern)
@@ -60,6 +60,14 @@ export default {
                         },
                         interactive: layerConfig.interactive !== false
                     }).addTo(map)
+
+                    if (layerConfig.alwaysOnTop) {
+                        geoJsonLayer.bringToFront()
+                    }
+                    if (layerConfig.alwaysOnBottom) {
+                        geoJsonLayer.bringToBack()
+                    }
+
                 })
                 .catch(err => {
                     console.error('Failed to load GeoJSON:', err)
