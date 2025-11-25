@@ -49,14 +49,19 @@ const routes = [
     component: () => import('../views/Mapy.vue'),
   },
   {
-  path: '/mapy/:slug',
-  name: 'MapView',
-  component: () => import('../views/MapView.vue')
+    path: '/mapy/:slug',
+    name: 'MapView',
+    component: () => import('../views/MapView.vue')
   },
   {
-  path: '/MapList',
-  name: 'MapList',
-  component: () => import('../views/MapList.vue')
+    path: '/MapList',
+    name: 'MapList',
+    component: () => import('../views/MapList.vue')
+  },
+  {
+    path: '/MapGraphTopics',
+    name: 'MapGraphTopics',
+    component: () => import('../views/MapGraphTopics.vue')
   }
 
 ];

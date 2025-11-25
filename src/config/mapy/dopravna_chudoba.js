@@ -17,7 +17,7 @@ const getColor = value => {
 export default {
     id: 'dopravna-chudoba',
     slug: 'mapa-dopravna-chudoba',
-    title: 'Mapa 1: Stupne ohrozenia obcí dopravnou chudobou',
+    title: 'Stupne ohrozenia obcí dopravnou chudobou',
     description: `Dopravná chudoba je fenomén, kedy si jednotlivci alebo domácnosti 
         nemôžu dovoliť dopravu alebo majú obmedzený prístup k verejnej či súkromnej doprave.
         To im sťažuje cestovanie za prácou, vzdelaním či zdravotnou starostlivosťou. 

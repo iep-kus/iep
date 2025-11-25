@@ -11,12 +11,21 @@
                 <div  class="text-wrapper">
                     <div data-aos="slide-up" data-aos-duration="800">   
                         <b-row align-v="center">
-                            <b-col><p>Inštitút environmentálnej politiky (IEP) je analytickým útvarom Ministerstva životného prostredia SR (MŽP SR). Našim poslaním je poskytovať kvalitné a spoľahlivé analýzy a prognózy v oblasti životného prostredia pre slovenskú vládu a verejnosť. Objektivita IEP je zabezpečená jeho nezávislosťou. Výstupy nemusia nutne odzrkadľovať oficiálne názory MŽP SR, ich cieľom je podnecovať a zlepšovať odbornú a verejnú diskusiu na aktuálne témy. IEP vedie bývalý dlhoročný analytik IFP a priemerný vek analytikov IEP je 32 rokov.</p></b-col>    
+                            <b-col><p>Inštitút environmentálnej politiky (IEP) je analytickým útvarom Ministerstva životného 
+                                prostredia SR (MŽP SR). Našim poslaním je poskytovať kvalitné a spoľahlivé analýzy a prognózy 
+                                v oblasti životného prostredia pre slovenskú vládu a verejnosť. Objektivita IEP je zabezpečená 
+                                jeho nezávislosťou. Výstupy nemusia nutne odzrkadľovať oficiálne názory MŽP SR, ich cieľom je 
+                                podnecovať a zlepšovať odbornú a verejnú diskusiu na aktuálne témy. IEP vedie bývalý dlhoročný 
+                                analytik IFP a priemerný vek analytikov IEP je 32 rokov.
+                            </p></b-col>    
                         </b-row>
                     </div> 
                     <div data-aos="slide-up" data-aos-duration="800">
                         <b-row align-v="center">
-                            <b-col><p>Dlhodobo spolupracujeme so zahraničnými organizáciami, v rámci čoho sme realizovali a naďalej realizujeme spoločné projekty v spolupráci s OECD, či Svetovou bankou, v rámci ktorých boli naši analytici vyslaní na niekoľko týždňov priamo do danej organizácie.</p></b-col>    
+                            <b-col><p>Dlhodobo spolupracujeme so zahraničnými organizáciami, v rámci čoho sme realizovali a naďalej 
+                                realizujeme spoločné projekty v spolupráci s OECD, či Svetovou bankou, v rámci ktorých boli naši 
+                                analytici vyslaní na niekoľko týždňov priamo do danej organizácie.
+                            </p></b-col>    
                         </b-row>
                     </div>
       

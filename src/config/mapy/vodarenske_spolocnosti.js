@@ -23,7 +23,7 @@ const getColor = value => {
 export default {
     id: 'vodarenske-spolocnosti',
     slug: 'mapa-vodarenske-spolocnosti',
-    title: 'Mapa 2: Kto vlastní vodovody na Slovensku?',
+    title: 'Kto vlastní vodovody na Slovensku?',
     description: `90,5 % obyvateľov Slovenska je pripojených na verejný vodovod a z toho až 95 % odoberateľov zásobujú veľké vodárenské 
         spoločnosti. Verejné vodovody musia byť podľa zákona vo vlastníctve subjektov verejného práva, keďže sú súčasťou kritickej 
         infraštruktúry. Vlastníkmi môžu byť len obce alebo vodárenské spoločnosti vo forme akciových spoločností, kde sú akcionármi 
