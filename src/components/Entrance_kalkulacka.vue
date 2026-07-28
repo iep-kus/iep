@@ -36,10 +36,10 @@
                     Na výpočet celkovej uhlíkovej stopy konkrétnej aktivity potrebujeme vedieť dve hlavné veličiny a to mieru aktivity 
                     alebo spotreby (𝑄) a jej emisný faktor (𝐸𝐹). Príkladom miery aktvivity môže byť spotreba elektrickej energie v 
                     kilowatthodinách, množstvo spotrebovanej látky v kilogramoch alebo aj počet využitých produktov. Následne k aktivite 
-                    priradíme vhodný emisný faktor, ktorý vyjadruje ako emisne náročná je daná aktivita (napr. kg CO2 na kg látky). Ak aktivita 
+                    priradíme vhodný emisný faktor, ktorý vyjadruje ako emisne náročná je daná aktivita (napr. kg CO₂ na kg látky). Ak aktivita 
                     produkuje aj iné sklenníkové plyny, emisie týchto látok sa prevádzajú do ekvivalentov emisií oxidu uhličitého prenásobením s 
                     takzvaným potenciálom pre globálne otepľovanie (𝐺𝑊𝑃 = global warming potential). Emisie skleníkových plynov, ktoré škodia 
-                    prostrediu v rôznej miere, tak môžeme pomocou CO2e vzájomne porovnávať. Výsledné emisie pre aktivitu 𝑥 teda 
+                    prostrediu v rôznej miere, tak môžeme pomocou CO₂e vzájomne porovnávať. Výsledné emisie pre aktivitu 𝑥 teda 
                     vypočítame pomocou nasledujúceho vzorca:
 
                     𝐸𝑚𝑖𝑠𝑖𝑒𝑥 = 𝐸𝐹𝑥 × 𝑄 × 𝐺𝑊𝑃𝑥.

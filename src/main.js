@@ -8,6 +8,8 @@ import JsonExcel from "vue-json-excel";
 import AOS from "aos";
 import "aos/dist/aos.css"
 import {BIconQuestionCircleFill} from 'bootstrap-vue'
+import '@fortawesome/fontawesome-free/css/all.css'
+
  
 Vue.component("downloadExcel", JsonExcel);
 

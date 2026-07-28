@@ -1,39 +1,50 @@
 <template>
-    <b-container fluid>
-        <div class="background">
-            <vue-aos animation-class="fadeIn threshold: 1">
-                <div class="obsah">
-                    <b-row class="title">
-                        <b-col class="text-left">
-                            <h1>Prehľad tém</h1>
-                        </b-col>
-                    </b-row>
-                    <div data-aos="slide-up" data-aos-duration="800">
-                        <div class="grid">
-                            <div v-for="(topic, index) in topics" :key="index" class="card">
-                                <img :src="topic.image" alt="" class="card-image" />
-                                <div class="card-body" @click="toggle(index)">
-                                    <h3>{{ topic.name }}</h3>
-                                    <p>{{ topic.description }}</p>
-                                    <div class="arrow">{{ topic.open ? '▲' : '▼' }}</div>
-                                </div>
-                                <div v-if="topic.open" class="card-content">
-                                    <ul>
-                                        <li v-for="item in topic.items" :key="item.slug">
-                                        <router-link :to="`/mapy/${item.slug}`">{{ item.title }}</router-link>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>        
-            </vue-aos>            
+  <b-container fluid>
+    <div class="background">
+      <vue-aos animation-class="fadeIn threshold: 1">
+        <div class="obsah">
+          <b-row class="title">
+            <b-col class="text-left">
+              <h1>Prehľad tém</h1>
+            </b-col>
+          </b-row>
+
+          <div data-aos="slide-up" data-aos-duration="800">
+            <div class="grid">
+              <div v-for="(topic, index) in topics" :key="index" class="card">
+                <img :src="topic.image" alt="" class="card-image" />
+
+                <div class="card-body" @click="toggle(index)">
+                  <h3>{{ topic.name }}</h3>
+                  <p>{{ topic.description }}</p>
+                  <div class="arrow">{{ topic.open ? '▲' : '▼' }}</div>
+                </div>
+
+                <transition name="card-expand">
+                  <div v-show="topic.open" class="card-content">
+                    <ul>
+                      <li v-for="item in topic.items" :key="item.slug">
+                        <router-link :to="`/visualization/${item.slug}`">
+                          {{ item.title }}
+                        </router-link>
+                      </li>
+                    </ul>
+                  </div>
+                </transition>
+
+              </div>
+            </div>
+          </div>
+
         </div>
-    </b-container>    
+      </vue-aos>
+    </div>
+  </b-container>
 </template>
 
+
 <script>
+// obrázok pre každú tému treba najprv importovať. Požadovaný obrázok uložíme do src/assets/
 import voda_img from '@/assets/voda.jpg'
 import doprava_img from '@/assets/doprava.jpg'
 import odpady_img from '@/assets/background-odpady.jpg'
@@ -42,19 +53,26 @@ import ovzdusie_img from '@/assets/ovzdusie.jpg'
 import financie_img from '@/assets/financie.jpg'
 
 export default {
-  name: 'MapyGrafy',
+  name: 'MapGraphTopics',
   data() {
     return {
+      // nasledujú témy vizualizácií:
       topics: [
         {
+          // názov témy, ktorý sa zobrazí:
           name: 'Voda',
+          // obrázok v pozadí navrchu:
           image: voda_img,
+          // krátky popis:
           description: 'Ako Slovensko hospodári s vodou a aké výzvy prináša jej správa a ochrana?',
+          // keď sa stránka načíta, karta s témou bude zatvorená:
           open: false,
+          // tu sa vložia mapy a grafy, ktoré s témou súvisia:
           items: [
-            { title: 'Mapa: Kto vlastní vodovody na Slovensku?', slug: 'mapa-vodarenske-spolocnosti' },
-            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2' },
-            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3' }
+            // stránka potrebuje vedieť názov, unikátny slug a či ide o mapu alebo graf:
+            { title: 'Mapa: Kto vlastní vodovody na Slovensku?', slug: 'mapa-vodarenske-spolocnosti', type: 'mapa'},
+            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2', type: 'mapa' },
+            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3', type: 'mapa' }
           ]
         },
         {
@@ -63,9 +81,9 @@ export default {
           description: 'Ako doprava ovplyvňuje životné prostredie a spoločnosť na Slovensku?',
           open: false,
           items: [
-            { title: 'Mapa: Stupne ohrozenia obcí dopravnou chudobou', slug: 'mapa-dopravna-chudoba' },
-            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2' },
-            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3' }
+            { title: 'Mapa: Stupne ohrozenia obcí dopravnou chudobou', slug: 'mapa-dopravna-chudoba', type: 'mapa'},
+            { title: 'Doughnut', slug: 'doughnut-example', type: 'graf' },
+            { title: 'Dvojvrstvovy doughnut', slug: 'doughnut-multi', type: 'graf' }
           ]
         },
         {
@@ -74,9 +92,9 @@ export default {
           description: 'Ako sa Slovensko vyrovnáva s rastúcim množstvom odpadov?',
           open: false,
           items: [
-            { title: 'Mapa/Graf 1', slug: 'mapa-graf-1' },
-            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2' },
-            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3' }
+            { title: 'Pie', slug: 'pie-example', type: 'graf' },
+            { title: 'Bar', slug: 'bar-example', type: 'graf' },
+            { title: 'Line', slug: 'line-example', type: 'graf' }
           ]
         },
         {
@@ -85,9 +103,9 @@ export default {
           description: 'Ako môžu verejné financie podporiť udržateľný rozvoj a efektívne využívanie zdrojov?',
           open: false,
           items: [
-            { title: 'Mapa/Graf 1', slug: 'mapa-graf-1' },
-            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2' },
-            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3' }
+            { title: 'Mapa/Graf 1', slug: 'mapa-graf-1', type: 'mapa' },
+            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2', type: 'mapa' },
+            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3', type: 'mapa' }
           ]
         },
         {
@@ -96,20 +114,20 @@ export default {
           description: 'Ako znečistené ovzdušie ovplyvňuje zdravie a život na Slovensku?',
           open: false,
           items: [
-            { title: 'Mapa/Graf 1', slug: 'mapa-graf-1' },
-            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2' },
-            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3' }
+            { title: 'Skrátenie dĺžky života kvôli vystaveniu znečistenému ovzdušiu', slug: 'mapa-dlzka-zivota-ovzdusie', type: 'mapa' },
+            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2', type: 'mapa' },
+            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3', type: 'mapa' }
           ]
         },
         {
-          name: 'Zmena klímy a opatrenia',
+          name: 'Zmena klímy',
           image: opatrenia_img,
           description: 'Ako nás ovplyvňuje zmena klímy a aké opatrenia môžu zmierniť jej dopady?',
           open: false,
           items: [
-            { title: 'Mapa/Graf 1', slug: 'mapa-graf-1' },
-            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2' },
-            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3' }
+            { title: 'Emisie sklenníkových plynov v roku 2022', slug: 'emisie-2022', type: 'graf' },
+            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2', type: 'mapa' },
+            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3', type: 'mapa' }
           ]
         }
         // ďalšie témy...
@@ -147,6 +165,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  align-items: start;
 }
 .card {
   background: #fff;
@@ -177,6 +196,25 @@ export default {
 }
 .card-content {
   padding: 0 16px 16px;
+  overflow: hidden;
+  max-height: 300px;
+}
+
+.card-expand-enter-active,
+.card-expand-leave-active {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.card-expand-enter,
+.card-expand-leave-to {
+  max-height: 0;
+  opacity: 0;
+}
+
+.card-expand-enter-to,
+.card-expand-leave {
+  max-height: 300px;
+  opacity: 1;
 }
 .card-content ul {
   list-style: none;

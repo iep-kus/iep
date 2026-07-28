@@ -44,12 +44,7 @@ const routes = [
     component: () => import('../views/Kontakt.vue'),
   },
   {
-    path: '/Mapy',
-    name: 'Mapy',
-    component: () => import('../views/Mapy.vue'),
-  },
-  {
-    path: '/mapy/:slug',
+    path: '/mapy-a-grafy/:slug',
     name: 'MapView',
     component: () => import('../views/MapView.vue')
   },
@@ -62,7 +57,13 @@ const routes = [
     path: '/MapGraphTopics',
     name: 'MapGraphTopics',
     component: () => import('../views/MapGraphTopics.vue')
+  },
+  {
+    path: '/visualization/:slug',
+    name: 'VisualizationView',
+    component: () => import('../views/VisualizationView.vue')
   }
+
 
 ];
 const router = new VueRouter({
