@@ -71,7 +71,7 @@ export default {
           items: [
             // stránka potrebuje vedieť názov, unikátny slug a či ide o mapu alebo graf:
             { title: 'Mapa: Kto vlastní vodovody na Slovensku?', slug: 'mapa-vodarenske-spolocnosti', type: 'mapa'},
-            { title: 'Mapa: Miera pripojenia obyvateľstva na kanalizáciu', slug: 'mapa-pripojenost_kanalizacie', type: 'mapa' },
+            { title: 'Mapa: Miera pripojenia obyvateľstva na kanalizáciu', slug: 'mapa-pripojenost-kanalizacie', type: 'mapa' },
             { title: 'Mapa/Graf 3', slug: 'mapa-graf-3', type: 'mapa' }
           ]
         },
