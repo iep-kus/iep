@@ -2,12 +2,12 @@ import L from 'leaflet'
 
 // definujeme funkciu, ktorá dokáže dať útvarom rôzne farby na základe ich vlastostí (užitočné pri vyfarbovaní polygónov a legende):
 const getColor = value => {
-    if (value == null) return '#FFFFFF'
-    else if (value < 0.5) return '#FEFFFF'
-    else if (value < 1.0) return '#FFDFC3'
-    else if (value < 1.5) return '#FCA66D'
-    else if (value < 2.0) return '#CA452D'
-    else if (value < 2.5) return '#99362B'
+    if (value == null) return '#ffffff'
+    else if (value < 0.2) return '#fb8622'
+    else if (value < 0.4) return '#fca459'
+    else if (value < 0.6) return '#fdc391'
+    else if (value < 0.8) return '#fee1c8'
+    else if (value <= 1) return '#ffffff'
     else return '#000000'
 }
 
@@ -15,17 +15,15 @@ export default {
     // typ vizualizácie:
     type: 'mapa',
     // unikátne id a slug, na základe ktorých dokáže stránka zobraziť mapu/graf:
-    id: 'dlzka-zivota-ovzdusie',
-    slug: 'mapa-dlzka-zivota-ovzdusie',
+    id: 'pripojenost-kanalizacie',
+    slug: 'mapa-pripojenost-kanalizacie',
     // nadpis:
-    title: 'Skrátenie dĺžky života kvôli vystaveniu znečistenému ovzdušiu',
+    title: 'Miera pripojenia obyvateľstva na kanalizáciu v obciach SR v roku 2023 v %',
     // popis:
-    description: `Znečistenie ovzdušia pripravuje obyvateľov Slovenska v priemere o viac 
-    ako jeden rok života. V najviac zasiahnutých obciach je rozdiel ešte výraznejší, ľudia 
-    tam žijú takmer o dva roky kratšie ako v najčistejších oblastiach. Vyplýva to z novej 
-    vedeckej štúdie slovenských expertov a vedcov, ktorá po prvýkrát analyzuje dopady 
-    znečistenia ovzdušia až na úrovni jednotlivých obcí.`,
-  
+    description: `Dostupnosť verejnej kanalizácie na Slovensku je v rámci EÚ podpriemerná, v roku 2022 bolo pripojených iba 71 % obyvateľov. 
+                Za celoslovenským priemerom zaostáva Trenčiansky, Nitriansky, Banskobystrický a Košický kraj, naopak výrazne nadpriemerná miera pripojenia 
+                je v Bratislavskom kraji. V obciach pod 2 000 obyvateľov je na kanalizáciu pripojených len 33 % obyvateľstva. Nulová alebo nízka 
+                miera pripojenia je problémom aj v niektorých väčších obciach a mestách, napr. v Terchovej, Spišských Vlachoch, Veľkom Záluží alebo Jelšave (VÚVH, 2024).`,
     view: {
         // stred mapy:
         center: [48.669, 19.699], 
@@ -50,11 +48,11 @@ export default {
     layers: [
         {
             // meno .geojson súboru, ktorý je uložený v public/mapy/:
-            path: '/mapy/obce_znecistenie_ovzdusia.geojson',
+            path: '/mapy/pripojenost_kanalizacie.geojson',
             // definujeme výzor polygónov v každej vrstve:
             style: feature => ({
                 // farba výplne:
-                fillColor: getColor(feature.properties.porovnanie_metod_LE_loss_final),
+                fillColor: getColor(feature.properties.percento_p_2),
                 // farba obrysu:
                 color: '#595959',
                 // hrúbka obrysu:
@@ -69,30 +67,11 @@ export default {
                 <div style="font-family: 'chivo';">
                     <strong>Obec:</strong> ${feature.properties.NM2}<br>
                     <strong>Okres:</strong> ${feature.properties.NM3}<br>                       
-                    <strong>Zmena očakávanej dĺžky života:</strong>
-                        ${feature.properties.porovnanie_metod_LE_loss_final != null
-                            ? Number(feature.properties.porovnanie_metod_LE_loss_final).toFixed(2) // nechcem vypísať celú hodnotu, tak ju zaokrúhlim na 2 desatinné miesta
-                            : 'neuplatňuje sa'}
+                    <strong>Percento pripojenia:</strong> ${feature.properties.percento_p_2 ?? 'neuplatňuje sa'}
                 </div>`,
             
             // zabezpečíme, že aj keď sa vrstva načíta ako posledná, zobrazí sa naspodu (aby neprekryla tie, čo majú byť nad ňou):
             alwaysOnBottom: true
-        },
-        {
-            path: '/mapy/vojenske_obvody.geojson',
-            // na tejto vrstve chceme použiť (pásikavý vzor), postupujeme nasledovne:
-            styleFactory: (stripePattern) => {
-                console.log('Stripe pattern passed into styleFactory:', stripePattern)
-                return {
-                    fillPattern: stripePattern,
-                    color: '#595959',
-                    weight: 0.7,
-                    fillOpacity: 0.4
-                }
-            },
-            // hoci táto vrstva je vyššie než predošlá, nechceme any prekryla jej funkcionalitu. 
-            // ak má interaktivita hodnotu "false", nedá sa na ňu kliknúť, je ju iba vidieť, čo sa hodí ak chceme vedieť kliknúť na spodnejšiu vrstvu.
-            interactive: false
         },
         {
             path: '/mapy/hranice_SVK.geojson',
@@ -116,17 +95,17 @@ export default {
         }  
     ],
 
-    // v tejto časti definujeme legendu:
+     // v tejto časti definujeme legendu:
     legend: {
         render(map) {
             const div = L.DomUtil.create('div', 'info legend')
 
             const leftGrades = [
                 { value: 0, label: 'menej ako 0.5' },
-                { value: 0.5, label: '0.5 – 1' },
-                { value: 1.0, label: '1 – 1.5' },
-                { value: 1.5, label: '1.5 – 2' },
-                { value: 2.0, label: '2 – 2.5' }
+                { value: 0.2, label: '0.5 – 1' },
+                { value: 0.4, label: '1 – 1.5' },
+                { value: 0.6, label: '1.5 – 2' },
+                { value: 0.8, label: '2 – 2.5' }
             ]
 
             const renderColumn = grades => grades.map(g => `
@@ -138,7 +117,7 @@ export default {
             div.innerHTML = `
                 <div style="text-align:center;margin-bottom:8px;">
                     <div style="font-weight:bold;font-size:16px;">Zmena očakávanej dĺžky</div>
-                    <div style="font-weight:bold;font-size:16px;">života v dôsledku</div>
+                    <div style="font-weight:bold;font-size:16px;">života v dôsledku znečistenia</div>
                     <div style="font-weight:bold;font-size:16px;">znečistenia ovzdušia (roky)</div>
                 </div>
                 <div style="display:flex;justify-content:center;gap:40px;">
