@@ -101,11 +101,11 @@ export default {
             const div = L.DomUtil.create('div', 'info legend')
 
             const leftGrades = [
-                { value: 0, label: 'menej ako 0.5' },
-                { value: 0.2, label: '0.5 – 1' },
-                { value: 0.4, label: '1 – 1.5' },
-                { value: 0.6, label: '1.5 – 2' },
-                { value: 0.8, label: '2 – 2.5' }
+                { value: 0, label: '0 % - 20 %' },
+                { value: 0.2, label: '20 % - 40 %' },
+                { value: 0.4, label: '40 % – 60 %' },
+                { value: 0.6, label: '60 % – 80 %' },
+                { value: 0.8, label: '80 % – 100 %' }
             ]
 
             const renderColumn = grades => grades.map(g => `
@@ -116,9 +116,7 @@ export default {
             `).join('')
             div.innerHTML = `
                 <div style="text-align:center;margin-bottom:8px;">
-                    <div style="font-weight:bold;font-size:16px;">Zmena očakávanej dĺžky</div>
-                    <div style="font-weight:bold;font-size:16px;">života v dôsledku znečistenia</div>
-                    <div style="font-weight:bold;font-size:16px;">znečistenia ovzdušia (roky)</div>
+                    <div style="font-weight:bold;font-size:16px;">Percento pripojenia</div>
                 </div>
                 <div style="display:flex;justify-content:center;gap:40px;">
                     <div>${renderColumn(leftGrades)}</div>
@@ -126,7 +124,7 @@ export default {
             `
             return div
         },
-        // pozícia legendu v okne s mapou:
+        // pozícia legendy v okne s mapou:
         position: 'bottomright'
     },
 
