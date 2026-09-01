@@ -152,7 +152,7 @@ export default {
             `
             return div
         },
-        // pozícia legendu v okne s mapou:
+        // pozícia legendy v okne s mapou:
         position: 'bottomright'
     },
 
