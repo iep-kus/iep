@@ -20,9 +20,28 @@
                         </div>
 
                         <!-- Visualization -->
-                        <div class="visualization-container">
-                            <component
-                                :is="componentType"
+                        <div
+                            class="visualization-container"
+                            :class="{ 'graph-visualization': viz.type === 'graf' }"
+                        >
+                            <template v-if="viz.type === 'mapa'">
+                                <div
+                                    v-for="mapConfig in mapConfigs"
+                                    :key="mapConfig.id"
+                                    class="map-wrapper"
+                                >
+                                    <h3 v-if="mapConfig.title" class="map-title">
+                                        {{ mapConfig.title }}
+                                    </h3>
+                                    <MapComponent
+                                        :layers="mapConfig.layers"
+                                        :view="mapConfig.view"
+                                        :legend="mapConfig.legend"
+                                    />
+                                </div>
+                            </template>
+                            <GraphComponent
+                                v-else-if="viz.type === 'graf'"
                                 v-bind="componentProps"
                             />
                         </div>
@@ -53,21 +72,28 @@ export default {
       // Find the visualization config by slug
       return mapsConfig.find(v => v.slug === this.$route.params.slug)
     },
-    componentType() {
-      // Choose which component to render
-      return this.viz?.type === 'mapa' ? 'MapComponent' : 'GraphComponent'
+    mapConfigs() {
+      if (!this.viz || this.viz.type !== 'mapa') return []
+
+      // New visualizations can contain multiple maps on one page.
+      if (Array.isArray(this.viz.maps) && this.viz.maps.length > 0) {
+        return this.viz.maps
+      }
+
+      // Preserve support for all existing single-map configurations.
+      return [{
+        id: this.viz.id || this.viz.slug,
+        title: null,
+        layers: this.viz.layers,
+        view: this.viz.view,
+        legend: this.viz.legend
+      }]
     },
     componentProps() {
       // Pass props dynamically depending on type
       if (!this.viz) return {}
 
-      if (this.viz.type === 'mapa') {
-        return {
-          layers: this.viz.layers,
-          view: this.viz.view,
-          legend: this.viz.legend
-        }
-      } else if (this.viz.type === 'graf') {
+      if (this.viz.type === 'graf') {
         return {
           graphType: this.viz.graphType,
           data: this.viz.data,
@@ -108,7 +134,24 @@ export default {
   padding-left: 10%;
   padding-right: 10%;
   margin-top: 2em;
-  height: 600px; /* For Leaflet map or chart */
+}
+
+.graph-visualization {
+  height: 600px;
+}
+
+.map-wrapper {
+  margin-bottom: 4em;
+}
+
+.map-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.map-title {
+  color: #595959;
+  font-family: 'chivo-bold';
+  margin-bottom: 0;
 }
 
 @media only screen and (max-width: 768px){
@@ -116,7 +159,7 @@ export default {
     padding-left: 5%;
     padding-right: 5%;
   }
-  .visualization-container {
+  .graph-visualization {
     height: 400px;
   }
 }
