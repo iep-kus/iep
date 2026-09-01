@@ -101,7 +101,7 @@ const createBoundaryLayers = () => [
 // UNIVERZÁLNA FUNKCIA PRE LEGENDU
 // ============================================================
 
-const createLegend = (title, grades, getColor) => ({
+const createLegend = (grades, getColor) => ({
     render() {
         const div = L.DomUtil.create('div', 'info legend')
 
@@ -122,20 +122,7 @@ const createLegend = (title, grades, getColor) => ({
             </div>
         `).join('')
 
-        div.innerHTML = `
-            <div style="text-align:center;margin-bottom:8px;">
-                <div style="font-weight:bold;font-size:16px;">
-                    ${title}
-                </div>
-                <div style="font-size:14px;">
-                    eur/m³ s DPH
-                </div>
-            </div>
-
-            <div>
-                ${renderGrades}
-            </div>
-        `
+        div.innerHTML = renderGrades
 
         return div
     },
@@ -149,7 +136,6 @@ const createLegend = (title, grades, getColor) => ({
 // ============================================================
 
 const legendVodne = createLegend(
-    'Cena vodného',
     [
         {
             label: 'Nedostupné údaje',
@@ -185,7 +171,6 @@ const legendVodne = createLegend(
 // ============================================================
 
 const legendStocne = createLegend(
-    'Cena stočného',
     [
         {
             label: 'Bez kanalizácie',
@@ -228,7 +213,7 @@ export default {
     slug: 'mapa-vodne-stocne',
 
     // spoločný nadpis pre obe mapy:
-    title: 'Cena vodného (Mapa 1) a stočného (Mapa 2) na m3 (v eur s DPH)',
+    title: 'Koľko platíme za vodu',
 
     // spoločný popis pre obe mapy:
     description: `
@@ -258,7 +243,7 @@ export default {
         {
             id: 'vodne',
 
-            title: 'Mapa 1: Cena vodného',
+            title: 'Mapa 1: Cena vodného na m3 (v eur s DPH)',
 
             view: createView(),
 
@@ -315,7 +300,7 @@ export default {
         {
             id: 'stocne',
 
-            title: 'Mapa 2: Cena stočného',
+            title: 'Mapa 2: Cena stočného za m3 (v eur s DPH)',
 
             view: createView(),
 

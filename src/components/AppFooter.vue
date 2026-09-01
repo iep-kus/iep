@@ -1,7 +1,7 @@
 <template>
     <div class="footer">
         <p class="footer_text">
-            ©IEP 2020
+            ©IEP 2026
         </p>
     </div>
 </template>
