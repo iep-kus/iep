@@ -6,12 +6,12 @@ import L from 'leaflet'
 // ============================================================
 
 const getColorVodne = value => {
-    if (value == null) return '#BDBDBD'
-    else if (value <= 0.5) return '#EAF4F7'
-    else if (value <= 1.0) return '#C5E0E8'
-    else if (value <= 1.5) return '#91C2D0'
-    else if (value <= 2.0) return '#5798AC'
-    else return '#27788F'
+    if (value == null) return '#bfbfbf'
+    else if (value <= 0.5) return '#ffffff'
+    else if (value <= 1.0) return '#c9dde2'
+    else if (value <= 1.5) return '#93bac6'
+    else if (value <= 2.0) return '#5e97a9'
+    else return '#28758c'
 }
 
 
@@ -20,12 +20,12 @@ const getColorVodne = value => {
 // ============================================================
 
 const getColorStocne = value => {
-    if (value == null) return '#BDBDBD'
-    else if (value <= 1.0) return '#FFF0E6'
-    else if (value <= 1.5) return '#FFD5B5'
-    else if (value <= 2.0) return '#FFB77F'
-    else if (value <= 2.5) return '#FF9850'
-    else return '#F97818'
+    if (value == null) return '#bfbfbf'
+    else if (value <= 1.0) return '#ffffff'
+    else if (value <= 1.5) return '#fee1c8'
+    else if (value <= 2.0) return '#fdc391'
+    else if (value <= 2.5) return '#fca459'
+    else return '#fb8622'
 }
 
 
@@ -38,17 +38,7 @@ const createView = () => ({
     zoom: 8,
 
     // celé Slovensko v zábere:
-    fitTo: '/mapy/hranice_SVK.geojson',
-
-    createStripePattern() {
-        return new L.StripePattern({
-            weight: 3,
-            spaceWeight: 2,
-            color: '#595959',
-            spaceColor: 'transparent',
-            angle: 135
-        })
-    }
+    fitTo: '/mapy/hranice_SVK.geojson'
 })
 
 
@@ -60,12 +50,12 @@ const createBoundaryLayers = () => [
     {
         path: '/mapy/vojenske_obvody.geojson',
 
-        styleFactory: stripePattern => ({
-            fillPattern: stripePattern,
+        style: {
+            fillColor: '#bfbfbf',
             color: '#595959',
-            weight: 0.7,
-            fillOpacity: 0.4
-        }),
+            weight: 0.2,
+            fillOpacity: 0.8
+        },
 
         interactive: false
     },
@@ -80,19 +70,6 @@ const createBoundaryLayers = () => [
         },
 
         interactive: false
-    },
-
-    {
-        path: '/mapy/hranice_okresy_small.geojson',
-
-        style: {
-            color: '#595959',
-            weight: 0.7,
-            fillOpacity: 0
-        },
-
-        interactive: false,
-        alwaysOnTop: true
     }
 ]
 
@@ -139,7 +116,7 @@ const legendVodne = createLegend(
     [
         {
             label: 'Nedostupné údaje',
-            color: '#BDBDBD'
+            color: '#bfbfbf'
         },
         {
             label: '0 – 0,5',
@@ -174,7 +151,7 @@ const legendStocne = createLegend(
     [
         {
             label: 'Bez kanalizácie',
-            color: '#BDBDBD'
+            color: '#bfbfbf'
         },
         {
             label: '0 – 1',
