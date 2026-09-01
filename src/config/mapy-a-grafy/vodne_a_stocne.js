@@ -264,7 +264,7 @@ export default {
 
             layers: [
                 {
-                    path: '/mapy/GIS_vodovod_cena.geojson',
+                    path: '/mapy/vodne.geojson',
 
                     style: feature => ({
                         fillColor: getColorVodne(
@@ -321,7 +321,7 @@ export default {
 
             layers: [
                 {
-                    path: '/mapy/GIS_kanalizacia_cena.geojson',
+                    path: '/mapy/stocne.geojson',
 
                     style: feature => ({
                         fillColor: getColorStocne(
