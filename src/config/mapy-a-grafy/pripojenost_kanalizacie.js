@@ -11,6 +11,25 @@ const getColor = value => {
     else return '#000000'
 }
 
+const getStyle = feature => ({
+    fillColor: getColor(feature.properties.pripojenost_kanalizacie),
+    color: '#595959',
+    weight: 0.2,
+    fillOpacity: 0.8
+})
+
+const getPopup = feature => `
+    <div style="font-family: 'chivo';">
+        <strong>Obec:</strong> ${feature.properties.NM2}<br>
+        <strong>Okres:</strong> ${feature.properties.NM3}<br>
+        <strong>Percento pripojenia:</strong> ${feature.properties.pripojenost_kanalizacie != null
+            ? `${Math.round(feature.properties.pripojenost_kanalizacie * 100)} %`
+            : 'neuplatňuje sa'}
+    </div>`
+
+const isNotBratislavaOrKosiceDistrict = feature =>
+    !/^(Bratislava|Košice)-/.test(feature.properties.NM2)
+
 export default {
     // typ vizualizácie:
     type: 'mapa',
@@ -30,48 +49,32 @@ export default {
         // úroveň priblíženia:
         zoom: 8, 
         // zabezpečíme, že celé Slovensko je v zábere:
-        fitTo: '/mapy/hranice_SVK.geojson', 
-        
-        // ak chceme aby mali niektoré regióny na sebe vzor (pásiky atď.), vytvoríme ho tu ako funkciu:
-        createStripePattern() { 
-            return new L.StripePattern({
-                weight: 3,
-                spaceWeight: 2,
-                color: '#595959',
-                spaceColor: 'transparent',
-                angle: 135
-            })
-        }
+        fitTo: '/mapy/hranice_SVK.geojson'
     },
 
     // vrstvy mapy v poradí ako ich chceme na seba naukladať (spodok → vrch):
     layers: [
         {
             // meno .geojson súboru, ktorý je uložený v public/mapy/:
-            path: '/mapy/pripojenost_kanalizacie.geojson',
+            path: '/mapy/obce.geojson',
+            dataPath: '/mapy/data/pripojenost-kanalizacie.json',
+            joinBy: 'IDN2',
+            valueProperty: 'pripojenost_kanalizacie',
+            filter: isNotBratislavaOrKosiceDistrict,
             // definujeme výzor polygónov v každej vrstve:
-            style: feature => ({
-                // farba výplne:
-                fillColor: getColor(feature.properties.percento_p_2),
-                // farba obrysu:
-                color: '#595959',
-                // hrúbka obrysu:
-                weight: 0.2,
-                // úroveň nepriehľadnosti výplne:
-                fillOpacity: 0.8
-            }),
+            style: getStyle,
             // tu definujeme, čo chceme aby sa po kliknutí na konkrétny polygón zobrazilo vo vyskakovacom okne.
             // zvolíme text a vhodnú hodnotu atribútu z .geojson súboru, ktorú chceme zobraziť. Treba preštudovať konkrétny súbor pre názvy atribútov.
             // ak sú hodonoty pre niektoré polygóny vynechané, môžeme zobraziť napr. "neuplatňuje sa"
-            popup: feature => `
-                <div style="font-family: 'chivo';">
-                    <strong>Obec:</strong> ${feature.properties.NM2}<br>
-                    <strong>Okres:</strong> ${feature.properties.NM3}<br>                       
-                    <strong>Percento pripojenia:</strong> ${feature.properties.percento_p_2 ?? 'neuplatňuje sa'}
-                </div>`,
+            popup: getPopup,
             
             // zabezpečíme, že aj keď sa vrstva načíta ako posledná, zobrazí sa naspodu (aby neprekryla tie, čo majú byť nad ňou):
             alwaysOnBottom: true
+        },
+        {
+            path: '/mapy/kanalizacia-mesta.geojson',
+            style: getStyle,
+            popup: getPopup
         },
         {
             path: '/mapy/hranice_SVK.geojson',

@@ -6,6 +6,8 @@ import emisie2022 from './mapy-a-grafy/emisie2022.js'
 import dlzka_zivota_ovzdusie from './mapy-a-grafy/dlzka_zivota_ovzdusie.js'
 import pripojenost_kanalizacie from './mapy-a-grafy/pripojenost_kanalizacie.js'
 import vodne_a_stocne from './mapy-a-grafy/vodne_a_stocne.js'
+import miera_triedenia_odpadu from './mapy-a-grafy/miera_triedenia_odpadu.js'
+import triedenie_odpadu_kraje from './mapy-a-grafy/triedenie_odpadu_kraje.js'
 
 import example_pie from './mapy-a-grafy/example_pie.js'
 import example_line from './mapy-a-grafy/example_line.js'
@@ -21,9 +23,11 @@ export default [
   dlzka_zivota_ovzdusie,
   pripojenost_kanalizacie,
   vodne_a_stocne,
+  miera_triedenia_odpadu,
   
   // Grafy:
   emisie2022,
+  triedenie_odpadu_kraje,
   example_pie,
   example_bar,
   example_line,

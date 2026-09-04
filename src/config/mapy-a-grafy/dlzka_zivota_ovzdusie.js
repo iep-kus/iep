@@ -50,11 +50,14 @@ export default {
     layers: [
         {
             // meno .geojson súboru, ktorý je uložený v public/mapy/:
-            path: '/mapy/obce_znecistenie_ovzdusia.geojson',
+            path: '/mapy/obce.geojson',
+            dataPath: '/mapy/data/dlzka-zivota-ovzdusie.json',
+            joinBy: 'IDN2',
+            valueProperty: 'dlzka_zivota_ovzdusie',
             // definujeme výzor polygónov v každej vrstve:
             style: feature => ({
                 // farba výplne:
-                fillColor: getColor(feature.properties.porovnanie_metod_LE_loss_final),
+                fillColor: getColor(feature.properties.dlzka_zivota_ovzdusie),
                 // farba obrysu:
                 color: '#595959',
                 // hrúbka obrysu:
@@ -70,8 +73,8 @@ export default {
                     <strong>Obec:</strong> ${feature.properties.NM2}<br>
                     <strong>Okres:</strong> ${feature.properties.NM3}<br>                       
                     <strong>Zmena očakávanej dĺžky života:</strong>
-                        ${feature.properties.porovnanie_metod_LE_loss_final != null
-                            ? Number(feature.properties.porovnanie_metod_LE_loss_final).toFixed(2) // nechcem vypísať celú hodnotu, tak ju zaokrúhlim na 2 desatinné miesta
+                        ${feature.properties.dlzka_zivota_ovzdusie != null
+                            ? Number(feature.properties.dlzka_zivota_ovzdusie).toFixed(2) // nechcem vypísať celú hodnotu, tak ju zaokrúhlim na 2 desatinné miesta
                             : 'neuplatňuje sa'}
                 </div>`,
             

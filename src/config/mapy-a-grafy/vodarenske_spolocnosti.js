@@ -53,7 +53,10 @@ export default {
   // layers in order (bottom → top)
     layers: [
         {
-            path: '/mapy/vodarenske_spolocnosti_small.geojson',
+            path: '/mapy/obce.geojson',
+            dataPath: '/mapy/data/vodarenske-spolocnosti.json',
+            joinBy: 'IDN2',
+            mergeData: true,
             style: feature => ({
                 fillColor: getColor(feature.properties.Prevádzko),
                 color: '#595959',
@@ -62,7 +65,7 @@ export default {
             }),
             popup: feature => `
                 <div style="font-family: 'chivo';">
-                    <strong>Obec:</strong> ${feature.properties.MUNICIPA_1}<br>
+                    <strong>Obec:</strong> ${feature.properties.NM2}<br>
                     <strong>Vodárenská spoločnosť:</strong> ${feature.properties.Prevádz_1 ?? 'bez vodovodu'}
                 </div>`,
             alwaysOnBottom: true

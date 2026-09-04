@@ -47,10 +47,10 @@
 // obrázok pre každú tému treba najprv importovať. Požadovaný obrázok uložíme do src/assets/
 import voda_img from '@/assets/voda.jpg'
 import doprava_img from '@/assets/doprava.jpg'
-import odpady_img from '@/assets/background-odpady.jpg'
-import opatrenia_img from '@/assets/opatrenia.jpg'
+import odpady_img from '@/assets/odpady.jpg'
+import zmena_klimy_img from '@/assets/zmena-klimy.jpg'
 import ovzdusie_img from '@/assets/ovzdusie.jpg'
-import financie_img from '@/assets/financie.jpg'
+import priroda_img from '@/assets/priroda.jpg'
 
 export default {
   name: 'MapGraphTopics',
@@ -92,15 +92,14 @@ export default {
           description: 'Ako sa Slovensko vyrovnáva s rastúcim množstvom odpadov?',
           open: false,
           items: [
-            { title: 'Pie', slug: 'pie-example', type: 'graf' },
-            { title: 'Bar', slug: 'bar-example', type: 'graf' },
-            { title: 'Line', slug: 'line-example', type: 'graf' }
+            { title: 'Mapa: Miera triedenia komunálneho odpadu v obciach', slug: 'mapa-miera-triedenia-odpadu', type: 'mapa' },
+            { title: 'Graf: Vývoj priemernej miery triedenia odpadu v krajoch', slug: 'graf-triedenie-odpadu-kraje', type: 'graf' }
           ]
         },
         {
-          name: 'Verejné financie',
-          image: financie_img,
-          description: 'Ako môžu verejné financie podporiť udržateľný rozvoj a efektívne využívanie zdrojov?',
+          name: 'Príroda',
+          image: priroda_img,
+          description: 'Ako chránime prírodu, biodiverzitu a krajinu na Slovensku?',
           open: false,
           items: [
             { title: 'Mapa/Graf 1', slug: 'mapa-graf-1', type: 'mapa' },
@@ -121,7 +120,7 @@ export default {
         },
         {
           name: 'Zmena klímy',
-          image: opatrenia_img,
+          image: zmena_klimy_img,
           description: 'Ako nás ovplyvňuje zmena klímy a aké opatrenia môžu zmierniť jej dopady?',
           open: false,
           items: [

@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "prepare-map-data": "node scripts/prepare-map-data.mjs"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",

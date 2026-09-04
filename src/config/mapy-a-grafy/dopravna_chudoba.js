@@ -60,11 +60,14 @@ export default {
     layers: [
         {
             // meno .geojson súboru, ktorý je uložený v public/mapy/:
-            path: '/mapy/obce_vysledky_small.geojson',
+            path: '/mapy/obce.geojson',
+            dataPath: '/mapy/data/dopravna-chudoba.json',
+            joinBy: 'IDN2',
+            valueProperty: 'dopravna_chudoba',
             // definujeme výzor polygónov v každej vrstve:
             style: feature => ({
                 // farba výplne:
-                fillColor: getColor(feature.properties.vysledky_CI_DCH_percentile),
+                fillColor: getColor(feature.properties.dopravna_chudoba),
                 // farba obrysu:
                 color: '#595959',
                 // hrúbka obrysu:
@@ -79,7 +82,7 @@ export default {
                 <div style="font-family: 'chivo';">
                     <strong>Obec:</strong> ${feature.properties.NM2}<br>
                     <strong>Okres:</strong> ${feature.properties.NM3}<br>                       
-                    <strong>Stupeň ohrozenia:</strong> ${feature.properties.vysledky_CI_DCH_percentile ?? 'neuplatňuje sa'}
+                    <strong>Stupeň ohrozenia:</strong> ${feature.properties.dopravna_chudoba ?? 'neuplatňuje sa'}
                 </div>`,
             
             // zabezpečíme, že aj keď sa vrstva načíta ako posledná, zobrazí sa naspodu (aby neprekryla tie, čo majú byť nad ňou):

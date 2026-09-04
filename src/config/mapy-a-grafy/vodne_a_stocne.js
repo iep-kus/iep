@@ -29,6 +29,37 @@ const getColorStocne = value => {
 }
 
 
+const VODNE_PROPERTY = 'cena_vodne'
+const STOCNE_PROPERTY = 'cena_stocne'
+
+
+const priceFormatter = new Intl.NumberFormat('sk-SK', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 3
+})
+
+const createPricePopup = (label, propertyName, unavailableText) => feature => {
+    const rawValue = feature.properties[propertyName]
+    const numericValue = typeof rawValue === 'number'
+        ? rawValue
+        : Number(String(rawValue).replace(',', '.'))
+    const hasPrice = rawValue != null &&
+        rawValue !== '' &&
+        Number.isFinite(numericValue)
+    const price = hasPrice
+        ? `${priceFormatter.format(numericValue)} eur/m³`
+        : unavailableText
+
+    return `
+        <div style="font-family:'chivo';">
+            <strong>Obec:</strong> ${feature.properties.NM2 ?? 'neznáma obec'}
+            <br>
+            <strong>${label}:</strong> ${price}
+        </div>
+    `
+}
+
+
 // ============================================================
 // SPOLOČNÉ NASTAVENIE POHĽADU
 // ============================================================
@@ -70,6 +101,19 @@ const createBoundaryLayers = () => [
         },
 
         interactive: false
+    },
+
+    {
+        path: '/mapy/hranice_okresy_small.geojson',
+
+        style: {
+            color: '#595959',
+            weight: 0.5,
+            fillOpacity: 0
+        },
+
+        interactive: false,
+        alwaysOnTop: true
     }
 ]
 
@@ -226,13 +270,14 @@ export default {
 
             layers: [
                 {
-                    path: '/mapy/vodne.geojson',
+                    path: '/mapy/obce.geojson',
+                    dataPath: '/mapy/data/vodne.json',
+                    joinBy: 'IDN2',
+                    valueProperty: VODNE_PROPERTY,
 
                     style: feature => ({
                         fillColor: getColorVodne(
-                            feature.properties[
-                                'GIS_vodovod_cena — Hárok1_Cena s DPH'
-                            ]
+                            feature.properties[VODNE_PROPERTY]
                         ),
 
                         color: '#595959',
@@ -240,24 +285,11 @@ export default {
                         fillOpacity: 0.8
                     }),
 
-                    popup: feature => `
-                        <div style="font-family:'chivo';">
-
-                            <strong>Cena vodného:</strong>
-                            ${
-                                feature.properties[
-                                    'GIS_vodovod_cena — Hárok1_Cena s DPH'
-                                ] ?? 'údaj nie je dostupný'
-                            }${
-                                feature.properties[
-                                    'GIS_vodovod_cena — Hárok1_Cena s DPH'
-                                ] != null
-                                    ? ' eur/m³'
-                                    : ''
-                            }
-
-                        </div>
-                    `,
+                    popup: createPricePopup(
+                        'Cena vodného',
+                        VODNE_PROPERTY,
+                        'údaj nie je dostupný'
+                    ),
 
                     alwaysOnBottom: true
                 },
@@ -283,13 +315,14 @@ export default {
 
             layers: [
                 {
-                    path: '/mapy/stocne.geojson',
+                    path: '/mapy/obce.geojson',
+                    dataPath: '/mapy/data/stocne.json',
+                    joinBy: 'IDN2',
+                    valueProperty: STOCNE_PROPERTY,
 
                     style: feature => ({
                         fillColor: getColorStocne(
-                            feature.properties[
-                                'GIS_kanalizacia_cena — Hárok1_Cena s DPH'
-                            ]
+                            feature.properties[STOCNE_PROPERTY]
                         ),
 
                         color: '#595959',
@@ -297,24 +330,11 @@ export default {
                         fillOpacity: 0.8
                     }),
 
-                    popup: feature => `
-                        <div style="font-family:'chivo';">
-
-                            <strong>Cena stočného:</strong>
-                            ${
-                                feature.properties[
-                                    'GIS_kanalizacia_cena — Hárok1_Cena s DPH'
-                                ] ?? 'bez kanalizácie'
-                            }${
-                                feature.properties[
-                                    'GIS_kanalizacia_cena — Hárok1_Cena s DPH'
-                                ] != null
-                                    ? ' eur/m³'
-                                    : ''
-                            }
-
-                        </div>
-                    `,
+                    popup: createPricePopup(
+                        'Cena stočného',
+                        STOCNE_PROPERTY,
+                        'bez kanalizácie'
+                    ),
 
                     alwaysOnBottom: true
                 },
