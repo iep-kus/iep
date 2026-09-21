@@ -27,6 +27,10 @@ export default {
     title: 'Miera triedenia komunálneho odpadu v obciach v roku 2023',
     description: `Mapa zobrazuje podiel vytriedeného komunálneho odpadu v jednotlivých
         obciach Slovenska v roku 2023. Tmavšia oranžová farba označuje vyššiu mieru triedenia.`,
+    source: {
+        title: 'Stratégia odpadového hospodárstva Slovenskej republiky do 2035',
+        url: 'https://www.minzp.sk/files/sekcia-enviromentalneho-hodnotenia-riadenia/odpady-a-obaly/registre-a-zoznamy/strategia_odpadoveho_hospodarstva_sr_do_2035.pdf'
+    },
 
     view: {
         center: [48.669, 19.699],

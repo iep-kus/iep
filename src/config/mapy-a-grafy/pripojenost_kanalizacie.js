@@ -43,6 +43,10 @@ export default {
                 Za celoslovenským priemerom zaostáva Trenčiansky, Nitriansky, Banskobystrický a Košický kraj, naopak výrazne nadpriemerná miera pripojenia 
                 je v Bratislavskom kraji. V obciach pod 2 000 obyvateľov je na kanalizáciu pripojených len 33 % obyvateľstva. Nulová alebo nízka 
                 miera pripojenia je problémom aj v niektorých väčších obciach a mestách, napr. v Terchovej, Spišských Vlachoch, Veľkom Záluží alebo Jelšave (VÚVH, 2024).`,
+    source: {
+        title: 'Kanalýza',
+        url: 'https://www.minzp.sk/iep/publikacie/ekonomicke-analyzy/kanalyza.html'
+    },
     view: {
         // stred mapy:
         center: [48.669, 19.699], 

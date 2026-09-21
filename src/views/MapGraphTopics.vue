@@ -70,9 +70,9 @@ export default {
           // tu sa vložia mapy a grafy, ktoré s témou súvisia:
           items: [
             // stránka potrebuje vedieť názov, unikátny slug a či ide o mapu alebo graf:
-            { title: 'Mapa: Kto vlastní vodovody na Slovensku?', slug: 'mapa-vodarenske-spolocnosti', type: 'mapa'},
-            { title: 'Mapa: Miera pripojenia obyvateľstva na kanalizáciu', slug: 'mapa-pripojenost-kanalizacie', type: 'mapa' },
-            { title: 'Mapa: Koľko platíme za vodu', slug: 'mapa-vodne-stocne', type: 'mapa' }
+            { title: 'Kto vlastní vodovody na Slovensku?', slug: 'mapa-vodarenske-spolocnosti', type: 'mapa'},
+            { title: 'Miera pripojenia obyvateľstva na kanalizáciu', slug: 'mapa-pripojenost-kanalizacie', type: 'mapa' },
+            { title: 'Koľko platíme za vodu', slug: 'mapa-vodne-stocne', type: 'mapa' }
           ]
         },
         {
@@ -81,9 +81,9 @@ export default {
           description: 'Ako doprava ovplyvňuje životné prostredie a spoločnosť na Slovensku?',
           open: false,
           items: [
-            { title: 'Mapa: Stupne ohrozenia obcí dopravnou chudobou', slug: 'mapa-dopravna-chudoba', type: 'mapa'},
-            { title: 'Doughnut', slug: 'doughnut-example', type: 'graf' },
-            { title: 'Dvojvrstvovy doughnut', slug: 'doughnut-multi', type: 'graf' }
+            { title: 'Stupne ohrozenia obcí dopravnou chudobou', slug: 'mapa-dopravna-chudoba', type: 'mapa'},
+            { title: 'Podiel výskytov v kategóriách', slug: 'doughnut-example', type: 'graf' },
+            { title: 'Podiel výskytov v kategóriách a podkategóriách', slug: 'doughnut-multi', type: 'graf' }
           ]
         },
         {
@@ -92,8 +92,8 @@ export default {
           description: 'Ako sa Slovensko vyrovnáva s rastúcim množstvom odpadov?',
           open: false,
           items: [
-            { title: 'Mapa: Miera triedenia komunálneho odpadu v obciach', slug: 'mapa-miera-triedenia-odpadu', type: 'mapa' },
-            { title: 'Graf: Vývoj priemernej miery triedenia odpadu v krajoch', slug: 'graf-triedenie-odpadu-kraje', type: 'graf' }
+            { title: 'Miera triedenia komunálneho odpadu v obciach', slug: 'mapa-miera-triedenia-odpadu', type: 'mapa' },
+            { title: 'Vývoj priemernej miery triedenia odpadu v krajoch', slug: 'graf-triedenie-odpadu-kraje', type: 'graf' }
           ]
         },
         {
@@ -102,9 +102,9 @@ export default {
           description: 'Ako chránime prírodu, biodiverzitu a krajinu na Slovensku?',
           open: false,
           items: [
-            { title: 'Mapa/Graf 1', slug: 'mapa-graf-1', type: 'mapa' },
-            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2', type: 'mapa' },
-            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3', type: 'mapa' }
+            { title: 'Vizualizácia 1', slug: 'mapa-graf-1', type: 'mapa' },
+            { title: 'Vizualizácia 2', slug: 'mapa-graf-2', type: 'mapa' },
+            { title: 'Vizualizácia 3', slug: 'mapa-graf-3', type: 'mapa' }
           ]
         },
         {
@@ -114,8 +114,8 @@ export default {
           open: false,
           items: [
             { title: 'Skrátenie dĺžky života kvôli vystaveniu znečistenému ovzdušiu', slug: 'mapa-dlzka-zivota-ovzdusie', type: 'mapa' },
-            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2', type: 'mapa' },
-            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3', type: 'mapa' }
+            { title: 'Vizualizácia 2', slug: 'mapa-graf-2', type: 'mapa' },
+            { title: 'Vizualizácia 3', slug: 'mapa-graf-3', type: 'mapa' }
           ]
         },
         {
@@ -125,8 +125,8 @@ export default {
           open: false,
           items: [
             { title: 'Emisie sklenníkových plynov v roku 2022', slug: 'emisie-2022', type: 'graf' },
-            { title: 'Mapa/Graf 2', slug: 'mapa-graf-2', type: 'mapa' },
-            { title: 'Mapa/Graf 3', slug: 'mapa-graf-3', type: 'mapa' }
+            { title: 'Vizualizácia 2', slug: 'mapa-graf-2', type: 'mapa' },
+            { title: 'Vizualizácia 3', slug: 'mapa-graf-3', type: 'mapa' }
           ]
         }
         // ďalšie témy...

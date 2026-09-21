@@ -43,6 +43,10 @@ export default {
     title: 'Vývoj priemernej miery triedenia odpadu v krajoch',
     description: `Stacked stĺpce porovnávajú podiel triedeného a netriedeného komunálneho
         odpadu v jednotlivých krajoch v rokoch 2011, 2014, 2017, 2020 a 2023.`,
+    source: {
+        title: 'Stratégia odpadového hospodárstva Slovenskej republiky do 2035',
+        url: 'https://www.minzp.sk/files/sekcia-enviromentalneho-hodnotenia-riadenia/odpady-a-obaly/registre-a-zoznamy/strategia_odpadoveho_hospodarstva_sr_do_2035.pdf'
+    },
     graphType: 'bar',
     data: {
         labels,

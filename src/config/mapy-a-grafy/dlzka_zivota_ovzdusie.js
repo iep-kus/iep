@@ -25,6 +25,10 @@ export default {
     tam žijú takmer o dva roky kratšie ako v najčistejších oblastiach. Vyplýva to z novej 
     vedeckej štúdie slovenských expertov a vedcov, ktorá po prvýkrát analyzuje dopady 
     znečistenia ovzdušia až na úrovni jednotlivých obcí.`,
+    source: {
+        title: 'Príčiny a zdravotné dôsledky znečistenia ovzdušia na Slovensku',
+        url: 'https://www.minzp.sk/iep/publikacie/ekonomicke-analyzy/drivers-health-impact-ambient-air-pollution.html'
+    },
   
     view: {
         // stred mapy:

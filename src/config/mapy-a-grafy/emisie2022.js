@@ -10,6 +10,10 @@ export default {
     ale aj z domácností a inštitúcií, kde sa využíval zemný plyn, uhlie a biomasa, ktorá v prípade nedostatočného vysušenia produkuje 
     pri horení emisie metánu. Približne pätina emisí pochádzala z cestnej dopravy, najmä z osobných a ťažkých úžitkových vozidiel. 
     Menší podiel emisií pripadal na poľnohospodárstvo a odpadové hospodárstvo (SHMÚ, 2024).`,
+  source: {
+    title: 'Slnko, jadro a pár wattov',
+    url: 'https://www.minzp.sk/iep/publikacie/ekonomicke-analyzy/slnko-jadro-par-wattov.html'
+  },
   graphType: 'doughnut',
   data: [
     {

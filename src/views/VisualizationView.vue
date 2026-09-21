@@ -38,12 +38,31 @@
                                         :view="mapConfig.view"
                                         :legend="mapConfig.legend"
                                     />
+                                    <p v-if="mapConfig.source || viz.source" class="source">
+                                        Zdroj:
+                                        <a
+                                            :href="(mapConfig.source || viz.source).url"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {{ (mapConfig.source || viz.source).title }}
+                                        </a>
+                                    </p>
                                 </div>
                             </template>
-                            <GraphComponent
-                                v-else-if="viz.type === 'graf'"
-                                v-bind="componentProps"
-                            />
+                            <template v-else-if="viz.type === 'graf'">
+                                <GraphComponent v-bind="componentProps" />
+                                <p v-if="viz.source" class="source">
+                                    Zdroj:
+                                    <a
+                                        :href="viz.source.url"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {{ viz.source.title }}
+                                    </a>
+                                </p>
+                            </template>
                         </div>
                     </div>
 
@@ -86,7 +105,8 @@ export default {
         title: null,
         layers: this.viz.layers,
         view: this.viz.view,
-        legend: this.viz.legend
+        legend: this.viz.legend,
+        source: this.viz.source
       }]
     },
     componentProps() {
@@ -152,6 +172,17 @@ export default {
   color: #595959;
   font-family: 'chivo-bold';
   margin-bottom: 0;
+}
+
+.source {
+  color: #595959;
+  font-size: 0.9rem;
+  margin: 1rem 0 0;
+}
+
+.source a {
+  color: #28758c;
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 768px){

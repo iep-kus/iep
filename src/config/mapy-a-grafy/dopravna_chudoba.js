@@ -35,6 +35,10 @@ export default {
         dlhšie vzdialenosti. Ohrozené sú aj obce, ktoré sa nachádzajú blízko okresného mesta, no 
         majú k dispozícii nízky počet spojov verejnej osobnej dopravy, ako aj niektoré obce na 
         západe Slovenska, kde je kľúčovým faktorom dlhý čas prepravy.`,
+    source: {
+        title: 'Nemám auto, nemám autobus',
+        url: 'https://www.minzp.sk/iep/publikacie/ekonomicke-analyzy/analyza-dopravna-chudoba.html'
+    },
   
     view: {
         // stred mapy:
