@@ -37,7 +37,7 @@ export default {
     id: 'pripojenost-kanalizacie',
     slug: 'mapa-pripojenost-kanalizacie',
     // nadpis:
-    title: 'Miera pripojenia obyvateľstva na kanalizáciu v obciach SR v roku 2023 v %',
+    title: 'Miera pripojenia obyvateľstva na kanalizáciu v obciach SR v roku 2023',
     // popis:
     description: `Dostupnosť verejnej kanalizácie na Slovensku je v rámci EÚ podpriemerná, v roku 2022 bolo pripojených iba 71 % obyvateľov. 
                 Za celoslovenským priemerom zaostáva Trenčiansky, Nitriansky, Banskobystrický a Košický kraj, naopak výrazne nadpriemerná miera pripojenia 

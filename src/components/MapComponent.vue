@@ -140,9 +140,20 @@ export default {
 
                         onEachFeature: (feature, layer) => {
                             if (layerConfig.popup) {
-                                layer.bindPopup(
-                                    layerConfig.popup(feature)
-                                )
+                                const popupContent = layerConfig.popup(feature)
+
+                                // Kliknutie zostáva dostupné najmä pre dotykové
+                                // zariadenia, na počítači sa rovnaké informácie
+                                // zobrazia aj pri prejdení kurzorom.
+                                layer.bindPopup(popupContent)
+
+                                if (layerConfig.showTooltip !== false) {
+                                    layer.bindTooltip(popupContent, {
+                                        sticky: true,
+                                        direction: 'auto',
+                                        opacity: 0.95
+                                    })
+                                }
                             }
                         },
 
