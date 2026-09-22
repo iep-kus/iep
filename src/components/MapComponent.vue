@@ -5,6 +5,7 @@
                 <b-col>
                     <div
                         ref="mapContainer"
+                        class="map-component"
                         style="height: 600px; margin-top: 40px;"
                     ></div>
                 </b-col>    
@@ -120,10 +121,12 @@ export default {
         }
 
         // Add layers
+        let selectedFeature = null
+
         this.layers.forEach(layerConfig => {
             loadLayerData(layerConfig)
                 .then(data => {
-                    const geoJsonLayer = L.geoJSON(data, {
+                    let geoJsonLayer = L.geoJSON(data, {
                         filter: layerConfig.filter,
 
                         style: feature => {
@@ -164,6 +167,37 @@ export default {
                                 } else {
                                     layer.bindPopup(popupContent)
                                 }
+
+                                layer.on('click', () => {
+                                    if (
+                                        selectedFeature
+                                    ) {
+                                        selectedFeature.parent.resetStyle(
+                                            selectedFeature.layer
+                                        )
+                                    }
+
+                                    if (typeof layer.setStyle === 'function') {
+                                        const baseWeight = Number(
+                                            layer.options.weight
+                                        ) || 0
+
+                                        layer.setStyle({
+                                            color: '#262626',
+                                            weight: Math.max(
+                                                baseWeight + 1.5,
+                                                2
+                                            ),
+                                            opacity: 1,
+                                            ...(layerConfig.selectedStyle || {})
+                                        })
+
+                                        selectedFeature = {
+                                            layer,
+                                            parent: geoJsonLayer
+                                        }
+                                    }
+                                })
                             }
                         },
 
@@ -224,3 +258,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.map-component .leaflet-interactive:focus {
+    outline: none;
+}
+</style>
