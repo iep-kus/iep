@@ -142,17 +142,27 @@ export default {
                             if (layerConfig.popup) {
                                 const popupContent = layerConfig.popup(feature)
 
-                                // Kliknutie zostáva dostupné najmä pre dotykové
-                                // zariadenia, na počítači sa rovnaké informácie
-                                // zobrazia aj pri prejdení kurzorom.
-                                layer.bindPopup(popupContent)
+                                // Myš: informáciu ukážeme iba pri hoveri.
+                                // Dotyk: rovnakú informáciu otvoríme ťuknutím.
+                                // Vďaka tomu sa na počítači neprekrýva tooltip
+                                // s popupom po kliknutí.
+                                const hasPrecisePointer =
+                                    window.matchMedia &&
+                                    window.matchMedia(
+                                        '(hover: hover) and (pointer: fine)'
+                                    ).matches
 
-                                if (layerConfig.showTooltip !== false) {
+                                if (
+                                    hasPrecisePointer &&
+                                    layerConfig.showTooltip !== false
+                                ) {
                                     layer.bindTooltip(popupContent, {
                                         sticky: true,
                                         direction: 'auto',
                                         opacity: 0.95
                                     })
+                                } else {
+                                    layer.bindPopup(popupContent)
                                 }
                             }
                         },
