@@ -5,14 +5,15 @@ const studySource = {
     url: 'https://www.minzp.sk/files/iep/analyzy/ako_von_zo_smetiska_iep_aktualizacia_februar2024.pdf'
 }
 
-const stackedDataset = (label, data, color) => ({
+const areaDataset = (label, data, color) => ({
     label,
     data,
     backgroundColor: color,
-    borderColor: '#ffffff',
+    borderColor: color,
     borderWidth: 1,
-    hoverBorderColor: '#595959',
-    hoverBorderWidth: 2,
+    pointRadius: 0,
+    pointHoverRadius: 4,
+    fill: true,
     stack: 'waste',
     yAxisID: 'waste'
 })
@@ -27,16 +28,16 @@ const datasetLegend = chart => chart.data.datasets.map((dataset, datasetIndex) =
 }))
 
 const wasteCompositionChart = {
-    graphType: 'bar',
+    graphType: 'line',
     data: {
         labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'],
         datasets: [
-            stackedDataset('Zmesový komunálny odpad', [224.3, 222, 217.7, 215.5, 218.2, 220, 218, 216.2, 215.4, 210.7, 209.7, 200.5], '#fb8622'),
-            stackedDataset('Kovy', [1.9, 2.5, 2.3, 1, 3.3, 5.7, 20.3, 40.3, 62.7, 61.6, 68, 82.1], '#9f3f1f'),
-            stackedDataset('Triedený zber', [22.8, 24.2, 27.9, 29.6, 31.3, 34, 35.1, 40.9, 49.1, 55.3, 60.3, 69.8], '#f6c344'),
-            stackedDataset('Bioodpad', [17.7, 16.8, 18.1, 18.6, 23.1, 25.5, 28.9, 34.5, 40.2, 49.3, 55.1, 67.6], '#e8652a'),
-            stackedDataset('Iný komunálny odpad z domácností', [47.1, 42.5, 38, 37.3, 39.6, 42.2, 42.7, 43.8, 45.2, 43.7, 41.8, 39.9], '#f8ad73'),
-            stackedDataset('Komunálny odpad mimo domácností', [null, null, null, null, null, null, null, null, null, null, 40.3, 37.9], '#f4c4ae'),
+            areaDataset('Zmesový komunálny odpad', [224.3, 222, 217.7, 215.5, 218.2, 220, 218, 216.2, 215.4, 210.7, 209.7, 200.5], '#fb8622'),
+            areaDataset('Kovy', [1.9, 2.5, 2.3, 1, 3.3, 5.7, 20.3, 40.3, 62.7, 61.6, 68, 82.1], '#9f3f1f'),
+            areaDataset('Triedený zber', [22.8, 24.2, 27.9, 29.6, 31.3, 34, 35.1, 40.9, 49.1, 55.3, 60.3, 69.8], '#f6c344'),
+            areaDataset('Bioodpad', [17.7, 16.8, 18.1, 18.6, 23.1, 25.5, 28.9, 34.5, 40.2, 49.3, 55.1, 67.6], '#e8652a'),
+            areaDataset('Iný komunálny odpad z domácností', [47.1, 42.5, 38, 37.3, 39.6, 42.2, 42.7, 43.8, 45.2, 43.7, 41.8, 39.9], '#f8ad73'),
+            areaDataset('Komunálny odpad mimo domácností', [null, null, null, null, null, null, null, null, null, null, 40.3, 37.9], '#f4c4ae'),
             {
                 type: 'line',
                 label: 'Priemer EÚ',
@@ -62,9 +63,13 @@ const wasteCompositionChart = {
             labels: { boxWidth: 14, fontSize: 11, generateLabels: datasetLegend }
         },
         tooltips: {
-            mode: 'nearest',
-            intersect: true,
+            mode: 'stackedAreaSegment',
+            intersect: false,
             callbacks: {
+                title(tooltipItems, data) {
+                    if (!tooltipItems.length) return ''
+                    return `Rok ${data.labels[tooltipItems[0].index]}`
+                },
                 label(tooltipItem, data) {
                     const dataset = data.datasets[tooltipItem.datasetIndex]
                     const value = Number(tooltipItem.yLabel).toLocaleString('sk-SK', { maximumFractionDigits: 1 })
@@ -72,9 +77,9 @@ const wasteCompositionChart = {
                 }
             }
         },
-        hover: { mode: 'nearest', intersect: true },
+        hover: { mode: 'stackedAreaSegment', intersect: false },
         scales: {
-            xAxes: [{ stacked: true, gridLines: { display: false }, ticks: { autoSkip: true, maxTicksLimit: 12 } }],
+            xAxes: [{ gridLines: { display: false }, ticks: { autoSkip: true, maxTicksLimit: 12 } }],
             yAxes: [
                 {
                     id: 'waste',
@@ -123,6 +128,52 @@ const mixedWasteChart = {
             fontFamily: 'chivo-bold'
         }
     }
+}
+
+const materialFlowSankey = {
+    columns: [
+        ['Triedený zber', 'Zmesový komunálny odpad'],
+        ['Záhradný bioodpad', 'Papier', 'Sklo', 'Plasty, kovové obaly a VKM', 'Kuchynský bioodpad'],
+        ['Recyklácia', 'Skládkovanie', 'Energetické využitie']
+    ],
+    colors: {
+        'Triedený zber': '#28758c',
+        'Zmesový komunálny odpad': '#fb8622',
+        'Záhradný bioodpad': '#76a365',
+        'Papier': '#eaa467',
+        'Sklo': '#5f9fac',
+        'Plasty, kovové obaly a VKM': '#f2b116',
+        'Kuchynský bioodpad': '#c7584c',
+        'Recyklácia': '#76a365',
+        'Skládkovanie': '#a84b3f',
+        'Energetické využitie': '#e38a3d'
+    },
+    links: [
+        { source: 'Triedený zber', target: 'Kuchynský bioodpad', value: 24935 },
+        { source: 'Triedený zber', target: 'Papier', value: 99250 },
+        { source: 'Triedený zber', target: 'Plasty, kovové obaly a VKM', value: 99446 },
+        { source: 'Triedený zber', target: 'Sklo', value: 83538 },
+        { source: 'Triedený zber', target: 'Záhradný bioodpad', value: 333983 },
+        { source: 'Zmesový komunálny odpad', target: 'Kuchynský bioodpad', value: 260965 },
+        { source: 'Zmesový komunálny odpad', target: 'Papier', value: 100562 },
+        { source: 'Zmesový komunálny odpad', target: 'Plasty, kovové obaly a VKM', value: 154829 },
+        { source: 'Zmesový komunálny odpad', target: 'Sklo', value: 40162 },
+        { source: 'Zmesový komunálny odpad', target: 'Záhradný bioodpad', value: 87188 },
+        { source: 'Kuchynský bioodpad', target: 'Energetické využitie', value: 42536 },
+        { source: 'Kuchynský bioodpad', target: 'Recyklácia', value: 24935 },
+        { source: 'Kuchynský bioodpad', target: 'Skládkovanie', value: 218429 },
+        { source: 'Papier', target: 'Energetické využitie', value: 16391 },
+        { source: 'Papier', target: 'Recyklácia', value: 96002 },
+        { source: 'Papier', target: 'Skládkovanie', value: 87419 },
+        { source: 'Plasty, kovové obaly a VKM', target: 'Energetické využitie', value: 60033 },
+        { source: 'Plasty, kovové obaly a VKM', target: 'Recyklácia', value: 48423 },
+        { source: 'Plasty, kovové obaly a VKM', target: 'Skládkovanie', value: 145819 },
+        { source: 'Sklo', target: 'Recyklácia', value: 78926 },
+        { source: 'Sklo', target: 'Skládkovanie', value: 44774 },
+        { source: 'Záhradný bioodpad', target: 'Energetické využitie', value: 14211 },
+        { source: 'Záhradný bioodpad', target: 'Recyklácia', value: 333983 },
+        { source: 'Záhradný bioodpad', target: 'Skládkovanie', value: 72977 }
+    ]
 }
 
 export default {
@@ -185,8 +236,18 @@ export default {
         },
         {
             id: 'materialove-toky',
-            type: 'text',
+            type: 'sankey',
             title: 'Vytriedenie ešte automaticky neznamená recykláciu',
+            description: `Materiálové toky ukazujú, ako sa v roku 2021 vybrané zložky
+                komunálneho odpadu zbierali a ako sa s nimi následne nakladalo. Hrúbka prúdu
+                zodpovedá množstvu odpadu. Súčet pri každej zložke je uvedený priamo v grafe;
+                presnú hodnotu jednotlivého toku zobrazíte prejdením kurzorom alebo ťuknutím.`,
+            ...materialFlowSankey
+        },
+        {
+            id: 'materialove-toky-text',
+            type: 'text',
+            title: 'Najväčšie rezervy sú pri bioodpade a plastoch',
             paragraphs: [
                 `Jednotlivé zložky sa darí triediť a recyklovať veľmi rozdielne. Analýza
                 odhaduje, že v roku 2021 sa recyklovalo približne 64 % skla a 48 % papiera.

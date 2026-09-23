@@ -91,6 +91,16 @@
                                         </div>
                                     </template>
 
+                                    <template v-else-if="section.type === 'sankey'">
+                                        <div class="report-sankey">
+                                            <SankeyComponent
+                                                :links="section.links"
+                                                :columns="section.columns"
+                                                :colors="section.colors"
+                                            />
+                                        </div>
+                                    </template>
+
                                     <template v-else-if="section.type === 'map'">
                                         <MapComponent
                                             :layers="section.layers"
@@ -187,11 +197,12 @@
 <script>
 import MapComponent from '../components/MapComponent.vue'
 import GraphComponent from '../components/GraphComponent.vue'
+import SankeyComponent from '../components/SankeyComponent.vue'
 import mapsConfig from '../config/index.js'
 
 export default {
   name: 'VisualizationView',
-  components: { MapComponent, GraphComponent },
+  components: { MapComponent, GraphComponent, SankeyComponent },
   computed: {
     viz() {
       // Find the visualization config by slug
@@ -377,6 +388,15 @@ export default {
   height: 480px;
   margin-top: 2rem;
   padding: 1.5rem;
+}
+
+.report-sankey {
+  background: #ffffff;
+  border: 1px solid #eeeeea;
+  border-radius: 10px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+  margin-top: 2rem;
+  padding: 1.25rem;
 }
 
 .visualization-title-link {

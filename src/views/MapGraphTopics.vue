@@ -24,8 +24,12 @@
                   <div v-show="topic.open" class="card-content">
                     <ul>
                       <li v-for="item in topic.items" :key="item.slug">
-                        <router-link :to="`/visualization/${item.slug}`">
-                          {{ item.title }}
+                        <router-link
+                          :to="`/visualization/${item.slug}`"
+                          :class="{ 'study-link': item.type === 'report' }"
+                        >
+                          <span v-if="item.type === 'report'" class="item-badge">Štúdia</span>
+                          <span>{{ item.title }}</span>
                         </router-link>
                       </li>
                     </ul>
@@ -92,8 +96,7 @@ export default {
           description: 'Ako sa Slovensko vyrovnáva s rastúcim množstvom odpadov?',
           open: false,
           items: [
-            { title: 'Ako von zo smetiska – stručný report', slug: 'ako-von-zo-smetiska', type: 'report' },
-            { title: 'Miera triedenia komunálneho odpadu v obciach', slug: 'mapa-miera-triedenia-odpadu', type: 'mapa' },
+            { title: 'Ako von zo smetiska', slug: 'ako-von-zo-smetiska', type: 'report' },
             { title: 'Vývoj priemernej miery triedenia odpadu v krajoch', slug: 'graf-triedenie-odpadu-kraje', type: 'graf' }
           ]
         },
@@ -165,9 +168,12 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -183,6 +189,10 @@ export default {
   object-fit: cover;
 }
 .card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 172px;
   padding: 16px;
   cursor: pointer;
 }
@@ -192,7 +202,8 @@ export default {
 .arrow {
   font-size: 14px;
   color: #666;
-  margin-top: 8px;
+  margin-top: auto;
+  padding-top: 8px;
 }
 .card-content {
   padding: 0 16px 16px;
@@ -224,9 +235,37 @@ export default {
 .card-content li {
   margin: 6px 0;
 }
+.card-content a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.study-link {
+  font-family: "chivo-bold";
+}
+.item-badge {
+  flex: 0 0 auto;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #f6c344;
+  color: #333;
+  font-family: "chivo-bold";
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+@media (max-width: 1100px) and (min-width: 769px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr; /* na mobile len 1 karta v riadku */
+  }
+  .card-body {
+    min-height: 0;
   }
 }
 

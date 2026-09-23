@@ -18,7 +18,7 @@ import example_bar from './mapy-a-grafy/example_bar.js'
 
 
 export default [
-  // Krátke reporty k štúdiám:
+  // Reporty k štúdiám:
   ako_von_zo_smetiska,
 
   // Mapy:
