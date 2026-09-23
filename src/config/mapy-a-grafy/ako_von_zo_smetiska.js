@@ -5,15 +5,15 @@ const studySource = {
     url: 'https://www.minzp.sk/files/iep/analyzy/ako_von_zo_smetiska_iep_aktualizacia_februar2024.pdf'
 }
 
-const areaDataset = (label, data, color) => ({
+const stackedDataset = (label, data, color) => ({
     label,
     data,
     backgroundColor: color,
-    borderColor: color,
+    borderColor: '#ffffff',
     borderWidth: 1,
-    pointRadius: 0,
-    pointHoverRadius: 4,
-    fill: true,
+    hoverBorderColor: '#595959',
+    hoverBorderWidth: 2,
+    stack: 'waste',
     yAxisID: 'waste'
 })
 
@@ -27,16 +27,16 @@ const datasetLegend = chart => chart.data.datasets.map((dataset, datasetIndex) =
 }))
 
 const wasteCompositionChart = {
-    graphType: 'line',
+    graphType: 'bar',
     data: {
         labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'],
         datasets: [
-            areaDataset('Zmesový komunálny odpad', [224.3, 222, 217.7, 215.5, 218.2, 220, 218, 216.2, 215.4, 210.7, 209.7, 200.5], '#fb8622'),
-            areaDataset('Kovy', [1.9, 2.5, 2.3, 1, 3.3, 5.7, 20.3, 40.3, 62.7, 61.6, 68, 82.1], '#9f3f1f'),
-            areaDataset('Triedený zber', [22.8, 24.2, 27.9, 29.6, 31.3, 34, 35.1, 40.9, 49.1, 55.3, 60.3, 69.8], '#f6c344'),
-            areaDataset('Bioodpad', [17.7, 16.8, 18.1, 18.6, 23.1, 25.5, 28.9, 34.5, 40.2, 49.3, 55.1, 67.6], '#e8652a'),
-            areaDataset('Iný komunálny odpad z domácností', [47.1, 42.5, 38, 37.3, 39.6, 42.2, 42.7, 43.8, 45.2, 43.7, 41.8, 39.9], '#f8ad73'),
-            areaDataset('Komunálny odpad mimo domácností', [null, null, null, null, null, null, null, null, null, null, 40.3, 37.9], '#f4c4ae'),
+            stackedDataset('Zmesový komunálny odpad', [224.3, 222, 217.7, 215.5, 218.2, 220, 218, 216.2, 215.4, 210.7, 209.7, 200.5], '#fb8622'),
+            stackedDataset('Kovy', [1.9, 2.5, 2.3, 1, 3.3, 5.7, 20.3, 40.3, 62.7, 61.6, 68, 82.1], '#9f3f1f'),
+            stackedDataset('Triedený zber', [22.8, 24.2, 27.9, 29.6, 31.3, 34, 35.1, 40.9, 49.1, 55.3, 60.3, 69.8], '#f6c344'),
+            stackedDataset('Bioodpad', [17.7, 16.8, 18.1, 18.6, 23.1, 25.5, 28.9, 34.5, 40.2, 49.3, 55.1, 67.6], '#e8652a'),
+            stackedDataset('Iný komunálny odpad z domácností', [47.1, 42.5, 38, 37.3, 39.6, 42.2, 42.7, 43.8, 45.2, 43.7, 41.8, 39.9], '#f8ad73'),
+            stackedDataset('Komunálny odpad mimo domácností', [null, null, null, null, null, null, null, null, null, null, 40.3, 37.9], '#f4c4ae'),
             {
                 type: 'line',
                 label: 'Priemer EÚ',
@@ -62,8 +62,8 @@ const wasteCompositionChart = {
             labels: { boxWidth: 14, fontSize: 11, generateLabels: datasetLegend }
         },
         tooltips: {
-            mode: 'index',
-            intersect: false,
+            mode: 'nearest',
+            intersect: true,
             callbacks: {
                 label(tooltipItem, data) {
                     const dataset = data.datasets[tooltipItem.datasetIndex]
@@ -72,8 +72,9 @@ const wasteCompositionChart = {
                 }
             }
         },
+        hover: { mode: 'nearest', intersect: true },
         scales: {
-            xAxes: [{ gridLines: { display: false }, ticks: { autoSkip: true, maxTicksLimit: 12 } }],
+            xAxes: [{ stacked: true, gridLines: { display: false }, ticks: { autoSkip: true, maxTicksLimit: 12 } }],
             yAxes: [
                 {
                     id: 'waste',
@@ -115,7 +116,7 @@ const mixedWasteChart = {
             }
         },
         centerText: {
-            text: ['Zmesový odpad', '2020'],
+            text: ['Zmesový odpad', '2020 – 2023'],
             color: '#595959',
             fontSize: 18,
             lineHeight: 24,
@@ -130,6 +131,7 @@ export default {
     slug: 'ako-von-zo-smetiska',
     kicker: 'Ekonomická analýza 16 · september 2023',
     title: 'Ako von zo smetiska',
+    titleUrl: studySource.url,
     description: `Odpadové hospodárstvo na Slovensku sa v posledných rokoch zlepšilo,
         stále však zaostáva za väčšinou krajín EÚ. Analýza ukazuje, kde komunálny odpad
         vzniká, ako sa triedi a spracúva a čo by priniesli plánované aj dodatočné opatrenia.
@@ -164,7 +166,9 @@ export default {
                 pripadalo na obyvateľa približne 200 kg, o desatinu menej ako v roku 2010.
                 Triedený zber spolu s bioodpadom sa za rovnaké obdobie viac než strojnásobil
                 na približne 137 kg na obyvateľa. Prerušovaná čiara ukazuje celkový priemer
-                produkcie komunálneho odpadu v EÚ.`,
+                produkcie komunálneho odpadu v EÚ. Nová definícia komunálneho odpadu od roku
+                2020 rozšírila evidenciu aj o odpad mimo domácností; zlom v dátach preto
+                nepredstavuje jednorazový fyzický nárast odpadu.`,
             ...wasteCompositionChart
         },
         {
@@ -174,7 +178,9 @@ export default {
             description: `Podľa analýz zloženia tvoril záhradný, kuchynský a potravinový
                 bioodpad približne 32 % zmesového komunálneho odpadu. Ďalších takmer 30 %
                 predstavovali obaly a neobalové výrobky, ktoré by mali byť súčasťou triedeného
-                zberu. Presné hodnoty sa zobrazia po prejdení kurzorom alebo ťuknutí na výsek.`,
+                zberu. Odhad vychádza z analýz zloženia JRK za roky 2020 až 2023; nejde
+                o samostatné porovnateľné údaje za každý rok. Presné hodnoty sa zobrazia po
+                prejdení kurzorom alebo ťuknutí na výsek.`,
             ...mixedWasteChart
         },
         {
@@ -200,7 +206,8 @@ export default {
                 na obec sa zobrazí jej hodnota.`,
             layers: mieraTriedeniaOdpadu.layers,
             view: mieraTriedeniaOdpadu.view,
-            legend: mieraTriedeniaOdpadu.legend
+            legend: mieraTriedeniaOdpadu.legend,
+            source: mieraTriedeniaOdpadu.source
         },
         {
             id: 'zaver',
@@ -218,15 +225,5 @@ export default {
             ]
         }
     ],
-    sources: [
-        { ...studySource, note: 'zdroj textov a údajov grafov 9 a 10' },
-        { ...mieraTriedeniaOdpadu.source, note: 'zdroj údajov mapy miery triedenia v obciach' }
-    ],
-    links: [
-        {
-            title: 'Všetky podklady k štúdii',
-            url: 'https://cms.minzp.sk/iep/publikacie/ekonomicke-analyzy/ako-von-zo-smetiska.html',
-            primary: true
-        }
-    ]
+    materialsUrl: 'https://cms.minzp.sk/iep/publikacie/ekonomicke-analyzy/ako-von-zo-smetiska.html'
 }

@@ -11,7 +11,20 @@
                                 <b-col v-if="viz.kicker" cols="12">
                                     <p class="report-kicker">{{ viz.kicker }}</p>
                                 </b-col>
-                                <b-col><h2>{{ viz.title }}</h2></b-col>
+                                <b-col>
+                                    <h2>
+                                        <a
+                                            v-if="viz.titleUrl"
+                                            class="visualization-title-link"
+                                            :href="viz.titleUrl"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {{ viz.title }}
+                                        </a>
+                                        <template v-else>{{ viz.title }}</template>
+                                    </h2>
+                                </b-col>
                             </b-row>
                         </div>
 
@@ -84,44 +97,30 @@
                                             :view="section.view"
                                             :legend="section.legend"
                                         />
+                                        <p v-if="section.source" class="source report-section-source">
+                                            Zdroj:
+                                            <a
+                                                :href="section.source.url"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                {{ section.source.title }}
+                                            </a>
+                                        </p>
                                     </template>
 
                                 </section>
                             </div>
 
-                            <div
-                                v-if="(viz.sources && viz.sources.length) || (viz.links && viz.links.length)"
-                                class="report-links"
-                            >
-                                <h3>Zdroje a podklady</h3>
+                            <div v-if="viz.materialsUrl" class="report-links report-links-simple">
                                 <p>
-                                    Podrobné predpoklady, metodiku a výsledky nájdete v pôvodnej
-                                    publikácii a v podkladoch k štúdii.
-                                </p>
-                                <ul v-if="viz.sources && viz.sources.length" class="report-source-list">
-                                    <li v-for="source in viz.sources" :key="source.url">
-                                        <a
-                                            :href="source.url"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            {{ source.title }}
-                                        </a>
-                                        <span v-if="source.note"> — {{ source.note }}</span>
-                                    </li>
-                                </ul>
-                                <div v-if="viz.links && viz.links.length" class="report-link-list">
+                                    Všetky podklady k štúdii nájdete
                                     <a
-                                        v-for="link in viz.links"
-                                        :key="link.url"
-                                        :href="link.url"
-                                        :class="{ primary: link.primary }"
+                                        :href="viz.materialsUrl"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                    >
-                                        {{ link.title }}
-                                    </a>
-                                </div>
+                                    >na stránke analýzy</a>.
+                                </p>
                             </div>
                         </template>
 
@@ -380,6 +379,25 @@ export default {
   padding: 1.5rem;
 }
 
+.visualization-title-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(89, 89, 89, 0.35);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.visualization-title-link:hover {
+  color: #28758c;
+  text-decoration-color: currentColor;
+}
+
+.report-section-source {
+  margin: 0.75rem auto 0;
+  max-width: 1000px;
+  text-align: left;
+}
+
 .report-links {
   background: #fff4eb;
   border-left: 5px solid #fb8622;
@@ -390,45 +408,18 @@ export default {
   padding: 2rem;
 }
 
-.report-link-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
+.report-links-simple {
+  padding: 1.35rem 1.5rem;
 }
 
-.report-source-list {
-  line-height: 1.6;
-  margin: 1.25rem 0 0;
-  padding-left: 1.25rem;
+.report-links-simple p {
+  margin: 0;
 }
 
-.report-source-list li + li {
-  margin-top: 0.45rem;
-}
-
-.report-source-list a {
+.report-links-simple a,
+.report-section-source a {
   color: #28758c;
   text-decoration: underline;
-}
-
-.report-link-list a {
-  border: 1px solid #28758c;
-  border-radius: 5px;
-  color: #28758c;
-  font-family: 'chivo-bold';
-  padding: 0.7rem 1rem;
-  text-decoration: none;
-}
-
-.report-link-list a.primary {
-  background: #28758c;
-  color: #ffffff;
-}
-
-.report-link-list a:hover {
-  opacity: 0.85;
-  text-decoration: none;
 }
 
 @media only screen and (max-width: 768px){
@@ -460,12 +451,6 @@ export default {
   }
   .report-links {
     padding: 1.5rem;
-  }
-  .report-link-list {
-    flex-direction: column;
-  }
-  .report-link-list a {
-    text-align: center;
   }
 }
 </style>
