@@ -92,6 +92,7 @@ export default {
           description: 'Ako sa Slovensko vyrovnáva s rastúcim množstvom odpadov?',
           open: false,
           items: [
+            { title: 'Ako von zo smetiska – stručný report', slug: 'ako-von-zo-smetiska', type: 'report' },
             { title: 'Miera triedenia komunálneho odpadu v obciach', slug: 'mapa-miera-triedenia-odpadu', type: 'mapa' },
             { title: 'Vývoj priemernej miery triedenia odpadu v krajoch', slug: 'graf-triedenie-odpadu-kraje', type: 'graf' }
           ]

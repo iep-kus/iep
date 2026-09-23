@@ -8,6 +8,7 @@ import pripojenost_kanalizacie from './mapy-a-grafy/pripojenost_kanalizacie.js'
 import vodne_a_stocne from './mapy-a-grafy/vodne_a_stocne.js'
 import miera_triedenia_odpadu from './mapy-a-grafy/miera_triedenia_odpadu.js'
 import triedenie_odpadu_kraje from './mapy-a-grafy/triedenie_odpadu_kraje.js'
+import ako_von_zo_smetiska from './mapy-a-grafy/ako_von_zo_smetiska.js'
 
 import example_pie from './mapy-a-grafy/example_pie.js'
 import example_line from './mapy-a-grafy/example_line.js'
@@ -17,6 +18,9 @@ import example_bar from './mapy-a-grafy/example_bar.js'
 
 
 export default [
+  // Krátke reporty k štúdiám:
+  ako_von_zo_smetiska,
+
   // Mapy:
   dopravna_chudoba,
   vodarenske_spolocnosti,

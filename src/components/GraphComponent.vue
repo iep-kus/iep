@@ -10,7 +10,7 @@
 
 <script>
 // POSLEDNA FUNKCNA VERZIA
-import { Pie, Doughnut, Bar, Line } from 'vue-chartjs'
+import { Pie, Doughnut, Bar, HorizontalBar, Line } from 'vue-chartjs'
 import Chart from 'chart.js'
 
 // V nasledujúcej časti sú zaregistrované "plugin-y" - funkcie, ktoré niektorým grafom dodávajú extra funkcionality.
@@ -218,6 +218,11 @@ export default {
         },
         bar: {
           extends: Bar,
+          props: ['chartData', 'options'],
+          mounted() { this.renderChart(this.chartData, this.options) }
+        },
+        horizontalBar: {
+          extends: HorizontalBar,
           props: ['chartData', 'options'],
           mounted() { this.renderChart(this.chartData, this.options) }
         },
