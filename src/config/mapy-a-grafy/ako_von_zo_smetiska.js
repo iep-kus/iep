@@ -5,40 +5,51 @@ const studySource = {
     url: 'https://www.minzp.sk/files/iep/analyzy/ako_von_zo_smetiska_iep_aktualizacia_februar2024.pdf'
 }
 
-const percentAxis = {
-    ticks: {
-        beginAtZero: true,
-        max: 70,
-        callback: value => `${value} %`
-    },
-    scaleLabel: {
-        display: true,
-        labelString: 'Podiel komunálneho odpadu'
-    }
-}
+const areaDataset = (label, data, color) => ({
+    label,
+    data,
+    backgroundColor: color,
+    borderColor: color,
+    borderWidth: 1,
+    pointRadius: 0,
+    pointHoverRadius: 4,
+    fill: true,
+    yAxisID: 'waste'
+})
 
-const scenarioChart = {
-    graphType: 'bar',
+const datasetLegend = chart => chart.data.datasets.map((dataset, datasetIndex) => ({
+    text: dataset.label,
+    fillStyle: dataset.type === 'line' ? '#ffffff' : dataset.backgroundColor,
+    strokeStyle: dataset.borderColor,
+    lineWidth: dataset.type === 'line' ? 2 : 0,
+    hidden: !chart.isDatasetVisible(datasetIndex),
+    datasetIndex
+}))
+
+const wasteCompositionChart = {
+    graphType: 'line',
     data: {
-        labels: [
-            ['Bez ďalších', 'opatrení'],
-            ['Plánované', 'opatrenia'],
-            ['Dodatočné', 'opatrenia']
-        ],
+        labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'],
         datasets: [
+            areaDataset('Zmesový komunálny odpad', [224.3, 222, 217.7, 215.5, 218.2, 220, 218, 216.2, 215.4, 210.7, 209.7, 200.5], '#fb8622'),
+            areaDataset('Kovy', [1.9, 2.5, 2.3, 1, 3.3, 5.7, 20.3, 40.3, 62.7, 61.6, 68, 82.1], '#9f3f1f'),
+            areaDataset('Triedený zber', [22.8, 24.2, 27.9, 29.6, 31.3, 34, 35.1, 40.9, 49.1, 55.3, 60.3, 69.8], '#f6c344'),
+            areaDataset('Bioodpad', [17.7, 16.8, 18.1, 18.6, 23.1, 25.5, 28.9, 34.5, 40.2, 49.3, 55.1, 67.6], '#e8652a'),
+            areaDataset('Iný komunálny odpad z domácností', [47.1, 42.5, 38, 37.3, 39.6, 42.2, 42.7, 43.8, 45.2, 43.7, 41.8, 39.9], '#f8ad73'),
+            areaDataset('Komunálny odpad mimo domácností', [null, null, null, null, null, null, null, null, null, null, 40.3, 37.9], '#f4c4ae'),
             {
-                label: 'Miera recyklácie',
-                data: [51, 53, 62],
-                backgroundColor: '#fb8622',
-                borderColor: '#fb8622',
-                borderWidth: 1
-            },
-            {
-                label: 'Miera skládkovania',
-                data: [39, 4, 4],
-                backgroundColor: '#bfbfbf',
-                borderColor: '#bfbfbf',
-                borderWidth: 1
+                type: 'line',
+                label: 'Priemer EÚ',
+                data: [null, 499, 488, 479, 478, 480, 493, 499, 500, 504, 521, 530],
+                backgroundColor: 'transparent',
+                borderColor: '#28758c',
+                borderDash: [7, 5],
+                borderWidth: 2,
+                pointRadius: 0,
+                pointHoverRadius: 4,
+                fill: false,
+                spanGaps: true,
+                yAxisID: 'euAverage'
             }
         ]
     },
@@ -47,7 +58,8 @@ const scenarioChart = {
         maintainAspectRatio: false,
         legend: {
             display: true,
-            position: 'top'
+            position: 'top',
+            labels: { boxWidth: 14, fontSize: 11, generateLabels: datasetLegend }
         },
         tooltips: {
             mode: 'index',
@@ -55,67 +67,59 @@ const scenarioChart = {
             callbacks: {
                 label(tooltipItem, data) {
                     const dataset = data.datasets[tooltipItem.datasetIndex]
-                    return `${dataset.label}: ${tooltipItem.yLabel} %`
+                    const value = Number(tooltipItem.yLabel).toLocaleString('sk-SK', { maximumFractionDigits: 1 })
+                    return `${dataset.label}: ${value} kg/obyv.`
                 }
             }
         },
         scales: {
-            xAxes: [{
-                gridLines: { display: false },
-                ticks: { autoSkip: false }
-            }],
-            yAxes: [percentAxis]
+            xAxes: [{ gridLines: { display: false }, ticks: { autoSkip: true, maxTicksLimit: 12 } }],
+            yAxes: [
+                {
+                    id: 'waste',
+                    stacked: true,
+                    ticks: { beginAtZero: true, max: 600 },
+                    scaleLabel: { display: true, labelString: 'kg na obyvateľa' }
+                },
+                {
+                    id: 'euAverage',
+                    stacked: false,
+                    display: false,
+                    ticks: { beginAtZero: true, max: 600 },
+                    gridLines: { display: false }
+                }
+            ]
         }
     }
 }
 
-const measuresChart = {
-    graphType: 'horizontalBar',
+const mixedWasteChart = {
+    graphType: 'doughnut',
     data: {
-        labels: [
-            ['Množstvový', 'zber'],
-            ['Zber od dverí', 'k dverám'],
-            ['Bioodpad v bytových', 'domoch s košíkmi'],
-            ['Bioodpad v rodinných', 'domoch'],
-            ['Triedený zber', 'textilu']
-        ],
-        datasets: [{
-            label: 'Pokles zmesového komunálneho odpadu',
-            data: [22, 15, 7, 6, 2],
-            backgroundColor: [
-                '#fb8622',
-                '#f99d50',
-                '#fbb476',
-                '#fdc99d',
-                '#ffdfc4'
-            ],
-            borderColor: '#ffffff',
-            borderWidth: 1
-        }]
+        labels: ['Papier', 'Plasty, kovové obaly a VKM', 'Sklo', 'Bioodpad', 'Textil', 'Iné'],
+        values: [8.7, 15, 5.3, 32, 4.7, 34],
+        backgroundColor: ['#f6c344', '#e8652a', '#28758c', '#fb8622', '#9f3f1f', '#bfbfbf']
     },
     options: {
         responsive: true,
         maintainAspectRatio: false,
-        legend: { display: false },
+        cutoutPercentage: 52,
+        legend: { display: true, position: 'top', labels: { boxWidth: 14, fontSize: 11 } },
         tooltips: {
             callbacks: {
-                label: tooltipItem => `Odhadovaný pokles: ${tooltipItem.xLabel} %`
+                label(tooltipItem, data) {
+                    const label = data.labels[tooltipItem.index]
+                    const value = data.datasets[0].data[tooltipItem.index].toLocaleString('sk-SK', { maximumFractionDigits: 1 })
+                    return `${label}: ${value} %`
+                }
             }
         },
-        scales: {
-            xAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    max: 35,
-                    callback: value => `${value} %`
-                }
-            }],
-            yAxes: [{
-                gridLines: { display: false },
-                ticks: {
-                    autoSkip: false
-                }
-            }]
+        centerText: {
+            text: ['Zmesový odpad', '2020'],
+            color: '#595959',
+            fontSize: 18,
+            lineHeight: 24,
+            fontFamily: 'chivo-bold'
         }
     }
 }
@@ -126,65 +130,77 @@ export default {
     slug: 'ako-von-zo-smetiska',
     kicker: 'Ekonomická analýza 16 · september 2023',
     title: 'Ako von zo smetiska',
-    description: `Stručný vizuálny sprievodca analýzou, ktorá modeluje budúci vývoj
-        komunálneho odpadu na Slovensku a porovnáva účinky plánovaných aj dodatočných opatrení.`,
+    description: `Odpadové hospodárstvo na Slovensku sa v posledných rokoch zlepšilo,
+        stále však zaostáva za väčšinou krajín EÚ. Analýza ukazuje, kde komunálny odpad
+        vzniká, ako sa triedi a spracúva a čo by priniesli plánované aj dodatočné opatrenia.
+        Pomocou modelu porovnáva ich vplyv na recykláciu, skládkovanie, náklady aj potrebné
+        kapacity na spracovanie odpadu.`,
     highlights: [
-        {
-            value: '41 %',
-            label: 'komunálneho odpadu sa na Slovensku v roku 2021 skládkovalo'
-        },
-        {
-            value: '65 %',
-            label: 'je cieľ miery recyklácie komunálneho odpadu do roku 2035'
-        },
-        {
-            value: '10 %',
-            label: 'je maximálna cieľová miera skládkovania do roku 2035'
-        }
+        { value: '41 %', label: 'komunálneho odpadu sa na Slovensku v roku 2021 skládkovalo' },
+        { value: '65 %', label: 'je cieľ miery recyklácie komunálneho odpadu do roku 2035' },
+        { value: '10 %', label: 'je maximálna cieľová miera skládkovania do roku 2035' }
     ],
     sections: [
         {
             id: 'vyzva',
             type: 'text',
-            title: 'Slovensko triedi viac, stále však priveľa skládkuje',
+            title: 'Slovensko triedi viac, stále však zaostáva',
             paragraphs: [
-                `Miera recyklácie komunálneho odpadu sa v roku 2021 priblížila priemeru
-                Európskej únie. Skládkovanie však dosahovalo 41 %, kým priemer EÚ bol 23 %.`,
-                `Analýza preto nehodnotí iba súčasný stav. Pomocou modelu porovnáva, ako
-                plánované a dodatočné opatrenia ovplyvnia recykláciu, skládkovanie aj náklady.`
+                `V roku 2021 vyprodukoval priemerný obyvateľ Slovenska 496 kg komunálneho
+                odpadu. Je to menej ako priemer EÚ na úrovni 530 kg, no produkcia na Slovensku
+                od roku 2011 rástla rýchlejšie. Súvisí to s rastom životnej úrovne aj s presnejšou
+                evidenciou odpadu.`,
+                `K lepším výsledkom nestačí iba viac triediť. Dôležité je aj to, koľko odpadu
+                vzniká, akú časť vytriedených zložiek sa podarí skutočne recyklovať a či má
+                Slovensko primerané kapacity na ich spracovanie. Analýza preto prepája pohľad
+                na materiálové toky s nákladmi a dôsledkami jednotlivých opatrení.`
             ]
         },
         {
-            id: 'scenare',
+            id: 'zlozky-odpadu',
             type: 'graph',
-            title: 'Dodatočné opatrenia nás k cieľu priblížia najviac',
-            description: `Scenár s plánovanými opatreniami výrazne obmedzuje skládkovanie,
-                na cieľ recyklácie však nestačí. Komfortnejší zber kuchynského bioodpadu
-                a celoplošný množstvový zber zvyšujú modelovanú mieru recyklácie na 62 %.`,
-            ...scenarioChart,
-            source: studySource
+            title: 'Triedime viac, zmesového odpadu však ubúda pomaly',
+            description: `Zmesový komunálny odpad zostáva najväčšou zložkou. V roku 2021
+                pripadalo na obyvateľa približne 200 kg, o desatinu menej ako v roku 2010.
+                Triedený zber spolu s bioodpadom sa za rovnaké obdobie viac než strojnásobil
+                na približne 137 kg na obyvateľa. Prerušovaná čiara ukazuje celkový priemer
+                produkcie komunálneho odpadu v EÚ.`,
+            ...wasteCompositionChart
         },
         {
-            id: 'opatrenia',
+            id: 'zlozenie-zmesoveho-odpadu',
             type: 'graph',
-            title: 'Najväčší potenciál má množstvový zber',
-            description: `Graf ukazuje priemerný odhad poklesu zmesového komunálneho odpadu
-                pri vybraných opatreniach. Skutočný účinok závisí aj od dostupnosti infraštruktúry,
-                nastavenia poplatkov a kombinácie viacerých opatrení.`,
-            ...measuresChart,
-            source: studySource
+            title: 'Tretinu zmesového odpadu tvorí bioodpad',
+            description: `Podľa analýz zloženia tvoril záhradný, kuchynský a potravinový
+                bioodpad približne 32 % zmesového komunálneho odpadu. Ďalších takmer 30 %
+                predstavovali obaly a neobalové výrobky, ktoré by mali byť súčasťou triedeného
+                zberu. Presné hodnoty sa zobrazia po prejdení kurzorom alebo ťuknutí na výsek.`,
+            ...mixedWasteChart
+        },
+        {
+            id: 'materialove-toky',
+            type: 'text',
+            title: 'Vytriedenie ešte automaticky neznamená recykláciu',
+            paragraphs: [
+                `Jednotlivé zložky sa darí triediť a recyklovať veľmi rozdielne. Analýza
+                odhaduje, že v roku 2021 sa recyklovalo približne 64 % skla a 48 % papiera.
+                Pri plastoch, kovových obaloch a viacvrstvových kombinovaných materiáloch sa
+                vytriedilo iba 39 % odpadu a z tohto množstva sa recyklovala necelá polovica.`,
+                `Až 57 % bioodpadu skončilo ako súčasť zmesového odpadu na skládke alebo
+                v zariadení na energetické využitie. Výsledok preto nezávisí iba od ochoty
+                domácností triediť, ale aj od kvality zberu a dostupných recyklačných kapacít.`
+            ]
         },
         {
             id: 'obce',
             type: 'map',
-            title: 'Doplňujúci pohľad: ako triedia jednotlivé obce',
+            title: 'Ako triedia jednotlivé obce',
             description: `Mapa dopĺňa výsledky štúdie o územný pohľad na mieru triedenia
                 komunálneho odpadu v obciach v roku 2023. Po prejdení kurzorom alebo ťuknutí
                 na obec sa zobrazí jej hodnota.`,
             layers: mieraTriedeniaOdpadu.layers,
             view: mieraTriedeniaOdpadu.view,
-            legend: mieraTriedeniaOdpadu.legend,
-            source: mieraTriedeniaOdpadu.source
+            legend: mieraTriedeniaOdpadu.legend
         },
         {
             id: 'zaver',
@@ -192,23 +208,25 @@ export default {
             title: 'Čo z analýzy vyplýva',
             paragraphs: [
                 `Plánované opatrenia by mali znížiť mieru skládkovania pod cieľovú hranicu,
-                ale samotné nestačia na splnenie cieľa recyklácie. Dodatočné opatrenia sú
-                účinnejšie, vyžadujú však lepšie nastavený zber a regionálne kapacity.`,
+                samy však nestačia na splnenie cieľa recyklácie. Pri dôslednej implementácii
+                by recyklácia dosiahla 53 %. Komfortnejší zber kuchynského bioodpadu a
+                celoplošný množstvový zber by ju podľa modelu zvýšili na 62 %.`,
                 `Dlhodobé rozhodovanie potrebuje jasnú stratégiu a kvalitnejšie údaje.
                 Plánované kapacity na energetické využitie odpadu podľa analýzy presahujú
-                potreby Slovenska a môžu brzdiť rast recyklácie.`
+                potreby Slovenska, môžu vytvárať závislosť od produkcie odpadu a brzdiť rast
+                recyklácie.`
             ]
         }
     ],
+    sources: [
+        { ...studySource, note: 'zdroj textov a údajov grafov 9 a 10' },
+        { ...mieraTriedeniaOdpadu.source, note: 'zdroj údajov mapy miery triedenia v obciach' }
+    ],
     links: [
         {
-            title: 'Prečítať celú analýzu',
-            url: studySource.url,
-            primary: true
-        },
-        {
             title: 'Všetky podklady k štúdii',
-            url: 'https://cms.minzp.sk/iep/publikacie/ekonomicke-analyzy/ako-von-zo-smetiska.html'
+            url: 'https://cms.minzp.sk/iep/publikacie/ekonomicke-analyzy/ako-von-zo-smetiska.html',
+            primary: true
         }
     ]
 }

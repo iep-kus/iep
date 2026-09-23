@@ -16,7 +16,12 @@
                         </div>
 
                         <!-- Description -->
-                        <div data-aos="slide-up" data-aos-duration="800" class="text-wrapper">
+                        <div
+                            data-aos="slide-up"
+                            data-aos-duration="800"
+                            class="text-wrapper"
+                            :class="{ 'report-intro': viz.type === 'report' }"
+                        >
                             <b-row>
                                 <b-col>{{ viz.description }}</b-col>
                             </b-row>
@@ -81,26 +86,31 @@
                                         />
                                     </template>
 
-                                    <p v-if="section.source" class="source">
-                                        Zdroj:
-                                        <a
-                                            :href="section.source.url"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            {{ section.source.title }}
-                                        </a>
-                                    </p>
                                 </section>
                             </div>
 
-                            <div v-if="viz.links && viz.links.length" class="report-links">
-                                <h3>Celá analýza a podklady</h3>
+                            <div
+                                v-if="(viz.sources && viz.sources.length) || (viz.links && viz.links.length)"
+                                class="report-links"
+                            >
+                                <h3>Zdroje a podklady</h3>
                                 <p>
-                                    V reporte vyberáme hlavné zistenia. Podrobné predpoklady,
-                                    metodiku a výsledky nájdete v pôvodnej publikácii.
+                                    Podrobné predpoklady, metodiku a výsledky nájdete v pôvodnej
+                                    publikácii a v podkladoch k štúdii.
                                 </p>
-                                <div class="report-link-list">
+                                <ul v-if="viz.sources && viz.sources.length" class="report-source-list">
+                                    <li v-for="source in viz.sources" :key="source.url">
+                                        <a
+                                            :href="source.url"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {{ source.title }}
+                                        </a>
+                                        <span v-if="source.note"> — {{ source.note }}</span>
+                                    </li>
+                                </ul>
+                                <div v-if="viz.links && viz.links.length" class="report-link-list">
                                     <a
                                         v-for="link in viz.links"
                                         :key="link.url"
@@ -253,6 +263,15 @@ export default {
   text-align: justify;
 }
 
+.report-intro {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+}
+
 .visualization-container {
   padding-left: 10%;
   padding-right: 10%;
@@ -333,7 +352,7 @@ export default {
 .report-copy {
   margin-left: auto;
   margin-right: auto;
-  max-width: 860px;
+  max-width: 1000px;
 }
 
 .report-section-heading h3,
@@ -378,6 +397,21 @@ export default {
   margin-top: 1.5rem;
 }
 
+.report-source-list {
+  line-height: 1.6;
+  margin: 1.25rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.report-source-list li + li {
+  margin-top: 0.45rem;
+}
+
+.report-source-list a {
+  color: #28758c;
+  text-decoration: underline;
+}
+
 .report-link-list a {
   border: 1px solid #28758c;
   border-radius: 5px;
@@ -402,6 +436,10 @@ export default {
     padding-left: 5%;
     padding-right: 5%;
     text-align: left;
+  }
+  .report-intro {
+    padding-left: 0;
+    padding-right: 0;
   }
   .graph-visualization {
     height: 400px;
