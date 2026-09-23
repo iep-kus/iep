@@ -63,7 +63,7 @@ const wasteCompositionChart = {
             labels: { boxWidth: 14, fontSize: 11, generateLabels: datasetLegend }
         },
         tooltips: {
-            mode: 'stackedAreaSegment',
+            mode: 'nearest',
             intersect: false,
             callbacks: {
                 title(tooltipItems, data) {
@@ -77,7 +77,7 @@ const wasteCompositionChart = {
                 }
             }
         },
-        hover: { mode: 'stackedAreaSegment', intersect: false },
+        hover: { mode: 'nearest', intersect: false },
         scales: {
             xAxes: [{ gridLines: { display: false }, ticks: { autoSkip: true, maxTicksLimit: 12 } }],
             yAxes: [
@@ -137,16 +137,16 @@ const materialFlowSankey = {
         ['Recyklácia', 'Skládkovanie', 'Energetické využitie']
     ],
     colors: {
-        'Triedený zber': '#28758c',
-        'Zmesový komunálny odpad': '#fb8622',
-        'Záhradný bioodpad': '#76a365',
-        'Papier': '#eaa467',
-        'Sklo': '#5f9fac',
-        'Plasty, kovové obaly a VKM': '#f2b116',
-        'Kuchynský bioodpad': '#c7584c',
-        'Recyklácia': '#76a365',
-        'Skládkovanie': '#a84b3f',
-        'Energetické využitie': '#e38a3d'
+        'Triedený zber': '#28758C',
+        'Zmesový komunálny odpad': '#FB8622',
+        'Záhradný bioodpad': '#FFC08A',
+        'Papier': '#F2B116',
+        'Sklo': '#8FBECD',
+        'Plasty, kovové obaly a VKM': '#FB8622',
+        'Kuchynský bioodpad': '#DC9790',
+        'Recyklácia': '#28758C',
+        'Skládkovanie': '#99362B',
+        'Energetické využitie': '#F2B116'
     },
     links: [
         { source: 'Triedený zber', target: 'Kuchynský bioodpad', value: 24935 },
@@ -261,10 +261,11 @@ export default {
         {
             id: 'obce',
             type: 'map',
+            label: 'Doplňujúce údaje · 2023',
             title: 'Ako triedia jednotlivé obce',
-            description: `Mapa dopĺňa výsledky štúdie o územný pohľad na mieru triedenia
-                komunálneho odpadu v obciach v roku 2023. Po prejdení kurzorom alebo ťuknutí
-                na obec sa zobrazí jej hodnota.`,
+            description: `Táto mapa nebola súčasťou pôvodnej štúdie. Dopĺňame ju ako novší
+                územný pohľad na mieru triedenia komunálneho odpadu v obciach v roku 2023.
+                Po prejdení kurzorom alebo ťuknutí na obec sa zobrazí jej hodnota.`,
             layers: mieraTriedeniaOdpadu.layers,
             view: mieraTriedeniaOdpadu.view,
             legend: mieraTriedeniaOdpadu.legend,

@@ -64,6 +64,9 @@
                                     :class="`report-section-${section.type}`"
                                 >
                                     <div class="report-section-heading">
+                                        <p v-if="section.label" class="report-section-label">
+                                            {{ section.label }}
+                                        </p>
                                         <h3>{{ section.title }}</h3>
                                         <p v-if="section.description">
                                             {{ section.description }}
@@ -388,6 +391,15 @@ export default {
   height: 480px;
   margin-top: 2rem;
   padding: 1.5rem;
+}
+
+.report-section-label {
+  color: #fb8622;
+  font-family: 'chivo-bold';
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.45rem !important;
+  text-transform: uppercase;
 }
 
 .report-sankey {

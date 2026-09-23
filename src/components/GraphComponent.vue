@@ -15,64 +15,6 @@ import Chart from 'chart.js'
 
 // V nasledujúcej časti sú zaregistrované "plugin-y" - funkcie, ktoré niektorým grafom dodávajú extra funkcionality.
 
-// Pri skladanom plošnom grafe vyberie iba farebnú vrstvu priamo pod kurzorom.
-// Bežný režim "index" by naraz zobrazil všetky zložky za daný rok.
-Chart.Interaction.modes.stackedAreaSegment = function(chart, event) {
-  const position = Chart.helpers.getRelativePosition(event, chart)
-  const datasets = chart.data.datasets
-  let nearestIndex = -1
-  let nearestDistance = Number.POSITIVE_INFINITY
-
-  datasets.forEach((dataset, datasetIndex) => {
-    const meta = chart.getDatasetMeta(datasetIndex)
-    if (meta.hidden || !meta.data) return
-
-    meta.data.forEach((element, index) => {
-      if (!element || !element._view || element._view.skip) return
-      const distance = Math.abs(element._view.x - position.x)
-      if (distance < nearestDistance) {
-        nearestDistance = distance
-        nearestIndex = index
-      }
-    })
-  })
-
-  if (nearestIndex < 0 || position.x < chart.chartArea.left || position.x > chart.chartArea.right) return []
-
-  // Samostatnú prerušovanú čiaru možno vybrať v jej bezprostrednej blízkosti.
-  for (let datasetIndex = 0; datasetIndex < datasets.length; datasetIndex += 1) {
-    const dataset = datasets[datasetIndex]
-    if (dataset.stack === 'waste') continue
-
-    const meta = chart.getDatasetMeta(datasetIndex)
-    const element = meta.data && meta.data[nearestIndex]
-    if (meta.hidden || !element || !element._view || element._view.skip) continue
-    if (Math.abs(position.y - element._view.y) <= 8) return [element]
-  }
-
-  const wasteAxis = chart.scales.waste
-  if (!wasteAxis || position.y < chart.chartArea.top || position.y > chart.chartArea.bottom) return []
-
-  let lowerBoundary = wasteAxis.getPixelForValue(0)
-  for (let datasetIndex = 0; datasetIndex < datasets.length; datasetIndex += 1) {
-    const dataset = datasets[datasetIndex]
-    if (dataset.stack !== 'waste') continue
-
-    const meta = chart.getDatasetMeta(datasetIndex)
-    const element = meta.data && meta.data[nearestIndex]
-    if (meta.hidden || !element || !element._view || element._view.skip) continue
-
-    const upperBoundary = element._view.y
-    if (position.y >= Math.min(upperBoundary, lowerBoundary) &&
-        position.y <= Math.max(upperBoundary, lowerBoundary)) {
-      return [element]
-    }
-    lowerBoundary = upperBoundary
-  }
-
-  return []
-}
-
 // plugin, ktorý nalepí na graf ikony z Font Awesome, funguje pre všetky typy okrem "line" (čiarový graf):
 Chart.plugins.register({
   id: 'datasetIcons',
