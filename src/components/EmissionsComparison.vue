@@ -1,7 +1,7 @@
 <template>
   <section class="emissions-comparison">
     <div class="headline-metrics">
-      <div v-for="year in normalizedYears" :key="year.year" class="metric-card">
+      <div v-for="year in headlineYears" :key="year.year" class="metric-card">
         <span class="metric-year">{{ year.year }}</span>
         <strong>{{ formatMt(year.total) }}</strong>
         <span>Mt CO₂e</span>
@@ -272,7 +272,7 @@
       <div class="radial-toolbar">
         <div class="year-switcher" role="group" aria-label="Vybrať rok kruhového prehľadu">
           <button
-            v-for="year in etsYears"
+            v-for="year in pieYears"
             :key="year.year"
             type="button"
             :class="{ active: radialYear === year.year }"
@@ -283,7 +283,7 @@
           </button>
         </div>
         <p>
-          Percentá v kruhoch vyjadrujú podiel z overených emisií EU ETS. Podiel ETS na národnom celku je uvedený v strede.
+          Všetky percentá sú podielom z celkových národných emisií bez LULUCF. Hodnoty sú prevzaté z interných výpočtových zošitov IEP pre jednotlivé roky.
         </p>
       </div>
 
@@ -303,7 +303,7 @@
               :d="donutPath(sector.start, sector.end, 72, 143)"
               :fill="sector.color"
             >
-              <title>{{ sector.label }}: {{ formatShare(sector.share) }} emisií EU ETS</title>
+              <title>{{ sector.label }}: {{ formatShare(sector.share) }} emisií SR</title>
             </path>
             <g
               v-for="sector in radialHierarchy.sectors.filter(item => item.share >= 4)"
@@ -312,7 +312,7 @@
               :transform="`translate(${sector.labelX} ${sector.labelY}) rotate(${sector.rotation})`"
             >
               <text text-anchor="middle">
-                <tspan x="0" dy="-0.15em">{{ sector.label }}</tspan>
+                <tspan x="0" dy="-0.15em">{{ sector.shortLabel || sector.label }}</tspan>
                 <tspan x="0" dy="1.25em">{{ formatShare(sector.share) }}</tspan>
               </text>
             </g>
@@ -325,7 +325,7 @@
               :d="donutPath(category.start, category.end, 146, 224)"
               :fill="category.color"
             >
-              <title>{{ category.label }}: {{ formatShare(category.share) }} emisií EU ETS</title>
+              <title>{{ category.label }}: {{ formatShare(category.share) }} emisií SR</title>
             </path>
             <g
               v-for="category in radialHierarchy.categories.filter(item => item.share >= 3.2)"
@@ -342,13 +342,13 @@
 
           <g class="company-ring">
             <path
-              v-for="company in radialHierarchy.companies"
-              :key="`${company.categoryId}-${company.name}`"
-              :d="donutPath(company.start, company.end, 227, 292)"
-              :fill="company.color"
-              :fill-opacity="company.opacity"
+              v-for="item in radialHierarchy.outerSegments"
+              :key="`${item.categoryId}-${item.name}`"
+              :d="donutPath(item.start, item.end, 227, 292)"
+              :fill="item.color"
+              :fill-opacity="item.opacity"
             >
-              <title>{{ company.name }}: {{ formatShare(company.share) }} emisií EU ETS</title>
+              <title>{{ item.name }}: {{ formatShare(item.share) }} emisií SR</title>
             </path>
           </g>
 
@@ -368,10 +368,10 @@
           </g>
 
           <g class="center-label" text-anchor="middle">
-            <text y="-19" class="center-year">EU ETS {{ radialYear }}</text>
-            <text y="9" class="center-total">{{ formatMt(radialCurrent.totalKt / 1000) }}</text>
-            <text y="29" class="center-unit">Mt CO₂</text>
-            <text y="49" class="center-share">{{ formatShare(radialNationalShare) }} emisií SR</text>
+            <text y="-19" class="center-year">Slovensko {{ radialYear }}</text>
+            <text y="9" class="center-total">{{ formatMt(radialCurrent.totalMt) }}</text>
+            <text y="29" class="center-unit">Mt CO₂e bez LULUCF</text>
+            <text y="49" class="center-share">LULUCF −{{ formatShare(radialCurrent.lulucfShare) }}</text>
           </g>
         </svg>
       </div>
@@ -379,7 +379,7 @@
       <div class="ring-key" aria-label="Vysvetlenie kruhov">
         <span><i class="ring-one"></i><strong>1.</strong> široký sektor</span>
         <span><i class="ring-two"></i><strong>2.</strong> odvetvie</span>
-        <span><i class="ring-three"></i><strong>3.</strong> prevádzkovateľ</span>
+        <span><i class="ring-three"></i><strong>3.</strong> prevádzka alebo zdroj</span>
       </div>
 
       <section class="radial-ranking">
@@ -388,7 +388,7 @@
             <p class="eyebrow">Najväčší prevádzkovatelia</p>
             <h3>Podiel na emisiách</h3>
           </div>
-          <p>Percentá pomáhajú porovnať veľkosť firmy voči EU ETS aj voči všetkým národným emisiám.</p>
+          <p>Podiel každej prevádzky je počítaný z rovnakého národného celku ako všetky kruhy.</p>
         </div>
         <ol>
           <li v-for="company in radialHierarchy.topCompanies" :key="`${company.name}-ranking`">
@@ -396,12 +396,12 @@
               <i :style="{ backgroundColor: company.color }"></i>
               <span>
                 <strong>{{ company.name }}</strong>
-                <small>{{ categoryLabel(company.categoryId) }}</small>
+                <small>{{ radialCategoryLabel(company.categoryId) }}</small>
               </span>
             </span>
             <span class="ranking-shares">
-              <strong>{{ formatShare(company.share) }} EU ETS</strong>
-              <small>{{ formatShare(company.nationalShare) }} emisií SR</small>
+              <strong>{{ formatShare(company.share) }} emisií SR</strong>
+              <small>{{ formatKt(company.valueKt) }} kt CO₂</small>
             </span>
           </li>
         </ol>
@@ -409,7 +409,7 @@
     </div>
 
     <p class="method-note">
-      Národné hodnoty sú v Mt CO₂e bez LULUCF a nepriamych emisií CO₂. Odvetvia kombinujú príslušné položky energetiky a priemyselných procesov, preto ich súčet presne zodpovedá národnému celku. Údaje o firmách sú overené emisie vykázané v EU ETS v kt CO₂ a nemožno ich sčítať s národnými kategóriami ako ďalšie emisie.
+      Kruhový prehľad používa členenie a uložené výsledky z interných výpočtových zošitov IEP „Koláčový graf“ pre roky 2022, 2023 a 2024. Všetky percentá v tomto pohľade majú rovnaký menovateľ: národné emisie bez LULUCF. LULUCF je uvedené osobitne ako záchyt.
     </p>
   </section>
 </template>
@@ -427,6 +427,10 @@ export default {
       required: true
     },
     etsYears: {
+      type: Array,
+      required: true
+    },
+    pieYears: {
       type: Array,
       required: true
     }
@@ -449,13 +453,17 @@ export default {
         total: year.total || Object.values(year.values).reduce((sum, value) => sum + value, 0)
       }))
     },
+    headlineYears() {
+      if (this.activeSection !== 'radial') return this.normalizedYears
+      return this.pieYears.map(year => ({ year: year.year, total: year.totalMt }))
+    },
     totalDifference() {
-      const first = this.normalizedYears[0].total
-      const last = this.normalizedYears[this.normalizedYears.length - 1].total
+      const first = this.headlineYears[0].total
+      const last = this.headlineYears[this.headlineYears.length - 1].total
       return last - first
     },
     totalChange() {
-      return this.totalDifference / this.normalizedYears[0].total * 100
+      return this.totalDifference / this.headlineYears[0].total * 100
     },
     categoryRows() {
       return this.categories.map(category => {
@@ -524,129 +532,91 @@ export default {
       return Math.max(...this.companyRows.map(company => company.valueKt), 1)
     },
     radialCurrent() {
-      return this.etsYears.find(year => year.year === this.radialYear) || this.etsYears[0]
-    },
-    radialNational() {
-      return this.normalizedYears.find(year => year.year === this.radialYear) || this.normalizedYears[0]
-    },
-    radialNationalShare() {
-      return this.radialCurrent.totalKt / (this.radialNational.total * 1000) * 100
+      return this.pieYears.find(year => year.year === this.radialYear) || this.pieYears[0]
     },
     radialHierarchy() {
-      const total = Math.max(this.radialCurrent.totalKt, 1)
-      const nationalTotalKt = this.radialNational.total * 1000
       const fullCircle = Math.PI * 2
-      const broadDefinitions = [
-        {
-          id: 'industry',
-          label: 'Priemysel',
-          color: '#315f70',
-          categoryIds: ['metals', 'minerals', 'chemicals', 'other_industry']
-        },
-        {
-          id: 'energy',
-          label: 'Energetika',
-          color: '#9b6046',
-          categoryIds: ['power_heat', 'fuels', 'other_energy']
-        },
-        {
-          id: 'transport',
-          label: 'Doprava',
-          color: '#7d3c38',
-          categoryIds: ['transport']
-        },
-        {
-          id: 'other',
-          label: 'Nezaradené',
-          color: '#8a8c86',
-          categoryIds: ['unassigned']
-        }
-      ]
-      const categoryShortLabels = {
-        power_heat: 'Elektrina a teplo',
-        fuels: 'Rafinérie a palivá',
-        metals: 'Kovy',
-        chemicals: 'Chémia',
-        minerals: 'Minerály',
-        other_industry: 'Ostatný priem.',
-        transport: 'Doprava',
-        other_energy: 'Ostatná energia',
-        unassigned: 'Nezaradené'
-      }
-      const companies = this.radialCurrent.companies.filter(company => company.valueKt > 0)
       const sectors = []
-      const categoryNodes = []
-      const companyNodes = []
+      const categories = []
+      const outerSegments = []
       let sectorStart = -Math.PI / 2
 
-      broadDefinitions.forEach(definition => {
-        const sectorCompanies = companies.filter(company => definition.categoryIds.includes(company.categoryId))
-        const sectorValue = sectorCompanies.reduce((sum, company) => sum + company.valueKt, 0)
-        if (!sectorValue) return
-        const sectorEnd = sectorStart + sectorValue / total * fullCircle
+      this.radialCurrent.sectors.forEach(sector => {
+        const sectorEnd = sectorStart + sector.share / 100 * fullCircle
         const sectorLabel = this.arcLabelGeometry(sectorStart, sectorEnd, 107)
         sectors.push({
-          ...definition,
+          ...sector,
           start: sectorStart,
           end: sectorEnd,
-          valueKt: sectorValue,
-          share: sectorValue / total * 100,
           ...sectorLabel
-        })
-
-        let categoryStart = sectorStart
-        definition.categoryIds.forEach(categoryId => {
-          const categoryCompanies = sectorCompanies.filter(company => company.categoryId === categoryId)
-          const categoryValue = categoryCompanies.reduce((sum, company) => sum + company.valueKt, 0)
-          if (!categoryValue) return
-          const categoryEnd = categoryStart + categoryValue / total * fullCircle
-          const categoryMeta = this.categories.find(category => category.id === categoryId)
-          const categoryColor = categoryMeta ? categoryMeta.color : '#8a8c86'
-          const categoryLabel = this.arcLabelGeometry(categoryStart, categoryEnd, 185)
-          categoryNodes.push({
-            id: categoryId,
-            label: categoryMeta ? categoryMeta.label : 'Nezaradené',
-            shortLabel: categoryShortLabels[categoryId] || 'Nezaradené',
-            color: categoryColor,
-            start: categoryStart,
-            end: categoryEnd,
-            valueKt: categoryValue,
-            share: categoryValue / total * 100,
-            ...categoryLabel
-          })
-
-          let companyStart = categoryStart
-          categoryCompanies.forEach((company, index) => {
-            const companyEnd = companyStart + company.valueKt / total * fullCircle
-            companyNodes.push({
-              ...company,
-              color: categoryColor,
-              opacity: Math.max(0.38, 0.9 - index * 0.045),
-              start: companyStart,
-              end: companyEnd,
-              mid: (companyStart + companyEnd) / 2,
-              share: company.valueKt / total * 100,
-              nationalShare: company.valueKt / nationalTotalKt * 100
-            })
-            companyStart = companyEnd
-          })
-          categoryStart = categoryEnd
         })
         sectorStart = sectorEnd
       })
 
-      const topCompanies = [...companyNodes].sort((a, b) => b.valueKt - a.valueKt).slice(0, 10)
+      let categoryStart = -Math.PI / 2
+      this.radialCurrent.categories.forEach(category => {
+        const categoryEnd = categoryStart + category.share / 100 * fullCircle
+        const categoryLabel = this.arcLabelGeometry(categoryStart, categoryEnd, 185)
+        categories.push({
+          ...category,
+          start: categoryStart,
+          end: categoryEnd,
+          ...categoryLabel
+        })
+
+        const categoryCompanies = this.radialCurrent.companies.filter(company => company.categoryId === category.id)
+        let outerStart = categoryStart
+        let companyShare = 0
+        categoryCompanies.forEach((company, index) => {
+          const outerEnd = outerStart + company.share / 100 * fullCircle
+          outerSegments.push({
+            ...company,
+            color: category.color,
+            opacity: Math.max(0.56, 0.96 - index * 0.045),
+            start: outerStart,
+            end: outerEnd,
+            mid: (outerStart + outerEnd) / 2,
+            isCompany: true
+          })
+          companyShare += company.share
+          outerStart = outerEnd
+        })
+
+        const remainderShare = Math.max(category.share - companyShare, 0)
+        if (remainderShare > 0.0001) {
+          outerSegments.push({
+            name: categoryCompanies.length ? `Ostatné – ${category.shortLabel}` : category.label,
+            categoryId: category.id,
+            share: remainderShare,
+            color: category.color,
+            opacity: categoryCompanies.length ? 0.34 : 0.78,
+            start: outerStart,
+            end: categoryEnd,
+            mid: (outerStart + categoryEnd) / 2,
+            isCompany: false
+          })
+        }
+        categoryStart = categoryEnd
+      })
+
+      const topCompanies = [...this.radialCurrent.companies]
+        .sort((a, b) => b.share - a.share)
+        .slice(0, 10)
+        .map(company => {
+          const segment = outerSegments.find(item => item.isCompany && item.name === company.name)
+          return { ...company, ...segment }
+        })
       return {
         sectors,
-        categories: categoryNodes,
-        companies: companyNodes,
+        categories,
+        outerSegments,
         labels: this.distributeRadialLabels(topCompanies),
         topCompanies
       }
     },
     radialAriaLabel() {
       const topCompany = this.radialHierarchy.topCompanies[0]
-      return `Štruktúra emisií EU ETS v roku ${this.radialYear}. Spolu ${this.formatMt(this.radialCurrent.totalKt / 1000)} megatony CO2, čo je ${this.formatShare(this.radialNationalShare)} národných emisií. Najväčší prevádzkovateľ ${topCompany ? topCompany.name : ''}.`
+      return `Štruktúra národných emisií v roku ${this.radialYear}. Spolu ${this.formatMt(this.radialCurrent.totalMt)} megatony CO2 ekvivalentu bez LULUCF. Najväčší prevádzkovateľ ${topCompany ? topCompany.name : ''}.`
     }
   },
   methods: {
@@ -691,6 +661,10 @@ export default {
     },
     categoryLabel(id) {
       const category = this.categories.find(item => item.id === id)
+      return category ? category.label : 'Nezaradené'
+    },
+    radialCategoryLabel(id) {
+      const category = this.radialCurrent.categories.find(item => item.id === id)
       return category ? category.label : 'Nezaradené'
     },
     categoryColor(id) {

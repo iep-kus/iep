@@ -1,3 +1,5 @@
+import pieYears from './emisiePieYears'
+
 export default {
   "type": "emissions",
   "id": "emisie-2022",
@@ -5,9 +7,10 @@ export default {
   "title": "Emisie sklen\u00edkov\u00fdch plynov v rokoch 2022 \u2013 2024",
   "description": "Porovnanie n\u00e1rodn\u00fdch emisi\u00ed pod\u013ea detailn\u00fdch odvetv\u00ed a emisi\u00ed konkr\u00e9tnych prev\u00e1dzkovate\u013eov v syst\u00e9me EU ETS. Kateg\u00f3rie zah\u0155\u0148aj\u00fa emisie zo spa\u013eovania aj z priemyseln\u00fdch procesov a ich s\u00fa\u010det presne zodpoved\u00e1 n\u00e1rodn\u00e9mu celku bez LULUCF.",
   "source": {
-    "title": "N\u00e1rodn\u00e1 invent\u00fara emisi\u00ed 2026 (SHM\u00da) a ETS compliance reporty M\u017dP SR",
+    "title": "Intern\u00e9 v\u00fdpo\u010dtov\u00e9 zo\u0161ity IEP pre kol\u00e1\u010dov\u00e9 grafy 2022 \u2013 2024, n\u00e1rodn\u00e1 invent\u00fara emisi\u00ed a ETS reporty M\u017dP SR",
     "url": "https://oeab.shmu.sk/o-nas/dokumenty.html"
   },
+  "pieYears": pieYears,
   "categories": [
     {
       "id": "power_heat",

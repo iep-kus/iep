@@ -187,6 +187,7 @@
                                     :years="viz.years"
                                     :categories="viz.categories"
                                     :ets-years="viz.etsYears"
+                                    :pie-years="viz.pieYears"
                                 />
                                 <p v-if="viz.source" class="source">
                                     Zdroj:
