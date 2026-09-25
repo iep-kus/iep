@@ -186,6 +186,7 @@
                                 <EmissionsComparison
                                     :years="viz.years"
                                     :categories="viz.categories"
+                                    :ets-years="viz.etsYears"
                                 />
                                 <p v-if="viz.source" class="source">
                                     Zdroj:
