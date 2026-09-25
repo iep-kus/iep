@@ -190,12 +190,11 @@ export default {
         const sourceY = source.y + link.sourceOffset + link.width / 2
         const targetY = target.y + link.targetOffset + link.width / 2
         const curveX = sourceX + (targetX - sourceX) * 0.5
-        const secondStage = source.columnIndex === 1
-
         return {
           ...link,
-          color: secondStage
-            ? (this.colors[link.target] || source.color)
+          // Farba sleduje materiál v strednom stĺpci cez celý tok.
+          color: source.columnIndex === 0
+            ? (this.colors[link.target] || target.color)
             : (this.colors[link.source] || source.color),
           path: `M ${sourceX} ${sourceY} C ${curveX} ${sourceY}, ${curveX} ${targetY}, ${targetX} ${targetY}`
         }

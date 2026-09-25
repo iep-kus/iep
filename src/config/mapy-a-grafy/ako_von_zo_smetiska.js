@@ -130,23 +130,27 @@ const mixedWasteChart = {
     }
 }
 
+// IEP poradie pre graf s viac ako štyrmi kategóriami. Farby priraďujeme
+// od najviac po najmenej zastúpenú zložku.
+const categoricalPalette = ['#FB8622', '#FFC08A', '#28758C', '#8FBECD', '#99362B']
+
 const materialFlowSankey = {
     columns: [
-        ['Triedený zber', 'Zmesový komunálny odpad'],
-        ['Záhradný bioodpad', 'Papier', 'Sklo', 'Plasty, kovové obaly a VKM', 'Kuchynský bioodpad'],
+        ['Zmesový komunálny odpad', 'Triedený zber'],
+        ['Záhradný bioodpad', 'Kuchynský bioodpad', 'Plasty, kovové obaly a VKM', 'Papier', 'Sklo'],
         ['Recyklácia', 'Skládkovanie', 'Energetické využitie']
     ],
     colors: {
-        'Triedený zber': '#28758C',
-        'Zmesový komunálny odpad': '#FB8622',
-        'Záhradný bioodpad': '#FFC08A',
-        'Papier': '#F2B116',
-        'Sklo': '#8FBECD',
-        'Plasty, kovové obaly a VKM': '#FB8622',
-        'Kuchynský bioodpad': '#DC9790',
-        'Recyklácia': '#28758C',
-        'Skládkovanie': '#99362B',
-        'Energetické využitie': '#F2B116'
+        'Zmesový komunálny odpad': '#BFBFBF',
+        'Triedený zber': '#BFBFBF',
+        'Záhradný bioodpad': categoricalPalette[0],
+        'Kuchynský bioodpad': categoricalPalette[1],
+        'Plasty, kovové obaly a VKM': categoricalPalette[2],
+        'Papier': categoricalPalette[3],
+        'Sklo': categoricalPalette[4],
+        'Recyklácia': '#BFBFBF',
+        'Skládkovanie': '#BFBFBF',
+        'Energetické využitie': '#BFBFBF'
     },
     links: [
         { source: 'Triedený zber', target: 'Kuchynský bioodpad', value: 24935 },
