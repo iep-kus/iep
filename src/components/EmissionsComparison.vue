@@ -32,6 +32,15 @@
       >
         Firmy v EU ETS
       </button>
+      <button
+        type="button"
+        role="tab"
+        :aria-selected="activeSection === 'radial' ? 'true' : 'false'"
+        :class="{ active: activeSection === 'radial' }"
+        @click="activeSection = 'radial'"
+      >
+        Kruhový prehľad (%)
+      </button>
     </div>
 
     <div v-if="activeSection === 'categories'" class="categories-view">
@@ -153,7 +162,7 @@
       </section>
     </div>
 
-    <div v-else class="companies-view">
+    <div v-else-if="activeSection === 'companies'" class="companies-view">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Európsky systém obchodovania s emisiami</p>
@@ -249,6 +258,156 @@
       </button>
     </div>
 
+    <div v-else class="radial-view">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Alternatívne zobrazenie</p>
+          <h3>Od sektora až po konkrétnu firmu</h3>
+        </div>
+        <p>
+          Vnútorný kruh zobrazuje široké sektory, prostredný odvetvia a vonkajší jednotlivých prevádzkovateľov.
+        </p>
+      </div>
+
+      <div class="radial-toolbar">
+        <div class="year-switcher" role="group" aria-label="Vybrať rok kruhového prehľadu">
+          <button
+            v-for="year in etsYears"
+            :key="year.year"
+            type="button"
+            :class="{ active: radialYear === year.year }"
+            :aria-pressed="radialYear === year.year ? 'true' : 'false'"
+            @click="radialYear = year.year"
+          >
+            {{ year.year }}
+          </button>
+        </div>
+        <p>
+          Percentá v kruhoch vyjadrujú podiel z overených emisií EU ETS. Podiel ETS na národnom celku je uvedený v strede.
+        </p>
+      </div>
+
+      <div class="radial-chart-wrap">
+        <svg
+          class="radial-chart"
+          viewBox="-450 -355 900 710"
+          role="img"
+          :aria-label="radialAriaLabel"
+        >
+          <circle class="radial-center" r="69"></circle>
+
+          <g class="broad-ring">
+            <path
+              v-for="sector in radialHierarchy.sectors"
+              :key="sector.id"
+              :d="donutPath(sector.start, sector.end, 72, 143)"
+              :fill="sector.color"
+            >
+              <title>{{ sector.label }}: {{ formatShare(sector.share) }} emisií EU ETS</title>
+            </path>
+            <g
+              v-for="sector in radialHierarchy.sectors.filter(item => item.share >= 4)"
+              :key="`${sector.id}-label`"
+              class="arc-label broad-label"
+              :transform="`translate(${sector.labelX} ${sector.labelY}) rotate(${sector.rotation})`"
+            >
+              <text text-anchor="middle">
+                <tspan x="0" dy="-0.15em">{{ sector.label }}</tspan>
+                <tspan x="0" dy="1.25em">{{ formatShare(sector.share) }}</tspan>
+              </text>
+            </g>
+          </g>
+
+          <g class="category-ring">
+            <path
+              v-for="category in radialHierarchy.categories"
+              :key="category.id"
+              :d="donutPath(category.start, category.end, 146, 224)"
+              :fill="category.color"
+            >
+              <title>{{ category.label }}: {{ formatShare(category.share) }} emisií EU ETS</title>
+            </path>
+            <g
+              v-for="category in radialHierarchy.categories.filter(item => item.share >= 3.2)"
+              :key="`${category.id}-label`"
+              class="arc-label category-label"
+              :transform="`translate(${category.labelX} ${category.labelY}) rotate(${category.rotation})`"
+            >
+              <text text-anchor="middle">
+                <tspan x="0" dy="-0.15em">{{ category.shortLabel }}</tspan>
+                <tspan x="0" dy="1.25em">{{ formatShare(category.share) }}</tspan>
+              </text>
+            </g>
+          </g>
+
+          <g class="company-ring">
+            <path
+              v-for="company in radialHierarchy.companies"
+              :key="`${company.categoryId}-${company.name}`"
+              :d="donutPath(company.start, company.end, 227, 292)"
+              :fill="company.color"
+              :fill-opacity="company.opacity"
+            >
+              <title>{{ company.name }}: {{ formatShare(company.share) }} emisií EU ETS</title>
+            </path>
+          </g>
+
+          <g class="company-labels">
+            <g v-for="company in radialHierarchy.labels" :key="`${company.name}-outer-label`">
+              <path class="leader-line" :d="company.leaderPath"></path>
+              <text
+                class="company-label"
+                :x="company.labelX"
+                :y="company.labelY"
+                :text-anchor="company.side === 'right' ? 'start' : 'end'"
+              >
+                <tspan :x="company.labelX" dy="-0.1em">{{ company.shortName }}</tspan>
+                <tspan :x="company.labelX" dy="1.2em">{{ formatShare(company.share) }}</tspan>
+              </text>
+            </g>
+          </g>
+
+          <g class="center-label" text-anchor="middle">
+            <text y="-19" class="center-year">EU ETS {{ radialYear }}</text>
+            <text y="9" class="center-total">{{ formatMt(radialCurrent.totalKt / 1000) }}</text>
+            <text y="29" class="center-unit">Mt CO₂</text>
+            <text y="49" class="center-share">{{ formatShare(radialNationalShare) }} emisií SR</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="ring-key" aria-label="Vysvetlenie kruhov">
+        <span><i class="ring-one"></i><strong>1.</strong> široký sektor</span>
+        <span><i class="ring-two"></i><strong>2.</strong> odvetvie</span>
+        <span><i class="ring-three"></i><strong>3.</strong> prevádzkovateľ</span>
+      </div>
+
+      <section class="radial-ranking">
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">Najväčší prevádzkovatelia</p>
+            <h3>Podiel na emisiách</h3>
+          </div>
+          <p>Percentá pomáhajú porovnať veľkosť firmy voči EU ETS aj voči všetkým národným emisiám.</p>
+        </div>
+        <ol>
+          <li v-for="company in radialHierarchy.topCompanies" :key="`${company.name}-ranking`">
+            <span class="ranking-name">
+              <i :style="{ backgroundColor: company.color }"></i>
+              <span>
+                <strong>{{ company.name }}</strong>
+                <small>{{ categoryLabel(company.categoryId) }}</small>
+              </span>
+            </span>
+            <span class="ranking-shares">
+              <strong>{{ formatShare(company.share) }} EU ETS</strong>
+              <small>{{ formatShare(company.nationalShare) }} emisií SR</small>
+            </span>
+          </li>
+        </ol>
+      </section>
+    </div>
+
     <p class="method-note">
       Národné hodnoty sú v Mt CO₂e bez LULUCF a nepriamych emisií CO₂. Odvetvia kombinujú príslušné položky energetiky a priemyselných procesov, preto ich súčet presne zodpovedá národnému celku. Údaje o firmách sú overené emisie vykázané v EU ETS v kt CO₂ a nemožno ich sčítať s národnými kategóriami ako ďalšie emisie.
     </p>
@@ -277,6 +436,7 @@ export default {
       activeSection: 'categories',
       activeCategory: 'metals',
       companyYear: 2024,
+      radialYear: 2024,
       companyCategory: 'all',
       companySearch: '',
       companyLimit: 15
@@ -362,6 +522,131 @@ export default {
     },
     companyMaximum() {
       return Math.max(...this.companyRows.map(company => company.valueKt), 1)
+    },
+    radialCurrent() {
+      return this.etsYears.find(year => year.year === this.radialYear) || this.etsYears[0]
+    },
+    radialNational() {
+      return this.normalizedYears.find(year => year.year === this.radialYear) || this.normalizedYears[0]
+    },
+    radialNationalShare() {
+      return this.radialCurrent.totalKt / (this.radialNational.total * 1000) * 100
+    },
+    radialHierarchy() {
+      const total = Math.max(this.radialCurrent.totalKt, 1)
+      const nationalTotalKt = this.radialNational.total * 1000
+      const fullCircle = Math.PI * 2
+      const broadDefinitions = [
+        {
+          id: 'industry',
+          label: 'Priemysel',
+          color: '#315f70',
+          categoryIds: ['metals', 'minerals', 'chemicals', 'other_industry']
+        },
+        {
+          id: 'energy',
+          label: 'Energetika',
+          color: '#9b6046',
+          categoryIds: ['power_heat', 'fuels', 'other_energy']
+        },
+        {
+          id: 'transport',
+          label: 'Doprava',
+          color: '#7d3c38',
+          categoryIds: ['transport']
+        },
+        {
+          id: 'other',
+          label: 'Nezaradené',
+          color: '#8a8c86',
+          categoryIds: ['unassigned']
+        }
+      ]
+      const categoryShortLabels = {
+        power_heat: 'Elektrina a teplo',
+        fuels: 'Rafinérie a palivá',
+        metals: 'Kovy',
+        chemicals: 'Chémia',
+        minerals: 'Minerály',
+        other_industry: 'Ostatný priem.',
+        transport: 'Doprava',
+        other_energy: 'Ostatná energia',
+        unassigned: 'Nezaradené'
+      }
+      const companies = this.radialCurrent.companies.filter(company => company.valueKt > 0)
+      const sectors = []
+      const categoryNodes = []
+      const companyNodes = []
+      let sectorStart = -Math.PI / 2
+
+      broadDefinitions.forEach(definition => {
+        const sectorCompanies = companies.filter(company => definition.categoryIds.includes(company.categoryId))
+        const sectorValue = sectorCompanies.reduce((sum, company) => sum + company.valueKt, 0)
+        if (!sectorValue) return
+        const sectorEnd = sectorStart + sectorValue / total * fullCircle
+        const sectorLabel = this.arcLabelGeometry(sectorStart, sectorEnd, 107)
+        sectors.push({
+          ...definition,
+          start: sectorStart,
+          end: sectorEnd,
+          valueKt: sectorValue,
+          share: sectorValue / total * 100,
+          ...sectorLabel
+        })
+
+        let categoryStart = sectorStart
+        definition.categoryIds.forEach(categoryId => {
+          const categoryCompanies = sectorCompanies.filter(company => company.categoryId === categoryId)
+          const categoryValue = categoryCompanies.reduce((sum, company) => sum + company.valueKt, 0)
+          if (!categoryValue) return
+          const categoryEnd = categoryStart + categoryValue / total * fullCircle
+          const categoryMeta = this.categories.find(category => category.id === categoryId)
+          const categoryColor = categoryMeta ? categoryMeta.color : '#8a8c86'
+          const categoryLabel = this.arcLabelGeometry(categoryStart, categoryEnd, 185)
+          categoryNodes.push({
+            id: categoryId,
+            label: categoryMeta ? categoryMeta.label : 'Nezaradené',
+            shortLabel: categoryShortLabels[categoryId] || 'Nezaradené',
+            color: categoryColor,
+            start: categoryStart,
+            end: categoryEnd,
+            valueKt: categoryValue,
+            share: categoryValue / total * 100,
+            ...categoryLabel
+          })
+
+          let companyStart = categoryStart
+          categoryCompanies.forEach((company, index) => {
+            const companyEnd = companyStart + company.valueKt / total * fullCircle
+            companyNodes.push({
+              ...company,
+              color: categoryColor,
+              opacity: Math.max(0.38, 0.9 - index * 0.045),
+              start: companyStart,
+              end: companyEnd,
+              mid: (companyStart + companyEnd) / 2,
+              share: company.valueKt / total * 100,
+              nationalShare: company.valueKt / nationalTotalKt * 100
+            })
+            companyStart = companyEnd
+          })
+          categoryStart = categoryEnd
+        })
+        sectorStart = sectorEnd
+      })
+
+      const topCompanies = [...companyNodes].sort((a, b) => b.valueKt - a.valueKt).slice(0, 10)
+      return {
+        sectors,
+        categories: categoryNodes,
+        companies: companyNodes,
+        labels: this.distributeRadialLabels(topCompanies),
+        topCompanies
+      }
+    },
+    radialAriaLabel() {
+      const topCompany = this.radialHierarchy.topCompanies[0]
+      return `Štruktúra emisií EU ETS v roku ${this.radialYear}. Spolu ${this.formatMt(this.radialCurrent.totalKt / 1000)} megatony CO2, čo je ${this.formatShare(this.radialNationalShare)} národných emisií. Najväčší prevádzkovateľ ${topCompany ? topCompany.name : ''}.`
     }
   },
   methods: {
@@ -395,6 +680,12 @@ export default {
         maximumFractionDigits: 1
       }).format(value)} %`
     },
+    formatShare(value) {
+      return `${new Intl.NumberFormat('sk-SK', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      }).format(value)} %`
+    },
     changeClass(value) {
       return value < 0 ? 'change-down' : 'change-up'
     },
@@ -405,6 +696,86 @@ export default {
     categoryColor(id) {
       const category = this.categories.find(item => item.id === id)
       return category ? category.color : '#9a9a94'
+    },
+    polarPoint(angle, radius) {
+      return {
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * radius
+      }
+    },
+    donutPath(start, end, innerRadius, outerRadius) {
+      const outerStart = this.polarPoint(start, outerRadius)
+      const outerEnd = this.polarPoint(end, outerRadius)
+      const innerEnd = this.polarPoint(end, innerRadius)
+      const innerStart = this.polarPoint(start, innerRadius)
+      const largeArc = end - start > Math.PI ? 1 : 0
+      return [
+        `M ${outerStart.x} ${outerStart.y}`,
+        `A ${outerRadius} ${outerRadius} 0 ${largeArc} 1 ${outerEnd.x} ${outerEnd.y}`,
+        `L ${innerEnd.x} ${innerEnd.y}`,
+        `A ${innerRadius} ${innerRadius} 0 ${largeArc} 0 ${innerStart.x} ${innerStart.y}`,
+        'Z'
+      ].join(' ')
+    },
+    arcLabelGeometry(start, end, radius) {
+      const mid = (start + end) / 2
+      const point = this.polarPoint(mid, radius)
+      let rotation = mid * 180 / Math.PI + 90
+      while (rotation > 180) rotation -= 360
+      while (rotation < -180) rotation += 360
+      if (rotation > 90) rotation -= 180
+      if (rotation < -90) rotation += 180
+      return {
+        labelX: point.x,
+        labelY: point.y,
+        rotation
+      }
+    },
+    shortCompanyName(name) {
+      const cleaned = name
+        .replace(/,?\s+(a\.\s*s\.|a\.s\.|s\.\s*r\.\s*o\.|s\.r\.o\.)$/i, '')
+        .trim()
+      return cleaned.length > 27 ? `${cleaned.slice(0, 25)}…` : cleaned
+    },
+    distributeRadialLabels(companies) {
+      const labels = companies.map(company => {
+        const anchor = this.polarPoint(company.mid, 294)
+        const elbow = this.polarPoint(company.mid, 317)
+        const side = Math.cos(company.mid) >= 0 ? 'right' : 'left'
+        return {
+          ...company,
+          side,
+          anchor,
+          elbow,
+          rawY: Math.sin(company.mid) * 330,
+          labelX: side === 'right' ? 354 : -354,
+          shortName: this.shortCompanyName(company.name)
+        }
+      })
+      const minY = -264
+      const maxY = 264
+      const gap = 33
+
+      ;['left', 'right'].forEach(side => {
+        const sideLabels = labels.filter(label => label.side === side).sort((a, b) => a.rawY - b.rawY)
+        let previous = minY - gap
+        sideLabels.forEach(label => {
+          label.labelY = Math.max(label.rawY, previous + gap)
+          previous = label.labelY
+        })
+        if (sideLabels.length && sideLabels[sideLabels.length - 1].labelY > maxY) {
+          const overflow = sideLabels[sideLabels.length - 1].labelY - maxY
+          sideLabels.forEach(label => { label.labelY -= overflow })
+        }
+        for (let index = sideLabels.length - 2; index >= 0; index -= 1) {
+          sideLabels[index].labelY = Math.min(sideLabels[index].labelY, sideLabels[index + 1].labelY - gap)
+        }
+        sideLabels.forEach(label => {
+          const lineEndX = label.side === 'right' ? label.labelX - 7 : label.labelX + 7
+          label.leaderPath = `M ${label.anchor.x} ${label.anchor.y} L ${label.elbow.x} ${label.elbow.y} L ${lineEndX} ${label.labelY}`
+        })
+      })
+      return labels
     }
   }
 }
@@ -905,6 +1276,209 @@ export default {
   text-align: center;
 }
 
+.radial-toolbar {
+  align-items: center;
+  background: #f7f7f5;
+  border-radius: 10px;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+  padding: 1rem 1.1rem;
+}
+
+.radial-toolbar > p {
+  font-size: 0.78rem;
+  margin: 0;
+  max-width: 590px;
+}
+
+.radial-chart-wrap {
+  margin: 1.25rem auto 0;
+  max-width: 1040px;
+}
+
+.radial-chart {
+  display: block;
+  height: auto;
+  overflow: visible;
+  width: 100%;
+}
+
+.radial-chart path:not(.leader-line) {
+  stroke: #ffffff;
+  stroke-width: 1.6;
+}
+
+.radial-center {
+  fill: #ffffff;
+  stroke: #d9dcd8;
+  stroke-width: 1.5;
+}
+
+.arc-label,
+.company-labels,
+.center-label {
+  pointer-events: none;
+}
+
+.arc-label text {
+  fill: #ffffff;
+  font-family: 'chivo-bold';
+}
+
+.broad-label {
+  font-size: 12px;
+}
+
+.category-label {
+  font-size: 10.5px;
+}
+
+.leader-line {
+  fill: none;
+  stroke: #a3a8a4;
+  stroke-width: 1;
+}
+
+.company-label {
+  fill: #555550;
+  font-size: 10.5px;
+}
+
+.company-label tspan:first-child {
+  font-family: 'chivo-bold';
+}
+
+.center-label {
+  fill: #595959;
+}
+
+.center-year,
+.center-share {
+  font-family: 'chivo-bold';
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+
+.center-total {
+  fill: #28758c;
+  font-family: 'chivo-bold';
+  font-size: 22px;
+}
+
+.center-unit {
+  font-size: 10px;
+}
+
+.center-share {
+  fill: #99362b;
+  font-size: 9px;
+}
+
+.ring-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.4rem;
+  justify-content: center;
+  margin-top: -0.5rem;
+}
+
+.ring-key span {
+  align-items: center;
+  display: flex;
+  font-size: 0.78rem;
+}
+
+.ring-key i {
+  border: 2px solid #28758c;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.45rem;
+}
+
+.ring-key strong {
+  margin-right: 0.25rem;
+}
+
+.ring-one {
+  height: 12px;
+  width: 12px;
+}
+
+.ring-two {
+  height: 17px;
+  opacity: 0.75;
+  width: 17px;
+}
+
+.ring-three {
+  height: 22px;
+  opacity: 0.5;
+  width: 22px;
+}
+
+.radial-ranking {
+  margin-top: 3rem;
+}
+
+.radial-ranking ol {
+  display: grid;
+  gap: 0 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.radial-ranking li {
+  align-items: center;
+  border-bottom: 1px solid #e4e6e3;
+  display: flex;
+  justify-content: space-between;
+  min-height: 64px;
+  padding: 0.6rem 0;
+}
+
+.ranking-name {
+  align-items: center;
+  display: flex;
+  min-width: 0;
+}
+
+.ranking-name > i {
+  border-radius: 2px;
+  flex: 0 0 auto;
+  height: 0.8rem;
+  margin-right: 0.6rem;
+  width: 0.8rem;
+}
+
+.ranking-name > span,
+.ranking-shares {
+  display: flex;
+  flex-direction: column;
+}
+
+.ranking-name strong {
+  font-family: 'chivo-bold';
+}
+
+.ranking-name small,
+.ranking-shares small {
+  color: #777771;
+}
+
+.ranking-shares {
+  flex: 0 0 auto;
+  margin-left: 1rem;
+  text-align: right;
+}
+
+.ranking-shares strong {
+  color: #28758c;
+  font-family: 'chivo-bold';
+}
+
 .method-note {
   border-top: 1px solid #e4e6e3;
   color: #777771;
@@ -929,6 +1503,10 @@ export default {
 
   .company-row summary {
     grid-template-columns: 28px minmax(220px, 1fr) minmax(160px, 0.8fr) 85px;
+  }
+
+  .radial-ranking ol {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -981,6 +1559,47 @@ export default {
   .installations {
     padding-left: 1rem;
   }
+
+  .radial-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .company-labels {
+    display: none;
+  }
+
+  .radial-chart {
+    margin: -1rem auto;
+    max-width: 680px;
+  }
+
+  .radial-chart-wrap {
+    margin-left: -3rem;
+    margin-right: -3rem;
+    width: calc(100% + 6rem);
+  }
+
+  .broad-label {
+    font-size: 18px;
+  }
+
+  .category-label {
+    font-size: 15px;
+  }
+
+  .center-year,
+  .center-unit {
+    font-size: 14px;
+  }
+
+  .center-total {
+    font-size: 30px;
+  }
+
+  .center-share {
+    font-size: 13px;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -1016,6 +1635,18 @@ export default {
 
   .company-main small {
     font-size: 0.68rem;
+  }
+
+  .category-label {
+    display: none;
+  }
+
+  .broad-label {
+    font-size: 23px;
+  }
+
+  .radial-ranking li {
+    align-items: flex-start;
   }
 }
 </style>
