@@ -182,6 +182,22 @@
                                     </a>
                                 </p>
                             </template>
+                            <template v-else-if="viz.type === 'emissions'">
+                                <EmissionsComparison
+                                    :years="viz.years"
+                                    :categories="viz.categories"
+                                />
+                                <p v-if="viz.source" class="source">
+                                    Zdroj:
+                                    <a
+                                        :href="viz.source.url"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {{ viz.source.title }}
+                                    </a>
+                                </p>
+                            </template>
                         </div>
                     </div>
 
@@ -201,11 +217,12 @@
 import MapComponent from '../components/MapComponent.vue'
 import GraphComponent from '../components/GraphComponent.vue'
 import SankeyComponent from '../components/SankeyComponent.vue'
+import EmissionsComparison from '../components/EmissionsComparison.vue'
 import mapsConfig from '../config/index.js'
 
 export default {
   name: 'VisualizationView',
-  components: { MapComponent, GraphComponent, SankeyComponent },
+  components: { MapComponent, GraphComponent, SankeyComponent, EmissionsComparison },
   computed: {
     viz() {
       // Find the visualization config by slug

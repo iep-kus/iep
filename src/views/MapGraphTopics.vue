@@ -128,7 +128,7 @@ export default {
           description: 'Ako nás ovplyvňuje zmena klímy a aké opatrenia môžu zmierniť jej dopady?',
           open: false,
           items: [
-            { title: 'Emisie sklenníkových plynov v roku 2022', slug: 'emisie-2022', type: 'graf' },
+            { title: 'Emisie skleníkových plynov v rokoch 2022 – 2024', slug: 'emisie-2022', type: 'graf' },
             { title: 'Vizualizácia 2', slug: 'mapa-graf-2', type: 'mapa' },
             { title: 'Vizualizácia 3', slug: 'mapa-graf-3', type: 'mapa' }
           ]
